@@ -1,6 +1,5 @@
-import Head from 'next/head'.
 import styles from '../styles/Home.module.css'
-import * :as Data  from '../data';
+import * as Data  from '../data';
 
 export default function Home() {
   console.log(Data);
