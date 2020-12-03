@@ -1,0 +1,229 @@
+{
+  "model": {
+    "dimensions": {
+      "date": {
+        "dimensionType": "datetime",
+        "primaryKey": [
+          "anio",
+          "mes"
+        ],
+        "attributes": {
+          "anio": {
+            "source": "anio",
+            "title": "anio"
+          },
+          "mes": {
+            "source": "mes",
+            "title": "mes"
+          }
+        }
+      },
+      "administrative-classification": {
+        "dimensionType": "classification",
+        "primaryKey": [
+          "descripcionNivel",
+          "descripcionEntidad",
+          "descripcionUnidadResponsable"
+        ],
+        "attributes": {
+          "descripcionNivel": {
+            "source": "descripcionNivel",
+            "title": "descripcionNivel"
+          },
+          "descripcionEntidad": {
+            "source": "descripcionEntidad",
+            "title": "descripcionEntidad",
+            "parent": "descripcionNivel"
+          },
+          "descripcionUnidadResponsable": {
+            "source": "descripcionUnidadResponsable",
+            "title": "descripcionUnidadResponsable",
+            "parent": "descripcionEntidad"
+          }
+        },
+        "classificationType": "administrative"
+      }
+    },
+    "measures": {
+      "presupuestoInicialAprobado": {
+        "source": "presupuestoInicialAprobado",
+        "title": "presupuestoInicialAprobado",
+        "currency": "PYG"
+      },
+      "montoVigente": {
+        "source": "montoVigente",
+        "title": "montoVigente",
+        "currency": "PYG"
+      },
+      "montoPlanFinancieroVigente": {
+        "source": "montoPlanFinancieroVigente",
+        "title": "montoPlanFinancieroVigente",
+        "currency": "PYG"
+      },
+      "montoEjecutado": {
+        "source": "montoEjecutado",
+        "title": "montoEjecutado",
+        "currency": "PYG"
+      },
+      "montoTransferido": {
+        "source": "montoTransferido",
+        "title": "montoTransferido",
+        "currency": "PYG"
+      },
+      "montoPagado": {
+        "source": "montoPagado",
+        "title": "montoPagado",
+        "currency": "PYG"
+      }
+    }
+  },
+  "regionCode": "sa",
+  "countryCode": "PY",
+  "fiscalPeriod": {
+    "start": "2017-01-01",
+    "end": "2017-04-01"
+  },
+  "title": "Presupuesto de Gastos de la Nación - Paraguay",
+  "name": "pgn-2017",
+  "resources": [
+    {
+      "name": "pgn-gasto-2017",
+      "format": "csv",
+      "path": "pgn-gasto-2017.csv",
+      "mediatype": "application/vnd.ms-excel",
+      "bytes": 37602555,
+      "dialect": {
+        "csvddfVersion": 1,
+        "delimiter": ",",
+        "lineTerminator": "\n"
+      },
+      "encoding": "windows-1252",
+      "schema": {
+        "fields": [
+          {
+            "title": "anio",
+            "name": "anio",
+            "slug": "anio",
+            "type": "integer",
+            "format": "default",
+            "osType": "date:fiscal-year",
+            "conceptType": "date"
+          },
+          {
+            "title": "mes",
+            "name": "mes",
+            "slug": "mes",
+            "type": "date",
+            "format": "fmt:%m",
+            "osType": "date:generic",
+            "conceptType": "date"
+          },
+          {
+            "title": "descripcionNivel",
+            "name": "descripcionNivel",
+            "slug": "descripcionNivel",
+            "type": "string",
+            "format": "default",
+            "osType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification"
+          },
+          {
+            "title": "descripcionEntidad",
+            "name": "descripcionEntidad",
+            "slug": "descripcionEntidad",
+            "type": "string",
+            "format": "default",
+            "osType": "administrative-classification:generic:level2:code:full",
+            "conceptType": "administrative-classification"
+          },
+          {
+            "title": "descripcionUnidadResponsable",
+            "name": "descripcionUnidadResponsable",
+            "slug": "descripcionUnidadResponsable",
+            "type": "string",
+            "format": "default",
+            "osType": "administrative-classification:generic:level3:code:full",
+            "conceptType": "administrative-classification"
+          },
+          {
+            "title": "presupuestoInicialAprobado",
+            "name": "presupuestoInicialAprobado",
+            "slug": "presupuestoInicialAprobado",
+            "type": "number",
+            "format": "default",
+            "osType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "groupChar": ","
+          },
+          {
+            "title": "montoVigente",
+            "name": "montoVigente",
+            "slug": "montoVigente",
+            "type": "number",
+            "format": "default",
+            "osType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "groupChar": ","
+          },
+          {
+            "title": "montoPlanFinancieroVigente",
+            "name": "montoPlanFinancieroVigente",
+            "slug": "montoPlanFinancieroVigente",
+            "type": "number",
+            "format": "default",
+            "osType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "groupChar": ","
+          },
+          {
+            "title": "montoEjecutado",
+            "name": "montoEjecutado",
+            "slug": "montoEjecutado",
+            "type": "number",
+            "format": "default",
+            "osType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "groupChar": ","
+          },
+          {
+            "title": "montoTransferido",
+            "name": "montoTransferido",
+            "slug": "montoTransferido",
+            "type": "number",
+            "format": "default",
+            "osType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "groupChar": ","
+          },
+          {
+            "title": "montoPagado",
+            "name": "montoPagado",
+            "slug": "montoPagado",
+            "type": "number",
+            "format": "default",
+            "osType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "groupChar": ","
+          }
+        ],
+        "primaryKey": [
+          "anio",
+          "mes",
+          "descripcionNivel",
+          "descripcionEntidad",
+          "descripcionUnidadResponsable"
+        ]
+      }
+    }
+  ],
+  "@context": "http://schemas.frictionlessdata.io/fiscal-data-package.jsonld",
+  "owner": "d2e8215903dc37020268704e584dda11",
+  "author": "Víctor Daniel Ughelli Krieg <vduk225@gmail.com>",
+  "count_of_rows": 53603
+}

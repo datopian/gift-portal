@@ -1,0 +1,2972 @@
+{
+  "@context": "http://schemas.frictionlessdata.io/fiscal-data-package.jsonld",
+  "bytes": 384068888,
+  "count_of_rows": 1083353,
+  "hash": "25614508c9923face5b158e19fcf795f",
+  "model": {
+    "dimensions": {
+      "activity": {
+        "attributes": {
+          "PROYECTO_ID": {
+            "source": "PROYECTO_ID",
+            "title": "Programa ID"
+          },
+          "PROYECTO_NOMBRE": {
+            "labelfor": "PROYECTO_ID",
+            "source": "PROYECTO_NOMBRE",
+            "title": "Programa"
+          }
+        },
+        "dimensionType": "activity",
+        "primaryKey": [
+          "PROYECTO_ID"
+        ]
+      },
+      "administrative-classification": {
+        "attributes": {
+          "ORG_ID": {
+            "source": "ORG_ID",
+            "title": "Inciso ID"
+          },
+          "ORG_NOMBRE": {
+            "labelfor": "ORG_ID",
+            "source": "ORG_NOMBRE",
+            "title": "Inciso"
+          },
+          "UE_ID": {
+            "parent": "ORG_ID",
+            "source": "UE_ID",
+            "title": "Unidad Ejecutora ID"
+          },
+          "UE_NOMBRE": {
+            "labelfor": "UE_ID",
+            "source": "UE_NOMBRE",
+            "title": "Unidad Ejecutora"
+          }
+        },
+        "classificationType": "administrative",
+        "dimensionType": "classification",
+        "primaryKey": [
+          "ORG_ID",
+          "UE_ID"
+        ]
+      },
+      "date": {
+        "attributes": {
+          "ANO": {
+            "source": "ANO",
+            "title": "Año"
+          }
+        },
+        "dimensionType": "datetime",
+        "primaryKey": [
+          "ANO"
+        ]
+      },
+      "economic-classification": {
+        "attributes": {
+          "GRUPO_ID": {
+            "source": "GRUPO_ID",
+            "title": "Grupo ID"
+          },
+          "GRUPO_NOMBRE": {
+            "labelfor": "GRUPO_ID",
+            "source": "GRUPO_NOMBRE",
+            "title": "Grupo"
+          },
+          "ODGYAUX_ID": {
+            "parent": "SUBGRUPO_ID",
+            "source": "ODGYAUX_ID",
+            "title": "Objeto del gasto ID"
+          },
+          "ODGYAUX_NOMBRE": {
+            "labelfor": "ODGYAUX_ID",
+            "source": "ODGYAUX_NOMBRE",
+            "title": "Objeto del gasto"
+          },
+          "SUBGRUPO_ID": {
+            "parent": "GRUPO_ID",
+            "source": "SUBGRUPO_ID",
+            "title": "Subgrupo ID"
+          },
+          "SUBGRUPO_NOMBRE": {
+            "labelfor": "SUBGRUPO_ID",
+            "source": "SUBGRUPO_NOMBRE",
+            "title": "Subgrupo"
+          }
+        },
+        "classificationType": "economic",
+        "dimensionType": "classification",
+        "primaryKey": [
+          "GRUPO_ID",
+          "SUBGRUPO_ID",
+          "ODGYAUX_ID"
+        ]
+      },
+      "expenditure-type": {
+        "attributes": {
+          "TIPO_GASTO_ID": {
+            "source": "TIPO_GASTO_ID",
+            "title": "Tipo de Gasto ID"
+          },
+          "TIPO_GASTO_NOMBRE": {
+            "labelfor": "TIPO_GASTO_ID",
+            "source": "TIPO_GASTO_NOMBRE",
+            "title": "Tipo de Gasto"
+          }
+        },
+        "dimensionType": "other",
+        "primaryKey": [
+          "TIPO_GASTO_ID"
+        ]
+      },
+      "fin-source": {
+        "attributes": {
+          "FINANC_ID": {
+            "source": "FINANC_ID",
+            "title": "Financiamiento ID"
+          },
+          "FINANC_NOMBRE": {
+            "labelfor": "FINANC_ID",
+            "source": "FINANC_NOMBRE",
+            "title": "Financiamiento"
+          },
+          "FUENTE_FINANC_ID": {
+            "parent": "FINANC_ID",
+            "source": "FUENTE_FINANC_ID",
+            "title": "Fuente de Financiamiento ID"
+          },
+          "FUENTE_FINANC_NOMBRE": {
+            "labelfor": "FUENTE_FINANC_ID",
+            "source": "FUENTE_FINANC_NOMBRE",
+            "title": "Fuente de Financiamiento"
+          }
+        },
+        "dimensionType": "other",
+        "primaryKey": [
+          "FINANC_ID",
+          "FUENTE_FINANC_ID"
+        ]
+      },
+      "functional-classification": {
+        "attributes": {
+          "AP_ID": {
+            "source": "AP_ID",
+            "title": "Área Programática ID"
+          },
+          "AP_NOMBRE": {
+            "labelfor": "AP_ID",
+            "source": "AP_NOMBRE",
+            "title": "Área Programática"
+          },
+          "PROGRAMA_ID": {
+            "parent": "AP_ID",
+            "source": "PROGRAMA_ID",
+            "title": "Fun Programa ID"
+          },
+          "PROGRAMA_NOMBRE": {
+            "labelfor": "PROGRAMA_ID",
+            "source": "PROGRAMA_NOMBRE",
+            "title": "Fun Programa"
+          }
+        },
+        "classificationType": "functional",
+        "dimensionType": "classification",
+        "primaryKey": [
+          "AP_ID",
+          "PROGRAMA_ID"
+        ]
+      }
+    },
+    "measures": {
+      "MONTO_APROBADO": {
+        "currency": "UYU",
+        "phase": "approved",
+        "source": "MONTO_APROBADO",
+        "title": "Crédito apertura"
+      },
+      "MONTO_EJECUTADO": {
+        "currency": "UYU",
+        "phase": "executed",
+        "source": "MONTO_EJECUTADO",
+        "title": "Ejecutado"
+      },
+      "MONTO_VIGENTE": {
+        "currency": "UYU",
+        "phase": "modified",
+        "source": "MONTO_VIGENTE",
+        "title": "Crédito vigente"
+      }
+    }
+  },
+  "name": "presupuesto_de_uruguay",
+  "profile": "data-package",
+  "profiles": {
+    "fiscal": "*",
+    "tabular": "*"
+  },
+  "resources": [
+    {
+      "bytes": 288049665,
+      "count_of_rows": 812508,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/app/source-specs/os-source-specs/america/uruguay/final/data/presupuesto_de_uruguay.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "aef9466bfc1ed708fbc026c3a67feef3",
+      "name": "presupuesto_de_uruguay",
+      "path": "data/presupuesto_de_uruguay.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "columnType": "date:fiscal-year",
+            "conceptType": "date",
+            "format": "default",
+            "name": "ANO",
+            "slug": "ANO",
+            "title": "Año",
+            "type": "integer"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_ID",
+            "slug": "AP_ID",
+            "title": "Área Programática ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_NOMBRE",
+            "slug": "AP_NOMBRE",
+            "title": "Área Programática",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_ID",
+            "slug": "FINANC_ID",
+            "title": "Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_NOMBRE",
+            "slug": "FINANC_NOMBRE",
+            "title": "Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_ID",
+            "slug": "FUENTE_FINANC_ID",
+            "title": "Fuente de Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_NOMBRE",
+            "slug": "FUENTE_FINANC_NOMBRE",
+            "title": "Fuente de Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_ID",
+            "slug": "GRUPO_ID",
+            "title": "Grupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_NOMBRE",
+            "slug": "GRUPO_NOMBRE",
+            "title": "Grupo",
+            "type": "string"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_APROBADO",
+            "slug": "MONTO_APROBADO",
+            "title": "Crédito apertura",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_EJECUTADO",
+            "slug": "MONTO_EJECUTADO",
+            "title": "Ejecutado",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_VIGENTE",
+            "slug": "MONTO_VIGENTE",
+            "title": "Crédito vigente",
+            "type": "number"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_ID",
+            "slug": "ODGYAUX_ID",
+            "title": "Objeto del gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_NOMBRE",
+            "slug": "ODGYAUX_NOMBRE",
+            "title": "Objeto del gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_ID",
+            "slug": "ORG_ID",
+            "title": "Inciso ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_NOMBRE",
+            "slug": "ORG_NOMBRE",
+            "title": "Inciso",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_ID",
+            "slug": "PROGRAMA_ID",
+            "title": "Fun Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_NOMBRE",
+            "slug": "PROGRAMA_NOMBRE",
+            "title": "Fun Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:code",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_ID",
+            "slug": "PROYECTO_ID",
+            "title": "Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:label",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_NOMBRE",
+            "slug": "PROYECTO_NOMBRE",
+            "title": "Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_ID",
+            "slug": "SUBGRUPO_ID",
+            "title": "Subgrupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_NOMBRE",
+            "slug": "SUBGRUPO_NOMBRE",
+            "title": "Subgrupo",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:code",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_ID",
+            "slug": "TIPO_GASTO_ID",
+            "title": "Tipo de Gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:label",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_NOMBRE",
+            "slug": "TIPO_GASTO_NOMBRE",
+            "title": "Tipo de Gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_ID",
+            "slug": "UE_ID",
+            "title": "Unidad Ejecutora ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_NOMBRE",
+            "slug": "UE_NOMBRE",
+            "title": "Unidad Ejecutora",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "ANO",
+          "AP_ID",
+          "FINANC_ID",
+          "FUENTE_FINANC_ID",
+          "GRUPO_ID",
+          "ODGYAUX_ID",
+          "ORG_ID",
+          "PROGRAMA_ID",
+          "PROYECTO_ID",
+          "SUBGRUPO_ID",
+          "TIPO_GASTO_ID",
+          "UE_ID"
+        ]
+      }
+    },
+    {
+      "bytes": 106447632,
+      "count_of_rows": 300431,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/app/source-specs/os-source-specs/america/uruguay/final/data/presupuesto_de_uruguay__2011.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "6f3d4302977cc3afabe3c7660a3a2202",
+      "name": "presupuesto_de_uruguay__2011",
+      "path": "data/presupuesto_de_uruguay__2011.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "columnType": "date:fiscal-year",
+            "conceptType": "date",
+            "format": "default",
+            "name": "ANO",
+            "slug": "ANO",
+            "title": "Año",
+            "type": "integer"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_ID",
+            "slug": "AP_ID",
+            "title": "Área Programática ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_NOMBRE",
+            "slug": "AP_NOMBRE",
+            "title": "Área Programática",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_ID",
+            "slug": "FINANC_ID",
+            "title": "Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_NOMBRE",
+            "slug": "FINANC_NOMBRE",
+            "title": "Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_ID",
+            "slug": "FUENTE_FINANC_ID",
+            "title": "Fuente de Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_NOMBRE",
+            "slug": "FUENTE_FINANC_NOMBRE",
+            "title": "Fuente de Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_ID",
+            "slug": "GRUPO_ID",
+            "title": "Grupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_NOMBRE",
+            "slug": "GRUPO_NOMBRE",
+            "title": "Grupo",
+            "type": "string"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_APROBADO",
+            "slug": "MONTO_APROBADO",
+            "title": "Crédito apertura",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_EJECUTADO",
+            "slug": "MONTO_EJECUTADO",
+            "title": "Ejecutado",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_VIGENTE",
+            "slug": "MONTO_VIGENTE",
+            "title": "Crédito vigente",
+            "type": "number"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_ID",
+            "slug": "ODGYAUX_ID",
+            "title": "Objeto del gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_NOMBRE",
+            "slug": "ODGYAUX_NOMBRE",
+            "title": "Objeto del gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_ID",
+            "slug": "ORG_ID",
+            "title": "Inciso ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_NOMBRE",
+            "slug": "ORG_NOMBRE",
+            "title": "Inciso",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_ID",
+            "slug": "PROGRAMA_ID",
+            "title": "Fun Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_NOMBRE",
+            "slug": "PROGRAMA_NOMBRE",
+            "title": "Fun Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:code",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_ID",
+            "slug": "PROYECTO_ID",
+            "title": "Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:label",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_NOMBRE",
+            "slug": "PROYECTO_NOMBRE",
+            "title": "Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_ID",
+            "slug": "SUBGRUPO_ID",
+            "title": "Subgrupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_NOMBRE",
+            "slug": "SUBGRUPO_NOMBRE",
+            "title": "Subgrupo",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:code",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_ID",
+            "slug": "TIPO_GASTO_ID",
+            "title": "Tipo de Gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:label",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_NOMBRE",
+            "slug": "TIPO_GASTO_NOMBRE",
+            "title": "Tipo de Gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_ID",
+            "slug": "UE_ID",
+            "title": "Unidad Ejecutora ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_NOMBRE",
+            "slug": "UE_NOMBRE",
+            "title": "Unidad Ejecutora",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "ANO",
+          "AP_ID",
+          "FINANC_ID",
+          "FUENTE_FINANC_ID",
+          "GRUPO_ID",
+          "ODGYAUX_ID",
+          "ORG_ID",
+          "PROGRAMA_ID",
+          "PROYECTO_ID",
+          "SUBGRUPO_ID",
+          "TIPO_GASTO_ID",
+          "UE_ID"
+        ]
+      }
+    },
+    {
+      "bytes": 106632199,
+      "count_of_rows": 300888,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/app/source-specs/os-source-specs/america/uruguay/final/data/presupuesto_de_uruguay__2012.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "455ba5fb85ce642b2bf2da1f455b1ccc",
+      "name": "presupuesto_de_uruguay__2012",
+      "path": "data/presupuesto_de_uruguay__2012.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "columnType": "date:fiscal-year",
+            "conceptType": "date",
+            "format": "default",
+            "name": "ANO",
+            "slug": "ANO",
+            "title": "Año",
+            "type": "integer"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_ID",
+            "slug": "AP_ID",
+            "title": "Área Programática ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_NOMBRE",
+            "slug": "AP_NOMBRE",
+            "title": "Área Programática",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_ID",
+            "slug": "FINANC_ID",
+            "title": "Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_NOMBRE",
+            "slug": "FINANC_NOMBRE",
+            "title": "Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_ID",
+            "slug": "FUENTE_FINANC_ID",
+            "title": "Fuente de Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_NOMBRE",
+            "slug": "FUENTE_FINANC_NOMBRE",
+            "title": "Fuente de Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_ID",
+            "slug": "GRUPO_ID",
+            "title": "Grupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_NOMBRE",
+            "slug": "GRUPO_NOMBRE",
+            "title": "Grupo",
+            "type": "string"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_APROBADO",
+            "slug": "MONTO_APROBADO",
+            "title": "Crédito apertura",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_EJECUTADO",
+            "slug": "MONTO_EJECUTADO",
+            "title": "Ejecutado",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_VIGENTE",
+            "slug": "MONTO_VIGENTE",
+            "title": "Crédito vigente",
+            "type": "number"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_ID",
+            "slug": "ODGYAUX_ID",
+            "title": "Objeto del gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_NOMBRE",
+            "slug": "ODGYAUX_NOMBRE",
+            "title": "Objeto del gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_ID",
+            "slug": "ORG_ID",
+            "title": "Inciso ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_NOMBRE",
+            "slug": "ORG_NOMBRE",
+            "title": "Inciso",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_ID",
+            "slug": "PROGRAMA_ID",
+            "title": "Fun Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_NOMBRE",
+            "slug": "PROGRAMA_NOMBRE",
+            "title": "Fun Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:code",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_ID",
+            "slug": "PROYECTO_ID",
+            "title": "Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:label",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_NOMBRE",
+            "slug": "PROYECTO_NOMBRE",
+            "title": "Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_ID",
+            "slug": "SUBGRUPO_ID",
+            "title": "Subgrupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_NOMBRE",
+            "slug": "SUBGRUPO_NOMBRE",
+            "title": "Subgrupo",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:code",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_ID",
+            "slug": "TIPO_GASTO_ID",
+            "title": "Tipo de Gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:label",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_NOMBRE",
+            "slug": "TIPO_GASTO_NOMBRE",
+            "title": "Tipo de Gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_ID",
+            "slug": "UE_ID",
+            "title": "Unidad Ejecutora ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_NOMBRE",
+            "slug": "UE_NOMBRE",
+            "title": "Unidad Ejecutora",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "ANO",
+          "AP_ID",
+          "FINANC_ID",
+          "FUENTE_FINANC_ID",
+          "GRUPO_ID",
+          "ODGYAUX_ID",
+          "ORG_ID",
+          "PROGRAMA_ID",
+          "PROYECTO_ID",
+          "SUBGRUPO_ID",
+          "TIPO_GASTO_ID",
+          "UE_ID"
+        ]
+      }
+    },
+    {
+      "bytes": 106574986,
+      "count_of_rows": 300730,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/app/source-specs/os-source-specs/america/uruguay/final/data/presupuesto_de_uruguay__2013.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "6b7c3f295311b994d47d12bc0eefa715",
+      "name": "presupuesto_de_uruguay__2013",
+      "path": "data/presupuesto_de_uruguay__2013.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "columnType": "date:fiscal-year",
+            "conceptType": "date",
+            "format": "default",
+            "name": "ANO",
+            "slug": "ANO",
+            "title": "Año",
+            "type": "integer"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_ID",
+            "slug": "AP_ID",
+            "title": "Área Programática ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_NOMBRE",
+            "slug": "AP_NOMBRE",
+            "title": "Área Programática",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_ID",
+            "slug": "FINANC_ID",
+            "title": "Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_NOMBRE",
+            "slug": "FINANC_NOMBRE",
+            "title": "Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_ID",
+            "slug": "FUENTE_FINANC_ID",
+            "title": "Fuente de Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_NOMBRE",
+            "slug": "FUENTE_FINANC_NOMBRE",
+            "title": "Fuente de Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_ID",
+            "slug": "GRUPO_ID",
+            "title": "Grupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_NOMBRE",
+            "slug": "GRUPO_NOMBRE",
+            "title": "Grupo",
+            "type": "string"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_APROBADO",
+            "slug": "MONTO_APROBADO",
+            "title": "Crédito apertura",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_EJECUTADO",
+            "slug": "MONTO_EJECUTADO",
+            "title": "Ejecutado",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_VIGENTE",
+            "slug": "MONTO_VIGENTE",
+            "title": "Crédito vigente",
+            "type": "number"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_ID",
+            "slug": "ODGYAUX_ID",
+            "title": "Objeto del gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_NOMBRE",
+            "slug": "ODGYAUX_NOMBRE",
+            "title": "Objeto del gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_ID",
+            "slug": "ORG_ID",
+            "title": "Inciso ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_NOMBRE",
+            "slug": "ORG_NOMBRE",
+            "title": "Inciso",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_ID",
+            "slug": "PROGRAMA_ID",
+            "title": "Fun Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_NOMBRE",
+            "slug": "PROGRAMA_NOMBRE",
+            "title": "Fun Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:code",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_ID",
+            "slug": "PROYECTO_ID",
+            "title": "Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:label",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_NOMBRE",
+            "slug": "PROYECTO_NOMBRE",
+            "title": "Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_ID",
+            "slug": "SUBGRUPO_ID",
+            "title": "Subgrupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_NOMBRE",
+            "slug": "SUBGRUPO_NOMBRE",
+            "title": "Subgrupo",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:code",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_ID",
+            "slug": "TIPO_GASTO_ID",
+            "title": "Tipo de Gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:label",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_NOMBRE",
+            "slug": "TIPO_GASTO_NOMBRE",
+            "title": "Tipo de Gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_ID",
+            "slug": "UE_ID",
+            "title": "Unidad Ejecutora ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_NOMBRE",
+            "slug": "UE_NOMBRE",
+            "title": "Unidad Ejecutora",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "ANO",
+          "AP_ID",
+          "FINANC_ID",
+          "FUENTE_FINANC_ID",
+          "GRUPO_ID",
+          "ODGYAUX_ID",
+          "ORG_ID",
+          "PROGRAMA_ID",
+          "PROYECTO_ID",
+          "SUBGRUPO_ID",
+          "TIPO_GASTO_ID",
+          "UE_ID"
+        ]
+      }
+    },
+    {
+      "bytes": 106810279,
+      "count_of_rows": 301415,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/app/source-specs/os-source-specs/america/uruguay/final/data/presupuesto_de_uruguay__2014.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "ceff33e81959cce9229bd654ffa8c37b",
+      "name": "presupuesto_de_uruguay__2014",
+      "path": "data/presupuesto_de_uruguay__2014.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "columnType": "date:fiscal-year",
+            "conceptType": "date",
+            "format": "default",
+            "name": "ANO",
+            "slug": "ANO",
+            "title": "Año",
+            "type": "integer"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_ID",
+            "slug": "AP_ID",
+            "title": "Área Programática ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_NOMBRE",
+            "slug": "AP_NOMBRE",
+            "title": "Área Programática",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_ID",
+            "slug": "FINANC_ID",
+            "title": "Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_NOMBRE",
+            "slug": "FINANC_NOMBRE",
+            "title": "Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_ID",
+            "slug": "FUENTE_FINANC_ID",
+            "title": "Fuente de Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_NOMBRE",
+            "slug": "FUENTE_FINANC_NOMBRE",
+            "title": "Fuente de Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_ID",
+            "slug": "GRUPO_ID",
+            "title": "Grupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_NOMBRE",
+            "slug": "GRUPO_NOMBRE",
+            "title": "Grupo",
+            "type": "string"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_APROBADO",
+            "slug": "MONTO_APROBADO",
+            "title": "Crédito apertura",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_EJECUTADO",
+            "slug": "MONTO_EJECUTADO",
+            "title": "Ejecutado",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_VIGENTE",
+            "slug": "MONTO_VIGENTE",
+            "title": "Crédito vigente",
+            "type": "number"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_ID",
+            "slug": "ODGYAUX_ID",
+            "title": "Objeto del gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_NOMBRE",
+            "slug": "ODGYAUX_NOMBRE",
+            "title": "Objeto del gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_ID",
+            "slug": "ORG_ID",
+            "title": "Inciso ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_NOMBRE",
+            "slug": "ORG_NOMBRE",
+            "title": "Inciso",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_ID",
+            "slug": "PROGRAMA_ID",
+            "title": "Fun Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_NOMBRE",
+            "slug": "PROGRAMA_NOMBRE",
+            "title": "Fun Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:code",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_ID",
+            "slug": "PROYECTO_ID",
+            "title": "Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:label",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_NOMBRE",
+            "slug": "PROYECTO_NOMBRE",
+            "title": "Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_ID",
+            "slug": "SUBGRUPO_ID",
+            "title": "Subgrupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_NOMBRE",
+            "slug": "SUBGRUPO_NOMBRE",
+            "title": "Subgrupo",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:code",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_ID",
+            "slug": "TIPO_GASTO_ID",
+            "title": "Tipo de Gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:label",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_NOMBRE",
+            "slug": "TIPO_GASTO_NOMBRE",
+            "title": "Tipo de Gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_ID",
+            "slug": "UE_ID",
+            "title": "Unidad Ejecutora ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_NOMBRE",
+            "slug": "UE_NOMBRE",
+            "title": "Unidad Ejecutora",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "ANO",
+          "AP_ID",
+          "FINANC_ID",
+          "FUENTE_FINANC_ID",
+          "GRUPO_ID",
+          "ODGYAUX_ID",
+          "ORG_ID",
+          "PROGRAMA_ID",
+          "PROYECTO_ID",
+          "SUBGRUPO_ID",
+          "TIPO_GASTO_ID",
+          "UE_ID"
+        ]
+      }
+    },
+    {
+      "bytes": 106848222,
+      "count_of_rows": 301471,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/app/source-specs/os-source-specs/america/uruguay/final/data/presupuesto_de_uruguay__2015.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "eb12e12ac86bf76809832d179708b25b",
+      "name": "presupuesto_de_uruguay__2015",
+      "path": "data/presupuesto_de_uruguay__2015.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "columnType": "date:fiscal-year",
+            "conceptType": "date",
+            "format": "default",
+            "name": "ANO",
+            "slug": "ANO",
+            "title": "Año",
+            "type": "integer"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_ID",
+            "slug": "AP_ID",
+            "title": "Área Programática ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_NOMBRE",
+            "slug": "AP_NOMBRE",
+            "title": "Área Programática",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_ID",
+            "slug": "FINANC_ID",
+            "title": "Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_NOMBRE",
+            "slug": "FINANC_NOMBRE",
+            "title": "Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_ID",
+            "slug": "FUENTE_FINANC_ID",
+            "title": "Fuente de Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_NOMBRE",
+            "slug": "FUENTE_FINANC_NOMBRE",
+            "title": "Fuente de Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_ID",
+            "slug": "GRUPO_ID",
+            "title": "Grupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_NOMBRE",
+            "slug": "GRUPO_NOMBRE",
+            "title": "Grupo",
+            "type": "string"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_APROBADO",
+            "slug": "MONTO_APROBADO",
+            "title": "Crédito apertura",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_EJECUTADO",
+            "slug": "MONTO_EJECUTADO",
+            "title": "Ejecutado",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_VIGENTE",
+            "slug": "MONTO_VIGENTE",
+            "title": "Crédito vigente",
+            "type": "number"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_ID",
+            "slug": "ODGYAUX_ID",
+            "title": "Objeto del gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_NOMBRE",
+            "slug": "ODGYAUX_NOMBRE",
+            "title": "Objeto del gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_ID",
+            "slug": "ORG_ID",
+            "title": "Inciso ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_NOMBRE",
+            "slug": "ORG_NOMBRE",
+            "title": "Inciso",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_ID",
+            "slug": "PROGRAMA_ID",
+            "title": "Fun Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_NOMBRE",
+            "slug": "PROGRAMA_NOMBRE",
+            "title": "Fun Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:code",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_ID",
+            "slug": "PROYECTO_ID",
+            "title": "Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:label",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_NOMBRE",
+            "slug": "PROYECTO_NOMBRE",
+            "title": "Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_ID",
+            "slug": "SUBGRUPO_ID",
+            "title": "Subgrupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_NOMBRE",
+            "slug": "SUBGRUPO_NOMBRE",
+            "title": "Subgrupo",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:code",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_ID",
+            "slug": "TIPO_GASTO_ID",
+            "title": "Tipo de Gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:label",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_NOMBRE",
+            "slug": "TIPO_GASTO_NOMBRE",
+            "title": "Tipo de Gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_ID",
+            "slug": "UE_ID",
+            "title": "Unidad Ejecutora ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_NOMBRE",
+            "slug": "UE_NOMBRE",
+            "title": "Unidad Ejecutora",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "ANO",
+          "AP_ID",
+          "FINANC_ID",
+          "FUENTE_FINANC_ID",
+          "GRUPO_ID",
+          "ODGYAUX_ID",
+          "ORG_ID",
+          "PROGRAMA_ID",
+          "PROYECTO_ID",
+          "SUBGRUPO_ID",
+          "TIPO_GASTO_ID",
+          "UE_ID"
+        ]
+      }
+    },
+    {
+      "bytes": 107183058,
+      "count_of_rows": 302328,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/app/source-specs/os-source-specs/america/uruguay/final/data/presupuesto_de_uruguay__2016.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "d73a99f6281a59d1934632379073fdba",
+      "name": "presupuesto_de_uruguay__2016",
+      "path": "data/presupuesto_de_uruguay__2016.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "columnType": "date:fiscal-year",
+            "conceptType": "date",
+            "format": "default",
+            "name": "ANO",
+            "slug": "ANO",
+            "title": "Año",
+            "type": "integer"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_ID",
+            "slug": "AP_ID",
+            "title": "Área Programática ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_NOMBRE",
+            "slug": "AP_NOMBRE",
+            "title": "Área Programática",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_ID",
+            "slug": "FINANC_ID",
+            "title": "Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_NOMBRE",
+            "slug": "FINANC_NOMBRE",
+            "title": "Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_ID",
+            "slug": "FUENTE_FINANC_ID",
+            "title": "Fuente de Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_NOMBRE",
+            "slug": "FUENTE_FINANC_NOMBRE",
+            "title": "Fuente de Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_ID",
+            "slug": "GRUPO_ID",
+            "title": "Grupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_NOMBRE",
+            "slug": "GRUPO_NOMBRE",
+            "title": "Grupo",
+            "type": "string"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_APROBADO",
+            "slug": "MONTO_APROBADO",
+            "title": "Crédito apertura",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_EJECUTADO",
+            "slug": "MONTO_EJECUTADO",
+            "title": "Ejecutado",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_VIGENTE",
+            "slug": "MONTO_VIGENTE",
+            "title": "Crédito vigente",
+            "type": "number"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_ID",
+            "slug": "ODGYAUX_ID",
+            "title": "Objeto del gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_NOMBRE",
+            "slug": "ODGYAUX_NOMBRE",
+            "title": "Objeto del gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_ID",
+            "slug": "ORG_ID",
+            "title": "Inciso ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_NOMBRE",
+            "slug": "ORG_NOMBRE",
+            "title": "Inciso",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_ID",
+            "slug": "PROGRAMA_ID",
+            "title": "Fun Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_NOMBRE",
+            "slug": "PROGRAMA_NOMBRE",
+            "title": "Fun Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:code",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_ID",
+            "slug": "PROYECTO_ID",
+            "title": "Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:label",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_NOMBRE",
+            "slug": "PROYECTO_NOMBRE",
+            "title": "Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_ID",
+            "slug": "SUBGRUPO_ID",
+            "title": "Subgrupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_NOMBRE",
+            "slug": "SUBGRUPO_NOMBRE",
+            "title": "Subgrupo",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:code",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_ID",
+            "slug": "TIPO_GASTO_ID",
+            "title": "Tipo de Gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:label",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_NOMBRE",
+            "slug": "TIPO_GASTO_NOMBRE",
+            "title": "Tipo de Gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_ID",
+            "slug": "UE_ID",
+            "title": "Unidad Ejecutora ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_NOMBRE",
+            "slug": "UE_NOMBRE",
+            "title": "Unidad Ejecutora",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "ANO",
+          "AP_ID",
+          "FINANC_ID",
+          "FUENTE_FINANC_ID",
+          "GRUPO_ID",
+          "ODGYAUX_ID",
+          "ORG_ID",
+          "PROGRAMA_ID",
+          "PROYECTO_ID",
+          "SUBGRUPO_ID",
+          "TIPO_GASTO_ID",
+          "UE_ID"
+        ]
+      }
+    },
+    {
+      "bytes": 107253657,
+      "count_of_rows": 302215,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/app/source-specs/os-source-specs/america/uruguay/final/data/presupuesto_de_uruguay__2017.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "3d9e6b5b3e9d47238b60e49351892697",
+      "name": "presupuesto_de_uruguay__2017",
+      "path": "data/presupuesto_de_uruguay__2017.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "columnType": "date:fiscal-year",
+            "conceptType": "date",
+            "format": "default",
+            "name": "ANO",
+            "slug": "ANO",
+            "title": "Año",
+            "type": "integer"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_ID",
+            "slug": "AP_ID",
+            "title": "Área Programática ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_NOMBRE",
+            "slug": "AP_NOMBRE",
+            "title": "Área Programática",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_ID",
+            "slug": "FINANC_ID",
+            "title": "Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_NOMBRE",
+            "slug": "FINANC_NOMBRE",
+            "title": "Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_ID",
+            "slug": "FUENTE_FINANC_ID",
+            "title": "Fuente de Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_NOMBRE",
+            "slug": "FUENTE_FINANC_NOMBRE",
+            "title": "Fuente de Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_ID",
+            "slug": "GRUPO_ID",
+            "title": "Grupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_NOMBRE",
+            "slug": "GRUPO_NOMBRE",
+            "title": "Grupo",
+            "type": "string"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_APROBADO",
+            "slug": "MONTO_APROBADO",
+            "title": "Crédito apertura",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_EJECUTADO",
+            "slug": "MONTO_EJECUTADO",
+            "title": "Ejecutado",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_VIGENTE",
+            "slug": "MONTO_VIGENTE",
+            "title": "Crédito vigente",
+            "type": "number"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_ID",
+            "slug": "ODGYAUX_ID",
+            "title": "Objeto del gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_NOMBRE",
+            "slug": "ODGYAUX_NOMBRE",
+            "title": "Objeto del gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_ID",
+            "slug": "ORG_ID",
+            "title": "Inciso ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_NOMBRE",
+            "slug": "ORG_NOMBRE",
+            "title": "Inciso",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_ID",
+            "slug": "PROGRAMA_ID",
+            "title": "Fun Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_NOMBRE",
+            "slug": "PROGRAMA_NOMBRE",
+            "title": "Fun Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:code",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_ID",
+            "slug": "PROYECTO_ID",
+            "title": "Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:label",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_NOMBRE",
+            "slug": "PROYECTO_NOMBRE",
+            "title": "Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_ID",
+            "slug": "SUBGRUPO_ID",
+            "title": "Subgrupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_NOMBRE",
+            "slug": "SUBGRUPO_NOMBRE",
+            "title": "Subgrupo",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:code",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_ID",
+            "slug": "TIPO_GASTO_ID",
+            "title": "Tipo de Gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:label",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_NOMBRE",
+            "slug": "TIPO_GASTO_NOMBRE",
+            "title": "Tipo de Gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_ID",
+            "slug": "UE_ID",
+            "title": "Unidad Ejecutora ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_NOMBRE",
+            "slug": "UE_NOMBRE",
+            "title": "Unidad Ejecutora",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "ANO",
+          "AP_ID",
+          "FINANC_ID",
+          "FUENTE_FINANC_ID",
+          "GRUPO_ID",
+          "ODGYAUX_ID",
+          "ORG_ID",
+          "PROGRAMA_ID",
+          "PROYECTO_ID",
+          "SUBGRUPO_ID",
+          "TIPO_GASTO_ID",
+          "UE_ID"
+        ]
+      }
+    },
+    {
+      "bytes": 107251187,
+      "count_of_rows": 302173,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/app/source-specs/os-source-specs/america/uruguay/final/data/presupuesto_de_uruguay__2018.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "d41ab30e75a900ba614256f73de1bbbf",
+      "name": "presupuesto_de_uruguay__2018",
+      "path": "data/presupuesto_de_uruguay__2018.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "columnType": "date:fiscal-year",
+            "conceptType": "date",
+            "format": "default",
+            "name": "ANO",
+            "slug": "ANO",
+            "title": "Año",
+            "type": "integer"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_ID",
+            "slug": "AP_ID",
+            "title": "Área Programática ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_NOMBRE",
+            "slug": "AP_NOMBRE",
+            "title": "Área Programática",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_ID",
+            "slug": "FINANC_ID",
+            "title": "Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_NOMBRE",
+            "slug": "FINANC_NOMBRE",
+            "title": "Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_ID",
+            "slug": "FUENTE_FINANC_ID",
+            "title": "Fuente de Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_NOMBRE",
+            "slug": "FUENTE_FINANC_NOMBRE",
+            "title": "Fuente de Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_ID",
+            "slug": "GRUPO_ID",
+            "title": "Grupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_NOMBRE",
+            "slug": "GRUPO_NOMBRE",
+            "title": "Grupo",
+            "type": "string"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_APROBADO",
+            "slug": "MONTO_APROBADO",
+            "title": "Crédito apertura",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_EJECUTADO",
+            "slug": "MONTO_EJECUTADO",
+            "title": "Ejecutado",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_VIGENTE",
+            "slug": "MONTO_VIGENTE",
+            "title": "Crédito vigente",
+            "type": "number"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_ID",
+            "slug": "ODGYAUX_ID",
+            "title": "Objeto del gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_NOMBRE",
+            "slug": "ODGYAUX_NOMBRE",
+            "title": "Objeto del gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_ID",
+            "slug": "ORG_ID",
+            "title": "Inciso ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_NOMBRE",
+            "slug": "ORG_NOMBRE",
+            "title": "Inciso",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_ID",
+            "slug": "PROGRAMA_ID",
+            "title": "Fun Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_NOMBRE",
+            "slug": "PROGRAMA_NOMBRE",
+            "title": "Fun Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:code",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_ID",
+            "slug": "PROYECTO_ID",
+            "title": "Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:label",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_NOMBRE",
+            "slug": "PROYECTO_NOMBRE",
+            "title": "Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_ID",
+            "slug": "SUBGRUPO_ID",
+            "title": "Subgrupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_NOMBRE",
+            "slug": "SUBGRUPO_NOMBRE",
+            "title": "Subgrupo",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:code",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_ID",
+            "slug": "TIPO_GASTO_ID",
+            "title": "Tipo de Gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:label",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_NOMBRE",
+            "slug": "TIPO_GASTO_NOMBRE",
+            "title": "Tipo de Gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_ID",
+            "slug": "UE_ID",
+            "title": "Unidad Ejecutora ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_NOMBRE",
+            "slug": "UE_NOMBRE",
+            "title": "Unidad Ejecutora",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "ANO",
+          "AP_ID",
+          "FINANC_ID",
+          "FUENTE_FINANC_ID",
+          "GRUPO_ID",
+          "ODGYAUX_ID",
+          "ORG_ID",
+          "PROGRAMA_ID",
+          "PROYECTO_ID",
+          "SUBGRUPO_ID",
+          "TIPO_GASTO_ID",
+          "UE_ID"
+        ]
+      }
+    },
+    {
+      "bytes": 105166938,
+      "count_of_rows": 296709,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/app/source-specs/os-source-specs/america/uruguay/final/data/presupuesto_de_uruguay__2019.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "fa8627ef1828451b2e0e0473d8e72e15",
+      "name": "presupuesto_de_uruguay__2019",
+      "path": "data/presupuesto_de_uruguay__2019.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "columnType": "date:fiscal-year",
+            "conceptType": "date",
+            "format": "default",
+            "name": "ANO",
+            "slug": "ANO",
+            "title": "Año",
+            "type": "integer"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_ID",
+            "slug": "AP_ID",
+            "title": "Área Programática ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level1:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "AP_NOMBRE",
+            "slug": "AP_NOMBRE",
+            "title": "Área Programática",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_ID",
+            "slug": "FINANC_ID",
+            "title": "Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level1:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FINANC_NOMBRE",
+            "slug": "FINANC_NOMBRE",
+            "title": "Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:code",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_ID",
+            "slug": "FUENTE_FINANC_ID",
+            "title": "Fuente de Financiamiento ID",
+            "type": "string"
+          },
+          {
+            "columnType": "fin-source:generic:level2:label",
+            "conceptType": "fin-source",
+            "format": "default",
+            "name": "FUENTE_FINANC_NOMBRE",
+            "slug": "FUENTE_FINANC_NOMBRE",
+            "title": "Fuente de Financiamiento",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_ID",
+            "slug": "GRUPO_ID",
+            "title": "Grupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level1:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "GRUPO_NOMBRE",
+            "slug": "GRUPO_NOMBRE",
+            "title": "Grupo",
+            "type": "string"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_APROBADO",
+            "slug": "MONTO_APROBADO",
+            "title": "Crédito apertura",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_EJECUTADO",
+            "slug": "MONTO_EJECUTADO",
+            "title": "Ejecutado",
+            "type": "number"
+          },
+          {
+            "columnType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "MONTO_VIGENTE",
+            "slug": "MONTO_VIGENTE",
+            "title": "Crédito vigente",
+            "type": "number"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_ID",
+            "slug": "ODGYAUX_ID",
+            "title": "Objeto del gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level3:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "ODGYAUX_NOMBRE",
+            "slug": "ODGYAUX_NOMBRE",
+            "title": "Objeto del gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_ID",
+            "slug": "ORG_ID",
+            "title": "Inciso ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level1:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ORG_NOMBRE",
+            "slug": "ORG_NOMBRE",
+            "title": "Inciso",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:code",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_ID",
+            "slug": "PROGRAMA_ID",
+            "title": "Fun Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "functional-classification:generic:level2:label",
+            "conceptType": "functional-classification",
+            "format": "default",
+            "name": "PROGRAMA_NOMBRE",
+            "slug": "PROGRAMA_NOMBRE",
+            "title": "Fun Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:code",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_ID",
+            "slug": "PROYECTO_ID",
+            "title": "Programa ID",
+            "type": "string"
+          },
+          {
+            "columnType": "activity:generic:program:label",
+            "conceptType": "activity",
+            "format": "default",
+            "name": "PROYECTO_NOMBRE",
+            "slug": "PROYECTO_NOMBRE",
+            "title": "Programa",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:code",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_ID",
+            "slug": "SUBGRUPO_ID",
+            "title": "Subgrupo ID",
+            "type": "string"
+          },
+          {
+            "columnType": "economic-classification:generic:level2:label",
+            "conceptType": "economic-classification",
+            "format": "default",
+            "name": "SUBGRUPO_NOMBRE",
+            "slug": "SUBGRUPO_NOMBRE",
+            "title": "Subgrupo",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:code",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_ID",
+            "slug": "TIPO_GASTO_ID",
+            "title": "Tipo de Gasto ID",
+            "type": "string"
+          },
+          {
+            "columnType": "expenditure-type:label",
+            "conceptType": "expenditure-type",
+            "format": "default",
+            "name": "TIPO_GASTO_NOMBRE",
+            "slug": "TIPO_GASTO_NOMBRE",
+            "title": "Tipo de Gasto",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:code",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_ID",
+            "slug": "UE_ID",
+            "title": "Unidad Ejecutora ID",
+            "type": "string"
+          },
+          {
+            "columnType": "administrative-classification:generic:level2:label",
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "UE_NOMBRE",
+            "slug": "UE_NOMBRE",
+            "title": "Unidad Ejecutora",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "ANO",
+          "AP_ID",
+          "FINANC_ID",
+          "FUENTE_FINANC_ID",
+          "GRUPO_ID",
+          "ODGYAUX_ID",
+          "ORG_ID",
+          "PROGRAMA_ID",
+          "PROYECTO_ID",
+          "SUBGRUPO_ID",
+          "TIPO_GASTO_ID",
+          "UE_ID"
+        ]
+      }
+    }
+  ],
+  "revision": 2,
+  "title": "Presupuesto de Uruguay"
+}
