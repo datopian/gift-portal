@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10.0.4",
+    "gray-matter": "^4.0.2",
     "next": "10.0.3",
     "postcss": "^8.1.14",
     "react": "17.0.1",
