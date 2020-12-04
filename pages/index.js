@@ -2,7 +2,7 @@ import styles from '../styles/Home.module.css'
 import * as Data  from '../data';
 
 export default function Home() {
-  console.log(Data);
+  
   return (
     <div className={styles.container}>
       <h1>GIFT Data Portal</h1>
