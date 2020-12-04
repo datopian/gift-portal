@@ -5,11 +5,17 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "cypress:open": "cypress open",
+    "cypress:ci": "cypress run --config video=false",
+    "e2e": "cypress run"
   },
   "dependencies": {
     "next": "10.0.3",
     "react": "17.0.1",
     "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "cypress": "^6.0.1"
   }
 }
