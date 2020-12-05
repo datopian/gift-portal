@@ -20,18 +20,20 @@ module.exports = {
        'portal4': '#18988B',
        'portal5': '#7C6990',
        'portal6': '#FFFFFF',
+       'portal7': '#4D5858'
       }),
-    textColor: theme => theme('colors'),
-     textColor: {
-       'portal1': '#E81F76',
-     },
+    textColor: theme => ({
+      ...theme('colors'),
+      'portal1': '#E81F76',
+     }),
     width :{
       '379.25px': '379.25px',
       '291.26px': '291.26px'
     },
     height : {
       '607.81px' : '607.81px',
-      '97.09px': '97.09px'
+      '97.09px': '97.09px',
+      '200px': '200px'
     }
   },
   variants: {
