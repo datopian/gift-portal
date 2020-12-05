@@ -1,3 +1,18 @@
+/**
+ * Create card for each datasets.
+ * e.g
+ * let props = {
+ *  logo: '/argentina.svg',
+ *  name: 'Daily Treasury Statement (DTS)',
+ *   tags: ['Budget', 'FEDERAL','SPENDING','TAG4'],
+ *   description: 'CONTENT HERE',
+ *   created: '10/03/2019-11/26/2020',
+ *   updated: '11/30/2020',
+ * }
+ * <Card props={props} />
+ * @param {*} props 
+ * @return JSX
+ */
 export default function Card({ props }){
   return (
     <div className='flex flex-col rounded-lg border-2 w-379.25px h-607.81px mt-10 ml-10 shadow-md justify-between p-5'>
