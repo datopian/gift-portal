@@ -13,9 +13,9 @@
  * @param {*} props 
  * @return JSX
  */
-export default function Card({ props }){
+export default function Card({props}){
   return (
-    <div className='flex flex-col rounded-lg border-2 w-379.25px h-607.81px mt-10 ml-10 shadow-md justify-between p-5'>
+    <div className='flex flex-col rounded-lg border-2 w-379.25px h-607.81px shadow-md justify-between p-5 mb-4'>
       <div className='flex flex-row justify-between items-center'>
         <img src={props.logo} alt='next' className='mr-2' />
         <div className='font-lato text-xl'>{props.name}</div>
