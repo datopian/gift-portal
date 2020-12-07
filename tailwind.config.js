@@ -20,11 +20,13 @@ module.exports = {
        'portal4': '#18988B',
        'portal5': '#7C6990',
        'portal6': '#FFFFFF',
-       'portal7': '#4D5858'
+       'portal7': '#4D5858',
       }),
     textColor: theme => ({
       ...theme('colors'),
       'portal1': '#E81F76',
+      'portal2': '#FF6B00',
+      'portal3': '#C2A6E1',
      }),
     width :{
       '379.25px': '379.25px',
