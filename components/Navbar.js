@@ -2,7 +2,7 @@ export default function Navbar() {
 
   return (
     <div className='flex  h-163 w-1440 justify-between'>
-      <div className='flex flex-row justify-center items-center pt-3 pb-3 w-1/3'>
+      <div className='flex flex-row justify-center items-center pt-2 pb-2 w-1/3'>
         <img src='/gift.svg' alt='next' />
       </div>
       <div className='flex flex-col justify-center items-center w-1/2 bg-portal1 space-y-6'>
