@@ -14,7 +14,7 @@ export default function Home() {
     updated: '11/30/2020',
   }
   let data = [];
-  for(let i=0; i < 6; i++){
+  for(let i=0; i < 8; i++){
     data.push(props);
   }
   return (
@@ -24,17 +24,17 @@ export default function Home() {
           <h3 className='font-lato text-xl text-black'>DataSet</h3>
           <div className='flex flex-row justify-between mt-10'>
             <Search />
-            <div className='flex justify-between items-center mr-35'>
+            <div className='flex justify-between items-center mr-35 pr-9'>
               <h3 className="mr-4">Sort by: </h3>
-              <select id="cars" className='border-2 focus:outline-none bg-white font-karla h-1/2'>
+              <select id="cars" className='border-2 focus:outline-none bg-white font-karla h-72px w-545px font-karla rounded-md'>
                 <option value="AZ">Alphabetical Ascending (A to Z)   </option>
                 <option value="ZA">Alphabetical Descending (Z to A)  </option>
               </select>
             </div>
           </div>
-          <div className='mt-10 border-2'>
-            <div className='mb-10 pr-0'>showing 6 of 6 dataset</div>
-            <div className='grid grid-cols-3 '>
+          <div className='mt-10'>
+            <div className='mb-10'>showing 6 of 6 dataset</div>
+            <div className='grid grid-cols-3 gap-x-40 gap-y-10'>
               {data.map((value,i) => {
                 return <Card props={value} key={i}/>
               })}
