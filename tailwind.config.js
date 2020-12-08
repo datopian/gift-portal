@@ -21,6 +21,11 @@ module.exports = {
        'portal5': '#7C6990',
        'portal6': '#FFFFFF',
        'portal7': '#4D5858',
+       'portal8': '#F13347',
+       'portal9': '#C8C376',
+       'portal10': '#468A6F',
+       'portal11': '#966473',
+       'portal12': '#FF5100',
       }),
     textColor: theme => ({
       ...theme('colors'),
@@ -35,7 +40,9 @@ module.exports = {
       '1/2' : '50%',
       '1/3' : '33.333333%',
       '1/4' : '25%',
-      'full': '100%'
+      'full': '100%',
+      '1/5' : '20%',
+      '1/6' : '16.666667%'
 
     },
     height : {
@@ -46,8 +53,18 @@ module.exports = {
       '1/2' : '50%',
       '1/3' : '33.333333%',
       '1/4' : '25%',
-      'full': '100%'
-    }
+      'full': '100%',
+      '24' : '24px',
+      '37' : '37px'
+    },
+    borderColor: theme => ({
+       ...theme('colors'),
+        DEFAULT: theme('colors.gray.300', 'currentColor'),
+       'primary': '#3490dc',
+       'secondary': '#ffed4a',
+       'danger': '#e3342f',
+       'portal1': '#FF5100'
+      })
   },
   variants: {
     extend: {},
