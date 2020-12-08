@@ -1,0 +1,190 @@
+{
+  "model": {
+    "dimensions": {
+      "administrative-classification": {
+        "dimensionType": "classification",
+        "primaryKey": [
+          "Produktbereich_Bezeichnung",
+          "Produktgruppe_Bezeichnung",
+          "Gruppierung_Bezeichnung"
+        ],
+        "attributes": {
+          "Gruppierung_Bezeichnung": {
+            "source": "Gruppierung Bezeichnung",
+            "title": "Gruppierung Bezeichnung",
+            "parent": "Produktgruppe_Bezeichnung"
+          },
+          "Produktbereich_Bezeichnung": {
+            "source": "Produktbereich Bezeichnung",
+            "title": "Produktbereich Bezeichnung"
+          },
+          "Produktgruppe_Bezeichnung": {
+            "source": "Produktgruppe Bezeichnung",
+            "title": "Produktgruppe Bezeichnung",
+            "parent": "Produktbereich_Bezeichnung"
+          }
+        },
+        "classificationType": "administrative"
+      },
+      "unknown": {
+        "dimensionType": "other",
+        "primaryKey": [
+          "Produktbereich",
+          "Produktgruppe"
+        ],
+        "attributes": {
+          "Produktbereich": {
+            "source": "Produktbereich",
+            "title": "Produktbereich"
+          },
+          "Produktgruppe": {
+            "source": "Produktgruppe",
+            "title": "Produktgruppe"
+          }
+        }
+      },
+      "date": {
+        "dimensionType": "datetime",
+        "primaryKey": [
+          "Haushaltsjahr"
+        ],
+        "attributes": {
+          "Haushaltsjahr": {
+            "source": "Haushaltsjahr",
+            "title": "Haushaltsjahr"
+          }
+        }
+      },
+      "direction": {
+        "dimensionType": "other",
+        "primaryKey": [
+          "Ertrag_Aufwand"
+        ],
+        "attributes": {
+          "Ertrag_Aufwand": {
+            "source": "Ertrag / Aufwand",
+            "title": "Ertrag / Aufwand"
+          }
+        }
+      }
+    },
+    "measures": {
+      "value": {
+        "source": " €",
+        "title": "Betrag",
+        "currency": "EUR"
+      }
+    }
+  },
+  "promise": {},
+  "regionCode": "eu",
+  "countryCode": "DE",
+  "cityCode": "Frankfurt am Main",
+  "title": "Frankfurt am Main",
+  "name": "frankfurt_a_m",
+  "description": "Haushalt von Frankfurt am Main, Plan 2017",
+  "resources": [
+    {
+      "name": "hh_frankfurt",
+      "format": "csv",
+      "path": "hh_frankfurt.csv",
+      "mediatype": "text/csv",
+      "bytes": 786935,
+      "dialect": {
+        "csvddfVersion": 1,
+        "delimiter": ";",
+        "lineTerminator": "\r\n"
+      },
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "title": "Gruppierung Bezeichnung",
+            "name": "Gruppierung Bezeichnung",
+            "slug": "Gruppierung_Bezeichnung",
+            "type": "string",
+            "format": "default",
+            "osType": "administrative-classification:generic:level3:code:part",
+            "conceptType": "administrative-classification"
+          },
+          {
+            "title": "Produktbereich",
+            "name": "Produktbereich",
+            "slug": "Produktbereich",
+            "type": "string",
+            "format": "default",
+            "osType": "unknown:string",
+            "conceptType": "unknown"
+          },
+          {
+            "title": "Produktbereich Bezeichnung",
+            "name": "Produktbereich Bezeichnung",
+            "slug": "Produktbereich_Bezeichnung",
+            "type": "string",
+            "format": "default",
+            "osType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification"
+          },
+          {
+            "title": "Produktgruppe",
+            "name": "Produktgruppe",
+            "slug": "Produktgruppe",
+            "type": "string",
+            "format": "default",
+            "osType": "unknown:string",
+            "conceptType": "unknown"
+          },
+          {
+            "title": "Produktgruppe Bezeichnung",
+            "name": "Produktgruppe Bezeichnung",
+            "slug": "Produktgruppe_Bezeichnung",
+            "type": "string",
+            "format": "default",
+            "osType": "administrative-classification:generic:level2:code:part",
+            "conceptType": "administrative-classification"
+          },
+          {
+            "title": "Haushaltsjahr",
+            "name": "Haushaltsjahr",
+            "slug": "Haushaltsjahr",
+            "type": "integer",
+            "format": "default",
+            "osType": "date:fiscal-year",
+            "conceptType": "date"
+          },
+          {
+            "title": "Ertrag / Aufwand",
+            "name": "Ertrag / Aufwand",
+            "slug": "Ertrag_Aufwand",
+            "type": "string",
+            "format": "default",
+            "osType": "direction",
+            "conceptType": "direction"
+          },
+          {
+            "title": "Betrag",
+            "name": " €",
+            "slug": "value",
+            "type": "number",
+            "format": "default",
+            "osType": "value",
+            "conceptType": "value",
+            "decimalChar": ",",
+            "groupChar": ","
+          }
+        ],
+        "primaryKey": [
+          "Gruppierung Bezeichnung",
+          "Produktbereich Bezeichnung",
+          "Produktgruppe Bezeichnung",
+          "Haushaltsjahr",
+          "Ertrag / Aufwand"
+        ]
+      }
+    }
+  ],
+  "@context": "http://schemas.frictionlessdata.io/fiscal-data-package.jsonld",
+  "owner": "446674d02a1cdff9229f73129714e152",
+  "author": "nhe kln <till1802@googlemail.com>",
+  "count_of_rows": 23087
+}

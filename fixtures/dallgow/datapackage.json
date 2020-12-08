@@ -1,0 +1,1265 @@
+{
+  "@context": "http://schemas.frictionlessdata.io/fiscal-data-package.jsonld",
+  "author": "Mario Baumung <mariobaumung@gmail.com>",
+  "bytes": 474306,
+  "cityCode": "Dallgow-DÃ¶beritz",
+  "count_of_rows": 3939,
+  "countryCode": "DE",
+  "fiscalPeriod": {
+    "end": "2017-12-31",
+    "start": "2011-01-01"
+  },
+  "hash": "6944e89f5e5f95f16c620d487eadd363",
+  "model": {
+    "dimensions": {
+      "administrative-classification": {
+        "attributes": {
+          "ebene_1_bezeichnung_produktrahmen": {
+            "source": "ebene_1_bezeichnung_produktrahmen",
+            "title": "Ebene 1 - Bezeichnung (Produktrahmen)"
+          },
+          "ebene_2_bezeichnung_produktbereich": {
+            "parent": "ebene_1_bezeichnung_produktrahmen",
+            "source": "ebene_2_bezeichnung_produktbereich",
+            "title": "Ebene 2 - Bezeichnung (Produktbereich)"
+          },
+          "ebene_3_bezeichnung_produktgruppe": {
+            "parent": "ebene_2_bezeichnung_produktbereich",
+            "source": "ebene_3_bezeichnung_produktgruppe",
+            "title": "Ebene 3 - Bezeichnung (Produktgruppe)"
+          },
+          "ebene_4_bezeichnung_produkt": {
+            "parent": "ebene_3_bezeichnung_produktgruppe",
+            "source": "ebene_4_bezeichnung_produkt",
+            "title": "Ebene 4 - Bezeichnung (Produkt)"
+          }
+        },
+        "classificationType": "administrative",
+        "dimensionType": "classification",
+        "primaryKey": [
+          "ebene_1_bezeichnung_produktrahmen",
+          "ebene_2_bezeichnung_produktbereich",
+          "ebene_3_bezeichnung_produktgruppe",
+          "ebene_4_bezeichnung_produkt"
+        ]
+      },
+      "date": {
+        "attributes": {
+          "jahr": {
+            "source": "jahr",
+            "title": "Jahr"
+          }
+        },
+        "dimensionType": "datetime",
+        "primaryKey": [
+          "jahr"
+        ]
+      },
+      "direction": {
+        "attributes": {
+          "budget_richtung": {
+            "source": "budget_richtung",
+            "title": "Budget Richtung"
+          }
+        },
+        "dimensionType": "other",
+        "primaryKey": [
+          "budget_richtung"
+        ]
+      },
+      "unknown": {
+        "attributes": {
+          "ebene_1_code": {
+            "source": "ebene_1_code",
+            "title": "Ebene 1 - Code"
+          },
+          "ebene_2_code": {
+            "source": "ebene_2_code",
+            "title": "Ebene 2 - Code"
+          },
+          "ebene_3_code": {
+            "source": "ebene_3_code",
+            "title": "Ebene 3 - Code"
+          },
+          "ebene_4_code": {
+            "source": "ebene_4_code",
+            "title": "Ebene 4 - Code"
+          }
+        },
+        "dimensionType": "other",
+        "primaryKey": [
+          "ebene_1_code",
+          "ebene_2_code",
+          "ebene_3_code",
+          "ebene_4_code"
+        ]
+      },
+      "value-kind": {
+        "attributes": {
+          "betrag_typ": {
+            "source": "betrag_typ",
+            "title": "Betrag-Typ"
+          }
+        },
+        "dimensionType": "other",
+        "primaryKey": [
+          "betrag_typ"
+        ]
+      }
+    },
+    "measures": {
+      "betrag": {
+        "source": "betrag",
+        "title": "Betrag"
+      }
+    }
+  },
+  "name": "dallgow",
+  "owner": "0cf7005ecf0d0c9615a624c599e88852",
+  "profile": "data-package",
+  "profiles": {
+    "fiscal": "*",
+    "tabular": "*"
+  },
+  "promise": {},
+  "regionCode": "eu",
+  "resources": [
+    {
+      "bytes": 354690,
+      "count_of_rows": 2358,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/tmp/tmpa_lxbco2/final/data/offenerhaushalt11-17.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "46ac415607a9a5a879487fafb6782f39",
+      "mediatype": "text/csv",
+      "name": "offenerhaushalt11-17",
+      "path": "data/offenerhaushalt11-17.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "betrag",
+            "osType": "value",
+            "slug": "betrag",
+            "title": "Betrag",
+            "type": "number"
+          },
+          {
+            "conceptType": "value-kind",
+            "format": "default",
+            "name": "betrag_typ",
+            "osType": "value-kind:code",
+            "slug": "betrag_typ",
+            "title": "Betrag-Typ",
+            "type": "string"
+          },
+          {
+            "conceptType": "date",
+            "format": "default",
+            "name": "jahr",
+            "osType": "date:fiscal-year",
+            "slug": "jahr",
+            "title": "Jahr",
+            "type": "integer"
+          },
+          {
+            "conceptType": "direction",
+            "format": "default",
+            "name": "budget_richtung",
+            "osType": "direction",
+            "slug": "budget_richtung",
+            "title": "Budget Richtung",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_1_code",
+            "osType": "unknown:string",
+            "slug": "ebene_1_code",
+            "title": "Ebene 1 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_1_bezeichnung_produktrahmen",
+            "osType": "administrative-classification:generic:level1:code",
+            "slug": "ebene_1_bezeichnung_produktrahmen",
+            "title": "Ebene 1 - Bezeichnung (Produktrahmen)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_2_code",
+            "osType": "unknown:string",
+            "slug": "ebene_2_code",
+            "title": "Ebene 2 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_2_bezeichnung_produktbereich",
+            "osType": "administrative-classification:generic:level2:code:part",
+            "slug": "ebene_2_bezeichnung_produktbereich",
+            "title": "Ebene 2 - Bezeichnung (Produktbereich)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_3_code",
+            "osType": "unknown:string",
+            "slug": "ebene_3_code",
+            "title": "Ebene 3 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_3_bezeichnung_produktgruppe",
+            "osType": "administrative-classification:generic:level3:code:part",
+            "slug": "ebene_3_bezeichnung_produktgruppe",
+            "title": "Ebene 3 - Bezeichnung (Produktgruppe)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_4_code",
+            "osType": "unknown:string",
+            "slug": "ebene_4_code",
+            "title": "Ebene 4 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_4_bezeichnung_produkt",
+            "osType": "administrative-classification:generic:level4:code:part",
+            "slug": "ebene_4_bezeichnung_produkt",
+            "title": "Ebene 4 - Bezeichnung (Produkt)",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "betrag_typ",
+          "jahr",
+          "budget_richtung",
+          "ebene_1_bezeichnung_produktrahmen",
+          "ebene_2_bezeichnung_produktbereich",
+          "ebene_3_bezeichnung_produktgruppe",
+          "ebene_4_bezeichnung_produkt"
+        ]
+      }
+    },
+    {
+      "bytes": 139271,
+      "count_of_rows": 925,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/tmp/tmpa_lxbco2/final/data/offenerhaushalt11-17__2011.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "6ab3a0789d32d0547d53becb07ffbf32",
+      "mediatype": "text/csv",
+      "name": "offenerhaushalt11-17__2011",
+      "path": "data/offenerhaushalt11-17__2011.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "betrag",
+            "osType": "value",
+            "slug": "betrag",
+            "title": "Betrag",
+            "type": "number"
+          },
+          {
+            "conceptType": "value-kind",
+            "format": "default",
+            "name": "betrag_typ",
+            "osType": "value-kind:code",
+            "slug": "betrag_typ",
+            "title": "Betrag-Typ",
+            "type": "string"
+          },
+          {
+            "conceptType": "date",
+            "format": "default",
+            "name": "jahr",
+            "osType": "date:fiscal-year",
+            "slug": "jahr",
+            "title": "Jahr",
+            "type": "integer"
+          },
+          {
+            "conceptType": "direction",
+            "format": "default",
+            "name": "budget_richtung",
+            "osType": "direction",
+            "slug": "budget_richtung",
+            "title": "Budget Richtung",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_1_code",
+            "osType": "unknown:string",
+            "slug": "ebene_1_code",
+            "title": "Ebene 1 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_1_bezeichnung_produktrahmen",
+            "osType": "administrative-classification:generic:level1:code",
+            "slug": "ebene_1_bezeichnung_produktrahmen",
+            "title": "Ebene 1 - Bezeichnung (Produktrahmen)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_2_code",
+            "osType": "unknown:string",
+            "slug": "ebene_2_code",
+            "title": "Ebene 2 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_2_bezeichnung_produktbereich",
+            "osType": "administrative-classification:generic:level2:code:part",
+            "slug": "ebene_2_bezeichnung_produktbereich",
+            "title": "Ebene 2 - Bezeichnung (Produktbereich)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_3_code",
+            "osType": "unknown:string",
+            "slug": "ebene_3_code",
+            "title": "Ebene 3 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_3_bezeichnung_produktgruppe",
+            "osType": "administrative-classification:generic:level3:code:part",
+            "slug": "ebene_3_bezeichnung_produktgruppe",
+            "title": "Ebene 3 - Bezeichnung (Produktgruppe)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_4_code",
+            "osType": "unknown:string",
+            "slug": "ebene_4_code",
+            "title": "Ebene 4 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_4_bezeichnung_produkt",
+            "osType": "administrative-classification:generic:level4:code:part",
+            "slug": "ebene_4_bezeichnung_produkt",
+            "title": "Ebene 4 - Bezeichnung (Produkt)",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "betrag_typ",
+          "jahr",
+          "budget_richtung",
+          "ebene_1_bezeichnung_produktrahmen",
+          "ebene_2_bezeichnung_produktbereich",
+          "ebene_3_bezeichnung_produktgruppe",
+          "ebene_4_bezeichnung_produkt"
+        ]
+      }
+    },
+    {
+      "bytes": 138775,
+      "count_of_rows": 920,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/tmp/tmpa_lxbco2/final/data/offenerhaushalt11-17__2012.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "6e52cbe528b91ab2996ca923d19bff5d",
+      "mediatype": "text/csv",
+      "name": "offenerhaushalt11-17__2012",
+      "path": "data/offenerhaushalt11-17__2012.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "betrag",
+            "osType": "value",
+            "slug": "betrag",
+            "title": "Betrag",
+            "type": "number"
+          },
+          {
+            "conceptType": "value-kind",
+            "format": "default",
+            "name": "betrag_typ",
+            "osType": "value-kind:code",
+            "slug": "betrag_typ",
+            "title": "Betrag-Typ",
+            "type": "string"
+          },
+          {
+            "conceptType": "date",
+            "format": "default",
+            "name": "jahr",
+            "osType": "date:fiscal-year",
+            "slug": "jahr",
+            "title": "Jahr",
+            "type": "integer"
+          },
+          {
+            "conceptType": "direction",
+            "format": "default",
+            "name": "budget_richtung",
+            "osType": "direction",
+            "slug": "budget_richtung",
+            "title": "Budget Richtung",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_1_code",
+            "osType": "unknown:string",
+            "slug": "ebene_1_code",
+            "title": "Ebene 1 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_1_bezeichnung_produktrahmen",
+            "osType": "administrative-classification:generic:level1:code",
+            "slug": "ebene_1_bezeichnung_produktrahmen",
+            "title": "Ebene 1 - Bezeichnung (Produktrahmen)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_2_code",
+            "osType": "unknown:string",
+            "slug": "ebene_2_code",
+            "title": "Ebene 2 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_2_bezeichnung_produktbereich",
+            "osType": "administrative-classification:generic:level2:code:part",
+            "slug": "ebene_2_bezeichnung_produktbereich",
+            "title": "Ebene 2 - Bezeichnung (Produktbereich)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_3_code",
+            "osType": "unknown:string",
+            "slug": "ebene_3_code",
+            "title": "Ebene 3 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_3_bezeichnung_produktgruppe",
+            "osType": "administrative-classification:generic:level3:code:part",
+            "slug": "ebene_3_bezeichnung_produktgruppe",
+            "title": "Ebene 3 - Bezeichnung (Produktgruppe)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_4_code",
+            "osType": "unknown:string",
+            "slug": "ebene_4_code",
+            "title": "Ebene 4 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_4_bezeichnung_produkt",
+            "osType": "administrative-classification:generic:level4:code:part",
+            "slug": "ebene_4_bezeichnung_produkt",
+            "title": "Ebene 4 - Bezeichnung (Produkt)",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "betrag_typ",
+          "jahr",
+          "budget_richtung",
+          "ebene_1_bezeichnung_produktrahmen",
+          "ebene_2_bezeichnung_produktbereich",
+          "ebene_3_bezeichnung_produktgruppe",
+          "ebene_4_bezeichnung_produkt"
+        ]
+      }
+    },
+    {
+      "bytes": 140530,
+      "count_of_rows": 934,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/tmp/tmpa_lxbco2/final/data/offenerhaushalt11-17__2013.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "24c5b768babaae3283011177e189cea0",
+      "mediatype": "text/csv",
+      "name": "offenerhaushalt11-17__2013",
+      "path": "data/offenerhaushalt11-17__2013.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "betrag",
+            "osType": "value",
+            "slug": "betrag",
+            "title": "Betrag",
+            "type": "number"
+          },
+          {
+            "conceptType": "value-kind",
+            "format": "default",
+            "name": "betrag_typ",
+            "osType": "value-kind:code",
+            "slug": "betrag_typ",
+            "title": "Betrag-Typ",
+            "type": "string"
+          },
+          {
+            "conceptType": "date",
+            "format": "default",
+            "name": "jahr",
+            "osType": "date:fiscal-year",
+            "slug": "jahr",
+            "title": "Jahr",
+            "type": "integer"
+          },
+          {
+            "conceptType": "direction",
+            "format": "default",
+            "name": "budget_richtung",
+            "osType": "direction",
+            "slug": "budget_richtung",
+            "title": "Budget Richtung",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_1_code",
+            "osType": "unknown:string",
+            "slug": "ebene_1_code",
+            "title": "Ebene 1 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_1_bezeichnung_produktrahmen",
+            "osType": "administrative-classification:generic:level1:code",
+            "slug": "ebene_1_bezeichnung_produktrahmen",
+            "title": "Ebene 1 - Bezeichnung (Produktrahmen)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_2_code",
+            "osType": "unknown:string",
+            "slug": "ebene_2_code",
+            "title": "Ebene 2 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_2_bezeichnung_produktbereich",
+            "osType": "administrative-classification:generic:level2:code:part",
+            "slug": "ebene_2_bezeichnung_produktbereich",
+            "title": "Ebene 2 - Bezeichnung (Produktbereich)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_3_code",
+            "osType": "unknown:string",
+            "slug": "ebene_3_code",
+            "title": "Ebene 3 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_3_bezeichnung_produktgruppe",
+            "osType": "administrative-classification:generic:level3:code:part",
+            "slug": "ebene_3_bezeichnung_produktgruppe",
+            "title": "Ebene 3 - Bezeichnung (Produktgruppe)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_4_code",
+            "osType": "unknown:string",
+            "slug": "ebene_4_code",
+            "title": "Ebene 4 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_4_bezeichnung_produkt",
+            "osType": "administrative-classification:generic:level4:code:part",
+            "slug": "ebene_4_bezeichnung_produkt",
+            "title": "Ebene 4 - Bezeichnung (Produkt)",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "betrag_typ",
+          "jahr",
+          "budget_richtung",
+          "ebene_1_bezeichnung_produktrahmen",
+          "ebene_2_bezeichnung_produktbereich",
+          "ebene_3_bezeichnung_produktgruppe",
+          "ebene_4_bezeichnung_produkt"
+        ]
+      }
+    },
+    {
+      "bytes": 139995,
+      "count_of_rows": 930,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/tmp/tmpa_lxbco2/final/data/offenerhaushalt11-17__2014.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "4fad3b955e5c44eb9456cf22645b799b",
+      "mediatype": "text/csv",
+      "name": "offenerhaushalt11-17__2014",
+      "path": "data/offenerhaushalt11-17__2014.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "betrag",
+            "osType": "value",
+            "slug": "betrag",
+            "title": "Betrag",
+            "type": "number"
+          },
+          {
+            "conceptType": "value-kind",
+            "format": "default",
+            "name": "betrag_typ",
+            "osType": "value-kind:code",
+            "slug": "betrag_typ",
+            "title": "Betrag-Typ",
+            "type": "string"
+          },
+          {
+            "conceptType": "date",
+            "format": "default",
+            "name": "jahr",
+            "osType": "date:fiscal-year",
+            "slug": "jahr",
+            "title": "Jahr",
+            "type": "integer"
+          },
+          {
+            "conceptType": "direction",
+            "format": "default",
+            "name": "budget_richtung",
+            "osType": "direction",
+            "slug": "budget_richtung",
+            "title": "Budget Richtung",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_1_code",
+            "osType": "unknown:string",
+            "slug": "ebene_1_code",
+            "title": "Ebene 1 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_1_bezeichnung_produktrahmen",
+            "osType": "administrative-classification:generic:level1:code",
+            "slug": "ebene_1_bezeichnung_produktrahmen",
+            "title": "Ebene 1 - Bezeichnung (Produktrahmen)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_2_code",
+            "osType": "unknown:string",
+            "slug": "ebene_2_code",
+            "title": "Ebene 2 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_2_bezeichnung_produktbereich",
+            "osType": "administrative-classification:generic:level2:code:part",
+            "slug": "ebene_2_bezeichnung_produktbereich",
+            "title": "Ebene 2 - Bezeichnung (Produktbereich)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_3_code",
+            "osType": "unknown:string",
+            "slug": "ebene_3_code",
+            "title": "Ebene 3 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_3_bezeichnung_produktgruppe",
+            "osType": "administrative-classification:generic:level3:code:part",
+            "slug": "ebene_3_bezeichnung_produktgruppe",
+            "title": "Ebene 3 - Bezeichnung (Produktgruppe)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_4_code",
+            "osType": "unknown:string",
+            "slug": "ebene_4_code",
+            "title": "Ebene 4 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_4_bezeichnung_produkt",
+            "osType": "administrative-classification:generic:level4:code:part",
+            "slug": "ebene_4_bezeichnung_produkt",
+            "title": "Ebene 4 - Bezeichnung (Produkt)",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "betrag_typ",
+          "jahr",
+          "budget_richtung",
+          "ebene_1_bezeichnung_produktrahmen",
+          "ebene_2_bezeichnung_produktbereich",
+          "ebene_3_bezeichnung_produktgruppe",
+          "ebene_4_bezeichnung_produkt"
+        ]
+      }
+    },
+    {
+      "bytes": 129131,
+      "count_of_rows": 857,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/tmp/tmpa_lxbco2/final/data/offenerhaushalt11-17__2015.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "5e401fb2f28556323e8656f97d76263e",
+      "mediatype": "text/csv",
+      "name": "offenerhaushalt11-17__2015",
+      "path": "data/offenerhaushalt11-17__2015.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "betrag",
+            "osType": "value",
+            "slug": "betrag",
+            "title": "Betrag",
+            "type": "number"
+          },
+          {
+            "conceptType": "value-kind",
+            "format": "default",
+            "name": "betrag_typ",
+            "osType": "value-kind:code",
+            "slug": "betrag_typ",
+            "title": "Betrag-Typ",
+            "type": "string"
+          },
+          {
+            "conceptType": "date",
+            "format": "default",
+            "name": "jahr",
+            "osType": "date:fiscal-year",
+            "slug": "jahr",
+            "title": "Jahr",
+            "type": "integer"
+          },
+          {
+            "conceptType": "direction",
+            "format": "default",
+            "name": "budget_richtung",
+            "osType": "direction",
+            "slug": "budget_richtung",
+            "title": "Budget Richtung",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_1_code",
+            "osType": "unknown:string",
+            "slug": "ebene_1_code",
+            "title": "Ebene 1 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_1_bezeichnung_produktrahmen",
+            "osType": "administrative-classification:generic:level1:code",
+            "slug": "ebene_1_bezeichnung_produktrahmen",
+            "title": "Ebene 1 - Bezeichnung (Produktrahmen)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_2_code",
+            "osType": "unknown:string",
+            "slug": "ebene_2_code",
+            "title": "Ebene 2 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_2_bezeichnung_produktbereich",
+            "osType": "administrative-classification:generic:level2:code:part",
+            "slug": "ebene_2_bezeichnung_produktbereich",
+            "title": "Ebene 2 - Bezeichnung (Produktbereich)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_3_code",
+            "osType": "unknown:string",
+            "slug": "ebene_3_code",
+            "title": "Ebene 3 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_3_bezeichnung_produktgruppe",
+            "osType": "administrative-classification:generic:level3:code:part",
+            "slug": "ebene_3_bezeichnung_produktgruppe",
+            "title": "Ebene 3 - Bezeichnung (Produktgruppe)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_4_code",
+            "osType": "unknown:string",
+            "slug": "ebene_4_code",
+            "title": "Ebene 4 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_4_bezeichnung_produkt",
+            "osType": "administrative-classification:generic:level4:code:part",
+            "slug": "ebene_4_bezeichnung_produkt",
+            "title": "Ebene 4 - Bezeichnung (Produkt)",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "betrag_typ",
+          "jahr",
+          "budget_richtung",
+          "ebene_1_bezeichnung_produktrahmen",
+          "ebene_2_bezeichnung_produktbereich",
+          "ebene_3_bezeichnung_produktgruppe",
+          "ebene_4_bezeichnung_produkt"
+        ]
+      }
+    },
+    {
+      "bytes": 129434,
+      "count_of_rows": 859,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/tmp/tmpa_lxbco2/final/data/offenerhaushalt11-17__2016.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "872fbb55bd8840c5c49dd6c30bafa41a",
+      "mediatype": "text/csv",
+      "name": "offenerhaushalt11-17__2016",
+      "path": "data/offenerhaushalt11-17__2016.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "betrag",
+            "osType": "value",
+            "slug": "betrag",
+            "title": "Betrag",
+            "type": "number"
+          },
+          {
+            "conceptType": "value-kind",
+            "format": "default",
+            "name": "betrag_typ",
+            "osType": "value-kind:code",
+            "slug": "betrag_typ",
+            "title": "Betrag-Typ",
+            "type": "string"
+          },
+          {
+            "conceptType": "date",
+            "format": "default",
+            "name": "jahr",
+            "osType": "date:fiscal-year",
+            "slug": "jahr",
+            "title": "Jahr",
+            "type": "integer"
+          },
+          {
+            "conceptType": "direction",
+            "format": "default",
+            "name": "budget_richtung",
+            "osType": "direction",
+            "slug": "budget_richtung",
+            "title": "Budget Richtung",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_1_code",
+            "osType": "unknown:string",
+            "slug": "ebene_1_code",
+            "title": "Ebene 1 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_1_bezeichnung_produktrahmen",
+            "osType": "administrative-classification:generic:level1:code",
+            "slug": "ebene_1_bezeichnung_produktrahmen",
+            "title": "Ebene 1 - Bezeichnung (Produktrahmen)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_2_code",
+            "osType": "unknown:string",
+            "slug": "ebene_2_code",
+            "title": "Ebene 2 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_2_bezeichnung_produktbereich",
+            "osType": "administrative-classification:generic:level2:code:part",
+            "slug": "ebene_2_bezeichnung_produktbereich",
+            "title": "Ebene 2 - Bezeichnung (Produktbereich)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_3_code",
+            "osType": "unknown:string",
+            "slug": "ebene_3_code",
+            "title": "Ebene 3 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_3_bezeichnung_produktgruppe",
+            "osType": "administrative-classification:generic:level3:code:part",
+            "slug": "ebene_3_bezeichnung_produktgruppe",
+            "title": "Ebene 3 - Bezeichnung (Produktgruppe)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_4_code",
+            "osType": "unknown:string",
+            "slug": "ebene_4_code",
+            "title": "Ebene 4 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_4_bezeichnung_produkt",
+            "osType": "administrative-classification:generic:level4:code:part",
+            "slug": "ebene_4_bezeichnung_produkt",
+            "title": "Ebene 4 - Bezeichnung (Produkt)",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "betrag_typ",
+          "jahr",
+          "budget_richtung",
+          "ebene_1_bezeichnung_produktrahmen",
+          "ebene_2_bezeichnung_produktbereich",
+          "ebene_3_bezeichnung_produktgruppe",
+          "ebene_4_bezeichnung_produkt"
+        ]
+      }
+    },
+    {
+      "bytes": 130042,
+      "count_of_rows": 863,
+      "dialect": {
+        "delimiter": ",",
+        "doubleQuote": true,
+        "lineTerminator": "\r\n",
+        "quoteChar": "\"",
+        "skipInitialSpace": false
+      },
+      "dpp:streamedFrom": "/tmp/tmpa_lxbco2/final/data/offenerhaushalt11-17__2017.csv",
+      "encoding": "utf-8",
+      "format": "csv",
+      "hash": "a58e89b8bdd352d97a83eda7e019bdc7",
+      "mediatype": "text/csv",
+      "name": "offenerhaushalt11-17__2017",
+      "path": "data/offenerhaushalt11-17__2017.csv",
+      "profile": "data-resource",
+      "schema": {
+        "fields": [
+          {
+            "conceptType": "value",
+            "decimalChar": ".",
+            "format": "default",
+            "groupChar": "",
+            "name": "betrag",
+            "osType": "value",
+            "slug": "betrag",
+            "title": "Betrag",
+            "type": "number"
+          },
+          {
+            "conceptType": "value-kind",
+            "format": "default",
+            "name": "betrag_typ",
+            "osType": "value-kind:code",
+            "slug": "betrag_typ",
+            "title": "Betrag-Typ",
+            "type": "string"
+          },
+          {
+            "conceptType": "date",
+            "format": "default",
+            "name": "jahr",
+            "osType": "date:fiscal-year",
+            "slug": "jahr",
+            "title": "Jahr",
+            "type": "integer"
+          },
+          {
+            "conceptType": "direction",
+            "format": "default",
+            "name": "budget_richtung",
+            "osType": "direction",
+            "slug": "budget_richtung",
+            "title": "Budget Richtung",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_1_code",
+            "osType": "unknown:string",
+            "slug": "ebene_1_code",
+            "title": "Ebene 1 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_1_bezeichnung_produktrahmen",
+            "osType": "administrative-classification:generic:level1:code",
+            "slug": "ebene_1_bezeichnung_produktrahmen",
+            "title": "Ebene 1 - Bezeichnung (Produktrahmen)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_2_code",
+            "osType": "unknown:string",
+            "slug": "ebene_2_code",
+            "title": "Ebene 2 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_2_bezeichnung_produktbereich",
+            "osType": "administrative-classification:generic:level2:code:part",
+            "slug": "ebene_2_bezeichnung_produktbereich",
+            "title": "Ebene 2 - Bezeichnung (Produktbereich)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_3_code",
+            "osType": "unknown:string",
+            "slug": "ebene_3_code",
+            "title": "Ebene 3 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_3_bezeichnung_produktgruppe",
+            "osType": "administrative-classification:generic:level3:code:part",
+            "slug": "ebene_3_bezeichnung_produktgruppe",
+            "title": "Ebene 3 - Bezeichnung (Produktgruppe)",
+            "type": "string"
+          },
+          {
+            "conceptType": "unknown",
+            "format": "default",
+            "name": "ebene_4_code",
+            "osType": "unknown:string",
+            "slug": "ebene_4_code",
+            "title": "Ebene 4 - Code",
+            "type": "string"
+          },
+          {
+            "conceptType": "administrative-classification",
+            "format": "default",
+            "name": "ebene_4_bezeichnung_produkt",
+            "osType": "administrative-classification:generic:level4:code:part",
+            "slug": "ebene_4_bezeichnung_produkt",
+            "title": "Ebene 4 - Bezeichnung (Produkt)",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "betrag_typ",
+          "jahr",
+          "budget_richtung",
+          "ebene_1_bezeichnung_produktrahmen",
+          "ebene_2_bezeichnung_produktbereich",
+          "ebene_3_bezeichnung_produktgruppe",
+          "ebene_4_bezeichnung_produkt"
+        ]
+      }
+    }
+  ],
+  "title": "dallgow"
+}

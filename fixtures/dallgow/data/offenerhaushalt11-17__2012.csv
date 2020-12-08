@@ -1,0 +1,135 @@
+betrag,betrag_typ,jahr,budget_richtung,ebene_1_code,ebene_1_bezeichnung_produktrahmen,ebene_2_code,ebene_2_bezeichnung_produktbereich,ebene_3_code,ebene_3_bezeichnung_produktgruppe,ebene_4_code,ebene_4_bezeichnung_produkt
+476196.03,Ist,2012,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111001,Gemeindeorgane
+3433.40,Ist,2012,Einnahmen,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111002,Innere Verwaltung
+594660.52,Ist,2012,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111002,Innere Verwaltung
+40824.53,Ist,2012,Einnahmen,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111003,Finanzverwaltung
+370096.24,Ist,2012,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111003,Finanzverwaltung
+301061.96,Ist,2012,Einnahmen,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111004,Liegenschaftsverwaltung
+380606.20,Ist,2012,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111004,Liegenschaftsverwaltung
+334142.89,Ist,2012,Einnahmen,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111005,Bauhofmanagement
+378796.20,Ist,2012,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111005,Bauhofmanagement
+56869.21,Ist,2012,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111006,Hochbau- / Gebäudemanagement
+101948.62,Ist,2012,Einnahmen,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,122,Ordnungsangelegenheiten,122001,Ordnungsangelegenheiten
+326859.33,Ist,2012,Ausgaben,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,122,Ordnungsangelegenheiten,122001,Ordnungsangelegenheiten
+42463.21,Ist,2012,Einnahmen,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,126,Brandschutz,126001,Brandschutz / Feuerwehr
+167243.31,Ist,2012,Ausgaben,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,126,Brandschutz,126001,Brandschutz / Feuerwehr
+108384.81,Ist,2012,Einnahmen,2,Schulen und Kultur,21,Schulträgeraufgaben,211,Grundschulen,211001,Grundschule Am Wasserturm
+729513.79,Ist,2012,Ausgaben,2,Schulen und Kultur,21,Schulträgeraufgaben,211,Grundschulen,211001,Grundschule Am Wasserturm
+1412.50,Ist,2012,Einnahmen,2,Schulen und Kultur,27,Kultur und Wissenschaft,272,Bibliotheken,272001,Gemeindebibliothek
+21590.80,Ist,2012,Ausgaben,2,Schulen und Kultur,27,Kultur und Wissenschaft,272,Bibliotheken,272001,Gemeindebibliothek
+4780.71,Ist,2012,Ausgaben,2,Schulen und Kultur,28,Kultur,281,Heimatpflege,281001,Heimatpflege
+993.75,Ist,2012,Ausgaben,3,Soziales und Jugend,31,Soziale Hilfen,315,Soziale Einrichtungen,315101,Seniorenarbeit
+188603.85,Ist,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",361,Förderung von Kindern in Tageseinrichtungen u. in Tagespflege,361201,Tagespflege
+186688.15,Ist,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",361,Förderung von Kindern in Tageseinrichtungen u. in Tagespflege,361201,Tagespflege
+144690.74,Ist,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365001,Kita Villa Kunterbunt Germanenstr. 49
+575030.22,Ist,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365001,Kita Villa Kunterbunt Germanenstr. 49
+68707.64,Ist,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365002,Kita Schlumpfenland Finkenkruger Str. 15
+277866.68,Ist,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365002,Kita Schlumpfenland Finkenkruger Str. 15
+36777.81,Ist,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365003,Kita St. Martin Wilhelmstr. 24
+405394.62,Ist,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365003,Kita St. Martin Wilhelmstr. 24
+227154.14,Ist,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365004,Kita Sausewind Triftstr. 29
+642242.42,Ist,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365004,Kita Sausewind Triftstr. 29
+85951.24,Ist,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365005,"Kita Seeburger Früchtchen An den Kiefern 6, OT Seeburg"
+249964.40,Ist,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365005,"Kita Seeburger Früchtchen An den Kiefern 6, OT Seeburg"
+162914.21,Ist,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365006,Hort Koboldland Wilmsstr. 56
+811613.97,Ist,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365006,Hort Koboldland Wilmsstr. 56
+1994179.12,Ist,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365007,Kostenausgleich
+386448.26,Ist,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365007,Kostenausgleich
+224.39,Ist,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365008,Kita Neubau
+11742.11,Ist,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",366,Einrichtungen der Jugendarbeit,366001,JC`s Dallgow-Döberitz
+163499.84,Ist,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",366,Einrichtungen der Jugendarbeit,366001,JC`s Dallgow-Döberitz
+72577.19,Ist,2012,Einnahmen,4,Gesundheit und Sport,42,Sportförderung,424,Sportstätten und Bäder,424001,Sportplätze / Bogenschießplatz
+225759.95,Ist,2012,Ausgaben,4,Gesundheit und Sport,42,Sportförderung,424,Sportstätten und Bäder,424001,Sportplätze / Bogenschießplatz
+83253.79,Ist,2012,Ausgaben,5,Gestaltung der Umwelt,51,Räumliche Planung und Entwicklung,511,Räumliche Planungs- und Entwicklungsmaßnahmen,511001,Ortsentwicklung
+100458.41,Ist,2012,Einnahmen,5,Gestaltung der Umwelt,52,Bauen und Wohnen,522,Wohnbauförderung,522001,Wohnraumversorgung
+39291.66,Ist,2012,Ausgaben,5,Gestaltung der Umwelt,52,Bauen und Wohnen,522,Wohnbauförderung,522001,Wohnraumversorgung
+150152.16,Ist,2012,Einnahmen,5,Gestaltung der Umwelt,53,Ver- und Entsorgung,531,Elektrizitätsversorgung,531001,Elektrizitätsversorgung
+24628.89,Ist,2012,Einnahmen,5,Gestaltung der Umwelt,53,Ver- und Entsorgung,532,Gasversorgung,532001,Gasversorgung
+85.82,Ist,2012,Einnahmen,5,Gestaltung der Umwelt,53,Ver- und Entsorgung,538,Abwasserbeseitigung,538001,Abwasserbeseitigung
+720221.40,Ist,2012,Einnahmen,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",541,Gemeindestraßen,541001,Bau und Unterhaltung Gemeindestraßen
+1639652.49,Ist,2012,Ausgaben,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",541,Gemeindestraßen,541001,Bau und Unterhaltung Gemeindestraßen
+17427.88,Ist,2012,Einnahmen,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",545,Straßenreinigung,545001,Straßenreinigung und Winterdienst
+72086.84,Ist,2012,Ausgaben,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",545,Straßenreinigung,545001,Straßenreinigung und Winterdienst
+4259.71,Ist,2012,Einnahmen,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",546,Parkeinrichtungen,546001,"Bau, Betrieb und Unterhaltung der öffentlichen Parkplätze"
+5702.62,Ist,2012,Ausgaben,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",546,Parkeinrichtungen,546001,"Bau, Betrieb und Unterhaltung der öffentlichen Parkplätze"
+78320.18,Ist,2012,Einnahmen,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,551,Öffentliches Grün / Landschaftsbau,551001,Öffentliches Grün
+191072.01,Ist,2012,Ausgaben,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,551,Öffentliches Grün / Landschaftsbau,551001,Öffentliches Grün
+16554.26,Ist,2012,Einnahmen,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,552,Öffentliche Gewässer / Wasserbauliche Anlagen,552001,Öffentliche Gewässer / Wasserbauliche Anlagen
+48645.43,Ist,2012,Ausgaben,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,552,Öffentliche Gewässer / Wasserbauliche Anlagen,552001,Öffentliche Gewässer / Wasserbauliche Anlagen
+10734.00,Ist,2012,Einnahmen,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,553,Friedhofs- und Bestattungswesen,553001,Friedhöfe
+30273.54,Ist,2012,Ausgaben,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,553,Friedhofs- und Bestattungswesen,553001,Friedhöfe
+300211.39,Ist,2012,Einnahmen,5,Gestaltung der Umwelt,57,Wirtschaft und Tourismus,571,Wirtschaftsförderung,571001,Allgemeine  Wirtschaftsförderung
+156203.55,Ist,2012,Ausgaben,5,Gestaltung der Umwelt,57,Wirtschaft und Tourismus,571,Wirtschaftsförderung,571001,Allgemeine  Wirtschaftsförderung
+143.08,Ist,2012,Einnahmen,5,Gestaltung der Umwelt,57,Wirtschaft und Tourismus,573,Allgemeinde Einrichtungen und Unternehmen,573001,Märkte
+9883825.59,Ist,2012,Einnahmen,6,Zentrale Finanzleistungen,61,Allgemeine Finanzwirtschaft,611,"Steuern, allgemeine Zuweisungen, allgemeine Umlagen",611001,"Steuern, allgemeine Zuweisungen, allgemeine Umlagen"
+3981886.50,Ist,2012,Ausgaben,6,Zentrale Finanzleistungen,61,Allgemeine Finanzwirtschaft,611,"Steuern, allgemeine Zuweisungen, allgemeine Umlagen",611001,"Steuern, allgemeine Zuweisungen, allgemeine Umlagen"
+44865.36,Ist,2012,Einnahmen,6,Zentrale Finanzleistungen,61,Allgemeine Finanzwirtschaft,612,Sonstige allgemeine Finanzwirtschaft,612001,Sonstige allgemeine Finanzwirtschaft
+1597850.68,Ist,2012,Ausgaben,6,Zentrale Finanzleistungen,61,Allgemeine Finanzwirtschaft,612,Sonstige allgemeine Finanzwirtschaft,612001,Sonstige allgemeine Finanzwirtschaft
+262200.00,Plan,2012,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111001,Gemeindeorgane
+3200.00,Plan,2012,Einnahmen,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111002,Innere Verwaltung
+657100.00,Plan,2012,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111002,Innere Verwaltung
+17200.00,Plan,2012,Einnahmen,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111003,Finanzverwaltung
+383500.00,Plan,2012,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111003,Finanzverwaltung
+552800.00,Plan,2012,Einnahmen,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111004,Liegenschaftsverwaltung
+520300.00,Plan,2012,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111004,Liegenschaftsverwaltung
+393600.00,Plan,2012,Einnahmen,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111005,Bauhofmanagement
+393300.00,Plan,2012,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111005,Bauhofmanagement
+57200.00,Plan,2012,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111006,Hochbau- / Gebäudemanagement
+93900.00,Plan,2012,Einnahmen,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,122,Ordnungsangelegenheiten,122001,Ordnungsangelegenheiten
+356300.00,Plan,2012,Ausgaben,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,122,Ordnungsangelegenheiten,122001,Ordnungsangelegenheiten
+31600.00,Plan,2012,Einnahmen,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,126,Brandschutz,126001,Brandschutz / Feuerwehr
+161200.00,Plan,2012,Ausgaben,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,126,Brandschutz,126001,Brandschutz / Feuerwehr
+77000.00,Plan,2012,Einnahmen,2,Schulen und Kultur,21,Schulträgeraufgaben,211,Grundschulen,211001,Grundschule Am Wasserturm
+713400.00,Plan,2012,Ausgaben,2,Schulen und Kultur,21,Schulträgeraufgaben,211,Grundschulen,211001,Grundschule Am Wasserturm
+1200.00,Plan,2012,Einnahmen,2,Schulen und Kultur,27,Kultur und Wissenschaft,272,Bibliotheken,272001,Gemeindebibliothek
+25400.00,Plan,2012,Ausgaben,2,Schulen und Kultur,27,Kultur und Wissenschaft,272,Bibliotheken,272001,Gemeindebibliothek
+4100.00,Plan,2012,Ausgaben,2,Schulen und Kultur,28,Kultur,281,Heimatpflege,281001,Heimatpflege
+1900.00,Plan,2012,Ausgaben,3,Soziales und Jugend,31,Soziale Hilfen,315,Soziale Einrichtungen,315101,Seniorenarbeit
+205000.00,Plan,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",361,Förderung von Kindern in Tageseinrichtungen u. in Tagespflege,361201,Tagespflege
+205000.00,Plan,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",361,Förderung von Kindern in Tageseinrichtungen u. in Tagespflege,361201,Tagespflege
+114300.00,Plan,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365001,Kita Villa Kunterbunt Germanenstr. 49
+575800.00,Plan,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365001,Kita Villa Kunterbunt Germanenstr. 49
+62300.00,Plan,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365002,Kita Schlumpfenland Finkenkruger Str. 15
+285400.00,Plan,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365002,Kita Schlumpfenland Finkenkruger Str. 15
+36700.00,Plan,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365003,Kita St. Martin Wilhelmstr. 24
+406500.00,Plan,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365003,Kita St. Martin Wilhelmstr. 24
+203600.00,Plan,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365004,Kita Sausewind Triftstr. 29
+619300.00,Plan,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365004,Kita Sausewind Triftstr. 29
+76100.00,Plan,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365005,"Kita Seeburger Früchtchen An den Kiefern 6, OT Seeburg"
+286900.00,Plan,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365005,"Kita Seeburger Früchtchen An den Kiefern 6, OT Seeburg"
+136000.00,Plan,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365006,Hort Koboldland Wilmsstr. 56
+816400.00,Plan,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365006,Hort Koboldland Wilmsstr. 56
+1945000.00,Plan,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365007,Kostenausgleich
+452300.00,Plan,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365007,Kostenausgleich
+9700.00,Plan,2012,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",366,Einrichtungen der Jugendarbeit,366001,JC`s Dallgow-Döberitz
+183800.00,Plan,2012,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",366,Einrichtungen der Jugendarbeit,366001,JC`s Dallgow-Döberitz
+55900.00,Plan,2012,Einnahmen,4,Gesundheit und Sport,42,Sportförderung,424,Sportstätten und Bäder,424001,Sportplätze / Bogenschießplatz
+215200.00,Plan,2012,Ausgaben,4,Gesundheit und Sport,42,Sportförderung,424,Sportstätten und Bäder,424001,Sportplätze / Bogenschießplatz
+37500.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,51,Räumliche Planung und Entwicklung,511,Räumliche Planungs- und Entwicklungsmaßnahmen,511001,Ortsentwicklung
+199900.00,Plan,2012,Ausgaben,5,Gestaltung der Umwelt,51,Räumliche Planung und Entwicklung,511,Räumliche Planungs- und Entwicklungsmaßnahmen,511001,Ortsentwicklung
+243700.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,52,Bauen und Wohnen,522,Wohnbauförderung,522001,Wohnraumversorgung
+182100.00,Plan,2012,Ausgaben,5,Gestaltung der Umwelt,52,Bauen und Wohnen,522,Wohnbauförderung,522001,Wohnraumversorgung
+230000.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,53,Ver- und Entsorgung,531,Elektrizitätsversorgung,531001,Elektrizitätsversorgung
+17400.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,53,Ver- und Entsorgung,532,Gasversorgung,532001,Gasversorgung
+1600.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,53,Ver- und Entsorgung,538,Abwasserbeseitigung,538001,Abwasserbeseitigung
+4300.00,Plan,2012,Ausgaben,5,Gestaltung der Umwelt,53,Ver- und Entsorgung,538,Abwasserbeseitigung,538001,Abwasserbeseitigung
+697600.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",541,Gemeindestraßen,541001,Bau und Unterhaltung Gemeindestraßen
+1685200.00,Plan,2012,Ausgaben,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",541,Gemeindestraßen,541001,Bau und Unterhaltung Gemeindestraßen
+17100.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",545,Straßenreinigung,545001,Straßenreinigung und Winterdienst
+89000.00,Plan,2012,Ausgaben,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",545,Straßenreinigung,545001,Straßenreinigung und Winterdienst
+3800.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",546,Parkeinrichtungen,546001,"Bau, Betrieb und Unterhaltung der öffentlichen Parkplätze"
+7000.00,Plan,2012,Ausgaben,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",546,Parkeinrichtungen,546001,"Bau, Betrieb und Unterhaltung der öffentlichen Parkplätze"
+7300.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,551,Öffentliches Grün / Landschaftsbau,551001,Öffentliches Grün
+276600.00,Plan,2012,Ausgaben,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,551,Öffentliches Grün / Landschaftsbau,551001,Öffentliches Grün
+24000.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,552,Öffentliche Gewässer / Wasserbauliche Anlagen,552001,Öffentliche Gewässer / Wasserbauliche Anlagen
+67200.00,Plan,2012,Ausgaben,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,552,Öffentliche Gewässer / Wasserbauliche Anlagen,552001,Öffentliche Gewässer / Wasserbauliche Anlagen
+20100.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,553,Friedhofs- und Bestattungswesen,553001,Friedhöfe
+23500.00,Plan,2012,Ausgaben,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,553,Friedhofs- und Bestattungswesen,553001,Friedhöfe
+204600.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,57,Wirtschaft und Tourismus,571,Wirtschaftsförderung,571001,Allgemeine  Wirtschaftsförderung
+236500.00,Plan,2012,Ausgaben,5,Gestaltung der Umwelt,57,Wirtschaft und Tourismus,571,Wirtschaftsförderung,571001,Allgemeine  Wirtschaftsförderung
+200.00,Plan,2012,Einnahmen,5,Gestaltung der Umwelt,57,Wirtschaft und Tourismus,573,Allgemeinde Einrichtungen und Unternehmen,573001,Märkte
+6000.00,Plan,2012,Ausgaben,5,Gestaltung der Umwelt,57,Wirtschaft und Tourismus,573,Allgemeinde Einrichtungen und Unternehmen,573001,Märkte
+8045600.00,Plan,2012,Einnahmen,6,Zentrale Finanzleistungen,61,Allgemeine Finanzwirtschaft,611,"Steuern, allgemeine Zuweisungen, allgemeine Umlagen",611001,"Steuern, allgemeine Zuweisungen, allgemeine Umlagen"
+3813400.00,Plan,2012,Ausgaben,6,Zentrale Finanzleistungen,61,Allgemeine Finanzwirtschaft,611,"Steuern, allgemeine Zuweisungen, allgemeine Umlagen",611001,"Steuern, allgemeine Zuweisungen, allgemeine Umlagen"
+35000.00,Plan,2012,Einnahmen,6,Zentrale Finanzleistungen,61,Allgemeine Finanzwirtschaft,612,Sonstige allgemeine Finanzwirtschaft,612001,Sonstige allgemeine Finanzwirtschaft
+16600.00,Plan,2012,Ausgaben,6,Zentrale Finanzleistungen,61,Allgemeine Finanzwirtschaft,612,Sonstige allgemeine Finanzwirtschaft,612001,Sonstige allgemeine Finanzwirtschaft

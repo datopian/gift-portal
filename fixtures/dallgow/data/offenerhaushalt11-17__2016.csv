@@ -1,0 +1,74 @@
+betrag,betrag_typ,jahr,budget_richtung,ebene_1_code,ebene_1_bezeichnung_produktrahmen,ebene_2_code,ebene_2_bezeichnung_produktbereich,ebene_3_code,ebene_3_bezeichnung_produktgruppe,ebene_4_code,ebene_4_bezeichnung_produkt
+299700.00,Plan,2016,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111001,Gemeindeorgane
+3200.00,Plan,2016,Einnahmen,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111002,Innere Verwaltung
+788400.00,Plan,2016,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111002,Innere Verwaltung
+50700.00,Plan,2016,Einnahmen,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111003,Finanzverwaltung
+465400.00,Plan,2016,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111003,Finanzverwaltung
+624700.00,Plan,2016,Einnahmen,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111004,Liegenschaftsverwaltung
+454400.00,Plan,2016,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111004,Liegenschaftsverwaltung
+448400.00,Plan,2016,Einnahmen,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111005,Bauhofmanagement
+443900.00,Plan,2016,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111005,Bauhofmanagement
+110300.00,Plan,2016,Ausgaben,1,Zentrale Verwaltung,11,Innere Verwaltung,111,Verwaltungssteuerung und -service,111006,Hochbau- / Gebäudemanagement
+8100.00,Plan,2016,Einnahmen,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,121,Statistik und Wahlen,121001,Statistik / Wahlen
+8300.00,Plan,2016,Ausgaben,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,121,Statistik und Wahlen,121001,Statistik / Wahlen
+137200.00,Plan,2016,Einnahmen,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,122,Ordnungsangelegenheiten,122001,Ordnungsangelegenheiten
+439800.00,Plan,2016,Ausgaben,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,122,Ordnungsangelegenheiten,122001,Ordnungsangelegenheiten
+47800.00,Plan,2016,Einnahmen,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,126,Brandschutz,126001,Brandschutz / Feuerwehr
+283400.00,Plan,2016,Ausgaben,1,Zentrale Verwaltung,12,Sicherheit und Ordnung,126,Brandschutz,126001,Brandschutz / Feuerwehr
+117700.00,Plan,2016,Einnahmen,2,Schulen und Kultur,21,Schulträgeraufgaben,211,Grundschulen,211001,Grundschule Am Wasserturm
+820400.00,Plan,2016,Ausgaben,2,Schulen und Kultur,21,Schulträgeraufgaben,211,Grundschulen,211001,Grundschule Am Wasserturm
+1000.00,Plan,2016,Einnahmen,2,Schulen und Kultur,27,Kultur und Wissenschaft,272,Bibliotheken,272001,Gemeindebibliothek
+45600.00,Plan,2016,Ausgaben,2,Schulen und Kultur,27,Kultur und Wissenschaft,272,Bibliotheken,272001,Gemeindebibliothek
+8300.00,Plan,2016,Ausgaben,2,Schulen und Kultur,28,Kultur,281,Heimatpflege,281001,Heimatpflege
+3000.00,Plan,2016,Ausgaben,3,Soziales und Jugend,31,Soziale Hilfen,315,Soziale Einrichtungen,315101,Seniorenarbeit
+200000.00,Plan,2016,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",361,Förderung von Kindern in Tageseinrichtungen u. in Tagespflege,361201,Tagespflege
+201500.00,Plan,2016,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",361,Förderung von Kindern in Tageseinrichtungen u. in Tagespflege,361201,Tagespflege
+168600.00,Plan,2016,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365001,Kita Villa Kunterbunt Germanenstr. 49
+738000.00,Plan,2016,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365001,Kita Villa Kunterbunt Germanenstr. 49
+74000.00,Plan,2016,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365002,Kita Schlumpfenland Finkenkruger Str. 15
+346300.00,Plan,2016,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365002,Kita Schlumpfenland Finkenkruger Str. 15
+36700.00,Plan,2016,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365003,Kita St. Martin Wilhelmstr. 24
+441700.00,Plan,2016,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365003,Kita St. Martin Wilhelmstr. 24
+229000.00,Plan,2016,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365004,Kita Sausewind Triftstr. 29
+846600.00,Plan,2016,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365004,Kita Sausewind Triftstr. 29
+92100.00,Plan,2016,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365005,"Kita Seeburger Früchtchen An den Kiefern 6, OT Seeburg"
+313100.00,Plan,2016,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365005,"Kita Seeburger Früchtchen An den Kiefern 6, OT Seeburg"
+174000.00,Plan,2016,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365006,Hort Koboldland Wilmsstr. 56
+1137500.00,Plan,2016,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365006,Hort Koboldland Wilmsstr. 56
+3027300.00,Plan,2016,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365007,Kostenausgleich
+619400.00,Plan,2016,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365007,Kostenausgleich
+202400.00,Plan,2016,Einnahmen,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365008,Kita Wald- und Wiesenstrolche Wilhelmstr. 10
+935500.00,Plan,2016,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",365,Tageseinrichtungen für Kinder,365008,Kita Wald- und Wiesenstrolche Wilhelmstr. 10
+177500.00,Plan,2016,Ausgaben,3,Soziales und Jugend,36,"Kinder-, Jugend- und Familienhilfe",366,Einrichtungen der Jugendarbeit,366001,JC`s Dallgow-Döberitz
+4200.00,Plan,2016,Einnahmen,4,Gesundheit und Sport,42,Sportförderung,421,Förderung des Sports,421001,Vereinsförderung
+33600.00,Plan,2016,Ausgaben,4,Gesundheit und Sport,42,Sportförderung,421,Förderung des Sports,421001,Vereinsförderung
+66300.00,Plan,2016,Einnahmen,4,Gesundheit und Sport,42,Sportförderung,424,Sportstätten und Bäder,424001,Sportplätze
+236000.00,Plan,2016,Ausgaben,4,Gesundheit und Sport,42,Sportförderung,424,Sportstätten und Bäder,424001,Sportplätze
+116200.00,Plan,2016,Ausgaben,5,Gestaltung der Umwelt,51,Räumliche Planung und Entwicklung,511,Räumliche Planungs- und Entwicklungsmaßnahmen,511001,Ortsentwicklung
+92500.00,Plan,2016,Einnahmen,5,Gestaltung der Umwelt,52,Bauen und Wohnen,522,Wohnbauförderung,522001,Wohnraumversorgung
+59400.00,Plan,2016,Ausgaben,5,Gestaltung der Umwelt,52,Bauen und Wohnen,522,Wohnbauförderung,522001,Wohnraumversorgung
+480000.00,Plan,2016,Einnahmen,5,Gestaltung der Umwelt,53,Ver- und Entsorgung,531,Elektrizitätsversorgung,531001,Elektrizitätsversorgung
+29000.00,Plan,2016,Einnahmen,5,Gestaltung der Umwelt,53,Ver- und Entsorgung,532,Gasversorgung,532001,Gasversorgung
+600.00,Plan,2016,Einnahmen,5,Gestaltung der Umwelt,53,Ver- und Entsorgung,538,Abwasserbeseitigung,538001,Abwasserbeseitigung
+3300.00,Plan,2016,Ausgaben,5,Gestaltung der Umwelt,53,Ver- und Entsorgung,538,Abwasserbeseitigung,538001,Abwasserbeseitigung
+683700.00,Plan,2016,Einnahmen,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",541,Gemeindestraßen,541001,Bau und Unterhaltung Gemeindestraßen
+1969600.00,Plan,2016,Ausgaben,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",541,Gemeindestraßen,541001,Bau und Unterhaltung Gemeindestraßen
+86300.00,Plan,2016,Einnahmen,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",545,Straßenreinigung,545001,Straßenreinigung und Winterdienst
+141100.00,Plan,2016,Ausgaben,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",545,Straßenreinigung,545001,Straßenreinigung und Winterdienst
+4200.00,Plan,2016,Einnahmen,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",546,Parkeinrichtungen,546001,"Bau, Betrieb und Unterhaltung der öffentlichen Parkplätze"
+10800.00,Plan,2016,Ausgaben,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",546,Parkeinrichtungen,546001,"Bau, Betrieb und Unterhaltung der öffentlichen Parkplätze"
+10000.00,Plan,2016,Ausgaben,5,Gestaltung der Umwelt,54,"Verkehrsflächen- und anlagen, ÖPNV",547,ÖPNV,547001,Einrichtungen ÖPNV-Bürgerbus
+264100.00,Plan,2016,Einnahmen,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,551,Öffentliches Grün / Landschaftsbau,551001,Öffentliches Grün
+292900.00,Plan,2016,Ausgaben,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,551,Öffentliches Grün / Landschaftsbau,551001,Öffentliches Grün
+24000.00,Plan,2016,Einnahmen,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,552,Öffentliche Gewässer / Wasserbauliche Anlagen,552001,Öffentliche Gewässer / Wasserbauliche Anlagen
+98000.00,Plan,2016,Ausgaben,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,552,Öffentliche Gewässer / Wasserbauliche Anlagen,552001,Öffentliche Gewässer / Wasserbauliche Anlagen
+10100.00,Plan,2016,Einnahmen,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,553,Friedhofs- und Bestattungswesen,553001,Friedhöfe
+83200.00,Plan,2016,Ausgaben,5,Gestaltung der Umwelt,55,Natur- und Landschaftspflege,553,Friedhofs- und Bestattungswesen,553001,Friedhöfe
+26300.00,Plan,2016,Einnahmen,5,Gestaltung der Umwelt,57,Wirtschaft und Tourismus,571,Wirtschaftsförderung,571001,Allgemeine  Wirtschaftsförderung
+33500.00,Plan,2016,Ausgaben,5,Gestaltung der Umwelt,57,Wirtschaft und Tourismus,571,Wirtschaftsförderung,571001,Allgemeine  Wirtschaftsförderung
+1000.00,Plan,2016,Einnahmen,5,Gestaltung der Umwelt,57,Wirtschaft und Tourismus,573,Allgemeinde Einrichtungen und Unternehmen,573001,Märkte
+1000.00,Plan,2016,Ausgaben,5,Gestaltung der Umwelt,57,Wirtschaft und Tourismus,573,Allgemeinde Einrichtungen und Unternehmen,573001,Märkte
+10723500.00,Plan,2016,Einnahmen,6,Zentrale Finanzleistungen,61,Allgemeine Finanzwirtschaft,611,"Steuern, allgemeine Zuweisungen, allgemeine Umlagen",611001,"Steuern, allgemeine Zuweisungen, allgemeine Umlagen"
+4998200.00,Plan,2016,Ausgaben,6,Zentrale Finanzleistungen,61,Allgemeine Finanzwirtschaft,611,"Steuern, allgemeine Zuweisungen, allgemeine Umlagen",611001,"Steuern, allgemeine Zuweisungen, allgemeine Umlagen"
+2000.00,Plan,2016,Einnahmen,6,Zentrale Finanzleistungen,61,Allgemeine Finanzwirtschaft,612,Sonstige allgemeine Finanzwirtschaft,612001,Sonstige allgemeine Finanzwirtschaft
+67400.00,Plan,2016,Ausgaben,6,Zentrale Finanzleistungen,61,Allgemeine Finanzwirtschaft,612,Sonstige allgemeine Finanzwirtschaft,612001,Sonstige allgemeine Finanzwirtschaft

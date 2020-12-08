@@ -1,0 +1,207 @@
+{
+  "model": {
+    "dimensions": {
+      "administrative-classification": {
+        "dimensionType": "classification",
+        "primaryKey": [
+          "Produktbereich",
+          "Produktgruppe",
+          "Gruppierung_Bezeichnung"
+        ],
+        "attributes": {
+          "Gruppierung_Bezeichnung": {
+            "source": "Gruppierung Bezeichnung",
+            "title": "Gruppierung Bezeichnung",
+            "parent": "Produktgruppe"
+          },
+          "Produktbereich": {
+            "source": "Produktbereich",
+            "title": "Produktbereich"
+          },
+          "Produktbereich_Bezeichnung": {
+            "source": "Produktbereich Bezeichnung",
+            "title": "Produktbereich Bezeichnung",
+            "labelfor": "Produktbereich"
+          },
+          "Produktgruppe": {
+            "source": "Produktgruppe",
+            "title": "Produktgruppe",
+            "parent": "Produktbereich"
+          },
+          "Produktgruppe_Bezeichnung": {
+            "source": "Produktgruppe Bezeichnung",
+            "title": "Produktgruppe Bezeichnung",
+            "labelfor": "Produktgruppe"
+          }
+        },
+        "classificationType": "administrative"
+      },
+      "date": {
+        "dimensionType": "datetime",
+        "primaryKey": [
+          "Haushaltsjahr"
+        ],
+        "attributes": {
+          "Haushaltsjahr": {
+            "source": "Haushaltsjahr",
+            "title": "Haushaltsjahr"
+          }
+        }
+      },
+      "direction": {
+        "dimensionType": "other",
+        "primaryKey": [
+          "Ertrag_Aufwand"
+        ],
+        "attributes": {
+          "Ertrag_Aufwand": {
+            "source": "Ertrag / Aufwand",
+            "title": "Ertrag / Aufwand"
+          }
+        }
+      },
+      "phase": {
+        "dimensionType": "other",
+        "primaryKey": [
+          "Haushalt"
+        ],
+        "attributes": {
+          "Haushalt": {
+            "source": "Haushalt",
+            "title": "Haushalt"
+          }
+        }
+      }
+    },
+    "measures": {
+      "Betrag": {
+        "source": "Betrag",
+        "title": "Betrag",
+        "currency": "USD"
+      }
+    }
+  },
+  "promise": {
+    "_c": [],
+    "_s": 1,
+    "_d": true,
+    "_h": 0,
+    "_n": false
+  },
+  "title": "frankfurt-new",
+  "name": "frankfurt-new",
+  "resources": [
+    {
+      "name": "frankfurt-enriched",
+      "format": "csv",
+      "path": "frankfurt-enriched.csv",
+      "mediatype": "text/csv",
+      "bytes": 709577,
+      "dialect": {
+        "csvddfVersion": 1,
+        "delimiter": ",",
+        "lineTerminator": "\r\n"
+      },
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "title": "Gruppierung Bezeichnung",
+            "name": "Gruppierung Bezeichnung",
+            "slug": "Gruppierung_Bezeichnung",
+            "type": "string",
+            "format": "default",
+            "osType": "administrative-classification:generic:level3:code:part",
+            "conceptType": "administrative-classification"
+          },
+          {
+            "title": "Produktbereich",
+            "name": "Produktbereich",
+            "slug": "Produktbereich",
+            "type": "string",
+            "format": "default",
+            "osType": "administrative-classification:generic:level1:code",
+            "conceptType": "administrative-classification"
+          },
+          {
+            "title": "Produktbereich Bezeichnung",
+            "name": "Produktbereich Bezeichnung",
+            "slug": "Produktbereich_Bezeichnung",
+            "type": "string",
+            "format": "default",
+            "osType": "administrative-classification:generic:level1:label",
+            "conceptType": "administrative-classification"
+          },
+          {
+            "title": "Produktgruppe",
+            "name": "Produktgruppe",
+            "slug": "Produktgruppe",
+            "type": "string",
+            "format": "default",
+            "osType": "administrative-classification:generic:level2:code:full",
+            "conceptType": "administrative-classification"
+          },
+          {
+            "title": "Produktgruppe Bezeichnung",
+            "name": "Produktgruppe Bezeichnung",
+            "slug": "Produktgruppe_Bezeichnung",
+            "type": "string",
+            "format": "default",
+            "osType": "administrative-classification:generic:level2:label",
+            "conceptType": "administrative-classification"
+          },
+          {
+            "title": "Haushaltsjahr",
+            "name": "Haushaltsjahr",
+            "slug": "Haushaltsjahr",
+            "type": "integer",
+            "format": "default",
+            "osType": "date:fiscal-year",
+            "conceptType": "date"
+          },
+          {
+            "title": "Ertrag / Aufwand",
+            "name": "Ertrag / Aufwand",
+            "slug": "Ertrag_Aufwand",
+            "type": "string",
+            "format": "default",
+            "osType": "direction",
+            "conceptType": "direction"
+          },
+          {
+            "title": "Betrag",
+            "name": "Betrag",
+            "slug": "Betrag",
+            "type": "number",
+            "format": "default",
+            "osType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "groupChar": ","
+          },
+          {
+            "title": "Haushalt",
+            "name": "Haushalt",
+            "slug": "Haushalt",
+            "type": "string",
+            "format": "default",
+            "osType": "phase:id",
+            "conceptType": "phase"
+          }
+        ],
+        "primaryKey": [
+          "Gruppierung Bezeichnung",
+          "Produktbereich",
+          "Produktgruppe",
+          "Haushaltsjahr",
+          "Ertrag / Aufwand",
+          "Haushalt"
+        ]
+      }
+    }
+  ],
+  "@context": "http://schemas.frictionlessdata.io/fiscal-data-package.jsonld",
+  "owner": "99030977d67877e4fc4e5b7306c9f4b1",
+  "author": "Edgar Alvarenga <hvalros@gmail.com>",
+  "count_of_rows": 5656
+}
