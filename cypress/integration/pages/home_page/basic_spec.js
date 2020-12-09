@@ -4,6 +4,8 @@ describe('index page test', function() {
   });
 
   it('renders portal', function (){
-    cy.contains("GIFT Data Portal");
+    cy.contains("DataSet");
+    cy.contains("search datasets");
+    cy.contains("GIFT's website");
   })
 })
