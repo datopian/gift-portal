@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router'
 import * as db from '../../data';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
 
 const Dataset = () => {
   const router = useRouter()
@@ -12,8 +10,6 @@ const Dataset = () => {
   } else {
     const dataset = db.catalog[datasetid]
     return (
-      <div >
-        <Navbar />
         <div className='pl-40 pr-40 pt-10 pb-10'>
           {/* <p>Dataset: {datasetid}</p>
           <p>{dataset.title}</p>  */}
@@ -116,8 +112,6 @@ const Dataset = () => {
               </div>
           </div>
         </div>
-        <Footer />
-      </div>
     )
   }
 }

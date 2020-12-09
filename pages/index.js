@@ -1,8 +1,6 @@
 import * as Data  from '../data';
 import Card from '../components/Card';
-import Footer from '../components/Footer';
 import Search from '../components/Search';
-import Navbar from '../components/Navbar';
 
 export default function Home() {
    const props = {
@@ -18,8 +16,6 @@ export default function Home() {
     data.push(props);
   }
   return (
-      <div>
-        <Navbar />
         <div className='pl-40 pr-40 pt-10 pb-10'>
           <h3 className='font-lato text-xl text-black'>DataSet</h3>
           <div className='flex flex-row justify-between mt-10'>
@@ -41,9 +37,5 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <Footer />
-      </div>
-      
-
   )
 }
