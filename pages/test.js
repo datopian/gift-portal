@@ -1,4 +1,3 @@
-import * as Data  from '../data';
 import Card from '../components/Card';
 import Footer from '../components/Footer';
 import Search from '../components/Search';
