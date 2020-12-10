@@ -4,17 +4,20 @@ import { join } from "path";
 
 export const getCatalog = async (directories) => {
   let catalogs = [];
+  let descriptorCatalog = [];
   for (let i = 0; i < directories.length; i++) {
     let path = join(process.cwd(), "fixtures", directories[i]);
     let dataset = await Dataset.load(path);
     let catalog = {}
     catalog[dataset._descriptor.title] = dataset._descriptor;
+    descriptorCatalog.push(dataset._descriptor);
     catalogs.push(catalog);
 
-    if (i == directories.length - 1) {
-      return catalogs;
-    }
+    // if (i == directories.length - 1) {
+    //   return catalogs;
+    // }
   }
+  return [catalogs, descriptorCatalog];
 };
 
 export const getDirectories = () => {
