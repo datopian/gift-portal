@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10.0.4",
+    "fuse.js": "^6.4.3",
     "gray-matter": "^4.0.2",
     "next": "10.0.3",
     "postcss": "^8.1.14",
