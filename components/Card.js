@@ -1,3 +1,4 @@
+import Link from 'next/link'
 /**
  * Create card for each datasets.
  * e.g
@@ -14,9 +15,7 @@
  * @return JSX
  */
 export default function Card({ props }) {
-  let raw_dataset = JSON.parse(props);
-  let dataset_title = Object.keys(raw_dataset)[0]
-  let dataset = raw_dataset[dataset_title]
+  let dataset = props
 
   return (
     <div
@@ -27,16 +26,19 @@ export default function Card({ props }) {
         <div className="font-lato text-xl">{dataset.title}</div>
       </div>
       <div className="grid grid-cols-2 gap-4 font-roboto text-portal1">
-        {dataset.tags &&
+        {dataset.tags?
           dataset.tags.map((value, index) => {
             return (
               <div key={index} className="border-2 text-center rounded-lg">
                 {value}
               </div>
             );
-          })}
+          }): <>
+          <div className="border-2 text-center rounded-lg">NO TAGS</div>
+          <div className="border-2 text-center rounded-lg">NO TAGS</div>
+          </> }
       </div>
-      <div className="font-karla">
+      <div className="font-karla overflow-hidden h-1/5">
         {dataset.description == undefined ? "No Description" : dataset.description}
       </div>
       <div className="pl-3 flex flex-col font-karla">
@@ -51,7 +53,7 @@ export default function Card({ props }) {
         <div className="flex flex-row mb-4">
           <img src="/csv.svg" alt="next" className="mr-5" />
           {dataset.resources[0].format == "csv" ? (
-            <div className="self-start">CSV</div>
+            <div className="self-start font-karla">CSV</div>
           ) : (
             ""
           )}
@@ -74,7 +76,7 @@ export default function Card({ props }) {
       </div>
 
       <div className="flex flex-row justify-between font-karla text-portal1">
-        <span>VIEW DATASET DETAILS</span>
+        <Link href={`/dataset/${dataset.title}`}><a>VIEW DATASET DETAILS</a></Link>
         <img src="/share.svg" alt="next" />
       </div>
     </div>
