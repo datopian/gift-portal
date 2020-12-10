@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { getCatalog, getDirectories } from "../../db/db";
-import CustomTable from "../table";
+import CustomTable from "../../components/table";
 
 const Dataset = ({ catalogs }) => {
   const router = useRouter();
