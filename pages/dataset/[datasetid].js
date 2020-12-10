@@ -1,24 +1,44 @@
 import { useRouter } from "next/router";
 import { getCatalog, getDirectories } from "../../db/db";
+import CustomTable from "../table";
 
 const Dataset = ({ catalogs }) => {
   const router = useRouter();
   const { datasetid } = router.query;
   const raw_catalogs = JSON.parse(catalogs);
-  let dataset = null;
+  let dataset, sample, schema;
 
   raw_catalogs.forEach((r_catalog) => {
-    if (Object.keys(r_catalog) == datasetid) {
+    if (Object.keys(r_catalog).includes(datasetid)) {
       dataset = r_catalog[datasetid];
+      sample = r_catalog["sample"];
+      schema = r_catalog["schema"];
     }
   });
+
+  const column_names = sample[0];
+  const columns = column_names.map((item) => {
+    return {
+      Header: item,
+      accessor: item,
+    };
+  });
+
+  let data = []
+  sample.slice(1, 10).map((item) => {
+    let temp_obj = {}
+    item.map((field, i)=>{
+      temp_obj[column_names[i]] = field
+    })
+    data.push(temp_obj)    
+  });
+
 
   if (!datasetid) {
     return 404;
   } else {
     return (
       <div className="pl-40 pr-40 pt-10 pb-10">
-        
         <div className="flex flex-row mb-10">
           <img src="/argentina.svg" alt="next" className="mr-10" />
           <div className="pt-10">
@@ -36,9 +56,9 @@ const Dataset = ({ catalogs }) => {
           <img src="/share.svg" alt="next" />
         </div>
         <div className="mb-10 font-karla">{dataset.description}</div>
-        <div className="mb-10 font-lato font-bold">Preview</div>
+        <div className="mb-10 font-lato font-bold">File Preview</div>
         <div className="ml-10 mb-10">
-          <div>Table Goes Here</div>
+          <CustomTable data={data} columns={columns} />
         </div>
         <div className="mb-10 font-lato font-bold">Download</div>
         <div className="mb-10 ml-10">
@@ -48,9 +68,9 @@ const Dataset = ({ catalogs }) => {
             {dataset.resources.map((resource) => {
               return (
                 <>
-                  <div>{(resource.bytes / 1024).toFixed(2)}mb</div>
+                  <div>{(resource.bytes * 0.000001).toFixed(2)}mb</div>
                   <div className="border-2 text-portal1 border">
-                    {resource.name}
+                    <a href={resource.path}>{resource.name}.{dataset.resources[0].format}</a>
                   </div>
                 </>
               );
@@ -157,6 +177,7 @@ const Dataset = ({ catalogs }) => {
 export async function getServerSideProps(context) {
   let data_directories = await getDirectories();
   let catalogs = await getCatalog(data_directories);
+  // console.log(catalogs);
   return {
     props: { catalogs: JSON.stringify(catalogs) },
   };
