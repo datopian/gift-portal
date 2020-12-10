@@ -14,7 +14,6 @@
     "@material-ui/core": "^4.11.2",
     "add": "^2.0.6",
     "autoprefixer": "^10.0.4",
-    "datapub": "^0.2.2",
     "frictionless.js": "^0.13.4",
     "fuse.js": "^6.4.3",
     "gray-matter": "^4.0.2",

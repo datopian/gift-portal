@@ -56,6 +56,7 @@ module.exports = {
       '1/4' : '25%',
       'full': '100%',
       '24' : '24px',
+      '1/5' : '20%',
       '37' : '37px'
     },
     borderColor: theme => ({

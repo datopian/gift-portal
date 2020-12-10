@@ -11,16 +11,15 @@ import toArray from "stream-to-array";
  */
 export const getCatalog = async (directories) => {
   let catalogs = [];
+  let descriptorCatalog = [];
   for (let i = 0; i < directories.length; i++) {
     let path = join(process.cwd(), "fixtures", directories[i]);
     let dataset = await Dataset.load(path);
-    // let sample = dataset.resources[0].row({size: 2000})
     let file = await dataset.resources[0];
     await file.addSchema();
     let schema = file.descriptor.schema;
-    let sample_stream = await file.rows({ size: file.size });
+    let sample_stream = await file.rows({ size: file.size }); //TODO: Might be a bottleneck later
     let sample = await toArray(sample_stream);
-    // console.log(sample);
     let catalog = {};
     catalog[dataset._descriptor.title] = dataset._descriptor;
     catalog["schema"] = schema;
@@ -31,6 +30,7 @@ export const getCatalog = async (directories) => {
       return catalogs;
     }
   }
+  return [catalogs, descriptorCatalog];
 };
 
 /**

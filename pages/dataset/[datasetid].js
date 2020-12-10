@@ -177,7 +177,6 @@ const Dataset = ({ catalogs }) => {
 export async function getServerSideProps(context) {
   let data_directories = await getDirectories();
   let catalogs = await getCatalog(data_directories);
-  // console.log(catalogs);
   return {
     props: { catalogs: JSON.stringify(catalogs) },
   };
