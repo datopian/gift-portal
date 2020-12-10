@@ -11,7 +11,6 @@ import toArray from "stream-to-array";
  */
 export const getCatalog = async (directories) => {
   let catalogs = [];
-  let descriptorCatalog = [];
   for (let i = 0; i < directories.length; i++) {
     let path = join(process.cwd(), "fixtures", directories[i]);
     let dataset = await Dataset.load(path);
@@ -27,10 +26,9 @@ export const getCatalog = async (directories) => {
     catalogs.push(catalog);
 
     if (i == directories.length - 1) {
-      return catalogs;
+      return catalogs
     }
   }
-  return [catalogs, descriptorCatalog];
 };
 
 /**

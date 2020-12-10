@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 /**
  * Create card for each datasets.
  * e.g
@@ -15,8 +15,8 @@ import Link from 'next/link'
  * @return JSX
  */
 export default function Card({ props }) {
-  let dataset = props
-
+  let dataset = props;
+  // console.log(dataset);
   return (
     <div
       className={`flex flex-col rounded-lg border-2 w-379.25px h-607.81px shadow-md justify-between p-5 mb-4`}
@@ -26,20 +26,25 @@ export default function Card({ props }) {
         <div className="font-lato text-xl">{dataset.title}</div>
       </div>
       <div className="grid grid-cols-2 gap-4 font-roboto text-portal1">
-        {dataset.tags?
+        {dataset.tags ? (
           dataset.tags.map((value, index) => {
             return (
               <div key={index} className="border-2 text-center rounded-lg">
                 {value}
               </div>
             );
-          }): <>
-          <div className="border-2 text-center rounded-lg">NO TAGS</div>
-          <div className="border-2 text-center rounded-lg">NO TAGS</div>
-          </> }
+          })
+        ) : (
+          <>
+            <div className="border-2 text-center rounded-lg">NO TAGS</div>
+            <div className="border-2 text-center rounded-lg">NO TAGS</div>
+          </>
+        )}
       </div>
       <div className="font-karla overflow-hidden h-1/5">
-        {dataset.description == undefined ? "No Description" : dataset.description}
+        {dataset.description == undefined
+          ? "No Description"
+          : dataset.description}
       </div>
       <div className="pl-3 flex flex-col font-karla">
         <div className="flex flex-row mb-4">
@@ -76,7 +81,9 @@ export default function Card({ props }) {
       </div>
 
       <div className="flex flex-row justify-between font-karla text-portal1">
-        <Link href={`/dataset/${dataset.title}`}><a>VIEW DATASET DETAILS</a></Link>
+        <Link href={`/dataset/${dataset.title}`}>
+          <a>VIEW DATASET DETAILS</a>
+        </Link>
         <img src="/share.svg" alt="next" />
       </div>
     </div>

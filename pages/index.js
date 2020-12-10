@@ -50,8 +50,8 @@ export default function Home({ catalogs }) {
 
 export async function getServerSideProps(context) {
   let data_directories = await getDirectories();
-  let [_, descriptorCatalog]  = await getCatalog(data_directories);
+  let catalogs  = await getCatalog(data_directories);
   return {
-    props: { catalogs: descriptorCatalog },
+    props: { catalogs: catalogs },
   };
 }
