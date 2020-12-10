@@ -11,14 +11,20 @@
     "e2e": "cypress run"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.2",
+    "add": "^2.0.6",
     "autoprefixer": "^10.0.4",
+    "frictionless.js": "^0.13.4",
     "fuse.js": "^6.4.3",
     "gray-matter": "^4.0.2",
     "next": "10.0.3",
     "postcss": "^8.1.14",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "remarkable": "^2.0.1"
+    "react-table": "^7.6.2",
+    "remarkable": "^2.0.1",
+    "stream-to-array": "^2.3.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^3.0.0",
