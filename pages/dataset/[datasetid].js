@@ -174,12 +174,27 @@ const Dataset = ({ catalogs }) => {
   }
 };
 
-export async function getServerSideProps(context) {
+export async function getStaticProps({ params }) {
   let data_directories = await getDirectories();
   let [catalogs, _] = await getCatalog(data_directories);
   return {
     props: { catalogs: JSON.stringify(catalogs) },
   };
+}
+
+export async function getStaticPaths(){
+  const dirs = await getDirectories();
+  let [catalogs, _] = await getCatalog(dirs);
+  return {
+    paths: catalogs.map((dir) => {
+      return {
+        params : {
+          datasetid : Object.keys(dir)[0].replace(/\s/g, '%20')
+        }
+      }
+    }),
+    fallback: false,
+  }
 }
 
 export default Dataset;
