@@ -48,7 +48,7 @@ export default function Home({ catalogs }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   let data_directories = await getDirectories();
   let [_, catalogs]  = await getCatalog(data_directories);
   return {

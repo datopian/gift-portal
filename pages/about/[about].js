@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { Remarkable }  from 'remarkable';
-import { getAbout } from '../../lib/about-utils';
+import { getAbout, getAllAbout } from '../../lib/about-utils';
 import markdownStyles from '../../styles/Markdown.module.css';
 
 function About({content, data, isEmpty}){
@@ -30,14 +30,28 @@ function About({content, data, isEmpty}){
   
 }
 
-export async function getServerSideProps(context) {
-  const aboutProps = getAbout(context.query.about)
+export async function getStaticProps({ params }) {
+  const aboutProps = getAbout(params.about)
 
   return {
     props : {content: aboutProps.content,
       data: aboutProps.data,
       isEmpty: aboutProps.isEmpty
     }
+  }
+}
+
+export async function getStaticPaths(){
+  const abouts = getAllAbout();
+  return {
+    paths: abouts.map((about) => {
+      return {
+        params : {
+          about : about.split('.md')[0]
+        }
+      }
+    }),
+    fallback: false,
   }
 }
 
