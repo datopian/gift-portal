@@ -8,7 +8,8 @@
     "start": "next start",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run --config video=false",
-    "e2e": "cypress run"
+    "e2e": "cypress run",
+    "test": "mocha --timeout 10000 --require @babel/register lib/test/*.js"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
@@ -27,8 +28,15 @@
     "yarn": "^1.22.10"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/register": "^7.12.10",
     "@fullhuman/postcss-purgecss": "^3.0.0",
+    "chai": "^4.2.0",
     "cypress": "^6.0.1",
+    "mocha": "^8.2.1",
     "postcss-preset-env": "^6.7.0",
     "tailwindcss": "^2.0.1"
   }
