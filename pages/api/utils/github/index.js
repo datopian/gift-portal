@@ -43,3 +43,33 @@ async function fetchOrganizationList(token, data = [], pageCursor) {
 
   return data
 }
+
+async function fetchUserOrganizationPermissions(token, username, organization, data = [], pageCursor) {
+  const query = `{
+    user(login: "${username}") {
+      organization(login: "${organization}") {
+        repositories(first: 100 ${pageCursor ? ',after: "' + pageCursor + '"' : ''}) {
+          pageInfo {
+              hasNextPage
+              endCursor
+            }
+          nodes {
+            name
+            viewerPermission
+          }
+        }
+      }
+    }
+  }`
+
+  const response = await githubGraphqlAPI(token, query)
+  
+  data.push(...response.user.organization.repositories.nodes)
+ 
+  if (response.user.organization.repositories.pageInfo.hasNextPage) {
+    return fetchUserOrganizationPermissions(token, username, organization, data, response.user.organization.repositories.pageInfo.endCursor)
+  }
+
+  return data
+
+}
