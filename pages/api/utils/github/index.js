@@ -73,3 +73,11 @@ async function fetchUserOrganizationPermissions(token, username, organization, d
   return data
 
 }
+
+export default async function fetchUserRoles(token , username){
+  const organizations = await fetchOrganizationList(token)
+  
+  const organizationsWithRoles = await Promise.all(organizations.map(async org => ({[org]: await fetchUserOrganizationPermissions(token, username, org)}) ))
+
+  return organizationsWithRoles
+}
