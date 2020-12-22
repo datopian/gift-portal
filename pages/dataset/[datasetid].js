@@ -1,28 +1,17 @@
 import { useRouter } from "next/router";
 // import { getCatalog, getDirectories } from "../../db/db";
 import CustomTable from "../../components/table";
-import { useContext } from 'react';
-import { MetaStoreContext} from '../../lib/clientmetastore';
+import { join, resolve } from 'path';
+import fs from 'fs';
+
 
 const Dataset = ({ catalogs }) => {
   const router = useRouter();
   const { datasetid } = router.query;
-  const {metaStore} = useContext(MetaStoreContext);
-  console.log(metaStore[datasetid]);
-  let dataset = metaStore[datasetid];
+  let dataset = catalogs[datasetid];
   let sample = dataset["sample"];
   let schema = dataset["schema"];
-  console.log(sample, schema);
-  // const raw_catalogs = JSON.parse(catalogs);
-  // let dataset, sample, schema;
-
-  // raw_catalogs.forEach((r_catalog) => {
-  //   if (Object.keys(r_catalog).includes(datasetid)) {
-      // dataset = r_catalog[datasetid];
-      // sample = r_catalog["sample"];
-      // schema = r_catalog["schema"];
-  //   }
-  // });
+ 
   const columns = null;
   const data = null;
   if (sample.length > 0){
@@ -187,27 +176,34 @@ const Dataset = ({ catalogs }) => {
   }
 };
 
-// export async function getStaticProps({ params }) {
-//   let data_directories = await getDirectories();
-//   let [catalogs, _] = await getCatalog(data_directories);
-//   return {
-//     props: { catalogs: JSON.stringify(catalogs) },
-//   };
-// }
+export async function getStaticProps({ params }) {
+  // let data_directories = await getDirectories();
+  // let [catalogs, _] = await getCatalog(data_directories);
+  const db = resolve('./db');
+  const dataPath = join(db, 'data.json');
+  const catalogs = JSON.parse(fs.readFileSync(dataPath, 'utf8'))
+  return {
+    props: { catalogs: catalogs },
+  };
+}
 
-// export async function getStaticPaths(){
-//   const dirs = await getDirectories();
-//   let [catalogs, _] = await getCatalog(dirs);
-//   return {
-//     paths: catalogs.map((dir) => {
-//       return {
-//         params : {
-//           datasetid : Object.keys(dir)[0].replace(/\s/g, '%20')
-//         }
-//       }
-//     }),
-//     fallback: false,
-//   }
-// }
+export async function getStaticPaths(){
+  // const dirs = await getDirectories();
+  // let [catalogs, _] = await getCatalog(dirs);
+  const db = resolve('./db');
+  const dataPath = join(db, 'data.json');
+  const catalogs = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+
+  return {
+    paths: Object.keys(catalogs).map((key) => {
+      return {
+        params : {
+          datasetid : key.replace(/\s/g, '%20')
+        }
+      }
+    }),
+    fallback: false,
+  }
+}
 
 export default Dataset;
