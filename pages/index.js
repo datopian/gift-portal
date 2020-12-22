@@ -1,10 +1,12 @@
 import Card from "../components/Card";
 import Search from "../components/Search";
-// import { getCatalog, getDirectories } from "../db/db";
+import { loadDataFromGithub } from "../db/db";
 import { useState, useContext, useEffect  } from 'react';
 import Fuse from 'fuse.js'
 import MetaStore from '../lib/metastore';
 import { MetaStoreContext} from '../lib/clientmetastore';
+import { join, resolve } from 'path';
+import fs from 'fs';
 
 export default function Home({ catalogs, dcatalogs }) {
   const [dataState, setDataState] = useState(catalogs);
@@ -56,14 +58,31 @@ export default function Home({ catalogs, dcatalogs }) {
 }
 
 export async function getStaticProps(context) {
-  // let data_directories = await getDirectories();
-  // let [_, catalogs]  = await getCatalog(data_directories);
   const metaStore = new MetaStore()
-  const data_directories = await metaStore.getDirectories();
-  await metaStore.initMetaStoreFromLocalDisk(data_directories);
-  // let [_, catalogs] = await getCatalog(data_directories);
-  // let [_, catalogs] = await loadDataFromGithub();
+  //check if data.json is empty
+  const db = resolve('./db');
+  const dataPath = join(db, 'data.json');
+  const sdataPath = join(db, 'sdata.json');
+  const readFile = fs.readFileSync(dataPath, 'utf8')
+  const readFile2 = fs.readFileSync(sdataPath, 'utf8')
+  let catalogs;
+  let descatalogs;
+
+  if (fs.readFileSync(dataPath, 'utf8')) {
+    console.log("from file")
+    catalogs  = JSON.parse(readFile);
+    descatalogs = JSON.parse(readFile2)
+    metaStore.initMetaStoreFromGithub(catalogs, descatalogs);
+  }else{
+    [catalogs, descatalogs] = await loadDataFromGithub();
+    fs.writeFileSync(dataPath, JSON.stringify(catalogs));
+    fs.writeFileSync(sdataPath, JSON.stringify(descatalogs));
+    metaStore.initMetaStoreFromGithub(catalogs, descatalogs);
+  }
+  
   // console.log(catalogs);
+  
+
   return {
     props: { catalogs: metaStore.searchCatalog,
              dcatalogs: metaStore.getCatalogs()      
