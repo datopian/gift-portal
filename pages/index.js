@@ -1,10 +1,12 @@
 import Card from "../components/Card";
 import Search from "../components/Search";
-import { getCatalog, getDirectories } from "../db/db";
-import { useState } from 'react';
+// import { getCatalog, getDirectories } from "../db/db";
+import { useState, useContext, useEffect  } from 'react';
 import Fuse from 'fuse.js'
+import MetaStore from '../lib/metastore';
+import { MetaStoreContext} from '../lib/clientmetastore';
 
-export default function Home({ catalogs }) {
+export default function Home({ catalogs, dcatalogs }) {
   const [dataState, setDataState] = useState(catalogs);
 
   const fuse = new Fuse(catalogs, {
@@ -19,6 +21,11 @@ export default function Home({ catalogs }) {
       })
       setDataState(data);
   }
+  const { setMetaStore } = useContext(MetaStoreContext);
+  useEffect(()=>{
+    setMetaStore(dcatalogs);
+  },[]);
+
 
   return (
     <div className="pl-40 pr-40 pt-10 pb-10">
@@ -49,9 +56,14 @@ export default function Home({ catalogs }) {
 }
 
 export async function getStaticProps(context) {
-  let data_directories = await getDirectories();
-  let [_, catalogs]  = await getCatalog(data_directories);
+  // let data_directories = await getDirectories();
+  // let [_, catalogs]  = await getCatalog(data_directories);
+  const metaStore = new MetaStore()
+  const data_directories = await metaStore.getDirectories();
+  await metaStore.initMetaStoreFromLocalDisk(data_directories);
   return {
-    props: { catalogs: catalogs },
+    props: { catalogs: metaStore.searchCatalog,
+             dcatalogs: metaStore.getCatalogs()      
+    },
   };
 }
