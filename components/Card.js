@@ -22,7 +22,9 @@ export default function Card({ props }) {
     >
       <div className="flex flex-row justify-between items-center">
         {dataset.logo && <img src={dataset.logo} alt="next" className="mr-2" />}
-        <div className="font-lato text-xl">{dataset.title}</div>
+        <div className="font-lato text-xl">
+          {dataset.error == true ? <span style={{color: "red"}}>Error parsing data!</span> : dataset.title}
+        </div>
       </div>
       <div className="grid grid-cols-2 gap-4 font-roboto text-portal1">
         {dataset.tags ? (
@@ -50,7 +52,7 @@ export default function Card({ props }) {
         </div>
         <div className="flex flex-row mb-4">
           <img src="/check.svg" alt="next" className="mr-4" />
-          <span>Last updated: {dataset.updatedAt}</span>
+          <span>Updated: {dataset.updatedAt}</span>
         </div>
         <div className="flex flex-row mb-4">
           <img src="/csv.svg" alt="next" className="mr-5" />
