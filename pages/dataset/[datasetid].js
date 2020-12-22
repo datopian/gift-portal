@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { getCatalog, getDirectories } from "../../db/db";
 import CustomTable from "../../components/table";
+import { useContext } from 'react';
+import { MetaStoreContext} from '../../lib/clientmetastore';
 
 const Dataset = ({ catalogs }) => {
   const router = useRouter();
@@ -33,6 +35,8 @@ const Dataset = ({ catalogs }) => {
     data.push(temp_obj)    
   });
 
+  const {metaStore} = useContext(MetaStoreContext);
+  console.log(metaStore);
 
   if (!datasetid) {
     return 404;
