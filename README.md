@@ -1,5 +1,7 @@
 GIFT Data Portal. GIFT is Global Initiative on Fiscal Transparency.
 
+![cypress integration test](https://github.com/datopian/gift-portal/workflows/Cypress%20Integration%20Tests/badge.svg)
+
 # Developers
 
 This site is built using Next.JS and Portal.JS.
