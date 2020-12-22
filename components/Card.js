@@ -16,7 +16,6 @@ import Link from "next/link";
  */
 export default function Card({ props }) {
   let dataset = props;
-  console.log(dataset);
   return (
     <div
       className={`flex flex-col rounded-lg border-2 w-379.25px h-607.81px shadow-md justify-between p-5 mb-4`}
@@ -79,7 +78,7 @@ export default function Card({ props }) {
       </div>
 
       <div className="flex flex-row justify-between font-karla text-portal1">
-        <Link href={`/dataset/${dataset.title}`}>
+        <Link href={`/dataset/${dataset.name}`}>
           <a>VIEW DATASET DETAILS</a>
         </Link>
         <img src="/share.svg" alt="next" />
