@@ -5,6 +5,10 @@ import toArray from "stream-to-array";
 import repositories from "../config/config.json";
 import { getRepositoriesQuery } from "./query";
 import { GraphQLClient } from "graphql-request";
+import * as dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime)
 
 const GithubApiUrl = "https://api.github.com/graphql";
 
@@ -61,29 +65,28 @@ export const getDirectories = () => {
 
 export const loadDataFromGithub = async () => {
   return new Promise(async (resolve, reject) => {
+    let repos = Object.values(repositories);
+    let owner = process.env.ORGANISATION_REPO;
+    let catalogs = {};
+    let descCatalog = [];
 
-  let repos = Object.values(repositories);
-  let owner = process.env.ORGANISATION_REPO;
-  let catalogs = {};
-  let descCatalog = [];
+    let repo_lenght = repos.length;
 
-  let repo_lenght = repos.length;
-
-  for (let i = 0; i < repo_lenght; i++) {
-    const data = await client.request(getRepositoriesQuery, {
-      owner: `${owner}`,
-      name: `${repos[i]}`,
-    });
-    //process result before returning
-    let processed_repo = await processDataFromRepository(data);
-    catalogs[repos[i]] = processed_repo;
-    descCatalog.push(processed_repo)
-    if (i == repo_lenght - 1) {
-      // TODO:@STEVEN ADD catalog to local metastore
-      resolve([catalogs, descCatalog]);
+    for (let i = 0; i < repo_lenght; i++) {
+      const data = await client.request(getRepositoriesQuery, {
+        owner: `${owner}`,
+        name: `${repos[i]}`,
+      });
+      //process result before returning
+      let processed_repo = await processDataFromRepository(data);
+      catalogs[repos[i]] = processed_repo;
+      descCatalog.push(processed_repo);
+      if (i == repo_lenght - 1) {
+        // TODO:@STEVEN ADD catalog to local metastore
+        resolve([catalogs, descCatalog]);
+      }
     }
-  }
-})
+  });
 };
 
 const processDataFromRepository = async (repo) => {
@@ -116,11 +119,12 @@ const processDataFromRepository = async (repo) => {
   data["sample"] = datapackage["sample"] || [];
   data["schema"] = datapackage["resources"][0]["schema"] || [];
   data["title"] = datapackage["title"] || "";
-  data["description"] = datapackage.description || repo.description || "No Description";
+  data["description"] =
+    datapackage.description || repo.description || "No Description";
   data["resources"] = datapackage["resources"] || [];
   data["name"] = repo.repository["name"] || "";
-  data["createdAt"] = repo.repository.createdAt;
-  data["updatedAt"] = repo.repository.updatedAt;
+  data["createdAt"] = dayjs().to(dayjs(repo.repository.createdAt));
+  data["updatedAt"] = dayjs().to(dayjs(repo.repository.createdAt));
   data["author"] = datapackage["author"] || "";
   data["geo"] = datapackage["geo"] || {};
   data["error"] = datapackage["error"];

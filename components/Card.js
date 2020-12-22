@@ -16,14 +16,16 @@ import Link from "next/link";
  */
 export default function Card({ props }) {
   let dataset = props;
-  console.log(dataset);
+  // console.log(dataset);
   return (
     <div
       className={`flex flex-col rounded-lg border-2 w-379.25px h-607.81px shadow-md justify-between p-5 mb-4`}
     >
       <div className="flex flex-row justify-between items-center">
         {dataset.logo && <img src={dataset.logo} alt="next" className="mr-2" />}
-        <div className="font-lato text-xl">{dataset.title}</div>
+        <div className="font-lato text-xl">
+          {dataset.error == true ? <span style={{color: "red"}}>Error parsing data!</span> : dataset.title}
+        </div>
       </div>
       <div className="grid grid-cols-2 gap-4 font-roboto text-portal1">
         {dataset.tags ? (
@@ -51,7 +53,7 @@ export default function Card({ props }) {
         </div>
         <div className="flex flex-row mb-4">
           <img src="/check.svg" alt="next" className="mr-4" />
-          <span>Last updated: {dataset.updatedAt}</span>
+          <span>Updated: {dataset.updatedAt}</span>
         </div>
         <div className="flex flex-row mb-4">
           <img src="/csv.svg" alt="next" className="mr-5" />
