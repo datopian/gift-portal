@@ -1,30 +1,30 @@
 import Card from "../components/Card";
 import Search from "../components/Search";
-import { getCatalog, getDirectories } from "../db/db";
-import { useState } from 'react';
-import Fuse from 'fuse.js'
+import { loadDataFromGithub } from "../db/db";
+import { useState } from "react";
+import Fuse from "fuse.js";
 
 export default function Home({ catalogs }) {
   const [dataState, setDataState] = useState(catalogs);
 
   const fuse = new Fuse(catalogs, {
-    keys: ['title', 'geo.country', 'description'] 
+    keys: ["title", "geo.country", "description"],
   });
 
-  const handlSearch = function(keyword){
-      let data = fuse.search(keyword);
-      data = data.map((value)=>{
-          let {item} = value;
-          return item;
-      })
-      setDataState(data);
-  }
+  const handlSearch = function (keyword) {
+    let data = fuse.search(keyword);
+    data = data.map((value) => {
+      let { item } = value;
+      return item;
+    });
+    setDataState(data);
+  };
 
   return (
     <div className="pl-40 pr-40 pt-10 pb-10">
       <h3 className="font-lato text-xl text-black">DataSet</h3>
       <div className="flex flex-row justify-between mt-10">
-        <Search submbitEvent={handlSearch}/>
+        <Search submbitEvent={handlSearch} />
         <div className="flex justify-between items-center mr-35 pr-9">
           <h3 className="mr-4">Sort by: </h3>
           <select
@@ -49,8 +49,10 @@ export default function Home({ catalogs }) {
 }
 
 export async function getStaticProps(context) {
-  let data_directories = await getDirectories();
-  let [_, catalogs]  = await getCatalog(data_directories);
+  // let data_directories = await getDirectories();
+  // let [_, catalogs] = await getCatalog(data_directories);
+  let [_, catalogs] = await loadDataFromGithub();
+  // console.log(catalogs);
   return {
     props: { catalogs: catalogs },
   };

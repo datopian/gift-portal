@@ -16,7 +16,7 @@ import Link from "next/link";
  */
 export default function Card({ props }) {
   let dataset = props;
-  // console.log(dataset);
+  console.log(dataset);
   return (
     <div
       className={`flex flex-col rounded-lg border-2 w-379.25px h-607.81px shadow-md justify-between p-5 mb-4`}
@@ -42,18 +42,16 @@ export default function Card({ props }) {
         )}
       </div>
       <div className="font-karla overflow-hidden h-1/5">
-        {dataset.description == undefined
-          ? "No Description"
-          : dataset.description}
+        {dataset.description}
       </div>
       <div className="pl-3 flex flex-col font-karla">
         <div className="flex flex-row mb-4">
           <img src="/calender.svg" alt="next" className="mr-4" />
-          <span>{dataset.created}</span>
+          <span>Created: {dataset.createdAt}</span>
         </div>
         <div className="flex flex-row mb-4">
           <img src="/check.svg" alt="next" className="mr-4" />
-          <span>Last updated {dataset.updated}</span>
+          <span>Last updated: {dataset.updatedAt}</span>
         </div>
         <div className="flex flex-row mb-4">
           <img src="/csv.svg" alt="next" className="mr-5" />
