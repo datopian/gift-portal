@@ -1,9 +1,9 @@
 describe('Dataset page test', function() {
   beforeEach(() => {
-    cy.visit('/dataset/AT33.Tirol%202007-2013%20ERDF');
+    cy.visit('/dataset/presupuesto-mexico-2008-2019');
   });
 
   it('contains dataset name', function (){
-    cy.contains("AT33.Tirol 2007-2013 ERDF");
+    cy.contains("Presupuesto México 2008-2019");
   })
 })
