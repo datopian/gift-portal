@@ -4,7 +4,6 @@ import { loadDataFromGithub } from "../db/db";
 import { useState, useContext, useEffect  } from 'react';
 import Fuse from 'fuse.js'
 import MetaStore from '../lib/metastore';
-import { MetaStoreContext} from '../lib/clientmetastore';
 import { join, resolve } from 'path';
 import fs from 'fs';
 
@@ -23,11 +22,6 @@ export default function Home({ catalogs, dcatalogs }) {
       })
       setDataState(data);
   }
-  const { setMetaStore } = useContext(MetaStoreContext);
-  useEffect(()=>{
-    setMetaStore(dcatalogs);
-  },[]);
-
 
   return (
     <div className="pl-40 pr-40 pt-10 pb-10">
@@ -80,12 +74,9 @@ export async function getStaticProps(context) {
     metaStore.initMetaStoreFromGithub(catalogs, descatalogs);
   }
   
-  // console.log(catalogs);
-  
 
   return {
-    props: { catalogs: metaStore.searchCatalog,
-             dcatalogs: metaStore.getCatalogs()      
+    props: { catalogs: metaStore.searchCatalog     
     },
   };
 }
