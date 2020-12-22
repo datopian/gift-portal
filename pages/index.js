@@ -10,7 +10,7 @@ export default function Home({ catalogs, dcatalogs }) {
   const [dataState, setDataState] = useState(catalogs);
 
   const fuse = new Fuse(catalogs, {
-    keys: ['title', 'geo.country', 'description'] 
+    keys: ["title", "geo.country", "description"],
   });
 
   const handlSearch = function(keyword){
@@ -31,7 +31,7 @@ export default function Home({ catalogs, dcatalogs }) {
     <div className="pl-40 pr-40 pt-10 pb-10">
       <h3 className="font-lato text-xl text-black">DataSet</h3>
       <div className="flex flex-row justify-between mt-10">
-        <Search submbitEvent={handlSearch}/>
+        <Search submbitEvent={handlSearch} />
         <div className="flex justify-between items-center mr-35 pr-9">
           <h3 className="mr-4">Sort by: </h3>
           <select
@@ -61,6 +61,9 @@ export async function getStaticProps(context) {
   const metaStore = new MetaStore()
   const data_directories = await metaStore.getDirectories();
   await metaStore.initMetaStoreFromLocalDisk(data_directories);
+  // let [_, catalogs] = await getCatalog(data_directories);
+  // let [_, catalogs] = await loadDataFromGithub();
+  // console.log(catalogs);
   return {
     props: { catalogs: metaStore.searchCatalog,
              dcatalogs: metaStore.getCatalogs()      
