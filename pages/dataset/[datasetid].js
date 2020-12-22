@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { getCatalog, getDirectories } from "../../db/db";
+// import { getCatalog, getDirectories } from "../../db/db";
 import CustomTable from "../../components/table";
 import { useContext } from 'react';
 import { MetaStoreContext} from '../../lib/clientmetastore';
@@ -7,36 +7,45 @@ import { MetaStoreContext} from '../../lib/clientmetastore';
 const Dataset = ({ catalogs }) => {
   const router = useRouter();
   const { datasetid } = router.query;
-  const raw_catalogs = JSON.parse(catalogs);
-  let dataset, sample, schema;
-
-  raw_catalogs.forEach((r_catalog) => {
-    if (Object.keys(r_catalog).includes(datasetid)) {
-      dataset = r_catalog[datasetid];
-      sample = r_catalog["sample"];
-      schema = r_catalog["schema"];
-    }
-  });
-
-  const column_names = sample[0];
-  const columns = column_names.map((item) => {
-    return {
-      Header: item,
-      accessor: item,
-    };
-  });
-
-  let data = []
-  sample.slice(1, 10).map((item) => {
-    let temp_obj = {}
-    item.map((field, i)=>{
-      temp_obj[column_names[i]] = field
-    })
-    data.push(temp_obj)    
-  });
-
   const {metaStore} = useContext(MetaStoreContext);
-  console.log(metaStore);
+  console.log(metaStore[datasetid]);
+  let dataset = metaStore[datasetid];
+  let sample = dataset["sample"];
+  let schema = dataset["schema"];
+  console.log(sample, schema);
+  // const raw_catalogs = JSON.parse(catalogs);
+  // let dataset, sample, schema;
+
+  // raw_catalogs.forEach((r_catalog) => {
+  //   if (Object.keys(r_catalog).includes(datasetid)) {
+      // dataset = r_catalog[datasetid];
+      // sample = r_catalog["sample"];
+      // schema = r_catalog["schema"];
+  //   }
+  // });
+  const columns = null;
+  const data = null;
+  if (sample.length > 0){
+    const column_names = sample[0];
+    const columns = column_names.map((item) => {
+      return {
+        Header: item,
+        accessor: item,
+      };
+    });
+
+    let data = []
+    sample.slice(1, 10).map((item) => {
+      let temp_obj = {}
+      item.map((field, i)=>{
+        temp_obj[column_names[i]] = field
+      })
+      data.push(temp_obj)    
+    });
+  }
+  
+
+  
 
   if (!datasetid) {
     return 404;
@@ -62,7 +71,7 @@ const Dataset = ({ catalogs }) => {
         <div className="mb-10 font-karla">{dataset.description}</div>
         <div className="mb-10 font-lato font-bold">File Preview</div>
         <div className="ml-10 mb-10">
-          <CustomTable data={data} columns={columns} />
+          { data ? <CustomTable data={data} columns={columns} />: "NO TABLE" }
         </div>
         <div className="mb-10 font-lato font-bold">Download</div>
         <div className="mb-10 ml-10">
@@ -178,27 +187,27 @@ const Dataset = ({ catalogs }) => {
   }
 };
 
-export async function getStaticProps({ params }) {
-  let data_directories = await getDirectories();
-  let [catalogs, _] = await getCatalog(data_directories);
-  return {
-    props: { catalogs: JSON.stringify(catalogs) },
-  };
-}
+// export async function getStaticProps({ params }) {
+//   let data_directories = await getDirectories();
+//   let [catalogs, _] = await getCatalog(data_directories);
+//   return {
+//     props: { catalogs: JSON.stringify(catalogs) },
+//   };
+// }
 
-export async function getStaticPaths(){
-  const dirs = await getDirectories();
-  let [catalogs, _] = await getCatalog(dirs);
-  return {
-    paths: catalogs.map((dir) => {
-      return {
-        params : {
-          datasetid : Object.keys(dir)[0].replace(/\s/g, '%20')
-        }
-      }
-    }),
-    fallback: false,
-  }
-}
+// export async function getStaticPaths(){
+//   const dirs = await getDirectories();
+//   let [catalogs, _] = await getCatalog(dirs);
+//   return {
+//     paths: catalogs.map((dir) => {
+//       return {
+//         params : {
+//           datasetid : Object.keys(dir)[0].replace(/\s/g, '%20')
+//         }
+//       }
+//     }),
+//     fallback: false,
+//   }
+// }
 
 export default Dataset;
