@@ -1,5 +1,10 @@
-name: Cypress Integration Tests / Jest Unit Tests
-on: [push]
+name: gift-portal
+on: 
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
 jobs:
   cypress-run:
     runs-on: ubuntu-16.04
@@ -14,9 +19,10 @@ jobs:
           build: yarn run build
           start: yarn start
           wait-on: "http://localhost:3000"
+
   jest:
     runs-on: ubuntu-16-04
-     steps:
+    steps:
       - uses: actions/checkout@v2
       - name: Install modules
         run: yarn
