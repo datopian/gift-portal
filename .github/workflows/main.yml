@@ -7,7 +7,7 @@ on:
 
 jobs:
   cypress-run:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -21,7 +21,7 @@ jobs:
           wait-on: "http://localhost:3000"
 
   jest:
-    runs-on: ubuntu-16-04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Install modules
