@@ -1,7 +1,7 @@
 import Card from "../components/Card";
 import Search from "../components/Search";
 import { loadDataFromGithub } from "../db/db";
-import { useState, useContext, useEffect  } from 'react';
+import { useState } from 'react';
 import Fuse from 'fuse.js'
 import MetaStore from '../lib/metastore';
 import { join, resolve } from 'path';
@@ -40,7 +40,7 @@ export default function Home({ catalogs, dcatalogs }) {
         </div>
       </div>
       <div className="mt-10">
-        <div className="mb-10">showing 6 of 6 dataset</div>
+        <div className="mb-10">showing {dataState.length} of {dataState.length} dataset</div>
         <div className="grid grid-cols-3 gap-x-40 gap-y-10">
           {dataState.map((value, i) => {
             return <Card props={value} key={i} />;
@@ -63,7 +63,7 @@ export async function getStaticProps(context) {
   let descatalogs;
 
   if (fs.readFileSync(dataPath, 'utf8')) {
-    console.log("from file")
+    console.log("Loading from cached data")
     catalogs  = JSON.parse(readFile);
     descatalogs = JSON.parse(readFile2)
     metaStore.initMetaStoreFromGithub(catalogs, descatalogs);

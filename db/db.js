@@ -82,7 +82,6 @@ export const loadDataFromGithub = async () => {
       catalogs[repos[i]] = processed_repo;
       descCatalog.push(processed_repo);
       if (i == repo_lenght - 1) {
-        // TODO:@STEVEN ADD catalog to local metastore
         resolve([catalogs, descCatalog]);
       }
     }

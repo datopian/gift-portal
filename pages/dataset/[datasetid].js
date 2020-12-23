@@ -49,7 +49,6 @@ const Dataset = ({ catalogs }) => {
               <div className="border-2 text-center rounded-lg">BUDGET</div>
               <div className="border-2 text-center rounded-lg">FEDERAL</div>
               <div className="border-2 text-center rounded-lg">SPENDING</div>
-              <div className="border-2 text-center rounded-lg">TAG 4</div>
             </div>
           </div>
         </div>
@@ -60,7 +59,7 @@ const Dataset = ({ catalogs }) => {
         <div className="mb-10 font-karla">{dataset.description}</div>
         <div className="mb-10 font-lato font-bold">File Preview</div>
         <div className="ml-10 mb-10">
-          { data ? <CustomTable data={data} columns={columns} />: "NO TABLE" }
+          { data ? <CustomTable data={data} columns={columns} />: "NO PREVIEW FOR THIS DATASET" }
         </div>
         <div className="mb-10 font-lato font-bold">Download</div>
         <div className="mb-10 ml-10">
@@ -70,8 +69,8 @@ const Dataset = ({ catalogs }) => {
             {dataset.resources.map((resource) => {
               return (
                 <>
-                  <div>{(resource.bytes * 0.000001).toFixed(2)}mb</div>
-                  <div className="border-2 text-portal1 border">
+                  <div>{(resource.bytes * 0.000001).toFixed(2)} mb</div>
+                  <div className="text-portal1">
                     <a href={resource.path}>{resource.name}.{dataset.resources[0].format}</a>
                   </div>
                 </>
@@ -84,11 +83,11 @@ const Dataset = ({ catalogs }) => {
           <div className="mr-20 ">
             <div className="flex flex-row mb-20">
               <img src="/calender.svg" alt="next" className="mr-4" />
-              <span>10/10/2020-11/11/2020</span>
+              <span>Created {dataset.createdAt}</span>
             </div>
             <div className="flex flex-row mb-20">
               <img src="/check.svg" alt="next" className="mr-4" />
-              <span>Last updated 12/12/2020</span>
+              <span>Updated {dataset.updatedAt}</span>
             </div>
             <div className="flex flex-row">
               <img src="/csv.svg" alt="next" className="mr-5" />
