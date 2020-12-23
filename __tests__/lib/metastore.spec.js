@@ -1,5 +1,7 @@
 import MetaStore from '../../lib/metastore';
 
+jest.setTimeout(60000);
+
 describe("Metastore", () =>{
   it('should generate metastore from local directory', async () => {
     const metaStore = new MetaStore();
@@ -17,6 +19,7 @@ describe("Metastore", () =>{
                         ]
     expect(keys).toEqual(expectedKeys);
   });
+
   it('should generate metastore from local directory', async () => {
     const metaStore = new MetaStore();
     const paths = await metaStore.getDirectories();
