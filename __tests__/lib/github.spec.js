@@ -55,7 +55,7 @@ describe('Github Permissions tests', () => {
   it('should get a list of collaborators from some repository', async () => {
 
 
-    moxios.stubRequest('https://api.github.com/repos/datopian/octocat/collaborators', {
+    moxios.stubRequest('https://api.github.com/repos/datopian/repotest/collaborators', {
       status: 200,
       response: collaboratorsList
     })
