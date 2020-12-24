@@ -17,6 +17,9 @@ describe('Github Permissions tests', () => {
 
   const repoInfo = {
     name: 'repotest',
+    owner: {
+      login: 'datopian'
+    },
     private: false,
     defaultPermissions: {
       admin: false,
@@ -74,6 +77,17 @@ describe('Github Permissions tests', () => {
 
     const collaborators = await github.getRepositoryCollaborators('repotest')
     expect(collaborators).toEqual(collaboratorsList)
+  })
+
+  it('should return the repository default information given the repository name', async ()=>{
+
+     moxios.stubRequest('https://api.github.com/repos/datopian/repotest', {
+      status: 200,
+      response: repoInfo
+    })
+    const response = await github.getRepositoryInformation('repotest')
+
+    expect(response).toEqual(repoInfo)
   })
 
   it('should format the list of collaborators', () => {
