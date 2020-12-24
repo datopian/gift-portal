@@ -15,6 +15,15 @@ describe('Github Permissions tests', () => {
     }
   ]
 
+  const repoInfo = {
+    name: 'repotest',
+    private: false,
+    defaultPermissions: {
+      admin: false,
+      write: false,
+      read: true
+    }
+  }
   const datasetScope = {
     organization: 'datopian',
     dataset: 'repotest',
@@ -23,16 +32,19 @@ describe('Github Permissions tests', () => {
     admin: []
   }
 
+  
   const token = {
     success: true,
     result: {
       requested_scopes: ['obj:/datopian/repotest/*:write'],
       granted_scopes: ['obj:/datopian/repotest/*:write'],
       token: 'token',
-      user_id: ''
-
+      user_id: 'test-user',
+      expires_at: ''
     }
   }
+
+
   beforeEach(() => {
     moxios.install(axios)
   })
@@ -76,7 +88,19 @@ describe('Github Permissions tests', () => {
     expect(() => github.isValidScope('repotest', 'tester')).toThrow('Invalid scope. Scope should be of form "datopian/repotest:read/write/admin')
   })
 
-  it('should return an user github token', () => {
+  it('should return an object with scopes given the dataset(repository) and username',async  ()=> {
+
+    moxios.stubRequest('https://api.github.com/repos/datopian/repotest/collaborators', {
+      status: 200,
+      response: collaboratorsList
+    })
+
+    const responseScopes = await github.getScopes('repotest', 'test-user')
+
+    expect(responseScopes).toEqual(datasetScope)
+  })
+
+  it('should return an token object', () => {
     
   })
 
