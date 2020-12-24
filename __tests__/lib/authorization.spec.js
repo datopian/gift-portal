@@ -63,7 +63,7 @@ describe('Github Permissions tests', () => {
   })
 
   it('should thow an error if user is not inside dataset scope', () => {
-    expect(() => authorization.isValidScope(datasetScope, 'tester')).toThrow('Invalid scope. Scope should be of form "github/repotest:read/write/admin')
+    expect(() => authorization.isValidScope('github', 'repotest', 'tester')).toThrow('Invalid scope. Scope should be of form "github/repotest:read/write/admin')
   })
 
   it('should give and user authorization token', () => {
@@ -75,7 +75,7 @@ describe('Github Permissions tests', () => {
   })
 
   it('should get the organization, username and throw an error', ()=>{
-    
+
   })
 
 })
