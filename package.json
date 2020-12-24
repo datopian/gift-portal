@@ -22,6 +22,7 @@
     "add": "^2.0.6",
     "apollo-boost": "^0.4.9",
     "autoprefixer": "9.8.6",
+    "axios": "^0.21.1",
     "dayjs": "^1.9.7",
     "dotenv": "^8.2.0",
     "frictionless.js": "^0.13.4",
@@ -29,6 +30,7 @@
     "graphql": "^15.4.0",
     "graphql-request": "^3.4.0",
     "gray-matter": "^4.0.2",
+    "jsonwebtoken": "^8.5.1",
     "next": "10.0.3",
     "next-auth": "^3.1.0",
     "postcss": "^8.1.14",
@@ -43,6 +45,7 @@
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "cypress": "^6.0.1",
     "jest": "^26.6.3",
+    "moxios": "^0.4.0",
     "postcss-preset-env": "^6.7.0",
     "tailwindcss": "^2.0.1"
   }
