@@ -147,10 +147,7 @@ describe('Github Library Tests', () => {
   })
 
   describe('Formatters', ()=> {
-    
-    it('should thow an error if requested scope is invalid', () => {
-      expect(() => github.isValidScope('repotest', 'tester')).toThrow('Invalid scope. Scope should be of form "datopian/repotest:read/write/admin')
-    })
+
 
     it('should format the list of collaborators', () => {
   
