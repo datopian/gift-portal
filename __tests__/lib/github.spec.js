@@ -155,16 +155,6 @@ describe('Github Library Tests', () => {
 
   it('should return an object with scopes given the dataset(repository) and username', async () => {
 
-    moxios.stubRequest('https://api.github.com/repos/datopian/repotest/collaborators', {
-      status: 200,
-      response: collaboratorsList
-    })
-
-    moxios.stubRequest('https://api.github.com/repos/datopian/repotest', {
-      status: 200,
-      response: repoInfo
-    })
-
     const responseScopes = await github.getScopes('repotest', 'test-user')
 
     const scopeResonse = {
