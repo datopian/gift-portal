@@ -8,11 +8,11 @@ describe('Github Library Tests', () => {
 
   const collaboratorsList = [
     {
-      "login": "test-user",
-      "permissions": {
-        "pull": true,
-        "push": true,
-        "admin": false
+      login: 'test-user',
+      permissions: {
+        pull: true,
+        push: true,
+        admin: false
       }
     }
   ]
@@ -29,6 +29,7 @@ describe('Github Library Tests', () => {
       read: true
     }
   }
+
   const datasetScope = {
     organization: 'datopian',
     dataset: 'repotest',
@@ -37,19 +38,7 @@ describe('Github Library Tests', () => {
     admin: []
   }
 
-
-  const token = {
-    success: true,
-    result: {
-      requested_scopes: ['obj:/datopian/repotest/*:write'],
-      granted_scopes: ['obj:/datopian/repotest/*:write'],
-      token: 'token',
-      user_id: 'test-user',
-      expires_at: ''
-    }
-  }
-
-  const repoListResponse = {
+    const repoListResponse = {
     data:{
       organization :{
         login: 'datopian',
@@ -71,6 +60,7 @@ describe('Github Library Tests', () => {
       }
     }
   }
+
 
 
   beforeEach(() => {
@@ -149,10 +139,7 @@ describe('Github Library Tests', () => {
 
       expect(response).toEqual(repoInfo)
     })
-
-
   })
-
 
   it('should format the list of collaborators', () => {
 
@@ -187,18 +174,6 @@ describe('Github Library Tests', () => {
       admin: []
     }
     expect(responseScopes).toEqual(scopeResonse)
-  })
-
-  it('should return an token object', () => {
-
-  })
-
-  it('should get the organization, username and return a token', () => {
-
-  })
-
-  it('should get the organization, username and throw an error', () => {
-
   })
 
 })
