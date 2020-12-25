@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "get-data": "node -r esm scripts/githubOrg.js",
+    "dev": "npm run get-data && next dev",
     "build": "next build",
     "start": "next start",
     "cypress:open": "cypress open",
@@ -25,6 +26,7 @@
     "axios": "^0.21.1",
     "dayjs": "^1.9.7",
     "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
     "frictionless.js": "^0.13.4",
     "fuse.js": "^6.4.3",
     "graphql": "^15.4.0",
