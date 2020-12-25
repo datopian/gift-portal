@@ -4,7 +4,7 @@ import moxios from 'moxios'
 
 const github = new Github();
 
-describe('Github Permissions tests', () => {
+describe('Github Library Tests', () => {
 
   const collaboratorsList = [
     {
@@ -57,50 +57,58 @@ describe('Github Permissions tests', () => {
   afterEach(() => {
     moxios.uninstall(axios)
   })
-  it('should call Github REST API', async () => {
 
-    moxios.stubRequest('https://api.github.com', {
-      status: 200,
-      response: {}
+  describe('APIs Request Methods', ()=> {
+    it('should call Github REST API', async () => {
+  
+      moxios.stubRequest('https://api.github.com', {
+        status: 200,
+        response: {}
+      })
+  
+      const response = await github.restRequest('')
+      expect(response).toEqual({})
+  
     })
-
-    const githubApi = await github.restRequest('')
-    expect(githubApi).toEqual({})
-
+  
+    it('should call Github GraphQL API',async ()=> {
+      moxios.stubRequest('https://api.github.com/graphql', {
+        status: 200, 
+        response: {}
+      })
+  
+      const response = await github.graphQlRequest('')
+      expect(response).toEqual({})
+    })
   })
 
-  it('should call Github GraphQL API',async ()=> {
-    moxios.stubRequest('https://api.github.com/graphql', {
-      status: 200, 
-      response: {}
-    })
 
-    const response = await github.graphQlRequest('')
-    expect(response).toEqual({})
+  describe('Main Requests', ()=> {
+    
+    it('should get a list of collaborators from given the repository name', async () => {
+  
+  
+      moxios.stubRequest('https://api.github.com/repos/datopian/repotest/collaborators', {
+        status: 200,
+        response: collaboratorsList
+      })
+  
+      const collaborators = await github.getRepositoryCollaborators('repotest')
+      expect(collaborators).toEqual(collaboratorsList)
+    })
+    
+    it('should return the repository default information given the repository name', async ()=>{
+  
+       moxios.stubRequest('https://api.github.com/repos/datopian/repotest', {
+        status: 200,
+        response: repoInfo
+      })
+      const response = await github.getRepositoryInformation('repotest')
+  
+      expect(response).toEqual(repoInfo)
+    })
   })
 
-  it('should get a list of collaborators from some repository', async () => {
-
-
-    moxios.stubRequest('https://api.github.com/repos/datopian/repotest/collaborators', {
-      status: 200,
-      response: collaboratorsList
-    })
-
-    const collaborators = await github.getRepositoryCollaborators('repotest')
-    expect(collaborators).toEqual(collaboratorsList)
-  })
-
-  it('should return the repository default information given the repository name', async ()=>{
-
-     moxios.stubRequest('https://api.github.com/repos/datopian/repotest', {
-      status: 200,
-      response: repoInfo
-    })
-    const response = await github.getRepositoryInformation('repotest')
-
-    expect(response).toEqual(repoInfo)
-  })
 
   it('should format the list of collaborators', () => {
 
