@@ -57,16 +57,26 @@ describe('Github Permissions tests', () => {
   afterEach(() => {
     moxios.uninstall(axios)
   })
-  it('should call github api', async () => {
+  it('should call Github REST API', async () => {
 
     moxios.stubRequest('https://api.github.com', {
       status: 200,
       response: {}
     })
 
-    const githubApi = await github.fetchGithubApi('')
+    const githubApi = await github.restRequest('')
     expect(githubApi).toEqual({})
 
+  })
+
+  it('should call Github GraphQL API',async ()=> {
+    moxios.stubRequest('https://api.github.com/graphql', {
+      status: 200, 
+      response: {}
+    })
+
+    const response = await github.graphQlRequest('')
+    expect(response).toEqual({})
   })
 
   it('should get a list of collaborators from some repository', async () => {
