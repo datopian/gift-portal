@@ -23,10 +23,10 @@ describe('Github Library Tests', () => {
       login: 'datopian'
     },
     private: false,
-    defaultPermissions: {
+    permissions: {
       admin: false,
-      write: false,
-      read: true
+      pull: true,
+      push: false
     }
   }
 
@@ -160,21 +160,16 @@ describe('Github Library Tests', () => {
       expect(parsedList).toEqual(datasetScope)
     })
 
-    it('should parser dataset scope given the repository and organization', ()=> {
-      
-    })
-    it('should return an object with scopes given the dataset(repository) and username', async () => {
-  
-      const responseScopes = await github.getScopes('repotest', 'test-user')
-  
-      const scopeResonse = {
+    it('should parser dataset scope given the repository and organization', async ()=> {
+      const scopes = await github.getScopes('repotest', 'datopian')
+
+      expect(scopes).toEqual({
         dataset: 'repotest',
-        editors: ['test-user'],
         readers: ['PUBLIC', 'LOGGED_IN', 'test-user'],
-        admin: []
-      }
-      expect(responseScopes).toEqual(scopeResonse)
+        editors: ['test-user'],
+        admins: []
+      })
+
     })
   })
-
 })
