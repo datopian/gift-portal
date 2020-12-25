@@ -1,6 +1,8 @@
-import * as github from '../../lib/Github'
+import Github from '../../lib/Github'
 import axios from 'axios'
 import moxios from 'moxios'
+
+const github = new Github();
 
 describe('Github Permissions tests', () => {
 
