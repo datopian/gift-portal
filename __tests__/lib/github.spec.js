@@ -109,9 +109,20 @@ describe('Github Permissions tests', () => {
       response: collaboratorsList
     })
 
+     moxios.stubRequest('https://api.github.com/repos/datopian/repotest', {
+      status: 200,
+      response: repoInfo
+    })
+
     const responseScopes = await github.getScopes('repotest', 'test-user')
 
-    expect(responseScopes).toEqual(datasetScope)
+    const scopeResonse = {
+    dataset: 'repotest',
+    editors: ['test-user'],
+    readers: ['PUBLIC', 'LOGGED_IN','test-user'],
+    admin: [] 
+    }
+    expect(responseScopes).toEqual(scopeResonse)
   })
 
   it('should return an token object', () => {
