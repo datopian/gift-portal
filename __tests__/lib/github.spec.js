@@ -49,11 +49,9 @@ describe('Github Library Tests', () => {
           nodes: [
             {
               name: 'repoa',
-              isPrivate: false
             },
             {
               name: 'repob',
-              isPrivate: false
             }
           ]
         }
@@ -110,11 +108,9 @@ describe('Github Library Tests', () => {
         repositories: [
           {
             "name": "repoa",
-            "isPrivate": false
           },
           {
             "name": "repob",
-            "isPrivate": false
           }
         ]
       })
@@ -141,29 +137,33 @@ describe('Github Library Tests', () => {
     })
   })
 
-  it('should format the list of collaborators', () => {
+  describe('Formatters', ()=> {
+    
+    it('should thow an error if requested scope is invalid', () => {
+      expect(() => github.isValidScope('repotest', 'tester')).toThrow('Invalid scope. Scope should be of form "datopian/repotest:read/write/admin')
+    })
 
-    const defaultList = collaboratorsList
-    const parsedList = github.parserCollaboratorsList('repotest', defaultList)
+    it('should format the list of collaborators', () => {
+  
+      const defaultList = collaboratorsList
+      const parsedList = github.parserRepoCollaborators('repotest', defaultList)
+  
+      expect(parsedList).toEqual(datasetScope)
+    })
 
-    expect(parsedList).toEqual(datasetScope)
-  })
-
-  it('should thow an error if user is not inside dataset scope', () => {
-    expect(() => github.isValidScope('repotest', 'tester')).toThrow('Invalid scope. Scope should be of form "datopian/repotest:read/write/admin')
-  })
-
-  it('should return an object with scopes given the dataset(repository) and username', async () => {
-
-    const responseScopes = await github.getScopes('repotest', 'test-user')
-
-    const scopeResonse = {
-      dataset: 'repotest',
-      editors: ['test-user'],
-      readers: ['PUBLIC', 'LOGGED_IN', 'test-user'],
-      admin: []
-    }
-    expect(responseScopes).toEqual(scopeResonse)
+    it('should parser dataset scope given the repository and organization')
+    it('should return an object with scopes given the dataset(repository) and username', async () => {
+  
+      const responseScopes = await github.getScopes('repotest', 'test-user')
+  
+      const scopeResonse = {
+        dataset: 'repotest',
+        editors: ['test-user'],
+        readers: ['PUBLIC', 'LOGGED_IN', 'test-user'],
+        admin: []
+      }
+      expect(responseScopes).toEqual(scopeResonse)
+    })
   })
 
 })
