@@ -1,4 +1,4 @@
-import * as github from '../../lib/github'
+import * as github from '../../lib/Github'
 import axios from 'axios'
 import moxios from 'moxios'
 
