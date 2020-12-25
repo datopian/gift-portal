@@ -63,13 +63,29 @@ describe('Github Library Tests', () => {
 
   beforeEach(() => {
     moxios.install(axios)
+
+    moxios.stubRequest('https://api.github.com/repos/datopian/repotest/collaborators', {
+      status: 200,
+      response: collaboratorsList
+    })
+    
+    moxios.stubRequest('https://api.github.com/repos/datopian/repotest', {
+      status: 200,
+      response: repoInfo
+    })
+
   })
 
-  afterEach(() => {
-    moxios.uninstall(axios)
+
+  afterEach
+  (() => {
+    moxios
+    .uninstall(axios)
   })
 
-  describe('APIs Request Methods', () => {
+
+  describe
+  ('APIs Request Methods', () => {
     it('should call Github REST API', async () => {
 
       moxios.stubRequest('https://api.github.com', {
@@ -92,6 +108,7 @@ describe('Github Library Tests', () => {
       expect(response).toEqual({})
     })
   })
+
 
 
   describe('Main Requests', () => {
@@ -117,20 +134,12 @@ describe('Github Library Tests', () => {
     })
 
     it('should get a list of collaborators from given the repository name', async () => {
-      moxios.stubRequest('https://api.github.com/repos/datopian/repotest/collaborators', {
-        status: 200,
-        response: collaboratorsList
-      })
-
       const collaborators = await github.getRepositoryCollaborators('repotest')
+
       expect(collaborators).toEqual(collaboratorsList)
     })
 
     it('should return the repository default information given the repository name', async () => {
-      moxios.stubRequest('https://api.github.com/repos/datopian/repotest', {
-        status: 200,
-        response: repoInfo
-      })
       const response = await github.getRepositoryInformation('repotest')
 
       expect(response).toEqual(repoInfo)
@@ -151,7 +160,9 @@ describe('Github Library Tests', () => {
       expect(parsedList).toEqual(datasetScope)
     })
 
-    it('should parser dataset scope given the repository and organization')
+    it('should parser dataset scope given the repository and organization', ()=> {
+      
+    })
     it('should return an object with scopes given the dataset(repository) and username', async () => {
   
       const responseScopes = await github.getScopes('repotest', 'test-user')
