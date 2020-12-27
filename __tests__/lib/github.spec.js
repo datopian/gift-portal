@@ -148,15 +148,6 @@ describe('Github Library Tests', () => {
 
   describe('Formatters', ()=> {
 
-
-    it('should format the list of collaborators', () => {
-  
-      const defaultList = collaboratorsList
-      const parsedList = github.parserRepoCollaborators('repotest', defaultList)
-  
-      expect(parsedList).toEqual(datasetScope)
-    })
-
     it('should parser dataset scope given the repository and organization', async ()=> {
       const scopes = await github.getScopes('repotest', 'datopian')
 
