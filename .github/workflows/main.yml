@@ -22,7 +22,6 @@ jobs:
 
   jest:
     runs-on: ubuntu-latest
-    strategy:
     steps:
       - uses: actions/checkout@v2
       - name: Install modules
