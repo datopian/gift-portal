@@ -18,16 +18,21 @@ describe('Authenticate Tests', ()=>{
         admins: []
       })
 
-      const now = new Date()
-      const expireDate = now.setSeconds(now.getSeconds() + 900)
+      const tokenSpy = jest.spyOn(permissions, 'generateToken')
+      tokenSpy.mockReturnValue('tokenkey')
+
+      const now = new Date().toISOString()
+      const dateSpy = jest.spyOn(permissions, 'generateExpiresDate')
+      dateSpy.mockReturnValue(now)
+
       const token = {
         success: true,
         result: {
-          requested_scopes: ['obj:/datopian/repotest/*.read', 'obj:/datopian/repotest/*.write'],
-          granted_scopes: ['obj:/datopian/repotest/*.read', 'obj:/datopian/repotest/*.write'],
+          requested_scopes: ['obj:datopian/repotest/*.write'],
+          granted_scopes: ['obj:datopian/repotest/*.write'],
           token: 'tokenkey',
           user_id: 'user-test',
-          expires_at: new Date(expireDate).toISOString()
+          expires_at: now
         }
       }
       
