@@ -15,7 +15,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          node-version: '14'
+          node-version: 14.x
           browser: chrome
           build: yarn run build
           start: yarn start
@@ -30,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          node-version: '14'
+          node-version: 14.x
       - name: Install modules
         run: npm i
     
