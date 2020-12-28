@@ -1,6 +1,7 @@
 import Github from '../../lib/Github'
 import axios from 'axios'
 import moxios from 'moxios'
+require('dotenv').config()
 
 const github = new Github();
 
