@@ -120,7 +120,7 @@ describe('Github Library Tests', () => {
         response: repoListResponse
       })
 
-      const response = await github.getOrgRepos()
+      const response = await github.getOrgRepos('datopian')
       expect(response).toEqual({
         organization: 'datopian',
         repositories: [
@@ -135,13 +135,13 @@ describe('Github Library Tests', () => {
     })
 
     it('should get a list of collaborators from given the repository name', async () => {
-      const collaborators = await github.getRepositoryCollaborators('repotest')
+      const collaborators = await github.getRepositoryCollaborators('repotest', 'datopian')
 
       expect(collaborators).toEqual(collaboratorsList)
     })
 
     it('should return the repository default information given the repository name', async () => {
-      const response = await github.getRepositoryInformation('repotest')
+      const response = await github.getRepositoryInformation('repotest', 'datopian')
 
       expect(response).toEqual(repoInfo)
     })
