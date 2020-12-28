@@ -8,6 +8,9 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -15,7 +18,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          node-version: 14.x
+          node-version: ${{ matrix.node-version }}
           browser: chrome
           build: yarn run build
           start: yarn start
@@ -27,10 +30,13 @@ jobs:
 
   jest:
     runs-on: ubuntu-latest
+    strategy:
+     matrix:
+       node-version: [14.x]
     steps:
       - uses: actions/checkout@v2
         with:
-          node-version: 14.x
+          node-version: ${{ matrix.node-version }}
       - name: Install modules
         run: npm i
     
