@@ -1,7 +1,7 @@
 import Card from "../components/Card";
 import Search from "../components/Search";
 import { loadDataFromGithub } from "../db/db";
-import { useState, useContext, useEffect  } from 'react';
+import { useState } from 'react';
 import Fuse from 'fuse.js'
 
 export default function Home({ catalogs }) {
@@ -37,7 +37,7 @@ export default function Home({ catalogs }) {
         </div>
       </div>
       <div className="mt-10">
-        <div className="mb-10">showing 6 of 6 dataset</div>
+        <div className="mb-10">showing {dataState.length} of {dataState.length} dataset</div>
         <div className="grid grid-cols-3 gap-x-40 gap-y-10">
           {dataState.map((value, i) => {
             return <Card props={value} key={i} />;

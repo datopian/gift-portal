@@ -38,7 +38,7 @@ export default function Card({ props }) {
         ) : (
           <>
             <div className="border-2 text-center rounded-lg">NO TAGS</div>
-            <div className="border-2 text-center rounded-lg">NO TAGS</div>
+            {/* <div className="border-2 text-center rounded-lg">NO TAGS</div> */}
           </>
         )}
       </div>

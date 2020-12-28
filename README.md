@@ -1,5 +1,13 @@
 GIFT Data Portal. GIFT is Global Initiative on Fiscal Transparency.
 
+<div align="center">
+  
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/datopian/gift-portal/issues)
+![gift-portal](https://github.com/datopian/gift-portal/workflows/gift-portal/badge.svg)
+[![The MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+
+</div>
+
 # Developers
 
 This site is built using Next.JS and Portal.JS.
