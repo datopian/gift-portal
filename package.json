@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "scripts": "node -r esm scripts",
-    "dev": "npm run scripts && next dev",
+    "dev": "next dev",
     "build": "npm run scripts && next build",
     "start": "next start",
     "cypress:open": "cypress open",
