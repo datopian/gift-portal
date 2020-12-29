@@ -19,6 +19,10 @@ jobs:
           build: next build
           start: npm start
           wait-on: "http://localhost:3000"
+        env:
+          APP_GITHUB_KEY:  ${{ secrets.APP_GITHUB_KEY }}
+          ORGANISATION_REPO: ${{ secrets.ORGANISATION_REPO }}
+          REFRESH_DATA_IN_METASTORE: ${{ secrets.REFRESH_DATA_IN_METASTORE }}
 
   jest:
     runs-on: ubuntu-latest
