@@ -109,11 +109,6 @@ const processDataFromRepository = async (repo) => {
     };
   }
 
-  //Before we can read a datapackage.json with frictionless so as to get a sample,
-  // we have replace resource paths with generated URL. See Issue #22
-  // let dataset = await Dataset.load(datapackage);
-  // console.log("Dataset", dataset);
-
   let data = {};
   data["sample"] = datapackage["sample"] || [];
   data["schema"] = datapackage["resources"][0]["schema"] || [];

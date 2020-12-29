@@ -2,37 +2,30 @@ import { useRouter } from "next/router";
 import { loadDataFromGithub } from "../../db/db";
 import CustomTable from "../../components/table";
 
-
 const Dataset = ({ catalogs }) => {
   const router = useRouter();
   const { datasetid } = router.query;
   let dataset = catalogs[datasetid];
   let sample = dataset["sample"];
-  let schema = dataset["schema"];
- 
-  const columns = null;
-  const data = null;
-  if (sample.length > 0){
-    const column_names = sample[0];
-    const columns = column_names.map((item) => {
+  let data = [];
+  let columns = [];
+
+  if (sample.length != 0) {
+    columns = sample[0].map((item) => {
       return {
         Header: item,
         accessor: item,
       };
     });
 
-    let data = []
     sample.slice(1, 10).map((item) => {
-      let temp_obj = {}
-      item.map((field, i)=>{
-        temp_obj[column_names[i]] = field
-      })
-      data.push(temp_obj)    
+      let temp_obj = {};
+      item.map((field, i) => {
+        temp_obj[sample[0][i]] = field;
+      });
+      data.push(temp_obj);
     });
   }
-  
-
-  
 
   if (!datasetid) {
     return 404;
@@ -57,7 +50,11 @@ const Dataset = ({ catalogs }) => {
         <div className="mb-10 font-karla">{dataset.description}</div>
         <div className="mb-10 font-lato font-bold">File Preview</div>
         <div className="ml-10 mb-10">
-          { data ? <CustomTable data={data} columns={columns} />: "NO PREVIEW FOR THIS DATASET" }
+          {data ? (
+            <CustomTable data={data} columns={columns} />
+          ) : (
+            "NO PREVIEW FOR THIS DATASET"
+          )}
         </div>
         <div className="mb-10 font-lato font-bold">Download</div>
         <div className="mb-10 ml-10">
@@ -69,7 +66,9 @@ const Dataset = ({ catalogs }) => {
                 <>
                   <div>{(resource.bytes * 0.000001).toFixed(2)} mb</div>
                   <div className="text-portal1">
-                    <a href={resource.path}>{resource.name}.{dataset.resources[0].format}</a>
+                    <a href={resource.path}>
+                      {resource.name}.{dataset.resources[0].format}
+                    </a>
                   </div>
                 </>
               );
@@ -181,19 +180,19 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export async function getStaticPaths(){
+export async function getStaticPaths() {
   let [catalogs, _] = await loadDataFromGithub();
 
   return {
     paths: Object.keys(catalogs).map((key) => {
       return {
-        params : {
-          datasetid : key.replace(/\s/g, '%20')
-        }
-      }
+        params: {
+          datasetid: key.replace(/\s/g, "%20"),
+        },
+      };
     }),
     fallback: false,
-  }
+  };
 }
 
 export default Dataset;
