@@ -177,7 +177,7 @@ export async function getStaticProps({ params }) {
   let [catalogs, _] = await loadDataFromGithub();
   return {
     props: { catalogs: catalogs },
-    revalidate: 4,
+    revalidate: 604800,
   };
 }
 
