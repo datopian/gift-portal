@@ -22,6 +22,7 @@
     "apollo-boost": "^0.4.9",
     "autoprefixer": "9.8.6",
     "dayjs": "^1.9.7",
+    "dotenv": "^8.2.0",
     "frictionless.js": "^0.13.4",
     "fuse.js": "^6.4.3",
     "graphql": "^15.4.0",

@@ -3,11 +3,8 @@ import Search from "../components/Search";
 import { loadDataFromGithub } from "../db/db";
 import { useState } from 'react';
 import Fuse from 'fuse.js'
-import MetaStore from '../lib/metastore';
-import { join, resolve } from 'path';
-import fs from 'fs';
 
-export default function Home({ catalogs, dcatalogs }) {
+export default function Home({ catalogs }) {
   const [dataState, setDataState] = useState(catalogs);
 
   const fuse = new Fuse(catalogs, {
@@ -52,31 +49,13 @@ export default function Home({ catalogs, dcatalogs }) {
 }
 
 export async function getStaticProps(context) {
-  const metaStore = new MetaStore()
-  //check if data.json is empty
-  const db = resolve('./db');
-  const dataPath = join(db, 'data.json');
-  const sdataPath = join(db, 'sdata.json');
-  const readFile = fs.readFileSync(dataPath, 'utf8')
-  const readFile2 = fs.readFileSync(sdataPath, 'utf8')
-  let catalogs;
-  let descatalogs;
-
-  if (fs.readFileSync(dataPath, 'utf8')) {
-    console.log("Loading from cached data")
-    catalogs  = JSON.parse(readFile);
-    descatalogs = JSON.parse(readFile2)
-    metaStore.initMetaStoreFromGithub(catalogs, descatalogs);
-  }else{
-    [catalogs, descatalogs] = await loadDataFromGithub();
-    fs.writeFileSync(dataPath, JSON.stringify(catalogs));
-    fs.writeFileSync(sdataPath, JSON.stringify(descatalogs));
-    metaStore.initMetaStoreFromGithub(catalogs, descatalogs);
-  }
+  
+  let [_, descatalogs] = await loadDataFromGithub();
   
 
   return {
-    props: { catalogs: metaStore.searchCatalog     
+    props: { catalogs: descatalogs  
     },
+    revalidate: 604800, // set the seconds to automatically rebuild the  page. 604800 seconds == 1 week
   };
 }

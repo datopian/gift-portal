@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
-// import { getCatalog, getDirectories } from "../../db/db";
+import { loadDataFromGithub } from "../../db/db";
 import CustomTable from "../../components/table";
-import { join, resolve } from 'path';
-import fs from 'fs';
 
 
 const Dataset = ({ catalogs }) => {
@@ -176,22 +174,15 @@ const Dataset = ({ catalogs }) => {
 };
 
 export async function getStaticProps({ params }) {
-  // let data_directories = await getDirectories();
-  // let [catalogs, _] = await getCatalog(data_directories);
-  const db = resolve('./db');
-  const dataPath = join(db, 'data.json');
-  const catalogs = JSON.parse(fs.readFileSync(dataPath, 'utf8'))
+  let [catalogs, _] = await loadDataFromGithub();
   return {
     props: { catalogs: catalogs },
+    revalidate: 604800,
   };
 }
 
 export async function getStaticPaths(){
-  // const dirs = await getDirectories();
-  // let [catalogs, _] = await getCatalog(dirs);
-  const db = resolve('./db');
-  const dataPath = join(db, 'data.json');
-  const catalogs = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+  let [catalogs, _] = await loadDataFromGithub();
 
   return {
     paths: Object.keys(catalogs).map((key) => {
