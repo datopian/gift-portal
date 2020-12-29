@@ -56,6 +56,6 @@ export async function getStaticProps(context) {
   return {
     props: { catalogs: descatalogs  
     },
-    revalidate: 4, // set the seconds to automatically rebuild the  page. 4 is 4 seconds
+    revalidate: 604800, // set the seconds to automatically rebuild the  page. 604800 seconds == 1 week
   };
 }
