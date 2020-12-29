@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "get-data": "node -r esm scripts/githubOrg.js",
-    "dev": "npm run get-data && next dev",
-    "build": "next build",
+    "scripts": "node -r esm scripts",
+    "dev": "npm run scripts && next dev",
+    "build": "npm run scripts && next build",
     "start": "next start",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run --config video=false",
@@ -24,6 +24,7 @@
     "apollo-boost": "^0.4.9",
     "autoprefixer": "9.8.6",
     "axios": "^0.21.1",
+    "chalk": "^4.1.0",
     "dayjs": "^1.9.7",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
@@ -34,7 +35,11 @@
     "gray-matter": "^4.0.2",
     "jsonwebtoken": "^8.5.1",
     "next": "10.0.3",
+<<<<<<< HEAD
     "next-auth": "^3.1.0",
+=======
+    "ora": "^5.2.0",
+>>>>>>> [scripts] [m] : update dependencies and npm script
     "postcss": "^8.1.14",
     "react": "17.0.1",
     "react-dom": "17.0.1",
