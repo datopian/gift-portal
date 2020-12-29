@@ -16,8 +16,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           browser: chrome
-          build: yarn run build
-          start: yarn start
+          build: next build
+          start: npm start
           wait-on: "http://localhost:3000"
 
   jest:
