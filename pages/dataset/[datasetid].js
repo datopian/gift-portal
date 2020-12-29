@@ -7,22 +7,25 @@ const Dataset = ({ catalogs }) => {
   const { datasetid } = router.query;
   let dataset = catalogs[datasetid];
   let sample = dataset["sample"];
-
-  let columns = sample[0].map((item) => {
-    return {
-      Header: item,
-      accessor: item,
-    };
-  });
-
   let data = [];
-  sample.slice(1, 10).map((item) => {
-    let temp_obj = {};
-    item.map((field, i) => {
-      temp_obj[sample[0][i]] = field;
+  let columns = [];
+
+  if (sample.length != 0) {
+    columns = sample[0].map((item) => {
+      return {
+        Header: item,
+        accessor: item,
+      };
     });
-    data.push(temp_obj);
-  });
+
+    sample.slice(1, 10).map((item) => {
+      let temp_obj = {};
+      item.map((field, i) => {
+        temp_obj[sample[0][i]] = field;
+      });
+      data.push(temp_obj);
+    });
+  }
 
   if (!datasetid) {
     return 404;
