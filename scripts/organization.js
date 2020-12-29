@@ -21,7 +21,7 @@ async function createDataDirIfNotExists(){
  */
 async function createDataAsJson(data){
   const rootPath = path.resolve(process.cwd())
-  fs.writeFileSync(`${rootPath}/data/datasets.json`, JSON.stringify(data, null, 2))
+  fs.writeFileSync(`${rootPath}/data/organization.json`, JSON.stringify(data, null, 2))
 }
 
 /**
