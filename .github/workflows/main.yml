@@ -17,7 +17,7 @@ jobs:
         with:
           browser: chrome
           build: next build
-          start: npm start
+          start: yarn start
           wait-on: "http://localhost:3000"
         env:
           APP_GITHUB_KEY:  ${{ secrets.APP_GITHUB_KEY }}
@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install modules
-        run: npm i
+        run: yarn
     
       - name: Run tests
-        run: npm run test
+        run: yarn test
