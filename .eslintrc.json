@@ -3,7 +3,8 @@
     "browser": true,
     "node": true,
     "jest": true,
-    "es2021": true
+    "es2021": true,
+    "cypress/globals": true
   },
   "extends": [
     "eslint:recommended",
@@ -11,13 +12,21 @@
   ],
   "plugins": [
     "import",
-    "prettier"
+    "prettier",
+    "react",
+    "cypress"
   ],
   "parserOptions": {
-    "ecmaVersion": 12,
-    "sourceType": "module"
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
   },
   "rules": {
+    "react/jsx-uses-vars": "error",
+    "react/jsx-uses-react": "error",
     "prettier/prettier": [
       "error",
       {
