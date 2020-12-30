@@ -14,7 +14,7 @@ const options = {
   },
   callbacks: {
     redirect: async (url, _) => {
-      return Promise.resolve('/');
+      return Promise.resolve('/login');
     }
   },
   site: process.env.NEXTAUTH_URL
