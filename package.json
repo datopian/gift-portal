@@ -35,11 +35,8 @@
     "gray-matter": "^4.0.2",
     "jsonwebtoken": "^8.5.1",
     "next": "10.0.3",
-<<<<<<< HEAD
-    "next-auth": "^3.1.0",
-=======
     "ora": "^5.2.0",
->>>>>>> [scripts] [m] : update dependencies and npm script
+    "next-auth": "^3.1.0",
     "postcss": "^8.1.14",
     "react": "17.0.1",
     "react-dom": "17.0.1",
