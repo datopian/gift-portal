@@ -36,7 +36,7 @@ describe('Authenticate Tests', ()=>{
         }
       }
       
-      const responseToken = await permissions.authorize('user-test', 'repotest', 'write')
+      const responseToken = await permissions.authorize('user-test', 'repotest', 'write', 'datopian')
       expect(responseToken).toEqual(token)
     })
     
