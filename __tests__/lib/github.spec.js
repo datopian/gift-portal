@@ -1,47 +1,38 @@
-import Github from '../../lib/Github'
-import axios from 'axios'
-import moxios from 'moxios'
-require('dotenv').config()
+import Github from '../../lib/Github';
+import axios from 'axios';
+import moxios from 'moxios';
+require('dotenv').config();
 
 const github = new Github();
 
 describe('Github Library Tests', () => {
-
   const collaboratorsList = [
     {
       login: 'test-user',
       permissions: {
         pull: true,
         push: true,
-        admin: false
-      }
-    }
-  ]
+        admin: false,
+      },
+    },
+  ];
 
   const repoInfo = {
     name: 'repotest',
     owner: {
-      login: 'datopian'
+      login: 'datopian',
     },
     private: false,
     permissions: {
       admin: false,
       pull: true,
-      push: false
-    }
-  }
+      push: false,
+    },
+  };
 
-  const datasetScope = {
-    organization: 'datopian',
-    dataset: 'repotest',
-    editors: ['test-user'],
-    readers: ['test-user'],
-    admin: []
-  }
-
-    const repoListResponse = {
-    data:{
-      organization :{
+  const repoListResponse = {
+    data: {
+      organization: {
         login: 'datopian',
         repositories: {
           pageInfo: {
@@ -53,112 +44,110 @@ describe('Github Library Tests', () => {
             },
             {
               name: 'repob',
-            }
-          ]
-        }
-      }
-    }
-  }
-
-
+            },
+          ],
+        },
+      },
+    },
+  };
 
   beforeEach(() => {
-    moxios.install(axios)
+    moxios.install(axios);
 
-    moxios.stubRequest('https://api.github.com/repos/datopian/repotest/collaborators', {
-      status: 200,
-      response: collaboratorsList
-    })
-    
+    moxios.stubRequest(
+      'https://api.github.com/repos/datopian/repotest/collaborators',
+      {
+        status: 200,
+        response: collaboratorsList,
+      }
+    );
+
     moxios.stubRequest('https://api.github.com/repos/datopian/repotest', {
       status: 200,
-      response: repoInfo
-    })
+      response: repoInfo,
+    });
+  });
 
-  })
+  afterEach(() => {
+    moxios.uninstall(axios);
+  });
 
-
-  afterEach
-  (() => {
-    moxios
-    .uninstall(axios)
-  })
-
-
-  describe
-  ('APIs Request Methods', () => {
+  describe('APIs Request Methods', () => {
     it('should call Github REST API', async () => {
-
       moxios.stubRequest('https://api.github.com', {
         status: 200,
-        response: {}
-      })
+        response: {},
+      });
 
-      const response = await github.restRequest('')
-      expect(response).toEqual({})
-
-    })
+      const response = await github.restRequest('');
+      expect(response).toEqual({});
+    });
 
     it('should call Github GraphQL API', async () => {
       moxios.stubRequest('https://api.github.com/graphql', {
         status: 200,
-        response: {}
-      })
+        response: {},
+      });
 
-      const response = await github.graphQlRequest('')
-      expect(response).toEqual({})
-    })
-  })
-
-
+      const response = await github.graphQlRequest('');
+      expect(response).toEqual({});
+    });
+  });
 
   describe('Main Requests', () => {
+    it('should return all repositories given an organization name',
+      async () => {
+        moxios.stubRequest('https://api.github.com/graphql', {
+          status: 200,
+          response: repoListResponse,
+        });
 
-    it('should return all repositories given an organization name', async ()=> {
-      moxios.stubRequest('https://api.github.com/graphql', {
-        status: 200,
-        response: repoListResponse
-      })
+        const response = await github.getOrgRepos('datopian');
+        expect(response).toEqual({
+          organization: 'datopian',
+          repositories: [
+            {
+              name: 'repoa',
+            },
+            {
+              name: 'repob',
+            },
+          ],
+        });
+      });
 
-      const response = await github.getOrgRepos('datopian')
-      expect(response).toEqual({
-        organization: 'datopian',
-        repositories: [
-          {
-            "name": "repoa",
-          },
-          {
-            "name": "repob",
-          }
-        ]
-      })
-    })
+    it('should get a list of collaborators from given the repository name', 
+      async () => {
+        const collaborators = await github.getRepositoryCollaborators(
+          'repotest',
+          'datopian'
+        );
 
-    it('should get a list of collaborators from given the repository name', async () => {
-      const collaborators = await github.getRepositoryCollaborators('repotest', 'datopian')
+        expect(collaborators).toEqual(collaboratorsList);
+      });
 
-      expect(collaborators).toEqual(collaboratorsList)
-    })
+    it('should return the repository default info given the repository name', 
+      async () => {
+        const response = await github.getRepositoryInformation(
+          'repotest',
+          'datopian'
+        );
 
-    it('should return the repository default information given the repository name', async () => {
-      const response = await github.getRepositoryInformation('repotest', 'datopian')
+        expect(response).toEqual(repoInfo);
+      });
+  });
 
-      expect(response).toEqual(repoInfo)
-    })
-  })
+  describe('Formatters', () => {
+    it('should parser dataset scope given the repository and organization', 
+      async () => {
+        const scopes = await github.getScopes('repotest', 'datopian');
 
-  describe('Formatters', ()=> {
-
-    it('should parser dataset scope given the repository and organization', async ()=> {
-      const scopes = await github.getScopes('repotest', 'datopian')
-
-      expect(scopes).toEqual({
-        dataset: 'repotest',
-        readers: ['PUBLIC', 'LOGGED_IN', 'test-user'],
-        editors: ['test-user'],
-        admins: []
-      })
-
-    })
-  })
-})
+        expect(scopes).toEqual({
+          dataset: 'repotest',
+          readers: ['PUBLIC', 'LOGGED_IN', 'test-user'],
+          editors: ['test-user'],
+          admins: [],
+        });
+      });
+  });
+});

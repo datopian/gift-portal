@@ -4,6 +4,6 @@ describe('Dataset page test', function() {
   });
 
   it('contains dataset name', function (){
-    cy.contains("Presupuesto México 2008-2019");
-  })
-})
+    cy.contains('Presupuesto México 2008-2019');
+  });
+});

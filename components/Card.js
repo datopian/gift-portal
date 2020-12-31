@@ -1,4 +1,5 @@
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 /**
  * Create card for each datasets.
  * e.g
@@ -18,12 +19,21 @@ export default function Card({ props }) {
   let dataset = props;
   return (
     <div
-      className={`flex flex-col rounded-lg border-2 w-379.25px h-607.81px shadow-md justify-between p-5 mb-4`}
+      className={
+        // eslint-disable-next-line max-len
+        'flex flex-col rounded-lg border-2 w-379.25px h-607.81px shadow-md justify-between p-5 mb-4'
+      }
     >
       <div className="flex flex-row justify-between items-center">
-        {dataset.logo && <img src={dataset.logo} alt="next" className="mr-2" />}
+        {dataset.logo && (
+          <img src={dataset.logo} alt="next" className="mr-2" />
+        )}
         <div className="font-lato text-xl">
-          {dataset.error == true ? <span style={{color: "red"}}>Error parsing data!</span> : dataset.title}
+          {dataset.error == true ? (
+            <span style={{ color: 'red' }}>Error parsing data!</span>
+          ) : (
+            dataset.title
+          )}
         </div>
       </div>
       <div className="grid grid-cols-2 gap-4 font-roboto text-portal1">
@@ -38,7 +48,11 @@ export default function Card({ props }) {
         ) : (
           <>
             <div className="border-2 text-center rounded-lg">NO TAGS</div>
-            {/* <div className="border-2 text-center rounded-lg">NO TAGS</div> */}
+            {
+            /* 
+            <div className="border-2 text-center rounded-lg">NO TAGS</div> 
+            */
+            }
           </>
         )}
       </div>
@@ -56,25 +70,25 @@ export default function Card({ props }) {
         </div>
         <div className="flex flex-row mb-4">
           <img src="/csv.svg" alt="next" className="mr-5" />
-          {dataset.resources[0].format == "csv" ? (
+          {dataset.resources[0].format == 'csv' ? (
             <div className="self-start font-karla">CSV</div>
           ) : (
-            ""
+            ''
           )}
-          {dataset.resources[0].format == "xml" ? (
+          {dataset.resources[0].format == 'xml' ? (
             <div className="self-start">XML</div>
           ) : (
-            ""
+            ''
           )}
-          {dataset.resources[0].format == "json" ? (
+          {dataset.resources[0].format == 'json' ? (
             <div className="self-start">JSON</div>
           ) : (
-            ""
+            ''
           )}
-          {dataset.resources[0].format == "xlsx" ? (
+          {dataset.resources[0].format == 'xlsx' ? (
             <div className="self-start">EXCEL</div>
           ) : (
-            ""
+            ''
           )}
         </div>
       </div>

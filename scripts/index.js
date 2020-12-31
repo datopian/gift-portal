@@ -1,3 +1,3 @@
-import organization from './organization'
+import organization from './organization';
 
-organization()
+organization();

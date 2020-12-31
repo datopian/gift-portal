@@ -1,12 +1,13 @@
-import { useRouter } from "next/router";
-import { loadDataFromGithub } from "../../db/db";
-import CustomTable from "../../components/table";
+import React from 'react';
+import { useRouter } from 'next/router';
+import { loadDataFromGithub } from '../../db/db';
+import CustomTable from '../../components/table';
 
 const Dataset = ({ catalogs }) => {
   const router = useRouter();
   const { datasetid } = router.query;
   let dataset = catalogs[datasetid];
-  let sample = dataset["sample"];
+  let sample = dataset['sample'];
   let data = [];
   let columns = [];
 
@@ -53,7 +54,7 @@ const Dataset = ({ catalogs }) => {
           {data ? (
             <CustomTable data={data} columns={columns} />
           ) : (
-            "NO PREVIEW FOR THIS DATASET"
+            'NO PREVIEW FOR THIS DATASET'
           )}
         </div>
         <div className="mb-10 font-lato font-bold">Download</div>
@@ -88,25 +89,25 @@ const Dataset = ({ catalogs }) => {
             </div>
             <div className="flex flex-row">
               <img src="/csv.svg" alt="next" className="mr-5" />
-              {dataset.resources[0].format == "csv" ? (
+              {dataset.resources[0].format == 'csv' ? (
                 <div className="self-start">CSV</div>
               ) : (
-                ""
+                ''
               )}
-              {dataset.resources[0].format == "xml" ? (
+              {dataset.resources[0].format == 'xml' ? (
                 <div className="self-start">XML</div>
               ) : (
-                ""
+                ''
               )}
-              {dataset.resources[0].format == "json" ? (
+              {dataset.resources[0].format == 'json' ? (
                 <div className="self-start">JSON</div>
               ) : (
-                ""
+                ''
               )}
-              {dataset.resources[0].format == "xlsx" ? (
+              {dataset.resources[0].format == 'xlsx' ? (
                 <div className="self-start">EXCEL</div>
               ) : (
-                ""
+                ''
               )}
             </div>
           </div>
@@ -116,14 +117,15 @@ const Dataset = ({ catalogs }) => {
               <div>
                 <h2 className="text-portal4 font-lato">Source</h2>
                 {dataset.sources == undefined
-                  ? ""
+                  ? ''
                   : dataset.sources.map((source) => {
-                      return (
-                        <div className="font-karla">
-                          <a href={source.url}>{source.title}</a>
-                        </div>
-                      );
-                    })}
+                    return (
+                      // eslint-disable-next-line react/jsx-key
+                      <div className="font-karla">
+                        <a href={source.url}>{source.title}</a>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
             <div className="flex flex-row">
@@ -138,7 +140,7 @@ const Dataset = ({ catalogs }) => {
               <div>
                 <h2 className="text-portal4 font-lato">Country</h2>
                 <div className="font-karla">
-                  {dataset["geo"] == undefined ? "" : dataset.geo.country}
+                  {dataset['geo'] == undefined ? '' : dataset.geo.country}
                 </div>
               </div>
             </div>
@@ -147,7 +149,7 @@ const Dataset = ({ catalogs }) => {
               <div>
                 <h2 className="text-portal4 font-lato">Region</h2>
                 <div className="font-karla">
-                  {dataset["geo"] == undefined ? "" : dataset.geo.region}
+                  {dataset['geo'] == undefined ? '' : dataset.geo.region}
                 </div>
               </div>
             </div>
@@ -172,8 +174,8 @@ const Dataset = ({ catalogs }) => {
   }
 };
 
-export async function getStaticProps({ params }) {
-  let [catalogs, _] = await loadDataFromGithub();
+export async function getStaticProps() {
+  let [catalogs, ] = await loadDataFromGithub();
   return {
     props: { catalogs: catalogs },
     revalidate: 604800,
@@ -181,13 +183,13 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  let [catalogs, _] = await loadDataFromGithub();
+  let [catalogs, ] = await loadDataFromGithub();
 
   return {
     paths: Object.keys(catalogs).map((key) => {
       return {
         params: {
-          datasetid: key.replace(/\s/g, "%20"),
+          datasetid: key.replace(/\s/g, '%20'),
         },
       };
     }),
