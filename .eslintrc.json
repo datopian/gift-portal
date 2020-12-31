@@ -1,41 +1,35 @@
 {
-  "env": {
-    "browser": true,
-    "node": true,
-    "jest": true,
-    "es2021": true,
-    "cypress/globals": true
-  },
-  "extends": [
-    "eslint:recommended",
-    "prettier"
-  ],
-  "plugins": [
-    "import",
-    "prettier",
-    "react",
-    "cypress"
-  ],
-  "parserOptions": {
-    "ecmaVersion": 7,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true,
-      "modules": true
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "jest": true,
+        "cypress/globals": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "prettier",
+        "cypress"
+    ],
+    "rules": {
+      "react/jsx-uses-vars": "error",
+      "react/jsx-uses-react": "error",
+      "react/prop-types": "off",
+      "indent":["error", 2],
+      "semi":"error",
+      "quotes":["error", "single"]
     }
-  },
-  "rules": {
-    "react/jsx-uses-vars": "error",
-    "react/jsx-uses-react": "error",
-    "prettier/prettier": [
-      "error",
-      {
-        "trailingComma": "es5",
-        "tabWidth": 2,
-        "semi": false,
-        "singleQuote": true,
-        "printWidth": 79
-      }
-    ]
-  }
 }
