@@ -1,17 +1,17 @@
-import React from 'react';
-import { useTable } from 'react-table';
-import MaUTable from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import React from 'react'
+import { useTable } from 'react-table'
+import MaUTable from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
 
 
 const CustomTable = ({ columns, data }) => {
   const { getTableProps, headerGroups, rows, prepareRow } = useTable({
     columns,
     data,
-  });
+  })
 
   return (
     <div className="overflow-x-auto">
@@ -31,7 +31,7 @@ const CustomTable = ({ columns, data }) => {
         </TableHead>
         <TableBody>
           {rows.map((row) => {
-            prepareRow(row);
+            prepareRow(row)
             return (
               // eslint-disable-next-line react/jsx-key
               <TableRow {...row.getRowProps()}>
@@ -41,15 +41,15 @@ const CustomTable = ({ columns, data }) => {
                     <TableCell {...cell.getCellProps()}>
                       {cell.render('Cell')}
                     </TableCell>
-                  );
+                  )
                 })}
               </TableRow>
-            );
+            )
           })}
         </TableBody>
       </MaUTable>
     </div>
-  );
-};
+  )
+}
 
-export default CustomTable;
+export default CustomTable

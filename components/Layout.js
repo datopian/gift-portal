@@ -1,6 +1,6 @@
-import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import React from 'react'
+import Navbar from './Navbar'
+import Footer from './Footer'
 
 export default function Layout(props){
 
@@ -10,5 +10,5 @@ export default function Layout(props){
       {props.children}
       <Footer />
     </>
-  );
+  )
 }

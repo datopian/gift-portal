@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 
-import { Remarkable }  from 'remarkable';
-import { getAbout, getAllAbout } from '../../lib/about-utils';
-import markdownStyles from '../../styles/Markdown.module.css';
+import { Remarkable }  from 'remarkable'
+import { getAbout, getAllAbout } from '../../lib/about-utils'
+import markdownStyles from '../../styles/Markdown.module.css'
 
 function About({content, data, isEmpty}){
 
-  let md = new Remarkable();
+  let md = new Remarkable()
 
   if(isEmpty){
-    return <div>404</div>;
+    return <div>404</div>
   }else{
     return (
       <article className="max-w-2xl mx-auto mt-20">
@@ -26,34 +26,34 @@ function About({content, data, isEmpty}){
         </div>
       </article>
       
-    );
+    )
   }
   
 }
 
 export async function getStaticProps({ params }) {
-  const aboutProps = getAbout(params.about);
+  const aboutProps = getAbout(params.about)
 
   return {
     props : {content: aboutProps.content,
       data: aboutProps.data,
       isEmpty: aboutProps.isEmpty
     }
-  };
+  }
 }
 
 export async function getStaticPaths(){
-  const abouts = getAllAbout();
+  const abouts = getAllAbout()
   return {
     paths: abouts.map((about) => {
       return {
         params : {
           about : about.split('.md')[0]
         }
-      };
+      }
     }),
     fallback: false,
-  };
+  }
 }
 
-export default About;
+export default About

@@ -1,35 +1,35 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { loadDataFromGithub } from '../../db/db';
-import CustomTable from '../../components/table';
+import React from 'react'
+import { useRouter } from 'next/router'
+import { loadDataFromGithub } from '../../db/db'
+import CustomTable from '../../components/table'
 
 const Dataset = ({ catalogs }) => {
-  const router = useRouter();
-  const { datasetid } = router.query;
-  let dataset = catalogs[datasetid];
-  let sample = dataset['sample'];
-  let data = [];
-  let columns = [];
+  const router = useRouter()
+  const { datasetid } = router.query
+  let dataset = catalogs[datasetid]
+  let sample = dataset['sample']
+  let data = []
+  let columns = []
 
   if (sample.length != 0) {
     columns = sample[0].map((item) => {
       return {
         Header: item,
         accessor: item,
-      };
-    });
+      }
+    })
 
     sample.slice(1, 10).map((item) => {
-      let temp_obj = {};
+      let temp_obj = {}
       item.map((field, i) => {
-        temp_obj[sample[0][i]] = field;
-      });
-      data.push(temp_obj);
-    });
+        temp_obj[sample[0][i]] = field
+      })
+      data.push(temp_obj)
+    })
   }
 
   if (!datasetid) {
-    return 404;
+    return 404
   } else {
     return (
       <div className="pl-40 pr-40 pt-10 pb-10">
@@ -72,7 +72,7 @@ const Dataset = ({ catalogs }) => {
                     </a>
                   </div>
                 </>
-              );
+              )
             })}
           </div>
         </div>
@@ -124,7 +124,7 @@ const Dataset = ({ catalogs }) => {
                       <div className="font-karla">
                         <a href={source.url}>{source.title}</a>
                       </div>
-                    );
+                    )
                   })}
               </div>
             </div>
@@ -170,20 +170,20 @@ const Dataset = ({ catalogs }) => {
           </div>
         </div>
       </div>
-    );
+    )
   }
-};
+}
 
 export async function getStaticProps() {
-  let [catalogs, ] = await loadDataFromGithub();
+  let [catalogs, ] = await loadDataFromGithub()
   return {
     props: { catalogs: catalogs },
     revalidate: 604800,
-  };
+  }
 }
 
 export async function getStaticPaths() {
-  let [catalogs, ] = await loadDataFromGithub();
+  let [catalogs, ] = await loadDataFromGithub()
 
   return {
     paths: Object.keys(catalogs).map((key) => {
@@ -191,10 +191,10 @@ export async function getStaticPaths() {
         params: {
           datasetid: key.replace(/\s/g, '%20'),
         },
-      };
+      }
     }),
     fallback: false,
-  };
+  }
 }
 
-export default Dataset;
+export default Dataset

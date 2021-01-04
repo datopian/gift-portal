@@ -1,9 +1,9 @@
-import Github from '../../lib/Github';
-import axios from 'axios';
-import moxios from 'moxios';
-require('dotenv').config();
+import Github from '../../lib/Github'
+import axios from 'axios'
+import moxios from 'moxios'
+require('dotenv').config()
 
-const github = new Github();
+const github = new Github()
 
 describe('Github Library Tests', () => {
   const collaboratorsList = [
@@ -15,7 +15,7 @@ describe('Github Library Tests', () => {
         admin: false,
       },
     },
-  ];
+  ]
 
   const repoInfo = {
     name: 'repotest',
@@ -28,7 +28,7 @@ describe('Github Library Tests', () => {
       pull: true,
       push: false,
     },
-  };
+  }
 
   const repoListResponse = {
     data: {
@@ -49,10 +49,10 @@ describe('Github Library Tests', () => {
         },
       },
     },
-  };
+  }
 
   beforeEach(() => {
-    moxios.install(axios);
+    moxios.install(axios)
 
     moxios.stubRequest(
       'https://api.github.com/repos/datopian/repotest/collaborators',
@@ -60,39 +60,39 @@ describe('Github Library Tests', () => {
         status: 200,
         response: collaboratorsList,
       }
-    );
+    )
 
     moxios.stubRequest('https://api.github.com/repos/datopian/repotest', {
       status: 200,
       response: repoInfo,
-    });
-  });
+    })
+  })
 
   afterEach(() => {
-    moxios.uninstall(axios);
-  });
+    moxios.uninstall(axios)
+  })
 
   describe('APIs Request Methods', () => {
     it('should call Github REST API', async () => {
       moxios.stubRequest('https://api.github.com', {
         status: 200,
         response: {},
-      });
+      })
 
-      const response = await github.restRequest('');
-      expect(response).toEqual({});
-    });
+      const response = await github.restRequest('')
+      expect(response).toEqual({})
+    })
 
     it('should call Github GraphQL API', async () => {
       moxios.stubRequest('https://api.github.com/graphql', {
         status: 200,
         response: {},
-      });
+      })
 
-      const response = await github.graphQlRequest('');
-      expect(response).toEqual({});
-    });
-  });
+      const response = await github.graphQlRequest('')
+      expect(response).toEqual({})
+    })
+  })
 
   describe('Main Requests', () => {
     it('should return all repositories given an organization name',
@@ -100,9 +100,9 @@ describe('Github Library Tests', () => {
         moxios.stubRequest('https://api.github.com/graphql', {
           status: 200,
           response: repoListResponse,
-        });
+        })
 
-        const response = await github.getOrgRepos('datopian');
+        const response = await github.getOrgRepos('datopian')
         expect(response).toEqual({
           organization: 'datopian',
           repositories: [
@@ -113,41 +113,41 @@ describe('Github Library Tests', () => {
               name: 'repob',
             },
           ],
-        });
-      });
+        })
+      })
 
     it('should get a list of collaborators from given the repository name', 
       async () => {
         const collaborators = await github.getRepositoryCollaborators(
           'repotest',
           'datopian'
-        );
+        )
 
-        expect(collaborators).toEqual(collaboratorsList);
-      });
+        expect(collaborators).toEqual(collaboratorsList)
+      })
 
     it('should return the repository default info given the repository name', 
       async () => {
         const response = await github.getRepositoryInformation(
           'repotest',
           'datopian'
-        );
+        )
 
-        expect(response).toEqual(repoInfo);
-      });
-  });
+        expect(response).toEqual(repoInfo)
+      })
+  })
 
   describe('Formatters', () => {
     it('should parser dataset scope given the repository and organization', 
       async () => {
-        const scopes = await github.getScopes('repotest', 'datopian');
+        const scopes = await github.getScopes('repotest', 'datopian')
 
         expect(scopes).toEqual({
           dataset: 'repotest',
           readers: ['PUBLIC', 'LOGGED_IN', 'test-user'],
           editors: ['test-user'],
           admins: [],
-        });
-      });
-  });
-});
+        })
+      })
+  })
+})

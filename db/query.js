@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client'
 
 export const getRepositoriesQuery = gql`
   query RepoFiles($owner: String!, $name: String!) {
@@ -26,4 +26,4 @@ export const getRepositoriesQuery = gql`
       }
     }
   }
-`;
+`

@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from 'next/link';
+import React from 'react'
+import Link from 'next/link'
 /**
  * Create card for each datasets.
  * e.g
@@ -16,7 +16,7 @@ import Link from 'next/link';
  * @return JSX
  */
 export default function Card({ props }) {
-  let dataset = props;
+  let dataset = props
   return (
     <div
       className={
@@ -43,7 +43,7 @@ export default function Card({ props }) {
               <div key={index} className="border-2 text-center rounded-lg">
                 {value}
               </div>
-            );
+            )
           })
         ) : (
           <>
@@ -100,5 +100,5 @@ export default function Card({ props }) {
         <img src="/share.svg" alt="next" />
       </div>
     </div>
-  );
+  )
 }

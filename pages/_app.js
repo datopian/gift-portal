@@ -1,7 +1,7 @@
-import React from 'react';
-import '../styles/tailwind.css';
-import Layout from '../components/Layout';
-import { Provider } from 'next-auth/client';
+import React from 'react'
+import '../styles/tailwind.css'
+import Layout from '../components/Layout'
+import { Provider } from 'next-auth/client'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
       </Layout>
     </Provider>
     
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

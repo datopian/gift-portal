@@ -1,5 +1,5 @@
-import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
+import NextAuth from 'next-auth'
+import Providers from 'next-auth/providers'
 
 const options = {
   providers: [
@@ -16,8 +16,8 @@ const options = {
     redirect: async () => Promise.resolve('/login'),
   },
   site: process.env.NEXTAUTH_URL,
-};
+}
 
 export default function Api(req, res) {
-  return NextAuth(req, res, options);
+  return NextAuth(req, res, options)
 }

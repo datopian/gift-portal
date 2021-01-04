@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 export default function Navbar() {
   return (
     <div className="flex  h-163 w-1440 justify-between">
@@ -78,5 +78,5 @@ export default function Navbar() {
         </div>
       </div>
     </div>
-  );
+  )
 }

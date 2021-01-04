@@ -1,8 +1,8 @@
-import React from 'react';
-import { providers, signIn, signOut, useSession } from 'next-auth/client';
+import React from 'react'
+import { providers, signIn, signOut, useSession } from 'next-auth/client'
 
 export default function SignIn({ providers }) {
-  const [session, ] = useSession();
+  const [session, ] = useSession()
   return (
     <>
       {!session &&
@@ -56,11 +56,11 @@ export default function SignIn({ providers }) {
         </>
       )}
     </>
-  );
+  )
 }
 
 SignIn.getInitialProps = async (context) => {
   return {
     providers: await providers(context),
-  };
-};
+  }
+}
