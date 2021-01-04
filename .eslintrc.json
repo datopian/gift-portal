@@ -30,6 +30,9 @@
       "react/prop-types": "off",
       "indent":["error", 2],
       "semi":[2, "never"],
-      "quotes":["error", "single"]
+      "quotes":["error", "single"],
+      "max-len":["error", {
+          "code": 79
+      }]
     }
 }

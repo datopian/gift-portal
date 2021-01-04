@@ -19,7 +19,8 @@ const client = new GraphQLClient(GithubApiUrl, {
 /**
  * Returns a list of data packages descriptors found in db directory
  * Descriptors are retrieved using frictionless.js.
- * @param {Array} directories an array of directories containing datapacka.json's
+ * @param {Array} directories array of directories 
+ * containing datapackage.json's
  * @returns {Array} List of data descriptors
  */
 export const getCatalog = async (directories) => {
@@ -31,7 +32,8 @@ export const getCatalog = async (directories) => {
     let file = await dataset.resources[0]
     await file.addSchema()
     let schema = file.descriptor.schema
-    let sample_stream = await file.rows({ size: file.size }) //TODO: Might be a bottleneck later
+    let sample_stream = await file.rows({ size: file.size }) 
+    //TODO: Might be a bottleneck later
     let sample = await toArray(sample_stream)
     let catalog = {}
     catalog[dataset._descriptor.title] = dataset._descriptor
@@ -106,7 +108,11 @@ const processDataFromRepository = async (repo) => {
       name: '',
       author: '',
       geo: '',
-      error: true, //parsing error in datapackage.json. Use to display in homepage and dataset page
+      /*
+      parsing error in datapackage.json. 
+      Use to display in homepage and dataset page 
+      **/
+      error: true, 
     }
   }
 

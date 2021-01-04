@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 
 // eslint-disable-next-line no-unused-vars
 const purgecss = [
