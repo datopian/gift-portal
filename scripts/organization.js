@@ -17,7 +17,7 @@ async function createDataDirIfNotExists(){
     const dataPath = `${rootPath}/data`
     const isDirExists = await fs.existsSync(dataPath)
     if(!isDirExists) {
-      console.log(`Creating data folder @ dataPath \n`)
+      console.log('Creating data folder @ dataPath \n')
       await fs.mkdirSync(dataPath)
     }else {
       console.log(`Using Already existing path: ${chalk.yellow(dataPath)} \n`)
@@ -35,9 +35,16 @@ async function createDataDirIfNotExists(){
 async function createDataAsJson(data){
   try{
     const rootPath = path.resolve(process.cwd())
-    console.log(`Organization Datasets stored at: ${chalk.yellow(rootPath,'/data/organization.json')} \n`)
-    fs.writeFileSync(`${rootPath}/data/organization.json`, JSON.stringify(data, null, 2), { flag: 'w'})
-    console.log(`---------------------------------------------------------------------------- \n`)
+    console.log(
+      `Organization Datasets stored at: 
+      ${chalk.yellow(rootPath,'/data/organization.json')} \n`
+    )
+    fs.writeFileSync(
+      `${rootPath}/data/organization.json`, 
+      JSON.stringify(data, null, 2), 
+      { flag: 'w'}
+    )
+    console.log('--------------------------------------------------------- \n')
   }
   catch(error){
     throw new Error(`Error on Create Dataset files: ${error.message}`)
@@ -78,14 +85,14 @@ async function getOrganizationScopes(){
 export default function run(){
   console.log()
   console.log(`${chalk.green('Organization datasets scripts \n')}`)
-  console.log(`---------------------------------------------------------------------------- \n`)
+  console.log('--------------------------------------------------------- \n')
   createDataDirIfNotExists()
-  .then(getOrganizationScopes)
-  .then(createDataAsJson)
-  .catch(error => {
-    spinner.stop()
-    console.log(error)
-    process.exit(1)
-  })
+    .then(getOrganizationScopes)
+    .then(createDataAsJson)
+    .catch(error => {
+      spinner.stop()
+      console.log(error)
+      process.exit(1)
+    })
 }
 
