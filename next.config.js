@@ -6,7 +6,7 @@ module.exports = {
         test: /\.(js|ts)x?$/,
       },
       use: ['@svgr/webpack'],
-    });
+    })
 
     if (!isServer) {
       config.node = {
@@ -14,6 +14,6 @@ module.exports = {
       }
     }
 
-    return config;
+    return config
   },
-};
+}

@@ -1,7 +1,9 @@
-import { useRouter } from 'next/router'
-import { Remarkable }  from 'remarkable';
-import { getAbout, getAllAbout } from '../../lib/about-utils';
-import markdownStyles from '../../styles/Markdown.module.css';
+/* eslint-disable max-len */
+import React from 'react'
+
+import { Remarkable }  from 'remarkable'
+import { getAbout, getAllAbout } from '../../lib/about-utils'
+import markdownStyles from '../../styles/Markdown.module.css'
 
 function About({content, data, isEmpty}){
 
@@ -20,12 +22,12 @@ function About({content, data, isEmpty}){
         
         <div className='mt-10'>
           <div 
-           className={markdownStyles['markdown']}
-           dangerouslySetInnerHTML={{ __html: md.render(content) }}/>
+            className={markdownStyles['markdown']}
+            dangerouslySetInnerHTML={{ __html: md.render(content) }}/>
         </div>
       </article>
       
-    );
+    )
   }
   
 }
@@ -42,7 +44,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths(){
-  const abouts = getAllAbout();
+  const abouts = getAllAbout()
   return {
     paths: abouts.map((about) => {
       return {

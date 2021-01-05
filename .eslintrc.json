@@ -1,0 +1,38 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "jest": true,
+        "cypress/globals": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "prettier",
+        "cypress"
+    ],
+    "rules": {
+      "react/jsx-uses-vars": "error",
+      "react/jsx-uses-react": "error",
+      "react/prop-types": "off",
+      "indent":["error", 2],
+      "semi":[2, "never"],
+      "quotes":["error", "single"],
+      "max-len":["error", {
+          "code": 79
+      }]
+    }
+}

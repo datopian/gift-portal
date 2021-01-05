@@ -1,5 +1,5 @@
-import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
+import NextAuth from 'next-auth'
+import Providers from 'next-auth/providers'
 
 const options = {
   providers: [
@@ -7,19 +7,17 @@ const options = {
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       state: false,
-    })
+    }),
   ],
-  pages : {
-    signIn: "/login",
+  pages: {
+    signIn: '/login',
   },
   callbacks: {
-    redirect: async (url, _) => {
-      return Promise.resolve('/login');
-    }
+    redirect: async () => Promise.resolve('/login'),
   },
-  site: process.env.NEXTAUTH_URL
+  site: process.env.NEXTAUTH_URL,
 }
 
 export default function Api(req, res) {
-  return NextAuth(req, res, options);
+  return NextAuth(req, res, options)
 }
