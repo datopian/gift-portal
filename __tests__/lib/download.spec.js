@@ -18,10 +18,17 @@ const invalidResource = [{
   editors: ['userC'],
   admins: ['userC']
 }]
+
+const resourceId = 
+      '2879e2bdf2b398ee251858c2095053b0f26687cef7ddb9013f050d44437dac92459318'
+
+const resource = 
+      '2879e2bdf2b398ee251858c2095053b0f26687cef7ddb9013f050d44437dac92'
+      
+const size = 459318
+
 describe('Download functions', ()=> {
   describe('Permission tests', () => {
-
-
     it('should return true if the user has permission', ()=> {
       const mock = jest.spyOn(fs, 'readFileSync')
       mock.mockReturnValue(validResource)
@@ -35,5 +42,14 @@ describe('Download functions', ()=> {
       const response = download.checkDatasetPermission('resourceB', 'userA')
       expect(response).toEqual(false)
     })
+  })
+
+  describe('Parser method', () => {
+    it('should return the id and size given a resourceId', ()=> {
+
+      const response = download.parseResourceId(resourceId)
+      expect(response).toEqual({resource, size})
+    })
+
   })
 })
