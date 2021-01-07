@@ -8,6 +8,10 @@ module.exports = {
         'karla': '"Karla", sans-serif',
         'lato': '"Lato", sans-serif'
       },
+      lineHeight: {
+        'extra-loose': '2.5',
+        '12': '3.5rem',
+      }
     },
     backgroundColor: theme => ({
       ...theme('colors'),

@@ -2,15 +2,15 @@
 import React from 'react'
 export default function Navbar() {
   return (
-    <div className="flex  h-163 w-1440 justify-between">
-      <div className="flex flex-row justify-center items-center pt-2 pb-2 w-1/6">
+    <div className="flex h-163 w-1440 justify-between bg-portal1">
+      <div className="flex flex-row justify-center items-center pt-2 pl-5 pr-5 pb-2 w-1/6 ml-1 bg-portal6 max-w-max">
         <img src="/gift.svg" alt="next" />
       </div>
       <div className="flex flex-col justify-center items-center w-1/2 bg-portal1 space-y-6">
-        <h2 className="font-lato text-white font-bold text-2xl leading-9 h-37 tracking-wide">
+        <h2 className="font-lato text-portal5 text-5xl leading-12 h-37 tracking-normal">
           Data Portal
         </h2>
-        <div className="bg-portal6 h-24 w-full bg-opacity-75"></div>
+        <div className="bg-portal6 w-full bg-opacity-75 h-24"></div>
       </div>
       <div className="flex flex-col justify-center w-1/6 bg-portal2 items-center pt-3 pb-3 space-y-6 hover:bg-portal8">
         {/* <div className='border-2 border-blue-500 mb-10 pl-30'><img src='/search.svg' alt='next' /></div> */}
@@ -31,13 +31,13 @@ export default function Navbar() {
             fill="#4D5858"
           />
         </svg>
-        <div className="text-center bg-portal6 w-full bg-opacity-75">
+        <div className="text-center bg-portal6 w-full bg-opacity-75 h-24">
           <h6>search datasets</h6>{' '}
         </div>
       </div>
       <div className="flex flex-col justify-center items-center w-1/6 bg-portal3 pt-3 pb-3 space-y-6 hover:portal9">
         <img src="/website.svg" alt="next" width="37" height="37" />
-        <div className="text-center bg-portal6 w-full bg-opacity-75">
+        <div className="text-center bg-portal6 w-full bg-opacity-75 h-24">
           <h6>GIFT&apos;s website</h6>{' '}
         </div>
       </div>
@@ -55,11 +55,11 @@ export default function Navbar() {
             stroke="#4D5858"
           />
         </svg>
-        <div className="text-center bg-portal6 w-full bg-opacity-75">
+        <div className="text-center bg-portal6 w-full bg-opacity-75 h-24">
           <h6>Contact us</h6>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center  w-1/6 bg-portal5 -pt-3 space-y-6 hover:portal11">
+      <div className="flex flex-col justify-center items-center  w-1/6 bg-portal5 -pt-3 space-y-6 hover:portal11 mr-1">
         <svg
           width="37"
           height="37"
@@ -74,7 +74,7 @@ export default function Navbar() {
           />
         </svg>
 
-        <div className="text-center bg-portal6 w-full bg-opacity-75">
+        <div className="text-center bg-portal6 w-full bg-opacity-75 h-24">
           <h6>About us </h6>
         </div>
       </div>
