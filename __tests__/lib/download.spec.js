@@ -88,5 +88,15 @@ describe('Download functions', ()=> {
 
     })
 
+    it('should return the resource id and size', async ()=> {
+      const metadataMock = jest.spyOn(download, 'getDatasetMetadata')
+      metadataMock.mockReturnValue(resourceMetadata)
+      
+      const response = await download
+        .getResourceMetadata('repotest', 'datopian')
+        
+      expect(response).toEqual(resourceMetadata)
+    })
+
   })
 })
