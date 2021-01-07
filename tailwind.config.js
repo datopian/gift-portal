@@ -33,6 +33,7 @@ module.exports = {
       'portal2': '#FF6B00',
       'portal3': '#C2A6E1',
       'portal4': '#18988B',
+      'portal5': '#FFFFFFDE',
     }),
     width :{
       '379.25px': '379.25px',
