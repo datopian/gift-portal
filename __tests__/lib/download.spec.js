@@ -31,6 +31,13 @@ const resourceMetadata = `version https://git-lfs.github.com/spec/v1
 oid sha256:2879e2bdf2b398ee251858c2095053b0f26687cef7ddb9013f050d44437dac92
 size 459318`
 
+const contentResponse = {
+  content: Buffer.from(`[lfs]
+  url = https://lfsservertest.com/datopian/repotest/`).toString('base64')
+}
+
+const lfsServer = 'https://lfsservertest.com'
+
 describe('Download functions', ()=> {
   describe('Permission tests', () => {
     it('should return true if the user has permission', ()=> {
@@ -50,15 +57,21 @@ describe('Download functions', ()=> {
 
   describe('Parser method', () => {
     it('should return the id and size given a resourceId', ()=> {
-
       const response = download.parseResourceId(resourceId)
+
       expect(response).toEqual({resource, size})
     })
 
     it('should return an sha256id and size from file', ()=> {
-
       const response = download.parserResourceFile(resourceMetadata)
+      
       expect(response).toEqual({oid:resource, size})
+    })
+
+    it('should return an url given an base64 string',  ()=> {
+      
+      const response = download.parserLfsServerInfo(contentResponse.content)
+      expect(response).toEqual(lfsServer)
     })
 
   })
