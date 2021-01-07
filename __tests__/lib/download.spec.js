@@ -1,5 +1,6 @@
 import fs from 'fs'
 import Download from '../../lib/Download'
+import Github from '../../lib/Github'
 
 jest.mock('giftless-client')
 
@@ -72,6 +73,19 @@ describe('Download functions', ()=> {
       
       const response = download.parserLfsServerInfo(contentResponse.content)
       expect(response).toEqual(lfsServer)
+    })
+  })
+
+  describe('Download resource methods', ()=> {
+ 
+    it('should return an lfs server content', async ()=> {
+      const restMock = jest.fn()
+      Github.prototype.restRequest = restMock
+      restMock.mockReturnValue(Promise.resolve(contentResponse))
+      const response = await download.getLfsServer('repotest', 'datopian')
+
+      expect(response).toEqual(contentResponse)
+
     })
 
   })
