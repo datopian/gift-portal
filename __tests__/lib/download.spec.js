@@ -1,4 +1,5 @@
 import fs from 'fs'
+import { Client } from 'giftless-client'
 import Download from '../../lib/Download'
 import Github from '../../lib/Github'
 
@@ -38,6 +39,21 @@ const contentResponse = {
 }
 
 const lfsServer = 'https://lfsservertest.com'
+
+const resourceDownloadInfo = {
+  data: {
+    transfer: 'basic',
+    objects: [{
+      oid: resource, 
+      size,
+      actions: {
+        download: {
+          href: 'http://lfsserver.com/datopian/repotest/download.csv'
+        }
+      }
+    }
+    ]}
+}
 
 describe('Download functions', ()=> {
   describe('Permission tests', () => {
@@ -96,6 +112,17 @@ describe('Download functions', ()=> {
         .getResourceMetadata('repotest', 'datopian')
         
       expect(response).toEqual(resourceMetadata)
+    })
+
+    it('should return an url given a resource information',async ()=>{
+      const batchMock = jest.fn()
+      Client.prototype.batch = batchMock
+
+      batchMock.mockReturnValue(Promise.resolve(resourceDownloadInfo))  
+      const response = await download
+        .getResourceDownloadUrl('repotest', resourceId, lfsServer)
+
+      expect(response).toEqual(resourceDownloadInfo.data)
     })
 
   })
