@@ -7,7 +7,6 @@ export default async function handler(req,res){
    * TODO 
    * Strategy to get username to check access
    */
-
     const { username }= req.headers
     const { id, oid } = req.query
     if(!await download.checkDatasetPermission(id, username)){
@@ -15,6 +14,7 @@ export default async function handler(req,res){
     }
     const resourceUrl = await download.getUrl(id, oid, username)
     res.send(resourceUrl)
+    
     
   }catch(error){
     res.status(400).send('Error on Retrieve Resource')
