@@ -13,7 +13,7 @@ export default async function handler(req,res){
       res.status(401).send('Insufficient Permissions')
     }
     const resourceUrl = await download.getUrl(id, oid, username)
-    res.send(resourceUrl)
+    res.redirect(resourceUrl)
     
     
   }catch(error){
