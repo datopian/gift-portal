@@ -74,7 +74,7 @@ describe('Download functions', ()=> {
 
   describe('Parser method', () => {
     it('should return the id and size given a resourceId', ()=> {
-      const response = download.parseResourceId(resourceId)
+      const response = download._parseResourceId(resourceId)
 
       expect(response).toEqual({resource, size})
     })
@@ -98,14 +98,14 @@ describe('Download functions', ()=> {
       const restMock = jest.fn()
       Github.prototype.restRequest = restMock
       restMock.mockReturnValue(Promise.resolve(contentResponse))
-      const response = await download.getLfsServer('repotest', 'datopian')
+      const response = await download._getLfsServer('repotest', 'datopian')
 
       expect(response).toEqual(contentResponse)
 
     })
 
     it('should return the resource id and size', async ()=> {
-      const metadataMock = jest.spyOn(download, 'getDatasetMetadata')
+      const metadataMock = jest.spyOn(download, '_getDatasetMetadata')
       metadataMock.mockReturnValue(resourceMetadata)
       
       const response = await download
