@@ -23,24 +23,24 @@ export default function Home({ catalogs }) {
   }
 
   return (
-    <div className="pl-40 pr-40 pt-10 pb-10">
-      <h3 className="font-lato text-xl text-black">DataSet</h3>
+    <div className="pl-20 pr-20 pt-10 pb-10">
+      <h2 className="font-lato text-4xl text-black">Datasets</h2>
       <div className="flex flex-row justify-between mt-10">
         <Search submbitEvent={handlSearch} />
-        <div className="flex justify-between items-center mr-35 pr-9">
-          <h3 className="mr-4">Sort by: </h3>
+        <div className="flex justify-between items-center">
+          <h3 className="mr-4">Sort by:</h3>
           <select
             id="cars"
-            className="border-2 focus:outline-none bg-white font-karla h-72px w-545px font-karla rounded-md"
+            className="border-2 focus:outline-none bg-white font-karla font-karla rounded-md p-4"
           >
-            <option value="AZ">Alphabetical Ascending (A to Z) </option>
-            <option value="ZA">Alphabetical Descending (Z to A) </option>
+            <option value="AZ">Alphabetical Ascending (A to Z)</option>
+            <option value="ZA">Alphabetical Descending (Z to A)</option>
           </select>
         </div>
       </div>
-      <div className="mt-10">
-        <div className="mb-10">showing {dataState.length} of {dataState.length} dataset</div>
-        <div className="grid grid-cols-3 gap-x-40 gap-y-10">
+      <div className="mt-12">
+        <div className="mb-10">Showing {dataState.length} of {dataState.length} datasets</div>
+        <div className="grid grid-cols-1 gap-x-20 gap-y-10 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
           {dataState.map((value, i) => {
             return <Card props={value} key={i} />
           })}
