@@ -21,7 +21,7 @@ export default function Card({ props }) {
     <div
       className={
         // eslint-disable-next-line max-len
-        'flex flex-col rounded-lg border-2 w-379.25px h-607.81px shadow-md justify-between p-5 mb-4'
+        'flex flex-col rounded-md border-2 h-607.81px shadow-md justify-between p-5 mb-4'
       }
     >
       <div className="flex flex-row justify-between items-center">
