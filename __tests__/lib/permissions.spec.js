@@ -1,6 +1,21 @@
 import Permissions from '../../lib/Permissions'
+import fs from 'fs'
+
 
 const permissions = new Permissions()
+
+const resourceData = [{
+  dataset: 'repoA',
+  readers: ['userA', 'userB'],
+  editors: ['userA'],
+  admins: ['userA']
+}
+,{
+  dataset: 'repoB',
+  readers: ['userB', 'userC'],
+  editors: ['userC'],
+  admins: ['userC']
+}]
 
 describe('Authenticate Tests', () => {
   it('should thow an error if requested scope is invalid', () => {
@@ -45,5 +60,25 @@ describe('Authenticate Tests', () => {
       'datopian'
     )
     expect(responseToken).toEqual(token)
+  })
+
+  describe('Validate user permissions', ()=> {
+
+    it('should return true if user has permission', ()=> {
+      const mock = jest.spyOn(fs, 'readFileSync')
+      mock.mockReturnValue(resourceData)
+      const response = permissions.userHasPermission('userA', 'repoA', 'write')
+
+      expect(response).toEqual(true)
+    })
+
+    it('should return false if user has no permission', ()=> {
+      const mock = jest.spyOn(fs, 'readFileSync')
+      mock.mockReturnValue(resourceData)
+      const response = permissions.userHasPermission('userA', 'repoB', 'write')
+
+      expect(response).toEqual(false)
+    })
+
   })
 })
