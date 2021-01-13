@@ -1,46 +1,61 @@
 import Metadata from '../../lib/Metadata'
-import Github from '../../lib/Github'
+import * as metastore from 'metastore-lib-js'
 
+jest.mock('metastore-lib-js')
+  
 const metadata = new Metadata()
 
 
-const existsFile = {
-  name: 'test.csv',
-  path: 'test.csv',
-  sha: 'f56ce0029545d992b701b82d92da23b5b64771a8',
-  type: 'file',
-  content: 'e21lc3NhZ2U6ICdvayd9\n',
-  encoding: 'base64',
-}
-
-const notExistsFile = {
-  message: 'Not Found',
-  documentation_url: 
-  'https://docs.github.com/rest/reference/repos#get-repository-content'
-}
 
 describe('Metadata Tests', ()=> {
-  it('shoud return a sha oid if some file aready exists', async ()=> {
-   
-    const restMock = jest.fn()
-    Github.prototype.restRequest = restMock
-    restMock.mockReturnValue(Promise.resolve(existsFile))
+  it('create metadata on POST method',async  ()=> {
+    const user = {
+      name: 'John Doe',
+      email: 'johndoe@datopian.com',
+      access_token: '14ca1111c33ef555ed3d33f1225e33dee7ab9999'
+    }
+    const data = { 
+      name: 'Test Financial File',
+      resources: [
+        { path: 'data/myresource.csv',
+          type: 'text/csv' }
+      ],
+      description: 'A financial dataset',
+    }
 
-    const response = await metadata
-      .checkMetadataExists('repotest','test.csv', 'datopian')
+    const responseMetadata = {
+      objectId: 'file.csv',
+      revisionId: 'd9cc87d1-7f8d-42f3-95c2-278433b9a909',
+      createdAt: '2021-01-13T14:59:54.203Z',
+      author: {
+        name: 'thadeu cotts',
+        email: 'thadeu.cotts@datopian.com'
+      },
+      description: 'file test save api',
+      metadata: {
+        name: 'file csv test',
+        resources: {
+          file: 'file.csv'
+        },
+        revision: 0,
+        revisionId: 'd9cc87d1-7f8d-42f3-95c2-278433b9a909'
+      }
+    }
+    const description = 'Financial file'
     
-    expect(response).toEqual(existsFile.sha)
+    const createSpy = jest.spyOn(metastore, 'createMetastore')
+    
+    createSpy.mockReturnValue({create: () => responseMetadata})
+  
+    const response = await  metadata
+      .createMetadata('file.csv', user, data, description)
+
+    expect(response).toEqual(responseMetadata)
   })
 
-  it('should return undefined if the file doen`t exists', async ()=> {
+  it('should throw an error if the user doesn`t have access to create',()=> {
 
-    const restMock = jest.fn()
-    Github.prototype.restRequest = restMock
-    restMock.mockReturnValue(Promise.resolve(notExistsFile))
 
-    const response = await metadata
-      .checkMetadataExists('repotest','test.csv', 'datopian')
-    
-    expect(response).toEqual(undefined)
   })
+
 })
