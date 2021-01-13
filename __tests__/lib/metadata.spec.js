@@ -1,10 +1,10 @@
 import Metadata from '../../lib/Metadata'
 import * as metastore from 'metastore-lib-js'
+import Permissions from '../../lib/Permissions'
 
 jest.mock('metastore-lib-js')
   
 const metadata = new Metadata()
-
 
 
 describe('Metadata Tests', ()=> {
@@ -48,6 +48,10 @@ describe('Metadata Tests', ()=> {
      
       const createSpy = jest.spyOn(metastore, 'createMetastore') 
       createSpy.mockReturnValue({create: () => responseMetadata})
+
+      const trueMock = jest.fn()
+      Permissions.prototype.userHasPermission = trueMock
+      trueMock.mockReturnValue(Promise.resolve(true))
     
       const response = await  metadata
         .createMetadata('file.csv', user, data, description)
