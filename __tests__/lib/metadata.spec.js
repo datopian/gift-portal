@@ -8,7 +8,9 @@ const metadata = new Metadata()
 
 
 describe('Metadata Tests', ()=> {
-  it('create metadata on POST method',async  ()=> {
+
+  describe('Create metadata', ()=> {
+
     const user = {
       name: 'John Doe',
       email: 'johndoe@datopian.com',
@@ -22,7 +24,7 @@ describe('Metadata Tests', ()=> {
       ],
       description: 'A financial dataset',
     }
-
+  
     const responseMetadata = {
       objectId: 'file.csv',
       revisionId: 'd9cc87d1-7f8d-42f3-95c2-278433b9a909',
@@ -42,20 +44,21 @@ describe('Metadata Tests', ()=> {
       }
     }
     const description = 'Financial file'
+    it('create metadata on POST method',async  ()=> {
+     
+      const createSpy = jest.spyOn(metastore, 'createMetastore') 
+      createSpy.mockReturnValue({create: () => responseMetadata})
     
-    const createSpy = jest.spyOn(metastore, 'createMetastore')
-    
-    createSpy.mockReturnValue({create: () => responseMetadata})
+      const response = await  metadata
+        .createMetadata('file.csv', user, data, description)
   
-    const response = await  metadata
-      .createMetadata('file.csv', user, data, description)
+      expect(createSpy).toHaveBeenCalledTimes(1)
+      expect(response).toEqual(responseMetadata)
+    })
+  
+    it('should return an error if user has no permission on dataset', ()=> {
 
-    expect(response).toEqual(responseMetadata)
-  })
-
-  it('should throw an error if the user doesn`t have access to create',()=> {
-
-
+    })
   })
 
 })
