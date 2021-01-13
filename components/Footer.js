@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div className="flex flex-col h-200px justify-center w-1440 items-center content-between bg-portal7 text-portal5 font-lato mr-0 ml-0">
+    <div className="flex flex-col h-200px justify-center w-1440 items-center content-between bg-portal7 text-portal5 font-lato mr-0 ml-0 p-8 text-center">
       <div className="mb-10">Get in touch</div>
       <div className="flex flex-row justify-between items-center mb-10">
         {/* <img src='/ig.svg' alt='next'  className='mr-12 fill-current text-green-600'/> */}
