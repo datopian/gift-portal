@@ -38,6 +38,7 @@
     "graphql-request": "^3.4.0",
     "gray-matter": "^4.0.2",
     "jsonwebtoken": "^8.5.1",
+    "metastore-lib-js": "https://github.com/datopian/metastore-lib-js.git",
     "next": "10.0.3",
     "next-auth": "^3.1.0",
     "ora": "^5.2.0",
