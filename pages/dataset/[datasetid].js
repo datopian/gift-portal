@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import React from 'react'
 import { useRouter } from 'next/router'
 import { loadDataFromGithub } from '../../db/db'
@@ -77,50 +79,50 @@ const Dataset = ({ catalogs }) => {
           </div>
         </div>
         <h6 className="mb-10 font-lato font-bold">Metadata</h6>
-        <div className="flex flex-row ml-4 font-karla">
-          <div className="mr-20 ">
-            <div className="flex flex-row mb-20">
+        <div className="grid grid-cols-1 ml-4 font-karla xl:max-w-screen-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3">
+            <div className="flex flex-row mb-10 lg:mb-20">
               <img src="/calender.svg" alt="next" className="mr-4" />
-              <span>Created {dataset.createdAt}</span>
+              <span className="self-center">Created {dataset.createdAt}</span>
             </div>
-            <div className="flex flex-row mb-20">
+            <div className="flex flex-row mb-10 lg:mb-20">
               <img src="/check.svg" alt="next" className="mr-4" />
-              <span>Updated {dataset.updatedAt}</span>
+              <span className="self-center">Updated {dataset.updatedAt}</span>
             </div>
-            <div className="flex flex-row">
-              <img src="/csv.svg" alt="next" className="mr-5" />
+            <div className="flex flex-row mb-10 mb-20">
+              <img src="/csv.svg" width="25" alt="next" className="mr-4" />
               {dataset.resources[0].format == 'csv' ? (
-                <div className="self-start">CSV</div>
+                <div className="self-center">CSV</div>
               ) : (
                 ''
               )}
               {dataset.resources[0].format == 'xml' ? (
-                <div className="self-start">XML</div>
+                <div className="self-center">XML</div>
               ) : (
                 ''
               )}
               {dataset.resources[0].format == 'json' ? (
-                <div className="self-start">JSON</div>
+                <div className="self-center">JSON</div>
               ) : (
                 ''
               )}
               {dataset.resources[0].format == 'xlsx' ? (
-                <div className="self-start">EXCEL</div>
+                <div className="self-center">EXCEL</div>
               ) : (
                 ''
               )}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-20 gap-y-10 font-roboto">
+          <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
             <div className="flex flex-row">
-              <img src="/profile.svg" className="mr-4" />
+              <img src="/profile.svg" width="25" className="mr-4" />
               <div>
                 <h2 className="text-portal4 font-lato">Source</h2>
                 {dataset.sources == undefined
                   ? ''
                   : dataset.sources.map((source) => {
                     return (
-                      // eslint-disable-next-line react/jsx-key
+                    // eslint-disable-next-line react/jsx-key
                       <div className="font-karla">
                         <a href={source.url}>{source.title}</a>
                       </div>
@@ -129,14 +131,14 @@ const Dataset = ({ catalogs }) => {
               </div>
             </div>
             <div className="flex flex-row">
-              <img src="/profile.svg" className="mr-4" />
+              <img src="/profile.svg" width="25" className="mr-4" />
               <div>
                 <h2 className="text-portal4 font-lato">Author</h2>
                 <div className="font-karla">{dataset.author}</div>
               </div>
             </div>
             <div className="flex flex-row">
-              <img src="/metas.svg" className="mr-4" />
+              <img src="/metas.svg" width="25" className="mr-4" />
               <div>
                 <h2 className="text-portal4 font-lato">Country</h2>
                 <div className="font-karla">
@@ -145,7 +147,7 @@ const Dataset = ({ catalogs }) => {
               </div>
             </div>
             <div className="flex flex-row">
-              <img src="/metas.svg" className="mr-4" />
+              <img src="/metas.svg" width="25" className="mr-4" />
               <div>
                 <h2 className="text-portal4 font-lato">Region</h2>
                 <div className="font-karla">
@@ -154,17 +156,17 @@ const Dataset = ({ catalogs }) => {
               </div>
             </div>
             <div className="flex flex-row">
-              <img src="/plus.svg" className="mr-4" />
+              <img src="/plus.svg" width="25" className="mr-4" />
               <div>
                 <h2 className="text-portal4 font-lato">Language</h2>
                 <div className="font-karla">{}</div>
               </div>
             </div>
             <div className="flex flex-row">
-              <img src="/plus.svg" className="mr-4" />
+              <img src="/plus.svg" width="25" className="mr-4" />
               <div>
                 <h2 className="text-portal4 font-lato">Metadata 6</h2>
-                <div className="font-karla">description of metadata 6</div>
+                <div className="font-karla">Description of metadata 6</div>
               </div>
             </div>
           </div>
