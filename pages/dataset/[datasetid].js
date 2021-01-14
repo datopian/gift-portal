@@ -34,7 +34,7 @@ const Dataset = ({ catalogs }) => {
     return 404
   } else {
     return (
-      <div className="pl-40 pr-40 pt-10 pb-10">
+      <div className="p-2 md:p-8">
         <div className="flex flex-row mb-10">
           <img src="/argentina.svg" alt="next" className="mr-10" />
           <div className="pt-10">
@@ -177,7 +177,7 @@ const Dataset = ({ catalogs }) => {
 }
 
 export async function getStaticProps() {
-  let [catalogs, ] = await loadDataFromGithub()
+  let [catalogs] = await loadDataFromGithub()
   return {
     props: { catalogs: catalogs },
     revalidate: 604800,
@@ -185,7 +185,7 @@ export async function getStaticProps() {
 }
 
 export async function getStaticPaths() {
-  let [catalogs, ] = await loadDataFromGithub()
+  let [catalogs] = await loadDataFromGithub()
 
   return {
     paths: Object.keys(catalogs).map((key) => {
