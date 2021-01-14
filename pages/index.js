@@ -13,10 +13,10 @@ export default function Home({ catalogs }) {
     keys: ['title', 'geo.country', 'description'],
   })
 
-  const handlSearch = function(keyword){
+  const handlSearch = function (keyword) {
     let data = fuse.search(keyword)
-    data = data.map((value)=>{
-      let {item} = value
+    data = data.map((value) => {
+      let { item } = value
       return item
     })
     setDataState(data)
@@ -27,8 +27,10 @@ export default function Home({ catalogs }) {
       <h2 className="font-lato text-4xl text-black pt-2 md:p-4">Datasets</h2>
       <div className="grid grid-cols-1 justify-end mt-10 lg:grid-cols-2">
         <Search submbitEvent={handlSearch} />
-        <div className="grid grid-cols-1 mt-10 md:grid-cols-4 lg:mt-0">
-          <h3 className="hidden mr-4 md:flex pt-2 lg:pt-4 justify-end col-span-1">Sort by:</h3>
+        <div className="grid grid-cols-1 mt-10 sm:grid-cols-4 lg:mt-0">
+          <h3 className="hidden mr-4 sm:flex pt-2 lg:pt-4 justify-end col-span-1">
+            Sort by:
+          </h3>
           <select
             id="cars"
             className="border-2 focus:outline-none bg-white font-karla font-karla rounded-md p-2 col-span-3"
@@ -39,7 +41,9 @@ export default function Home({ catalogs }) {
         </div>
       </div>
       <div className="mt-12">
-        <div className="mb-10">Showing {dataState.length} of {dataState.length} datasets</div>
+        <div className="mb-10">
+          Showing {dataState.length} of {dataState.length} datasets
+        </div>
         <div className="grid grid-cols-1 gap-x-20 gap-y-10 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
           {dataState.map((value, i) => {
             return <Card props={value} key={i} />
@@ -51,13 +55,10 @@ export default function Home({ catalogs }) {
 }
 
 export async function getStaticProps() {
-  
   let [, descatalogs] = await loadDataFromGithub()
-  
 
   return {
-    props: { catalogs: descatalogs  
-    },
+    props: { catalogs: descatalogs },
     revalidate: 604800, // set the seconds to automatically rebuild the  page. 604800 seconds == 1 week
   }
 }
