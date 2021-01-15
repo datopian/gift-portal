@@ -2,6 +2,9 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    maxHeight: {
+      '90p': '90vh',
+    },
     extend: {
       fontFamily: {
         // Shown in the SocialBar component as font-open-sans
