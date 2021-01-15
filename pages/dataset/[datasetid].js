@@ -34,10 +34,10 @@ const Dataset = ({ catalogs }) => {
     return 404
   } else {
     return (
-      <div className="p-2 md:p-8">
+      <div className="p-2 md:p-8 xl:p-12 2xl:p-24">
         <div className="flex flex-row mb-10">
           <img src="/argentina.svg" alt="next" className="mr-10" />
-          <div className="pt-10">
+          <div className="pt-10 xl:pt-0">
             <div className="mb-5 font-lato font-bold">{dataset.title}</div>
             <div className="grid grid-cols-4 gap-4 font-roboto text-portal1">
               <div className="border-2 text-center rounded-lg">BUDGET</div>
@@ -60,24 +60,40 @@ const Dataset = ({ catalogs }) => {
           )}
         </div>
         <div className="mb-10 font-lato font-bold">Download</div>
-        <div className="mb-10 ml-10">
-          <div className="grid grid-cols-2 w-1/4 font-lato gap-y-2">
-            <div className="font-bold">File Size</div>
-            <div className="text-black-500 font-bold">File name</div>
-            {dataset.resources.map((resource) => {
-              return (
-                <>
-                  <div>{(resource.bytes * 0.000001).toFixed(2)} mb</div>
-                  <div className="text-portal1">
-                    <a href={resource.path}>
-                      {resource.name}.{dataset.resources[0].format}
-                    </a>
-                  </div>
-                </>
-              )
-            })}
-          </div>
+
+        <div className="overflow-x-auto">
+          <table className="table-auto text-left text-sm mb-10 sm:mb-20 sm:text-base">
+            <thead className="bg-portal3">
+              <tr>
+                <th className="border border-black border-opacity-50 p-1 sm:p-4">
+                  File size (MB)
+                </th>
+                <th className="border border-black border-opacity-50 p-1 sm:p-4">
+                  File name
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {dataset.resources.map((resource) => {
+                return (
+                  <>
+                    <tr>
+                      <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
+                        {(resource.bytes * 0.000001).toFixed(2)}
+                      </td>
+                      <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
+                        <a href={resource.path}>
+                          {resource.name}.{dataset.resources[0].format}
+                        </a>
+                      </td>
+                    </tr>
+                  </>
+                )
+              })}
+            </tbody>
+          </table>
         </div>
+
         <h6 className="mb-10 font-lato font-bold">Metadata</h6>
         <div className="grid grid-cols-1 ml-4 font-karla xl:max-w-screen-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-3">
