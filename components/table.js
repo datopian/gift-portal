@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import React from 'react'
 import { useTable } from 'react-table'
 import MaUTable from '@material-ui/core/Table'
@@ -19,7 +21,7 @@ const CustomTable = ({ columns, data }) => {
         <TableHead>
           {headerGroups.map((headerGroup) => (
             // eslint-disable-next-line react/jsx-key
-            <TableRow {...headerGroup.getHeaderGroupProps()}>
+            <TableRow className="bg-portal5 bg-opacity-70" {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 // eslint-disable-next-line react/jsx-key
                 <TableCell {...column.getHeaderProps()}>
@@ -38,7 +40,7 @@ const CustomTable = ({ columns, data }) => {
                 {row.cells.map((cell) => {
                   return (
                     // eslint-disable-next-line react/jsx-key
-                    <TableCell {...cell.getCellProps()}>
+                    <TableCell {...cell.getCellProps()} className="truncate max-w-screen-sm">
                       {cell.render('Cell')}
                     </TableCell>
                   )
