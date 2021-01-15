@@ -38,20 +38,32 @@ const Dataset = ({ catalogs }) => {
         <div className="flex flex-row mb-10">
           <img src="/argentina.svg" alt="next" className="mr-10" />
           <div className="pt-10 xl:pt-0">
-            <div className="mb-5 font-lato font-bold">{dataset.title}</div>
-            <div className="grid grid-cols-4 gap-4 font-roboto text-portal1">
-              <div className="border-2 text-center rounded-lg">BUDGET</div>
-              <div className="border-2 text-center rounded-lg">FEDERAL</div>
-              <div className="border-2 text-center rounded-lg">SPENDING</div>
+            <div className="mb-5">
+              <h1 className="font-lato font-bold text-2xl">{dataset.title}</h1>
+            </div>
+            <div className="flex flex-wrap font-roboto text-portal1">
+              <div className="flex border-2 text-center rounded-lg p-2 m-4">
+                BUDGET
+              </div>
+              <div className="flex border-2 text-center rounded-lg p-2 m-4">
+                FEDERAL
+              </div>
+              <div className="flex border-2 text-center rounded-lg p-2 m-4">
+                SPENDING
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-row mb-5">
-          <h6 className="mr-10 font-lato">About this Dataset</h6>
-          <img src="/share.svg" alt="next" />
+        <div className="flex mb-10">
+          <h2 className="mr-10 font-lato font-bold text-xl">
+            About this Dataset
+          </h2>
+          <a href="#">
+            <img src="/share.svg" alt="next" />
+          </a>
         </div>
-        <div className="mb-10 font-karla">{dataset.description}</div>
-        <div className="mb-10 font-lato font-bold">File Preview</div>
+        <div className="mb-20 font-karla text-lg">{dataset.description}</div>
+        <h2 className="mb-10 font-lato font-bold text-xl">File Preview</h2>
         <div className="mb-10">
           {data ? (
             <CustomTable data={data} columns={columns} />
@@ -59,7 +71,7 @@ const Dataset = ({ catalogs }) => {
             'NO PREVIEW FOR THIS DATASET'
           )}
         </div>
-        <div className="mb-10 font-lato font-bold">Download</div>
+        <h2 className="mb-10 font-lato font-bold text-xl">Download</h2>
 
         <div className="overflow-x-auto">
           <table className="table-auto text-left text-sm mb-10 sm:mb-20 sm:text-base">
@@ -94,7 +106,7 @@ const Dataset = ({ catalogs }) => {
           </table>
         </div>
 
-        <h6 className="mb-10 font-lato font-bold">Metadata</h6>
+        <h2 className="mb-10 font-lato font-bold text-xl">Metadata</h2>
         <div className="grid grid-cols-1 ml-4 font-karla xl:max-w-screen-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-3">
             <div className="flex flex-row mb-10 lg:mb-20">
