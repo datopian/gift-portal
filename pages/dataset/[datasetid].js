@@ -52,7 +52,7 @@ const Dataset = ({ catalogs }) => {
         </div>
         <div className="mb-10 font-karla">{dataset.description}</div>
         <div className="mb-10 font-lato font-bold">File Preview</div>
-        <div className="ml-10 mb-10">
+        <div className="mb-10">
           {data ? (
             <CustomTable data={data} columns={columns} />
           ) : (
