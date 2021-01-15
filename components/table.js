@@ -14,7 +14,7 @@ const CustomTable = ({ columns, data }) => {
   })
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto max-h-90p">
       <MaUTable {...getTableProps()}>
         <TableHead>
           {headerGroups.map((headerGroup) => (
