@@ -1,6 +1,5 @@
 import Metadata from '../../lib/Metadata'
 import * as metastore from 'metastore-lib-js'
-import Permissions from '../../lib/Permissions'
 
 jest.mock('metastore-lib-js')
   
@@ -45,13 +44,8 @@ describe('Metadata Tests', ()=> {
     }
     const description = 'Financial file'
     it('create metadata on POST method',async  ()=> {
-     
       const createSpy = jest.spyOn(metastore, 'createMetastore') 
       createSpy.mockReturnValue({create: () => responseMetadata})
-
-      const trueMock = jest.fn()
-      Permissions.prototype.userHasPermission = trueMock
-      trueMock.mockReturnValue(Promise.resolve(true))
     
       const response = await  metadata
         .createMetadata('file.csv', user, data, description)
@@ -60,7 +54,7 @@ describe('Metadata Tests', ()=> {
       expect(response).toEqual(responseMetadata)
     })
   
-    it('should return an error if user has no permission on dataset', ()=> {
+    it('should update a metadata when PUT a datapackage.json info', ()=> {
 
     })
   })
