@@ -5,6 +5,9 @@ module.exports = {
     maxHeight: {
       '90p': '90vh',
     },
+    minHeight: {
+      '500': '500px',
+    },
     extend: {
       fontFamily: {
         // Shown in the SocialBar component as font-open-sans
