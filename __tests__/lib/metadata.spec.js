@@ -54,8 +54,14 @@ describe('Metadata Tests', ()=> {
       expect(response).toEqual(responseMetadata)
     })
   
-    it('should update a metadata when PUT a datapackage.json info', ()=> {
+    it('should update a metadata when PUT a datapackage.json', async ()=> {
 
+      const createSpy = jest.spyOn(metastore, 'createMetastore') 
+      createSpy.mockReturnValue({update: () => responseMetadata})
+      
+      const response = await metadata.updateMetadata()
+
+      expect(response).toEqual(responseMetadata)
     })
   })
 
