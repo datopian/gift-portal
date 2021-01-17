@@ -19,9 +19,7 @@ export default async function handler(req,res){
   }
 
   if(req.method === 'POST'){
-    /**
-     * TBD - Get User information
-     */
+   
     const { metadata: data, description }= req.body
 
     metadata
@@ -42,6 +40,9 @@ export default async function handler(req,res){
         .status(400)
         .send(`Error on create metadata: ${error.message}`)
       )
+  }
+  else{
+    res.status(404).send('Method not allowed')
   }
 
 }
