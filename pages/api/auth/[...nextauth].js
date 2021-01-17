@@ -14,6 +14,9 @@ const options = {
   pages: {
     signIn: '/login',
   },
+  // Inside callbacks there is possible to get user 
+  //access_token and set on session
+
   callbacks: {
     signIn: async (user, account, metadata)=> {
       userInfo.metadata = metadata
