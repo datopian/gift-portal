@@ -1,16 +1,18 @@
+import { getSession } from 'next-auth/client'
 import Metadata from '../../../lib/Metadata'
 import Permissions from '../../../lib/Permissions'
 
 const metadata = new Metadata()
 const permissions = new Permissions()
 
-export default function handler(req,res){
+export default async function handler(req,res){
+  const session = await getSession({ req })
 
   const { id: objectId} = req.query
-  const { user } = req.body
+  const user = session.github
 
   if(!permissions.userHasPermission(
-    user.username, 
+    user.login, 
     objectId, 
     'write')) {
     res.status(401).send('Unauthorized User')
