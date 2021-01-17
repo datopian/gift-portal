@@ -17,6 +17,6 @@ export default async function handler(req,res){
     
     
   }catch(error){
-    res.status(400).send('Error on Retrieve Resource')
+    res.status(400).send(`Error on Retrieve Resource: ${error.message}`)
   }
 }

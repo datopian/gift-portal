@@ -76,7 +76,7 @@ describe('Download functions', ()=> {
     it('should return the id and size given a resourceId', ()=> {
       const response = download._parseResourceId(resourceId)
 
-      expect(response).toEqual({resource, size})
+      expect(response).toEqual({oid: resource, size})
     })
 
     it('should return an sha256id and size from file', ()=> {
