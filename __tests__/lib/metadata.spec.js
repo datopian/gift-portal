@@ -59,7 +59,8 @@ describe('Metadata Tests', ()=> {
       const createSpy = jest.spyOn(metastore, 'createMetastore') 
       createSpy.mockReturnValue({update: () => responseMetadata})
       
-      const response = await metadata.updateMetadata()
+      const response = await metadata
+        .updateMetadata('file.csv', data, 'File Readme')
 
       expect(response).toEqual(responseMetadata)
     })
