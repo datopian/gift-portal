@@ -20,12 +20,28 @@ This site is built using Next.JS and Portal.JS.
 
 To run this app will require an `.env` file with following keys:
 
-- GITHUB_APIKEY : API key to access github required data, [click here for more information](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token).
+```
+ORGANISATION_REPO= Github Organization login name (Same as the one that you created the token)
 
-- ORGANISATION_REPO : Github Organization login name (Same as the one that you created the token)
+PRIVATE_KEY= Private Key to generate authorization token to communicate with giftless
 
-- PRIVATE_KEY : Private Key to generate authorization token to communicate with giftless
+GIFTLESS_SERVER= URL from giftless server
 
+APP_GITHUB_KEY= API key to access github required data, follow this documentation: https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token
+
+REFRESH_DATA_IN_METASTORE= Set if the metastore data will refresh automatically
+
+
+// To get those information below you can check on this link: https://docs.github.com/en/developers/apps/creating-a-github-app
+
+GITHUB_CLIENT_ID= Github Client Id from APP
+
+GITHUB_CLIENT_SECRET= Github Client Secret
+
+SIGNING_KEY= Sigin KEY to use on APP from Github 
+
+NEXTAUTH_URL= Github Login callback URL
+``` 
 <br />
 
 First, run the development server:
@@ -101,6 +117,31 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
+<br />
+
+## User Session
+
+After you log using Github, you can access user information inside any page or API Route
+
+The object that is stored follows the scope below: 
+
+```json
+{
+"user": {
+  "name": "John Doe",
+  "email": "johndoe@email.com",
+  "image": "https://avatars3.githubusercontent.com/u/1111111?v=4",
+  "login": "johndoe",
+  "token": {
+    "provider": "github",
+    "type": "oauth",
+    "id": 1122345412,
+    "accessToken": "222db22ba22f2b2bdb2ef22222fa2e2c0a223567",
+    "accessTokenExpires": null
+  }
+  },
+"expires": "2021-02-17T19:33:04.690Z"
+}
 ```
 
-```
+You can also access the user session inside an API route or page following the [Next-Auth Documentation](https://next-auth.js.org/tutorials/securing-pages-and-api-routes).
