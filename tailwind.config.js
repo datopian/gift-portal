@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     maxHeight: {
       '90p': '90vh',
+      '150px': '150px',
     },
     minHeight: {
       '500': '500px',
@@ -36,6 +37,8 @@ module.exports = {
       'portal10': '#468A6F',
       'portal11': '#966473',
       'portal12': '#FF5100',
+      'tertiary': '#C2A6E1',
+      'tertiaryHover': '#C2A6E1CC',
     }),
     textColor: theme => ({
       ...theme('colors'),
@@ -54,7 +57,9 @@ module.exports = {
       '1/4' : '25%',
       'full': '100%',
       '1/5' : '20%',
-      '1/6' : '16.666667%'
+      '1/6' : '16.666667%',
+      '1/9' : '11.111111%',
+      '1/12' : '8.333333%'
 
     },
     height : {
