@@ -5,7 +5,8 @@ const permissions = new Permissions()
 export default async  function handler(req,res){
   const session = await getSession({ req })
 
-  const user = session.github
+  const { user }= session
+  
   if(req.method === 'POST'){
     try{
       const { dataset, scope } = req.body
