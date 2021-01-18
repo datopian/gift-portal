@@ -1,3 +1,43 @@
+.btn-add-fiscal {
+  background: #ff5100;
+  border-radius: 4px;
+  padding: 20px;
+  width: 400px;
+}
+
+.btn-existing-fiscal {
+  background: #badf93;
+  border-radius: 4px;
+  padding: 20px;
+  width: 400px;
+}
+
+.btn-logout {
+  background: #badf93;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+  width: 200px;
+  margin-left: 100px;
+}
+
+.git-profile-img {
+  margin-top: 10px;
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+  margin-left: 130px;
+}
+
+.repo-list {
+  margin-left: 100px;
+  padding: 10px;
+}
+
+.dashboard-text-h1 {
+  margin-left: 120px;
+}
+
 .metadata-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
