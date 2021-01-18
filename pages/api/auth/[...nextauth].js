@@ -17,9 +17,12 @@ const options = {
 
   callbacks: {
     signIn: async (user, account, metadata)=> {
-      userInfo.access_token = account
-      userInfo.metadata = metadata
-      return true
+      if(account.provider === 'github'){
+        userInfo.access_token = account
+        userInfo.metadata = metadata
+        return true
+      }
+      return false
     },
     session: async(session)=> {
       if(session.user){
