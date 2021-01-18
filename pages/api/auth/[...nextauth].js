@@ -1,6 +1,8 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
+let userInfo = {}
+
 const options = {
   providers: [
     Providers.GitHub({
@@ -12,7 +14,19 @@ const options = {
   pages: {
     signIn: '/login',
   },
+  // Inside callbacks there is possible to get user 
+  //access_token and set on session
+
   callbacks: {
+    signIn: async (user, account, metadata)=> {
+      userInfo.metadata = metadata
+      return true
+    },
+    session: async(session)=> {
+      session.github = userInfo.metadata
+      return session
+
+    },
     redirect: async () => Promise.resolve('/login'),
   },
   site: process.env.NEXTAUTH_URL,

@@ -1,18 +1,17 @@
+import { getSession } from 'next-auth/client'
 import Download from '../../../../../../lib/Download'
 
 const download = new Download()
 
 export default async function handler(req,res){
-  try{ /**
-   * TODO 
-   * Strategy to get username to check access
-   */
-    const { username }= req.headers
+  const session = await getSession({ req })
+  try{ 
+    const user = session.github
     const { id, oid } = req.query
-    if(!await download.checkDatasetPermission(id, username)){
+    if(!await download.checkDatasetPermission(id, user.login)){
       res.status(401).send('Insufficient Permissions')
     }
-    const resourceUrl = await download.getUrl(id, oid, username)
+    const resourceUrl = await download.getUrl(id, oid, user.login)
     res.redirect(resourceUrl)
     
     
