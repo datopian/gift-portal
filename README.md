@@ -22,7 +22,7 @@ To run this app will require an `.env` file with following keys:
 
 - GITHUB_APIKEY : API key to access github required data, [click here for more information](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token).
 
-- GITHUB_ORG : Github Organization login name (Same as the one that you created the token)
+- ORGANISATION_REPO : Github Organization login name (Same as the one that you created the token)
 
 - PRIVATE_KEY : Private Key to generate authorization token to communicate with giftless
 
