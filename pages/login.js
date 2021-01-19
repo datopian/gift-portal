@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react'
 import { providers, signIn, useSession } from 'next-auth/client'
 import Dashboard from '../components/Dashboard'
@@ -6,9 +7,9 @@ export default function SignIn({ providers }) {
   return (
     <>
       {!session &&
-        Object.values(providers).map((provider) => (
+        Object.values(providers).map((provider, i) => (
           // eslint-disable-next-line react/jsx-key
-          <div className="max-w-2xl mx-auto mt-20 mb-60 p-20 mb-80">
+          <div key={`${i}-index@`} className="max-w-2xl mx-auto mt-20 mb-60 p-20 mb-80">
             <div className="font-lato">
               {' '}
               To sign up or login, please use your existing GitHub or Google

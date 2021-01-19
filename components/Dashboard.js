@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import React from 'react'
-import Link from 'next/link'
 import Github from '../lib/Github'
 import { useState, useEffect } from 'react'
 
@@ -9,7 +8,7 @@ export default function Dashboard({ name, userToken }) {
   useEffect(() => {
     async function getRepos() {
       const github = new Github()
-      const repos = await github.getRepositoriesForUser('gift-data', userToken)
+      const repos = await github.getRepositoriesForUser(userToken)
       setRepoData(repos)
     }
     getRepos()
@@ -17,21 +16,9 @@ export default function Dashboard({ name, userToken }) {
 
   return (
     <div>
-      <div className="grid grid-rows-4 grid-flow-col gap-2 place-content-center">
+      <div className="grid grid-rows-1 grid-flow-col place-content-center">
         <div>
           <h1 className="dashboard-text-h1">Hi {name}</h1>
-        </div>
-        <div>
-          <button className="btn-add-fiscal">
-            <Link href="/admin/publisher">
-              <a> Create a new fiscal data schema</a>
-            </Link>
-          </button>
-        </div>
-        <div>
-          <button className="btn-existing-fiscal">
-            Add data to an existing data schema
-          </button>
         </div>
       </div>
       <div className="justify-center">
@@ -72,29 +59,34 @@ export default function Dashboard({ name, userToken }) {
                                 <div className="text-sm font-medium text-gray-900">
                                   {repo.name}
                                 </div>
-                                {/* <div className="text-sm text-gray-500">
-                                  jane.cooper@example.com
-                                </div> */}
                               </div>
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            {/* <div className="text-sm text-gray-900">
-                              {repo.description}
-                            </div> */}
                             <div className="text-sm text-gray-500">
                               {repo.description
                                 ? repo.description
                                 : 'No Description'}
                             </div>
                           </td>
+
                           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a
-                              href={repo.html_url}
-                              className="text-indigo-600 hover:text-indigo-900"
-                            >
-                              Edit
-                            </a>
+                            {!hasDataPackage(repo) && (
+                              <a
+                                href={`/admin/publisher/${repo.name}`}
+                                className="text-indigo-600 hover:text-indigo-900"
+                              >
+                                Create a new fiscal data schema
+                              </a>
+                            )}
+                            {/* {hasDataPackage(repo) && (
+                              <a
+                                href=""
+                                className="text-indigo-600 hover:text-indigo-900"
+                              >
+                                Edit
+                              </a>
+                            )} */}
                           </td>
                         </tr>
                       )
@@ -108,4 +100,17 @@ export default function Dashboard({ name, userToken }) {
       </div>
     </div>
   )
+}
+
+const hasDataPackage = (repo) => {
+  if (!repo){
+    const contents = repo.object.entries
+    const content_names = contents.map((content) =>{
+      return content.name
+    })
+    return content_names.includes('datapackage.json')
+  }else{
+    return false
+  }
+  
 }
