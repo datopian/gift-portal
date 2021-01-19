@@ -8,7 +8,7 @@ export default function Publisher() {
     api: 'http://127.0.0.1:5000',
     lfs: process.env.GIFTLESS_SERVER,
     authToken: 'be270cae-1c77-4853-b8c1-30b6cf5e9228',
-    organisationId: 'myorg',
+    organisationId: process.env.ORGANISATION_REPO,
     resourceId: ''
   }
   // eslint-disable-next-line react/react-in-jsx-scope
