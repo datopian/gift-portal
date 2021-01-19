@@ -2,7 +2,7 @@ import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
 let userInfo = {}
-
+let accessToken
 const options = {
   providers: [
     Providers.GitHub({
@@ -18,8 +18,8 @@ const options = {
   callbacks: {
     signIn: async (user, account, metadata)=> {
       if(account.provider === 'github'){
-        userInfo.access_token = account
-        userInfo.metadata = metadata
+        accessToken = account
+        userInfo = metadata
         return true
       }
       return false
@@ -27,8 +27,8 @@ const options = {
     session: async(session)=> {
       if(session.user){
         Object.assign(session.user, {
-          login: userInfo.metadata.login,
-          token: userInfo.access_token
+          login: userInfo.login,
+          token: accessToken
         }) 
       }
       return session
