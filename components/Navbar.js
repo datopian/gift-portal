@@ -92,7 +92,7 @@ export default function Navbar() {
         <div className="px-4 py-2 sm:px-6">
           <a className="hover:underline" href="/login">
             {session &&
-            <img src={session.user.image} alt="next" width="47.7548" height="37" className="profile-img" />
+            <img src={session.user.image} alt="next" width="37" height="37" className="profile-img" />
             }
             {!session &&
             <img src="/login.svg" alt="next" width="47.7548" height="37" />
