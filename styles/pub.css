@@ -21,12 +21,8 @@
   margin-left: 100px;
 }
 
-.git-profile-img {
-  margin-top: 10px;
-  border-radius: 10px;
-  width: 100px;
-  height: 100px;
-  margin-left: 130px;
+.profile-img {
+  border-radius: 50%;
 }
 
 .repo-list {
@@ -36,6 +32,8 @@
 
 .dashboard-text-h1 {
   margin-left: 120px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .metadata-form {
