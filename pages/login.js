@@ -1,13 +1,12 @@
 import React from 'react'
-import { providers, signIn, signOut, useSession } from 'next-auth/client'
-
+import { providers, signIn, useSession } from 'next-auth/client'
+import Dashboard from '../components/Dashboard'
 export default function SignIn({ providers }) {
-  const [session, ] = useSession()
+  const [session] = useSession()
   return (
     <>
       {!session &&
         Object.values(providers).map((provider) => (
-
           // eslint-disable-next-line react/jsx-key
           <div className="max-w-2xl mx-auto mt-20 mb-60 p-20 mb-80">
             <div className="font-lato">
@@ -28,31 +27,9 @@ export default function SignIn({ providers }) {
 
       {session && (
         <>
-          <div 
-            className="max-w-2xl mx-auto mt-24 mb-60 pl-40 pt-10 pb-24 mb-80">
-            <div className="flex">
-              <div>
-                Sign in as:{' '}
-                <span className="font-karla font-bold">
-                  {session.user.name}
-                </span>
-              </div>
-              <img
-                src={session.user.image}
-                width="50"
-                height="50"
-                className="ml-10"
-              />
-            </div>
-
-            <button
-              onClick={signOut}
-              // eslint-disable-next-line max-len
-              className="bg-red-600 rounded-lg p-2 text-white ml-30 mt-10 w-1/2"
-            >
-              Logout
-            </button>
-          </div>
+          <Dashboard name={session.user.name}
+            image={session.user.image}
+            userToken={session.user.token.accessToken} /> 
         </>
       )}
     </>

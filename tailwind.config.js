@@ -2,12 +2,23 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    maxHeight: {
+      '90p': '90vh',
+      '150px': '150px',
+    },
+    minHeight: {
+      '500': '500px',
+    },
     extend: {
       fontFamily: {
         // Shown in the SocialBar component as font-open-sans
         'karla': '"Karla", sans-serif',
         'lato': '"Lato", sans-serif'
       },
+      lineHeight: {
+        'extra-loose': '2.5',
+        '12': '3.5rem',
+      }
     },
     backgroundColor: theme => ({
       ...theme('colors'),
@@ -26,6 +37,8 @@ module.exports = {
       'portal10': '#468A6F',
       'portal11': '#966473',
       'portal12': '#FF5100',
+      'tertiary': '#C2A6E1',
+      'tertiaryHover': '#C2A6E1CC',
     }),
     textColor: theme => ({
       ...theme('colors'),
@@ -33,6 +46,7 @@ module.exports = {
       'portal2': '#FF6B00',
       'portal3': '#C2A6E1',
       'portal4': '#18988B',
+      'portal5': '#FFFFFFDE',
     }),
     width :{
       '379.25px': '379.25px',
@@ -43,7 +57,9 @@ module.exports = {
       '1/4' : '25%',
       'full': '100%',
       '1/5' : '20%',
-      '1/6' : '16.666667%'
+      '1/6' : '16.666667%',
+      '1/9' : '11.111111%',
+      '1/12' : '8.333333%'
 
     },
     height : {
