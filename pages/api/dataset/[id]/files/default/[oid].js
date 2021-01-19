@@ -6,8 +6,9 @@ const download = new Download()
 export default async function handler(req,res){
   const session = await getSession({ req })
   try{ 
-    const user = session.github
+    const { user } = session
     const { id, oid } = req.query
+    
     if(!await download.checkDatasetPermission(id, user.login)){
       res.status(401).send('Insufficient Permissions')
     }

@@ -13,7 +13,7 @@ describe('Metadata Tests', ()=> {
     const user = {
       name: 'John Doe',
       email: 'johndoe@datopian.com',
-      access_token: '14ca1111c33ef555ed3d33f1225e33dee7ab9999'
+      accessToken: '14ca1111c33ef555ed3d33f1225e33dee7ab9999'
     }
     const data = { 
       name: 'Test Financial File',
@@ -48,7 +48,7 @@ describe('Metadata Tests', ()=> {
       createSpy.mockReturnValue({create: () => responseMetadata})
     
       const response = await  metadata
-        .createMetadata('file.csv', user, data, description)
+        .createMetadata('file.csv', user, data, description, user.accessToken)
   
       expect(createSpy).toHaveBeenCalledTimes(1)
       expect(response).toEqual(responseMetadata)
@@ -60,7 +60,7 @@ describe('Metadata Tests', ()=> {
       createSpy.mockReturnValue({update: () => responseMetadata})
       
       const response = await metadata
-        .updateMetadata('file.csv', data, 'File Readme')
+        .updateMetadata('file.csv', data, 'File Readme', user.accessToken)
 
       expect(response).toEqual(responseMetadata)
     })

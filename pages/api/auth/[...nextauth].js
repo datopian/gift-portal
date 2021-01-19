@@ -14,16 +14,23 @@ const options = {
   pages: {
     signIn: '/login',
   },
-  // Inside callbacks there is possible to get user 
-  //access_token and set on session
 
   callbacks: {
     signIn: async (user, account, metadata)=> {
-      userInfo.metadata = metadata
-      return true
+      if(account.provider === 'github'){
+        userInfo.access_token = account
+        userInfo.metadata = metadata
+        return true
+      }
+      return false
     },
     session: async(session)=> {
-      session.github = userInfo.metadata
+      if(session.user){
+        Object.assign(session.user, {
+          login: userInfo.metadata.login,
+          token: userInfo.access_token
+        }) 
+      }
       return session
 
     },

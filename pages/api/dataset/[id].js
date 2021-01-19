@@ -9,7 +9,8 @@ export default async function handler(req,res){
   const session = await getSession({ req })
 
   const { id: objectId} = req.query
-  const user = session.github
+  const { user } = session
+  const userToken = session.token.accessToken
 
   if(!permissions.userHasPermission(
     user.login, 
@@ -23,7 +24,7 @@ export default async function handler(req,res){
     const { metadata: data, description }= req.body
 
     metadata
-      .createMetadata(objectId, user, data, description)
+      .createMetadata(objectId, user, data, description, userToken)
       .then(data => res.send(data))
       .catch(error => res
         .status(400)
@@ -34,7 +35,7 @@ export default async function handler(req,res){
     const { metadata: data, readMe}  = req.body
 
     metadata
-      .updateMetadata(objectId, user, data, readMe)
+      .updateMetadata(objectId, user, data, readMe, userToken)
       .then(data => res.send(data))
       .catch(error => res
         .status(400)
