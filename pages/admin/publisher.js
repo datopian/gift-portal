@@ -4,11 +4,11 @@ import { ResourceEditor } from 'giftpub'
 export default function Publisher() {
 
   const config = {
-    datasetId: 'sample_1',
+    datasetId: 'sample_4',
     api: 'http://127.0.0.1:5000',
-    lfs: 'http://localhost:9419',
+    lfs: 'https://giftless-gift.herokuapp.com/',
     authToken: 'be270cae-1c77-4853-b8c1-30b6cf5e9228',
-    organisationId: 'myorg',
+    organisationId: 'gift-data',
     resourceId: ''
   }
   // eslint-disable-next-line react/react-in-jsx-scope
