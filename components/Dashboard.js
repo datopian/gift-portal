@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react'
 
 export default function Dashboard({ name, image, userToken }) {
   const [repoData, setRepoData] = useState([])
-
   useEffect(() => {
     async function getRepos() {
       const github = new Github()
@@ -52,7 +51,7 @@ export default function Dashboard({ name, image, userToken }) {
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
                         Name
                       </th>
@@ -70,7 +69,7 @@ export default function Dashboard({ name, image, userToken }) {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {repoData.map((repo, i) => {
                       return (
-                        <tr key={i}>
+                        <tr key={`${i}-index`}>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center">
                               <div className="ml-4">

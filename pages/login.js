@@ -29,7 +29,7 @@ export default function SignIn({ providers }) {
         <>
           <Dashboard name={session.user.name}
             image={session.user.image}
-            userToken={session.accessToken} /> 
+            userToken={session.user.token.accessToken} /> 
         </>
       )}
     </>
