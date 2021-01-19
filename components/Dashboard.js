@@ -1,11 +1,10 @@
 /* eslint-disable max-len */
 import React from 'react'
-import { signOut } from 'next-auth/client'
 import Link from 'next/link'
 import Github from '../lib/Github'
 import { useState, useEffect } from 'react'
 
-export default function Dashboard({ name, image, userToken }) {
+export default function Dashboard({ name, userToken }) {
   const [repoData, setRepoData] = useState([])
   useEffect(() => {
     async function getRepos() {
@@ -19,9 +18,6 @@ export default function Dashboard({ name, image, userToken }) {
   return (
     <div>
       <div className="grid grid-rows-4 grid-flow-col gap-2 place-content-center">
-        <div>
-          <img src={image} className="git-profile-img" />
-        </div>
         <div>
           <h1 className="dashboard-text-h1">Hi {name}</h1>
         </div>
@@ -106,11 +102,6 @@ export default function Dashboard({ name, image, userToken }) {
                   </tbody>
                 </table>
               </div>
-            </div>
-            <div className='text-center'>
-              <button onClick={signOut} className="rounded-lg btn-logout">
-                Logout
-              </button>
             </div>
           </div>
         </div>
