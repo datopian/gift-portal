@@ -5,9 +5,9 @@ export default function Publisher({ lfs, organisationId, datasetId }) {
   const config = {
     datasetId: datasetId,
     api: 'http://127.0.0.1:5000',
-    lfs: lfs,
+    lfs: 'https://giftless-gift.herokuapp.com/',
     authToken: 'be270cae-1c77-4853-b8c1-30b6cf5e9228',
-    organisationId: organisationId,
+    organisationId: 'gift-data',
     resourceId: ''
   }
   // eslint-disable-next-line react/react-in-jsx-scope
