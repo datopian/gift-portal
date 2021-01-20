@@ -26,11 +26,11 @@ export default function SignIn({ providers }) {
           </div>
         ))}
 
-      {session && session.user.token && (
+      {session && session.token && (
         <>
           <Dashboard name={session.user.name}
             image={session.user.image}
-            userToken={session.user.token.accessToken} /> 
+            userToken={session.token.accessToken} /> 
         </>
       )}
     </>
