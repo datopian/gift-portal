@@ -3,7 +3,7 @@ import React from 'react'
 import { providers, signIn, useSession } from 'next-auth/client'
 import Dashboard from '../components/Dashboard'
 export default function SignIn({ providers }) {
-  const [session] = useSession()
+  const [session, ] = useSession()
   return (
     <>
       {!session &&
@@ -26,7 +26,7 @@ export default function SignIn({ providers }) {
           </div>
         ))}
 
-      {session && (
+      {session && session.user.token && (
         <>
           <Dashboard name={session.user.name}
             image={session.user.image}

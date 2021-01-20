@@ -17,7 +17,8 @@ export default function Publisher({ lfs, organisationId}) {
 
 Publisher.getInitialProps = async (ctx) => {
   console.log(ctx)
-  return { lfs: process.env.GIFTLESS_SERVE,
+  return { lfs: process.env.GIFTLESS_SERVER,
     organisationId:  process.env.ORGANISATION_REPO
   }
 }
+
