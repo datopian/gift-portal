@@ -28,8 +28,12 @@ const options = {
       if(session.user){
         Object.assign(session.user, {
           login: userInfo.login,
-          token: accessToken
-        }) 
+        })
+        if(accessToken){
+          Object.assign(session.user, {
+            token: accessToken
+          })
+        } 
       }
       return session
 
