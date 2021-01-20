@@ -1,7 +1,8 @@
 // import '../../styles/pub.module.css';
 import { ResourceEditor } from 'giftpub'
 
-export default function Publisher() {
+const Publisher =  () =>  {
+
 
   const config = {
     datasetId: 'sample_1',
@@ -14,3 +15,5 @@ export default function Publisher() {
   // eslint-disable-next-line react/react-in-jsx-scope
   return <ResourceEditor config={config} resource="" />
 }
+
+export default Publisher
