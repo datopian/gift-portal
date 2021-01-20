@@ -5,7 +5,7 @@
   "scripts": {
     "scripts": "node -r esm scripts",
     "dev": "next dev",
-    "build": "next build",
+    "build": "yarn scrips && next build",
     "start": "next start",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run --config video=false",
