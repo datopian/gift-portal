@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react'
 import { providers, signIn, useSession } from 'next-auth/client'
-import Dashboard from '../components/Dashboard'
 export default function SignIn({ providers }) {
   const [session, ] = useSession()
   return (
@@ -28,9 +27,7 @@ export default function SignIn({ providers }) {
 
       {session && session.user.token && (
         <>
-          <Dashboard name={session.user.name}
-            image={session.user.image}
-            userToken={session.user.token.accessToken} /> 
+          <div>404 Error</div>
         </>
       )}
     </>
