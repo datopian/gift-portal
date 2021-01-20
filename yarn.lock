@@ -8232,11 +8232,12 @@ getpass@^0.1.1:
   dependencies:
     axios "^0.21.1"
 
-"giftpub@git+https://github.com/datopian/gift-publisher.git#package":
+"giftpub@git+https://github.com/datopian/gift-publisher.git#package#fadf81699dfae531946f66efd7e506f63f3cfb3d":
   version "0.1.0"
-  resolved "git+https://github.com/datopian/gift-publisher.git#e2c88ea6c2b6fb00161badabff069a12684d2908"
+  resolved "git+https://github.com/datopian/gift-publisher.git#fadf81699dfae531946f66efd7e506f63f3cfb3d"
   dependencies:
     "@material-ui/core" "^4.11.2"
+    axios "^0.21.1"
     ckan-client "git+https://github.com/datopian/ckan-client-js.git#v0.4.2"
     datapub-nocss "0.1.0  "
     frictionless-ckan-mapper-js "^1.0.0"
