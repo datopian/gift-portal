@@ -36,13 +36,7 @@ export default function Dashboard({ name, userToken }) {
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
-                        Name
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Description
+                        
                       </th>
                       <th scope="col" className="relative px-6 py-3">
                         <span className="sr-only">Edit</span>
@@ -62,14 +56,7 @@ export default function Dashboard({ name, userToken }) {
                               </div>
                             </div>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-500">
-                              {repo.description
-                                ? repo.description
-                                : 'No Description'}
-                            </div>
-                          </td>
-
+                  
                           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             {!hasDataPackage(repo) && (
                               <a
@@ -79,14 +66,7 @@ export default function Dashboard({ name, userToken }) {
                                 Create a new fiscal data schema
                               </a>
                             )}
-                            {/* {hasDataPackage(repo) && (
-                              <a
-                                href=""
-                                className="text-indigo-600 hover:text-indigo-900"
-                              >
-                                Edit
-                              </a>
-                            )} */}
+                            {hasDataPackage(repo) && <p></p>}
                           </td>
                         </tr>
                       )
@@ -103,14 +83,17 @@ export default function Dashboard({ name, userToken }) {
 }
 
 const hasDataPackage = (repo) => {
-  if (!repo){
-    const contents = repo.object.entries
-    const content_names = contents.map((content) =>{
-      return content.name
-    })
-    return content_names.includes('datapackage.json')
-  }else{
+  if (!repo) {
     return false
+  } else {
+    if (repo['object']) {
+      const contents = repo.object.entries
+      const content_names = contents.map((content) => {
+        return content.name
+      })
+      return content_names.includes('datapackage.json')
+    }else{
+      return false
+    }
   }
-  
 }
