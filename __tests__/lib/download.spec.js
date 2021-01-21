@@ -60,14 +60,14 @@ describe('Download functions', ()=> {
     it('should return true if the user has permission', ()=> {
       const mock = jest.spyOn(fs, 'readFileSync')
       mock.mockReturnValue(validResource)
-      const response = download.checkDatasetPermission('resourceA', 'userA')
+      const response = download.checkDatasetPermission('repoA', 'userA')
       expect(response).toEqual(true)
     })
 
     it('should return false if the user has not permission', ()=> {
       const mock = jest.spyOn(fs, 'readFileSync')
       mock.mockReturnValue(invalidResource)
-      const response = download.checkDatasetPermission('resourceB', 'userA')
+      const response = download.checkDatasetPermission('repoB', 'userA')
       expect(response).toEqual(false)
     })
   })

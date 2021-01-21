@@ -8,7 +8,6 @@ const options = {
     Providers.GitHub({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      state: false,
     }),
   ],
   pages: {
@@ -25,18 +24,11 @@ const options = {
       return false
     },
     session: async(session)=> {
-      if(session.user){
-        Object.assign(session.user, {
-          login: userInfo.login,
-        })
-        if(accessToken){
-          Object.assign(session.user, {
-            token: accessToken
-          })
-        } 
-      }
+      Object.assign(session, {
+        login: userInfo.login,
+        token: accessToken
+      })
       return session
-
     },
     redirect: async () => Promise.resolve('/login'),
   },
