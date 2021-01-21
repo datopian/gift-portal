@@ -90,7 +90,7 @@ export default function Navbar() {
       </div>
       <div className="flex flex-col justify-center items-center w-1/6 bg-tertiary space-y-6 transition duration-500 ease-in-out hover:bg-tertiaryHover pb-3 pt-3 2xl:text-lg xl:w-1/9 2xl:w-1/12">
         <div className="px-4 py-2 sm:px-6">
-          <a className="hover:underline" href="/login">
+          <a className="hover:underline" href="/dashboard">
             {session &&
             <img src={session.user.image} alt="next" width="37" height="37" className="profile-img" />
             }
