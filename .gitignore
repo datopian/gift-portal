@@ -35,7 +35,5 @@ yarn-error.log*
 .vercel
 /cypress/videos/pages
 
-# data files
-data/*.*
 
 next.config.js
