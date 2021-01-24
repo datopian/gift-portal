@@ -15,10 +15,15 @@ const options = {
   },
 
   callbacks: {
-    signIn: async (user, account, metadata)=> {
+    signIn: async (user, account, metadata)=> { 
       if(account.provider === 'github'){
-        accessToken = account
-        userInfo = metadata
+        if(metadata && metadata.login){
+          Object.assign(userInfo, {
+            login: metadata.login
+          })
+        }
+        if(account) accessToken = account
+        
         return true
       }
       return false
@@ -36,5 +41,6 @@ const options = {
 }
 
 export default function Api(req, res) {
+ 
   return NextAuth(req, res, options)
 }
