@@ -10,7 +10,6 @@ export default function SignIn({ providers }) {
 
   const [, setCookie] = useCookies(['github'])
 
-  console.log(session)
   if(session && session.userInfo){
     setCookie('userInfo', session.userInfo, { path: '/'})
   }
