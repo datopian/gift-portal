@@ -1,12 +1,13 @@
-import { getSession } from 'next-auth/client'
+import { decrypt } from '../../../../../../lib/jwt'
 import Download from '../../../../../../lib/Download'
 
 const download = new Download()
 
 export default async function handler(req,res){
-  const session = await getSession({ req })
   try{ 
-    const { user } = session
+    const { userInfo } = req.cookies
+    const user = decrypt(userInfo)
+    
     const { id, oid } = req.query
     
     if(!await download.checkDatasetPermission(id, user.login)){

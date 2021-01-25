@@ -1,12 +1,12 @@
 import Permissions from '../../lib/Permissions.js'
-import { getSession } from 'next-auth/client'
+import { decrypt } from '../../lib/jwt'
+
 const permissions = new Permissions()
 
 export default async  function handler(req,res){
-  const session = await getSession({ req })
+  const { userInfo } = req.cookies
+  const user = decrypt(userInfo)
 
-  const { user }= session
-  
   if(req.method === 'POST'){
     try{
       const { dataset, scope } = req.body
