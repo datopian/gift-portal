@@ -17,11 +17,11 @@ export default function DashBoard() {
           </div>)
       }
 
-      {session && session.user.token && (
+      {session && session.user && (
         <>
           <Dashboard name={session.user.name}
             image={session.user.image}
-            userToken={session.user.token.accessToken} /> 
+          /> 
         </>
       )}
     </>
