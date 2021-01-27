@@ -33,6 +33,13 @@ export default async function handler(req,res){
         )
     }
 
+    if(req.method === 'GET') {
+
+      return metadata
+        .fetchMetadata(objectId,user,userToken)
+        .then(data => res.send(data))
+    }
+
     if(req.method === 'PUT'){
       const { metadata: data, readMe}  = req.body
   
