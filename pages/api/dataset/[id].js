@@ -22,7 +22,6 @@ export default async function handler(req,res){
   
    
     if(req.method === 'POST'){
-     
       const { metadata: data, description }= req.body
   
       return metadata
@@ -33,6 +32,7 @@ export default async function handler(req,res){
           .send(`Error on create metadata: ${error.message}`)
         )
     }
+
     if(req.method === 'PUT'){
       const { metadata: data, readMe}  = req.body
   
