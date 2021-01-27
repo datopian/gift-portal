@@ -1,7 +1,6 @@
 import { ResourceEditor } from 'giftpub'
 
 export default function Publisher({ lfs, organisationId, datasetId }) {
-
   const config = {
     datasetId: datasetId,
     api: 'http://127.0.0.1:5000',
@@ -17,7 +16,7 @@ export default function Publisher({ lfs, organisationId, datasetId }) {
 Publisher.getInitialProps = async (ctx) => {
   return {
     lfs: process.env.GIFTLESS_SERVER,
-    organisationId: process.env.ORGANISATION_REPO,
+    organisationId: process.env.NEXT_PUBLIC_ORG_NAME,
     datasetId: ctx.query.id,
   }
 }

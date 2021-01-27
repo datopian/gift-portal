@@ -69,7 +69,7 @@ export const loadDataFromGithub = async () => {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve) => {
     let repos = Object.values(repositories)
-    let owner = process.env.ORGANISATION_REPO
+    let owner = process.env.NEXT_PUBLIC_ORG_NAME
     let catalogs = {}
     let descCatalog = []
 
