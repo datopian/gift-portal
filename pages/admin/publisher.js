@@ -15,8 +15,7 @@ export default function Publisher({ lfs, organisationId}) {
   return <ResourceEditor config={config} resource="" />
 }
 
-Publisher.getInitialProps = async (ctx) => {
-  console.log(ctx)
+Publisher.getInitialProps = async () => {
   return { lfs: process.env.GIFTLESS_SERVER,
     organisationId:  process.env.NEXT_PUBLIC_ORG_NAME
   }
