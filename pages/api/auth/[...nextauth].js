@@ -30,7 +30,7 @@ const options = {
       })
       return session
     },
-    redirect: async () => Promise.resolve('/dashboard'),
+    redirect: async () => Promise.resolve('/login'),
   },
   site: process.env.NEXTAUTH_URL,
 }
