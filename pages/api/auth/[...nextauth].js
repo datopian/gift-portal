@@ -4,6 +4,7 @@ import { encrypt } from '../../../lib/jwt'
 
 
 let userInfo
+let signin = false
 const options = {
   providers: [
     Providers.GitHub({
@@ -26,17 +27,22 @@ const options = {
           }
           if(account) userInfo.token = account
         }
+        signin = true
         return true
       }
       return false
     },
     session: async(session)=> {
-      Object.assign(session, {
+      console.log(session)
+      if(session) Object.assign(session, {
         userInfo: encrypt(userInfo) ,
       })
       return session
     },
-    redirect: async () => Promise.resolve('/login'),
+    redirect: async () => {
+      if(signin) return Promise.resolve('/')
+      return Promise.resolve('/dashboard')
+    }
   },
   site: process.env.NEXTAUTH_URL,
 }
