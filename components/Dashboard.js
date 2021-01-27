@@ -87,11 +87,11 @@ export default function Dashboard({ name }) {
 }
 
 const repoHasResource = (repo) => {
-  if (!repo && !repo['object'] && !repo.object['entries']) {
+  if (!repo || !repo['object'] || !repo.object['entries']) {
     return false
   }
 
-  const entries = repo.object.entries
+  const {entries} = repo.object 
 
   try {
     let _tempEntries = entries.filter((entry) => {
