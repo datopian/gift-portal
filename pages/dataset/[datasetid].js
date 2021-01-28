@@ -1,35 +1,45 @@
 /* eslint-disable max-len */
-import React from "react";
-import { useRouter } from "next/router";
+import { React } from "react";
 import CustomTable from "../../components/table";
 import { initializeApollo } from "../../lib/apolloClient";
-import { MetastoreApollo } from "../lib/MetastoreApollo";
+import { processSingleRepo } from "../../lib/utils";
+import { SINGLE_REPOSITORY } from "../../lib/queries";
+import { useQuery } from "@apollo/client";
 
-const Dataset = ({ dataset }) => {
-  const router = useRouter();
-  const { datasetid } = router.query;
-  let sample = dataset["sample"];
+const Dataset = ({ variables }) => {
+  const {
+    data: { repository },
+    loading,
+  } = useQuery(SINGLE_REPOSITORY, { variables });
+
+  if (loading) return <div>Loading</div>; //TODO: Add loader
+
+  const dataset = processSingleRepo(repository);
   let data = [];
   let columns = [];
 
-  if (sample.length != 0) {
-    columns = sample[0].map((item) => {
-      return {
-        Header: item,
-        accessor: item,
-      };
-    });
+  if ("sample" in dataset && dataset['sample'].length != 0) {
+    let sample = dataset["sample"];
 
-    sample.slice(1, 10).map((item) => {
-      let temp_obj = {};
-      item.map((field, i) => {
-        temp_obj[sample[0][i]] = field;
+    if (sample) {
+      columns = sample[0].map((item) => {
+        return {
+          Header: item,
+          accessor: item,
+        };
       });
-      data.push(temp_obj);
-    });
+
+      sample.slice(1, 10).map((item) => {
+        let temp_obj = {};
+        item.map((field, i) => {
+          temp_obj[sample[0][i]] = field;
+        });
+        data.push(temp_obj);
+      });
+    }
   }
 
-  if (!datasetid) {
+  if (!variables.name) {
     return 404;
   } else {
     return (
@@ -85,10 +95,10 @@ const Dataset = ({ dataset }) => {
               </tr>
             </thead>
             <tbody>
-              {dataset.resources.map((resource, index) => {
+              {dataset.resources.map((resource) => {
                 return (
                   <>
-                    <tr key={`${index}-resource-count@`}>
+                    <tr>
                       <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
                         {(resource.bytes * 0.000001).toFixed(2)}
                       </td>
@@ -147,10 +157,10 @@ const Dataset = ({ dataset }) => {
                 <h2 className="text-portal4 font-lato">Source</h2>
                 {dataset.sources == undefined
                   ? ""
-                  : dataset.sources.map((source, index) => {
+                  : dataset.sources.map((source) => {
                     return (
                     // eslint-disable-next-line react/jsx-key
-                      <div key={`${index}-source-count@`} className="font-karla">
+                      <div className="font-karla">
                         <a href={source.url}>{source.title}</a>
                       </div>
                     );
@@ -203,13 +213,23 @@ const Dataset = ({ dataset }) => {
   }
 };
 
-export async function getServerSideProps({ params }) {
-  const { datasetid } = params;
+export async function getServerSideProps(context) {
   const apolloClient = initializeApollo();
-  const metastore = new MetastoreApollo(apolloClient);
+  const variables = {
+    name: context.query.datasetid,
+  };
 
-  let dataset = await metastore.fetch(datasetid);
-  return { props: { dataset: dataset.metadata, initialApolloState: apolloClient.cache.extract() } };
+  await apolloClient.query({
+    query: SINGLE_REPOSITORY,
+    variables,
+  });
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      variables,
+    },
+  };
 }
 
 export default Dataset;

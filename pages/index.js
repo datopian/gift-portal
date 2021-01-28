@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import React from "react";
 import Card from "../components/Card";
@@ -5,22 +6,11 @@ import Search from "../components/Search";
 import { useState } from "react";
 import Fuse from "fuse.js";
 import { initializeApollo } from "../lib/apolloClient";
-import {
-  MetastoreApollo,
-  processDataFromRepository,
-} from "../lib/MetastoreApollo";
+import { processMultipleRepos } from "../lib/utils";
+import { ALL_REPOSITRIES } from "../lib/queries";
 
 export default function Home({ catalogs }) {
   const [dataState, setDataState] = useState(catalogs);
-  // const { loading, error, data: catalogs } = useQuery(getRepositoriesQuery)
-
-  // if (error) {
-  //   console.log(error)
-  //   return <div>Error loading players.</div>
-  // }
-
-  // if (loading) return <div>Loading</div>
-
   const fuse = new Fuse(catalogs, {
     keys: ["title", "geo.country", "description"],
   });
@@ -66,31 +56,15 @@ export default function Home({ catalogs }) {
   );
 }
 
-// export async function getStaticProps() {
-//   const apolloClient = initializeApollo()
-//   const metastore = new MetastoreApollo(apolloClient)
-//   let [, descatalogs] = await metastore.getAllDatasets()
-//   return {
-//     props: {
-//       catalogs: descatalogs,
-//       initialApolloState: apolloClient.cache.extract(),
-//     },
-//     revalidate: 1,
-//   }
-// }
-
 export async function getServerSideProps() {
   const apolloClient = initializeApollo();
-  const metastore = new MetastoreApollo(apolloClient);
-  let datasets = await metastore.getAllDatasets();
-  let catalogs = [];
-  let desCatalogs = [];
 
-  datasets.forEach((dataset) => {
-    const processed_data = processDataFromRepository(dataset);
-    catalogs[dataset] = processed_data;
-    desCatalogs.push(processed_data);
+  const { data } = await apolloClient.query({
+    query: ALL_REPOSITRIES,
   });
+
+  const repos = data.viewer.organization.repositories.nodes;
+  const [catalogs, desCatalogs] = await processMultipleRepos(repos);
 
   return {
     props: {
