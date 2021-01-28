@@ -31,7 +31,7 @@ const options = {
       return false
     },
     session: async(session)=> {
-      Object.assign(session, {
+      if(session) Object.assign(session, {
         userInfo: encrypt(userInfo) ,
       })
       return session
