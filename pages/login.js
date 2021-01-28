@@ -2,8 +2,18 @@
 import React from 'react'
 import { providers, signIn, useSession } from 'next-auth/client'
 import Dashboard from '../components/Dashboard'
+import { useCookies } from 'react-cookie'
+
+
 export default function SignIn({ providers }) {
   const [session, ] = useSession()
+
+  const [, setCookie] = useCookies(['github'])
+
+  if(session && session.userInfo){
+    setCookie('userInfo', session.userInfo, { path: '/'})
+  }
+
   return (
     <>
       {!session &&
@@ -26,11 +36,11 @@ export default function SignIn({ providers }) {
           </div>
         ))}
 
-      {session && session.token && (
+      {session && (
         <>
           <Dashboard name={session.user.name}
             image={session.user.image}
-            userToken={session.token.accessToken} /> 
+          /> 
         </>
       )}
     </>

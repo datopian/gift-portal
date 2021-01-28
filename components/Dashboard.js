@@ -3,12 +3,12 @@ import React from 'react'
 import Github from '../lib/Github'
 import { useState, useEffect } from 'react'
 
-export default function Dashboard({ name, userToken }) {
+export default function Dashboard({ name }) {
   const [repoData, setRepoData] = useState([])
   useEffect(() => {
     async function getRepos() {
       const github = new Github()
-      const repos = await github.getRepositoriesForUser(userToken)
+      const repos = await github.getRepositoriesForUser()
       setRepoData(repos)
     }
     getRepos()
