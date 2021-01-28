@@ -4,7 +4,6 @@ import { encrypt } from '../../../lib/jwt'
 
 
 let userInfo
-let signin = false
 const options = {
   providers: [
     Providers.GitHub({
@@ -27,7 +26,6 @@ const options = {
           }
           if(account) userInfo.token = account
         }
-        signin = true
         return true
       }
       return false
@@ -39,7 +37,6 @@ const options = {
       return session
     },
     redirect: async () => {
-      if(signin) return Promise.resolve('/')
       return Promise.resolve('/dashboard')
     }
   },
