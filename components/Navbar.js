@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react'
-import { useSession, signOut } from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 
 export default function Navbar() {
   const [session] = useSession()
@@ -107,9 +107,9 @@ export default function Navbar() {
             </a>
             }
             {session && 
-             <button onClick={signOut} className="hover:underline">
-                Logout
-             </button>
+             <a className="hover:underline" href="/api/auth/signout">
+              Log out
+             </a>
             }
           </h6>
         </div>
