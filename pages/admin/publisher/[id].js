@@ -1,27 +1,30 @@
-import { ResourceEditor } from 'giftpub'
+import { DatasetEditor } from 'giftpub'
 import Error from 'next/error'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, } from 'react'
 
-export default function Publisher({ lfsServerUrl, query }) {
+export default function Publisher({ lfsServerUrl, query, organizationId }) {
   const [data, setData] = useState()
+
   useEffect(()=>{
     axios({
       method: 'GET',
       url: `/api/dataset/${query}`
-    }).then(res =>  setData(res.data))
+    }).then(res => setData(res.data))
   }, [])
 
   const config = {
     dataset: data,
     lfsServerUrl: lfsServerUrl,
     authorizeApi: '/api/authorize/',
-    metastoreApi: '/api/dataset/'
+    metastoreApi: '/api/dataset/',
+    organizationId: organizationId
   }
+
   // eslint-disable-next-line react/react-in-jsx-scope
   return (
     <>
-      { (data) && (<ResourceEditor config={config} resource='' />) }
+      { (data) && (<DatasetEditor config={config}/>) }
       { (!data) && (<Error statusCode={404}/>)}
     </>
   )
@@ -30,7 +33,7 @@ export default function Publisher({ lfsServerUrl, query }) {
 Publisher.getInitialProps = async (ctx) => {
   return {
     lfsServerUrl: process.env.GIFTLESS_SERVER,
-    organisationId: process.env.ORGANISATION_REPO,
+    organizationId: process.env.ORGANISATION_REPO,
     query: ctx.query.id,
   }
 }
