@@ -21,7 +21,7 @@ This site is built using Next.JS and Portal.JS.
 To run this app will require an `.env` file with following keys:
 
 ```
-ORGANISATION_REPO= Github Organization login name (Same as the one that you created the token)
+NEXT_PUBLIC_ORG_NAME= Github Organization login name (Same as the one that you created the token)
 
 PRIVATE_KEY= Private Key to generate authorization token to communicate with giftless
 

@@ -3,12 +3,12 @@ import React from 'react'
 import Github from '../lib/Github'
 import { useState, useEffect } from 'react'
 
-export default function Dashboard({ name, userToken }) {
+export default function Dashboard({ name }) {
   const [repoData, setRepoData] = useState([])
   useEffect(() => {
     async function getRepos() {
       const github = new Github()
-      const repos = await github.getRepositoriesForUser(userToken)
+      const repos = await github.getRepositoriesForUser()
       setRepoData(repos)
     }
     getRepos()
@@ -35,9 +35,7 @@ export default function Dashboard({ name, userToken }) {
                       <th
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        
-                      </th>
+                      ></th>
                       <th scope="col" className="relative px-6 py-3">
                         <span className="sr-only">Edit</span>
                       </th>
@@ -56,17 +54,23 @@ export default function Dashboard({ name, userToken }) {
                               </div>
                             </div>
                           </td>
-                  
+
                           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            {!hasDataPackage(repo) && (
+                            {repoHasResource(repo) ? (
                               <a
                                 href={`/admin/publisher/${repo.name}`}
                                 className="text-indigo-600 hover:text-indigo-900"
                               >
-                                Create a new fiscal data schema
+                                Edit fiscal data schema
+                              </a>
+                            ) : (
+                              <a
+                                href={`/admin/publisher/${repo.name}`}
+                                className="text-indigo-600 hover:text-indigo-900"
+                              >
+                                Create a fiscal data schema
                               </a>
                             )}
-                            {hasDataPackage(repo) && <p></p>}
                           </td>
                         </tr>
                       )
@@ -82,18 +86,24 @@ export default function Dashboard({ name, userToken }) {
   )
 }
 
-const hasDataPackage = (repo) => {
-  if (!repo) {
+const repoHasResource = (repo) => {
+  if (!repo || !repo['object'] || !repo.object['entries']) {
     return false
-  } else {
-    if (repo['object']) {
-      const contents = repo.object.entries
-      const content_names = contents.map((content) => {
-        return content.name
-      })
-      return content_names.includes('datapackage.json')
-    }else{
+  }
+
+  const {entries} = repo.object 
+
+  try {
+    let _tempEntries = entries.filter((entry) => {
+      return entry.name === 'datapackage.json'
+    })
+    if (_tempEntries.length == 0) {
       return false
+    } else {
+      return true
     }
+  } catch (error) {
+    console.log(error)
+    return false
   }
 }

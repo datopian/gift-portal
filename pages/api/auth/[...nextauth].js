@@ -1,8 +1,10 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
+import { encrypt } from '../../../lib/jwt'
 
-let userInfo = {}
-let accessToken
+
+let userInfo
+let signin = false
 const options = {
   providers: [
     Providers.GitHub({
@@ -15,26 +17,36 @@ const options = {
   },
 
   callbacks: {
-    signIn: async (user, account, metadata)=> {
+    signIn: async (user, account, metadata)=> { 
       if(account.provider === 'github'){
-        accessToken = account
-        userInfo = metadata
+        if(metadata && metadata.login && !userInfo){
+          userInfo = {
+            login: metadata.login,
+            name: metadata.name,
+            email: metadata.email
+          }
+          if(account) userInfo.token = account
+        }
+        signin = true
         return true
       }
       return false
     },
     session: async(session)=> {
-      Object.assign(session, {
-        login: userInfo.login,
-        token: accessToken
+      if(session) Object.assign(session, {
+        userInfo: encrypt(userInfo) ,
       })
       return session
     },
-    redirect: async () => Promise.resolve('/login'),
+    redirect: async () => {
+      if(signin) return Promise.resolve('/')
+      return Promise.resolve('/dashboard')
+    }
   },
   site: process.env.NEXTAUTH_URL,
 }
 
 export default function Api(req, res) {
+ 
   return NextAuth(req, res, options)
 }
