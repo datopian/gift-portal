@@ -1,24 +1,21 @@
 /* eslint-disable max-len */
 import { React } from "react";
 import CustomTable from "../../components/table";
-import { initializeApollo } from "../../lib/apolloClient";
 import { processSingleRepo } from "../../lib/utils";
-import { SINGLE_REPOSITORY } from "../../lib/queries";
-import { useQuery } from "@apollo/client";
+import { MetastoreApollo } from "../../lib/MetastoreApollo";
+import { useRouter } from "next/router";
 
-const Dataset = ({ variables }) => {
-  const {
-    data: { repository },
-    loading,
-  } = useQuery(SINGLE_REPOSITORY, { variables });
+const metastore = new MetastoreApollo();
 
-  if (loading) return <div>Loading</div>; //TODO: Add loader
+const Dataset = ({ repo }) => {
+  const router = useRouter();
+  const { datasetid } = router.query;
 
-  const dataset = processSingleRepo(repository);
+  const dataset = processSingleRepo(repo);
   let data = [];
   let columns = [];
 
-  if ("sample" in dataset && dataset['sample'].length != 0) {
+  if ("sample" in dataset && dataset["sample"].length != 0) {
     let sample = dataset["sample"];
 
     if (sample) {
@@ -39,7 +36,7 @@ const Dataset = ({ variables }) => {
     }
   }
 
-  if (!variables.name) {
+  if (!datasetid) {
     return 404;
   } else {
     return (
@@ -213,22 +210,27 @@ const Dataset = ({ variables }) => {
   }
 };
 
-export async function getServerSideProps(context) {
-  const apolloClient = initializeApollo();
-  const variables = {
-    name: context.query.datasetid,
+export async function getStaticProps({params}) {
+  const { datasetid } = params;
+  const repo = await metastore.fetch(datasetid);
+  return {
+    props: { repo: repo || {} },
+    revalidate: 1,
   };
+}
 
-  await apolloClient.query({
-    query: SINGLE_REPOSITORY,
-    variables,
-  });
+export async function getStaticPaths() {
+  let repos = await metastore.search();
 
   return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-      variables,
-    },
+    paths: Object.keys(repos).map((key) => {
+      return {
+        params: {
+          datasetid: key.replace(/\s/g, "%20"),
+        },
+      };
+    }),
+    fallback: false,
   };
 }
 

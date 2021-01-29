@@ -5,9 +5,10 @@ import Card from "../components/Card";
 import Search from "../components/Search";
 import { useState } from "react";
 import Fuse from "fuse.js";
-import { initializeApollo } from "../lib/apolloClient";
 import { processMultipleRepos } from "../lib/utils";
-import { ALL_REPOSITRIES } from "../lib/queries";
+import { MetastoreApollo } from "../lib/MetastoreApollo";
+
+const metastore = new MetastoreApollo();
 
 export default function Home({ catalogs }) {
   const [dataState, setDataState] = useState(catalogs);
@@ -57,19 +58,12 @@ export default function Home({ catalogs }) {
 }
 
 export async function getServerSideProps() {
-  const apolloClient = initializeApollo();
-
-  const { data } = await apolloClient.query({
-    query: ALL_REPOSITRIES,
-  });
-
-  const repos = data.viewer.organization.repositories.nodes;
+  const repos = await metastore.search();
   const [catalogs, desCatalogs] = await processMultipleRepos(repos);
 
   return {
     props: {
       catalogs: desCatalogs,
-      initialApolloState: apolloClient.cache.extract(),
     },
   };
 }
