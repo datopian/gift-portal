@@ -33,7 +33,7 @@ export default function Card({ props }) {
             {dataset.error == true ? (
               <span style={{ color: 'red' }}>Error parsing data!</span>
             ) : (
-              dataset.title
+              dataset.name
             )}
           </div>
         </div>

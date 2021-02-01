@@ -1,26 +1,27 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
-import React from 'react'
-import Card from '../components/Card'
-import Search from '../components/Search'
-import { loadDataFromGithub } from '../db/db'
-import { useState } from 'react'
-import Fuse from 'fuse.js'
+import React from "react";
+import Card from "../components/Card";
+import Search from "../components/Search";
+import { useState } from "react";
+import Fuse from "fuse.js";
+import { processMultipleRepos } from "../lib/utils";
+import { MetastoreApollo } from "../lib/MetastoreApollo";
 
 export default function Home({ catalogs }) {
-  const [dataState, setDataState] = useState(catalogs)
-
+  const [dataState, setDataState] = useState(catalogs);
   const fuse = new Fuse(catalogs, {
-    keys: ['title', 'geo.country', 'description'],
-  })
+    keys: ["title", "geo.country", "description"],
+  });
 
   const handlSearch = function (keyword) {
-    let data = fuse.search(keyword)
+    let data = fuse.search(keyword);
     data = data.map((value) => {
-      let { item } = value
-      return item
-    })
-    setDataState(data)
-  }
+      let { item } = value;
+      return item;
+    });
+    setDataState(data);
+  };
 
   return (
     <div className="pl-2 pr-2 pt-1 pb-1 md:p-4 lg:pt-10 lg:pb-10 lg:pl-20 lg:pr-20">
@@ -46,19 +47,22 @@ export default function Home({ catalogs }) {
         </div>
         <div className="grid grid-cols-1 gap-x-20 gap-y-10 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
           {dataState.map((value, i) => {
-            return <Card props={value} key={i} />
+            return <Card props={value} key={i} />;
           })}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export async function getStaticProps() {
-  let [, descatalogs] = await loadDataFromGithub()
+export async function getServerSideProps({ metaStoreCache }) {
+  const metastore = new MetastoreApollo(metaStoreCache);
+  const repos = await metastore.search("repos");
+  const [catalogs, desCatalogs] = await processMultipleRepos(repos);
 
   return {
-    props: { catalogs: descatalogs },
-    revalidate: 604800, // set the seconds to automatically rebuild the  page. 604800 seconds == 1 week
-  }
+    props: {
+      catalogs: desCatalogs,
+    },
+  };
 }

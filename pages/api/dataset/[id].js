@@ -45,7 +45,7 @@ export default async function handler(req,res){
           user, 
           data, 
           readMe, 
-          user.token.accessTokenserToken
+          user.token.accessToken
         )
         .then(data => res.send(data))
         .catch(error => {
