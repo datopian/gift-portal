@@ -2,7 +2,7 @@
 import { React, useEffect, useState } from "react";
 import CustomTable from "../../components/table";
 import { processSingleRepo, objectIsEmpty } from "../../lib/utils";
-import { MetastoreApollo } from "../../lib/MetastoreApollo";
+import { Metastore } from "../../lib/Metastore";
 import { useRouter } from "next/router";
 
 const Dataset = ({ metaStoreCache }) => {
@@ -12,7 +12,7 @@ const Dataset = ({ metaStoreCache }) => {
 
   useEffect(() => {
     async function getRepo() {
-      const metastore = new MetastoreApollo(metaStoreCache);
+      const metastore = new Metastore(metaStoreCache);
       const repo = await metastore.fetch(datasetid);
       const dataset = processSingleRepo(repo);
       setDataset(dataset);
