@@ -1,18 +1,17 @@
 /* eslint-disable max-len */
-import React from 'react'
-import Github from '../lib/Github'
-import { useState, useEffect } from 'react'
+import React from "react";
+// import { useState, useEffect } from "react";
+import { repoHasResource } from "../lib/utils";
 
-export default function Dashboard({ name }) {
-  const [repoData, setRepoData] = useState([])
-  useEffect(() => {
-    async function getRepos() {
-      const github = new Github()
-      const repos = await github.getRepositoriesForUser()
-      setRepoData(repos)
-    }
-    getRepos()
-  }, [])
+export default function Dashboard({ name, datasets }) {
+  //TODO: Filter datasets by user permission
+  // useEffect(() => {
+  //   async function filterDataByPermission() {
+  //   }
+  //   filterDataByPermission();
+  // }, []);
+
+  if (!datasets) return <div>Loading</div>;
 
   return (
     <div>
@@ -42,7 +41,7 @@ export default function Dashboard({ name }) {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {repoData.map((repo, i) => {
+                    {datasets.map((repo, i) => {
                       return (
                         <tr key={`${i}-index`}>
                           <td className="px-6 py-4 whitespace-nowrap">
@@ -58,14 +57,14 @@ export default function Dashboard({ name }) {
                           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             {repoHasResource(repo) ? (
                               <a
-                                href={`/admin/publisher/${repo.name}`}
+                                href={`/admin/publisher/${repo.id}`}
                                 className="text-indigo-600 hover:text-indigo-900"
                               >
                                 Edit fiscal data schema
                               </a>
                             ) : (
                               <a
-                                href={`/admin/publisher/${repo.name}`}
+                                href={`/admin/publisher/${repo.id}`}
                                 className="text-indigo-600 hover:text-indigo-900"
                               >
                                 Create a fiscal data schema
@@ -73,7 +72,7 @@ export default function Dashboard({ name }) {
                             )}
                           </td>
                         </tr>
-                      )
+                      );
                     })}
                   </tbody>
                 </table>
@@ -83,27 +82,5 @@ export default function Dashboard({ name }) {
         </div>
       </div>
     </div>
-  )
-}
-
-const repoHasResource = (repo) => {
-  if (!repo || !repo['object'] || !repo.object['entries']) {
-    return false
-  }
-
-  const {entries} = repo.object 
-
-  try {
-    let _tempEntries = entries.filter((entry) => {
-      return entry.name === 'datapackage.json'
-    })
-    if (_tempEntries.length == 0) {
-      return false
-    } else {
-      return true
-    }
-  } catch (error) {
-    console.log(error)
-    return false
-  }
+  );
 }

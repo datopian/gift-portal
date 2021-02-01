@@ -29,8 +29,6 @@
       "react/jsx-uses-react": "error",
       "react/prop-types": "off",
       "indent":["error", 2],
-      "semi":[2, "never"],
-      "quotes":["error", "single"],
       "max-len":["error", {
           "code": 79
       }]

@@ -1,37 +1,42 @@
 /* eslint-disable max-len */
+import { React } from "react";
+import CustomTable from "../../components/table";
+import { Metastore } from "../../lib/Metastore";
+import { useRouter } from "next/router";
+import { ALL_REPOSITRIES, SINGLE_REPOSITORY } from "../../lib/queries";
+import { initializeApollo } from "../../lib/apolloClient";
+import { getRepoNames } from "../../lib/utils";
 
-import React from 'react'
-import { useRouter } from 'next/router'
-import { loadDataFromGithub } from '../../db/db'
-import CustomTable from '../../components/table'
+const Dataset = ({ dataset }) => {
+  const router = useRouter();
+  const { datasetid } = router.query;
 
-const Dataset = ({ catalogs }) => {
-  const router = useRouter()
-  const { datasetid } = router.query
-  let dataset = catalogs[datasetid]
-  let sample = dataset['sample']
-  let data = []
-  let columns = []
+  let data = [];
+  let columns = [];
 
-  if (sample.length != 0) {
-    columns = sample[0].map((item) => {
-      return {
-        Header: item,
-        accessor: item,
-      }
-    })
+  if ("sample" in dataset && dataset["sample"].length != 0) {
+    let sample = dataset["sample"];
 
-    sample.slice(1, 10).map((item) => {
-      let temp_obj = {}
-      item.map((field, i) => {
-        temp_obj[sample[0][i]] = field
-      })
-      data.push(temp_obj)
-    })
+    if (sample) {
+      columns = sample[0].map((item) => {
+        return {
+          Header: item,
+          accessor: item,
+        };
+      });
+
+      sample.slice(1, 10).map((item) => {
+        let temp_obj = {};
+        item.map((field, i) => {
+          temp_obj[sample[0][i]] = field;
+        });
+        data.push(temp_obj);
+      });
+    }
   }
 
   if (!datasetid) {
-    return 404
+    return 404;
   } else {
     return (
       <div className="p-2 md:p-8 xl:p-12 2xl:p-24">
@@ -68,7 +73,7 @@ const Dataset = ({ catalogs }) => {
           {data ? (
             <CustomTable data={data} columns={columns} />
           ) : (
-            'NO PREVIEW FOR THIS DATASET'
+            "NO PREVIEW FOR THIS DATASET"
           )}
         </div>
         <h2 className="mb-10 font-lato font-bold text-xl">Download</h2>
@@ -86,22 +91,24 @@ const Dataset = ({ catalogs }) => {
               </tr>
             </thead>
             <tbody>
-              {dataset.resources.map((resource) => {
-                return (
-                  <>
-                    <tr>
-                      <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                        {(resource.bytes * 0.000001).toFixed(2)}
-                      </td>
-                      <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                        <a href={resource.path}>
-                          {resource.name}.{dataset.resources[0].format}
-                        </a>
-                      </td>
-                    </tr>
-                  </>
-                )
-              })}
+              {Object.keys(dataset).includes("resources")
+                ? dataset.resources.map((resource, index) => {
+                  return (
+                    <>
+                      <tr key={index + "@resource"}>
+                        <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
+                          {(resource.bytes * 0.000001).toFixed(2)}
+                        </td>
+                        <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
+                          <a href={resource.path}>
+                            {resource.name}.{dataset.resources[0].format}
+                          </a>
+                        </td>
+                      </tr>
+                    </>
+                  );
+                })
+                : ""}
             </tbody>
           </table>
         </div>
@@ -119,25 +126,14 @@ const Dataset = ({ catalogs }) => {
             </div>
             <div className="flex flex-row mb-10 mb-20">
               <img src="/csv.svg" width="25" alt="next" className="mr-4" />
-              {dataset.resources[0].format == 'csv' ? (
-                <div className="self-center">CSV</div>
+              {Object.keys(dataset).includes("resources") ? (
+                dataset.resources[0].format == "csv" ? (
+                  <div className="self-center">CSV</div>
+                ) : (
+                  ""
+                )
               ) : (
-                ''
-              )}
-              {dataset.resources[0].format == 'xml' ? (
-                <div className="self-center">XML</div>
-              ) : (
-                ''
-              )}
-              {dataset.resources[0].format == 'json' ? (
-                <div className="self-center">JSON</div>
-              ) : (
-                ''
-              )}
-              {dataset.resources[0].format == 'xlsx' ? (
-                <div className="self-center">EXCEL</div>
-              ) : (
-                ''
+                ""
               )}
             </div>
           </div>
@@ -147,14 +143,14 @@ const Dataset = ({ catalogs }) => {
               <div>
                 <h2 className="text-portal4 font-lato">Source</h2>
                 {dataset.sources == undefined
-                  ? ''
-                  : dataset.sources.map((source) => {
+                  ? ""
+                  : dataset.sources.map((source, index) => {
                     return (
                     // eslint-disable-next-line react/jsx-key
-                      <div className="font-karla">
+                      <div key={index + "@source"} className="font-karla">
                         <a href={source.url}>{source.title}</a>
                       </div>
-                    )
+                    );
                   })}
               </div>
             </div>
@@ -170,7 +166,7 @@ const Dataset = ({ catalogs }) => {
               <div>
                 <h2 className="text-portal4 font-lato">Country</h2>
                 <div className="font-karla">
-                  {dataset['geo'] == undefined ? '' : dataset.geo.country}
+                  {dataset["geo"] == undefined ? "" : dataset.geo.country}
                 </div>
               </div>
             </div>
@@ -179,7 +175,7 @@ const Dataset = ({ catalogs }) => {
               <div>
                 <h2 className="text-portal4 font-lato">Region</h2>
                 <div className="font-karla">
-                  {dataset['geo'] == undefined ? '' : dataset.geo.region}
+                  {dataset["geo"] == undefined ? "" : dataset.geo.region}
                 </div>
               </div>
             </div>
@@ -200,31 +196,48 @@ const Dataset = ({ catalogs }) => {
           </div>
         </div>
       </div>
-    )
+    );
   }
-}
-
-export async function getStaticProps() {
-  let [catalogs] = await loadDataFromGithub()
-  return {
-    props: { catalogs: catalogs },
-    revalidate: 604800,
-  }
-}
+};
 
 export async function getStaticPaths() {
-  let [catalogs] = await loadDataFromGithub()
+  const apolloClient = initializeApollo();
+
+  const { data } = await apolloClient.query({
+    query: ALL_REPOSITRIES,
+  });
+  const repoNames = getRepoNames(data);
 
   return {
-    paths: Object.keys(catalogs).map((key) => {
+    paths: repoNames.map((key) => {
       return {
         params: {
-          datasetid: key.replace(/\s/g, '%20'),
+          datasetid: key.replace(/\s/g, "%20"),
         },
-      }
+      };
     }),
     fallback: false,
-  }
+  };
 }
 
-export default Dataset
+export async function getStaticProps({ params }) {
+  const { datasetid } = params;
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: SINGLE_REPOSITORY,
+    variables: { name: datasetid },
+  });
+
+  const metastore = new Metastore(apolloClient.cache.extract());
+  const dataset = await metastore.fetch(datasetid);
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      dataset,
+    },
+    revalidate: 1,
+  };
+}
+
+export default Dataset;

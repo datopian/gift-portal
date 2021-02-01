@@ -27,13 +27,13 @@ const options = {
           }
           if(account) userInfo.token = account
         }
-        signin = true
+        signin= true
         return true
       }
       return false
     },
     session: async(session)=> {
-      if(session) Object.assign(session, {
+      if(session && userInfo) Object.assign(session, {
         userInfo: encrypt(userInfo) ,
       })
       return session

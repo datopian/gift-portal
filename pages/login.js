@@ -1,17 +1,16 @@
 /* eslint-disable max-len */
-import React from 'react'
-import Dashboard from '../components/Dashboard'
-import { providers, signIn, useSession } from 'next-auth/client'
-import { useCookies } from 'react-cookie'
-
+import React from "react";
+import Dashboard from "../components/Dashboard";
+import { providers, signIn, useSession } from "next-auth/client";
+import { useCookies } from "react-cookie";
 
 export default function SignIn({ providers }) {
-  const [session, ] = useSession()
+  const [session] = useSession();
 
-  const [, setCookie] = useCookies(['github'])
+  const [, setCookie] = useCookies(["github"]);
 
-  if(session && session.userInfo){
-    setCookie('userInfo', session.userInfo, { path: '/'})
+  if (session && session.userInfo) {
+    setCookie("userInfo", session.userInfo, { path: "/" });
   }
 
   return (
@@ -24,7 +23,7 @@ export default function SignIn({ providers }) {
             className="max-w-2xl mx-auto mt-20 mb-60 p-20 mb-80"
           >
             <div className="font-lato">
-              {' '}
+              {" "}
               To sign up or login, please use your existing GitHub or Google
               accounts
             </div>
@@ -41,17 +40,18 @@ export default function SignIn({ providers }) {
 
       {session && (
         <>
-          <Dashboard name={session.user.name}
+          <Dashboard
+            name={session.user.name}
             image={session.user.image}
-          /> 
+          />
         </>
       )}
     </>
-  )
+  );
 }
 
 SignIn.getInitialProps = async (context) => {
   return {
     providers: await providers(context),
-  }
-}
+  };
+};
