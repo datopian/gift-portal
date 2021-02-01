@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from "react";
 import { useState, useEffect } from "react";
-import { MetastoreApollo } from "../lib/MetastoreApollo";
+import { Metastore } from "../lib/Metastore";
 import { repoHasResource} from "../lib/utils";
 
 export default function Dashboard({ name, metaStoreCache }) {
@@ -9,7 +9,7 @@ export default function Dashboard({ name, metaStoreCache }) {
 
   useEffect(() => {
     async function getRepos() {
-      const metastore = new MetastoreApollo(metaStoreCache)
+      const metastore = new Metastore(metaStoreCache)
       const repos = await metastore.search("repos");
       //TODO: Check if user has permission to edit returned datasets. Use Permissions class.
       //Filter repos by user permission
