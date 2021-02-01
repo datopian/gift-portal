@@ -8,8 +8,6 @@ import Fuse from "fuse.js";
 import { processMultipleRepos } from "../lib/utils";
 import { MetastoreApollo } from "../lib/MetastoreApollo";
 
-const metastore = new MetastoreApollo();
-
 export default function Home({ catalogs }) {
   const [dataState, setDataState] = useState(catalogs);
   const fuse = new Fuse(catalogs, {
@@ -57,8 +55,9 @@ export default function Home({ catalogs }) {
   );
 }
 
-export async function getServerSideProps() {
-  const repos = await metastore.search();
+export async function getServerSideProps({ metaStoreCache }) {
+  const metastore = new MetastoreApollo(metaStoreCache);
+  const repos = await metastore.search("repos");
   const [catalogs, desCatalogs] = await processMultipleRepos(repos);
 
   return {
