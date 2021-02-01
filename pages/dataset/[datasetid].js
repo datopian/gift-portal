@@ -1,17 +1,28 @@
 /* eslint-disable max-len */
-import { React } from "react";
+import { React, useEffect, useState } from "react";
 import CustomTable from "../../components/table";
-import { processSingleRepo } from "../../lib/utils";
+import { processSingleRepo, objectIsEmpty } from "../../lib/utils";
 import { MetastoreApollo } from "../../lib/MetastoreApollo";
 import { useRouter } from "next/router";
 
-const metastore = new MetastoreApollo();
-
-const Dataset = ({ repo }) => {
+const Dataset = ({ metaStoreCache }) => {
+  const [dataset, setDataset] = useState({});
   const router = useRouter();
   const { datasetid } = router.query;
 
-  const dataset = processSingleRepo(repo);
+  useEffect(() => {
+    async function getRepo() {
+      const metastore = new MetastoreApollo(metaStoreCache);
+      const repo = await metastore.fetch(datasetid);
+      const dataset = processSingleRepo(repo);
+      setDataset(dataset);
+    }
+    getRepo();
+  }, []);
+
+  if (objectIsEmpty(dataset)) return <div>Loading...</div>;
+
+
   let data = [];
   let columns = [];
 
@@ -92,10 +103,10 @@ const Dataset = ({ repo }) => {
               </tr>
             </thead>
             <tbody>
-              {dataset.resources.map((resource) => {
+              {dataset.resources.map((resource, index) => {
                 return (
                   <>
-                    <tr>
+                    <tr key={index + "@resource"}>
                       <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
                         {(resource.bytes * 0.000001).toFixed(2)}
                       </td>
@@ -154,10 +165,10 @@ const Dataset = ({ repo }) => {
                 <h2 className="text-portal4 font-lato">Source</h2>
                 {dataset.sources == undefined
                   ? ""
-                  : dataset.sources.map((source) => {
+                  : dataset.sources.map((source, index) => {
                     return (
                     // eslint-disable-next-line react/jsx-key
-                      <div className="font-karla">
+                      <div key={index + "@source"} className="font-karla">
                         <a href={source.url}>{source.title}</a>
                       </div>
                     );
@@ -209,29 +220,5 @@ const Dataset = ({ repo }) => {
     );
   }
 };
-
-export async function getStaticProps({params}) {
-  const { datasetid } = params;
-  const repo = await metastore.fetch(datasetid);
-  return {
-    props: { repo: repo || {} },
-    revalidate: 1,
-  };
-}
-
-export async function getStaticPaths() {
-  let repos = await metastore.search();
-
-  return {
-    paths: Object.keys(repos).map((key) => {
-      return {
-        params: {
-          datasetid: key.replace(/\s/g, "%20"),
-        },
-      };
-    }),
-    fallback: false,
-  };
-}
 
 export default Dataset;
