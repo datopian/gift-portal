@@ -4,7 +4,7 @@ import Dashboard from "../components/Dashboard";
 import { providers, signIn, useSession } from "next-auth/client";
 import { useCookies } from "react-cookie";
 
-export default function SignIn({ providers, metaStoreCache }) {
+export default function SignIn({ providers }) {
   const [session] = useSession();
 
   const [, setCookie] = useCookies(["github"]);
