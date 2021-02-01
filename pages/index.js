@@ -5,7 +5,7 @@ import Card from "../components/Card";
 import Search from "../components/Search";
 import { useState } from "react";
 import Fuse from "fuse.js";
-import { MetastoreApollo } from "../lib/MetastoreApollo";
+import { Metastore } from "../lib/Metastore";
 import { ALL_REPOSITRIES } from "../lib/queries";
 import { initializeApollo } from "../lib/apolloClient";
 
@@ -64,7 +64,7 @@ export async function getServerSideProps() {
     query: ALL_REPOSITRIES,
   });
 
-  const metastore = new MetastoreApollo(apolloClient.cache.extract());
+  const metastore = new Metastore(apolloClient.cache.extract());
   const datasets = await metastore.search();
 
   return {

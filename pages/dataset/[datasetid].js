@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { React } from "react";
 import CustomTable from "../../components/table";
-import { MetastoreApollo } from "../../lib/MetastoreApollo";
+import { Metastore } from "../../lib/Metastore";
 import { useRouter } from "next/router";
 import { ALL_REPOSITRIES, SINGLE_REPOSITORY } from "../../lib/queries";
 import { initializeApollo } from "../../lib/apolloClient";
@@ -238,7 +238,7 @@ export async function getStaticProps({ params }) {
     variables: { name: datasetid },
   });
 
-  const metastore = new MetastoreApollo(apolloClient.cache.extract());
+  const metastore = new Metastore(apolloClient.cache.extract());
   const dataset = await metastore.fetch(datasetid);
   return {
     props: {
