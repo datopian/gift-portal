@@ -5,7 +5,6 @@ import { Provider } from "next-auth/client";
 import "../styles/pub.css";
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "../lib/apolloClient";
-import { MetastoreApollo } from "../lib/MetastoreApollo";
 
 function MyApp({ Component, pageProps, metaStoreCache }) {
   const apolloClient = useApollo(pageProps.initialApolloState);
@@ -19,16 +18,5 @@ function MyApp({ Component, pageProps, metaStoreCache }) {
     </ApolloProvider>
   );
 }
-
-MyApp.getInitialProps = async ({ Component, ctx }) => {
-  const metastore = new MetastoreApollo();
-  // Initialize Metastore Cache. This is made available in all pages
-  const metaStoreCache = await metastore.initCache();
-  let pageProps = {};
-  if (Component.getInitialProps) {
-    pageProps = await Component.getInitialProps(ctx);
-  }
-  return { pageProps, metaStoreCache };
-};
 
 export default MyApp;
