@@ -74,7 +74,7 @@ export default function Card({ props }) {
           </div>
           <div className="flex flex-row mb-4">
             <img src="/csv.svg" alt="next" className="mr-5" />
-            {dataset.resources[0].format == 'csv' ? (
+            {/* {dataset.resources[0].format == 'csv' ? (
               <div className="self-start font-karla">CSV</div>
             ) : (
               ''
@@ -93,7 +93,7 @@ export default function Card({ props }) {
               <div className="self-start">EXCEL</div>
             ) : (
               ''
-            )}
+            )} */}
           </div>
         </div>
 

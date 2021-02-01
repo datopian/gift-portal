@@ -5,12 +5,14 @@ import Card from "../components/Card";
 import Search from "../components/Search";
 import { useState } from "react";
 import Fuse from "fuse.js";
-import { processMultipleRepos } from "../lib/utils";
 import { Metastore } from "../lib/Metastore";
+import { ALL_REPOSITRIES } from "../lib/queries";
+import { initializeApollo } from "../lib/apolloClient";
 
-export default function Home({ catalogs }) {
-  const [dataState, setDataState] = useState(catalogs);
-  const fuse = new Fuse(catalogs, {
+export default function Home({ datasets }) {
+
+  const [dataState, setDataState] = useState(datasets);
+  const fuse = new Fuse(datasets, {
     keys: ["title", "geo.country", "description"],
   });
 
@@ -55,14 +57,20 @@ export default function Home({ catalogs }) {
   );
 }
 
-export async function getServerSideProps({ metaStoreCache }) {
-  const metastore = new Metastore(metaStoreCache);
-  const repos = await metastore.search("repos");
-  const [catalogs, desCatalogs] = await processMultipleRepos(repos);
+export async function getServerSideProps() {
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: ALL_REPOSITRIES,
+  });
+
+  const metastore = new Metastore(apolloClient.cache.extract());
+  const datasets = await metastore.search();
 
   return {
     props: {
-      catalogs: desCatalogs,
+      initialApolloState: apolloClient.cache.extract(),
+      datasets,
     },
   };
 }
