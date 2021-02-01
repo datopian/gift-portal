@@ -79,7 +79,8 @@ export const loadDataFromGithub = async () => {
       const data = await client.request(getRepositoriesQuery, {
         owner: `${owner}`,
         name: `${repos[i]}`,
-      })
+      }).catch(()=> ({
+      }))
       //process result before returning
       let processed_repo = await processDataFromRepository(data)
       catalogs[repos[i]] = processed_repo
@@ -93,9 +94,8 @@ export const loadDataFromGithub = async () => {
 
 const processDataFromRepository = async (repo) => {
   let datapackage
-  datapackage = repo.repository.object.entries[3]['object']['text']
-
   try {
+    datapackage = repo.repository.object.entries[3]['object']['text']
     datapackage = JSON.parse(datapackage)
     datapackage.error = false
   } catch (error) {
@@ -123,12 +123,18 @@ const processDataFromRepository = async (repo) => {
   data['description'] =
     datapackage.description || repo.description || 'No Description'
   data['resources'] = datapackage['resources'] || []
-  data['name'] = repo.repository['name'] || ''
-  data['createdAt'] = dayjs().to(dayjs(repo.repository.createdAt))
-  data['updatedAt'] = dayjs().to(dayjs(repo.repository.createdAt))
   data['author'] = datapackage['author'] || ''
   data['geo'] = datapackage['geo'] || {}
   data['error'] = datapackage['error']
+  if(repo.repository){
+    data['name'] = repo.repository.name
+    data['createdAt'] = dayjs().to(dayjs(repo.repository.createdAt))
+    data['updatedAt'] = dayjs().to(dayjs(repo.repository.createdAt))
+  }else {
+    data['name'] = ''
+    data['createdAt'] = dayjs().to(dayjs(new Date()))
+    data['updatedAt'] = dayjs().to(dayjs(new Date()))
+  }
 
   return data
 }
