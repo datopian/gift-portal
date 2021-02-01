@@ -1,27 +1,15 @@
 /* eslint-disable max-len */
-import { React, useEffect, useState } from "react";
+import { React } from "react";
 import CustomTable from "../../components/table";
-import { processSingleRepo, objectIsEmpty } from "../../lib/utils";
 import { MetastoreApollo } from "../../lib/MetastoreApollo";
 import { useRouter } from "next/router";
+import { ALL_REPOSITRIES, SINGLE_REPOSITORY } from "../../lib/queries";
+import { initializeApollo } from "../../lib/apolloClient";
+import { getRepoNames } from "../../lib/utils";
 
-const Dataset = ({ metaStoreCache }) => {
-  const [dataset, setDataset] = useState({});
+const Dataset = ({ dataset }) => {
   const router = useRouter();
   const { datasetid } = router.query;
-
-  useEffect(() => {
-    async function getRepo() {
-      const metastore = new MetastoreApollo(metaStoreCache);
-      const repo = await metastore.fetch(datasetid);
-      const dataset = processSingleRepo(repo);
-      setDataset(dataset);
-    }
-    getRepo();
-  }, []);
-
-  if (objectIsEmpty(dataset)) return <div>Loading...</div>;
-
 
   let data = [];
   let columns = [];
@@ -220,5 +208,45 @@ const Dataset = ({ metaStoreCache }) => {
     );
   }
 };
+
+export async function getStaticPaths() {
+  const apolloClient = initializeApollo();
+
+  const { data } = await apolloClient.query({
+    query: ALL_REPOSITRIES,
+  });
+  const repoNames = getRepoNames(data);
+
+  return {
+    paths: repoNames.map((key) => {
+      return {
+        params: {
+          datasetid: key.replace(/\s/g, "%20"),
+        },
+      };
+    }),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const { datasetid } = params;
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: SINGLE_REPOSITORY,
+    variables: { name: datasetid },
+  });
+
+  const metastore = new MetastoreApollo(apolloClient.cache.extract());
+  const dataset = await metastore.fetch(datasetid);
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      dataset,
+    },
+    revalidate: 1,
+  };
+}
 
 export default Dataset;
