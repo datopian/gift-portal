@@ -1,9 +1,15 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useSession } from "next-auth/client";
+import { useCookies } from "react-cookie";
 import Dashboard from "../components/Dashboard";
-
 export default function DashBoard({ metaStoreCache }) {
   const [session] = useSession();
+
+  const [, setCookie] = useCookies(["github"]);
+
+  if (session && session.userInfo) {
+    setCookie("userInfo", session.userInfo, { path: "/" });
+  }
   return (
     <>
       {!session && (
