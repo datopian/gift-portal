@@ -91,22 +91,24 @@ const Dataset = ({ dataset }) => {
               </tr>
             </thead>
             <tbody>
-              {dataset.resources.map((resource, index) => {
-                return (
-                  <>
-                    <tr key={index + "@resource"}>
-                      <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                        {(resource.bytes * 0.000001).toFixed(2)}
-                      </td>
-                      <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                        <a href={resource.path}>
-                          {resource.name}.{dataset.resources[0].format}
-                        </a>
-                      </td>
-                    </tr>
-                  </>
-                );
-              })}
+              {Object.keys(dataset).includes("resources")
+                ? dataset.resources.map((resource, index) => {
+                  return (
+                    <>
+                      <tr key={index + "@resource"}>
+                        <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
+                          {(resource.bytes * 0.000001).toFixed(2)}
+                        </td>
+                        <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
+                          <a href={resource.path}>
+                            {resource.name}.{dataset.resources[0].format}
+                          </a>
+                        </td>
+                      </tr>
+                    </>
+                  );
+                })
+                : ""}
             </tbody>
           </table>
         </div>
@@ -124,23 +126,12 @@ const Dataset = ({ dataset }) => {
             </div>
             <div className="flex flex-row mb-10 mb-20">
               <img src="/csv.svg" width="25" alt="next" className="mr-4" />
-              {dataset.resources[0].format == "csv" ? (
-                <div className="self-center">CSV</div>
-              ) : (
-                ""
-              )}
-              {dataset.resources[0].format == "xml" ? (
-                <div className="self-center">XML</div>
-              ) : (
-                ""
-              )}
-              {dataset.resources[0].format == "json" ? (
-                <div className="self-center">JSON</div>
-              ) : (
-                ""
-              )}
-              {dataset.resources[0].format == "xlsx" ? (
-                <div className="self-center">EXCEL</div>
+              {Object.keys(dataset).includes("resources") ? (
+                dataset.resources[0].format == "csv" ? (
+                  <div className="self-center">CSV</div>
+                ) : (
+                  ""
+                )
               ) : (
                 ""
               )}
