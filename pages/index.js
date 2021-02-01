@@ -6,7 +6,7 @@ import Search from "../components/Search";
 import { useState } from "react";
 import Fuse from "fuse.js";
 import { processMultipleRepos } from "../lib/utils";
-import { MetastoreApollo } from "../lib/MetastoreApollo";
+import { Metastore } from "../lib/Metastore";
 
 export default function Home({ catalogs }) {
   const [dataState, setDataState] = useState(catalogs);
@@ -56,7 +56,7 @@ export default function Home({ catalogs }) {
 }
 
 export async function getServerSideProps({ metaStoreCache }) {
-  const metastore = new MetastoreApollo(metaStoreCache);
+  const metastore = new Metastore(metaStoreCache);
   const repos = await metastore.search("repos");
   const [catalogs, desCatalogs] = await processMultipleRepos(repos);
 
