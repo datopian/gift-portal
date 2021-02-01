@@ -119,29 +119,26 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 <br />
 
-## User Session
+## User Cookie
 
-After you log using Github, you can access user information inside any page or API Route
+After you log using Github, you can access the user information encrypted inside a cookie
 
 The object that is stored follows the scope below: 
 
 ```json
 {
-"user": {
-  "name": "John Doe",
-  "email": "johndoe@email.com",
-  "image": "https://avatars3.githubusercontent.com/u/1111111?v=4",
-  "login": "johndoe",
-  "token": {
-    "provider": "github",
-    "type": "oauth",
-    "id": 1122345412,
-    "accessToken": "222db22ba22f2b2bdb2ef22222fa2e2c0a223567",
-    "accessTokenExpires": null
+  "user": {
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "image": "https://avatars3.githubusercontent.com/u/1111111?v=4",
+    "login": "johndoe",
+    "token": {
+      "provider": "github",
+      "type": "oauth",
+      "id": 1122345412,
+      "accessToken": "222db22ba22f2b2bdb2ef22222fa2e2c0a223567",
+      "accessTokenExpires": null
+    }
   }
-  },
-"expires": "2021-02-17T19:33:04.690Z"
 }
 ```
-
-You can also access the user session inside an API route or page following the [Next-Auth Documentation](https://next-auth.js.org/tutorials/securing-pages-and-api-routes).

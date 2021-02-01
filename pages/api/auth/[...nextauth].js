@@ -27,7 +27,7 @@ const options = {
           }
           if(account) userInfo.token = account
         }
-        signin = true
+        signin= true
         return true
       }
       return false
