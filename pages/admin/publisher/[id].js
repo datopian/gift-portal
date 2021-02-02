@@ -1,22 +1,43 @@
-import { ResourceEditor } from 'giftpub'
+import React from 'react'
+import { DatasetEditor } from 'giftpub'
+import Error from 'next/error'
+import { Metastore } from "../../../lib/Metastore"
+import { SINGLE_REPOSITORY } from "../../../lib/queries";
+import { initializeApollo } from "../../../lib/apolloClient";
 
-export default function Publisher({ lfs, organisationId, datasetId }) {
+export default function Publisher({ lfsServerUrl, dataset, organizationId }) {
+  
   const config = {
-    datasetId: datasetId,
-    api: 'http://127.0.0.1:5000',
-    lfs: lfs,
-    authToken: 'be270cae-1c77-4853-b8c1-30b6cf5e9228',
-    organisationId: organisationId,
-    resourceId: '',
+    dataset: dataset,
+    lfsServerUrl: lfsServerUrl,
+    authorizeApi: '/api/authorize/',
+    metastoreApi: '/api/dataset/',
+    organizationId: organizationId
   }
   // eslint-disable-next-line react/react-in-jsx-scope
-  return <ResourceEditor config={config} resource="" />
+  return (
+    <>
+      { (dataset) && (<DatasetEditor config={config}/>) }
+      { (!dataset) && (<Error statusCode={404}/>)}
+    </>
+  )
 }
 
-Publisher.getInitialProps = async (ctx) => {
+Publisher.getInitialProps = async (context) => {
+
+  const apolloClient = initializeApollo();
+  const id = context.query.id;
+
+  await apolloClient.query({
+    query: SINGLE_REPOSITORY,
+    variables: { name: id },
+  });
+
+  const metastore = new Metastore(apolloClient.cache.extract());
+  const data = await metastore.fetch(id);
   return {
-    lfs: process.env.GIFTLESS_SERVER,
-    organisationId: process.env.NEXT_PUBLIC_ORG_NAME,
-    datasetId: ctx.query.id,
+    lfsServerUrl: process.env.GIFTLESS_SERVER,
+    organizationId: process.env.ORGANISATION_REPO,
+    dataset: data
   }
 }

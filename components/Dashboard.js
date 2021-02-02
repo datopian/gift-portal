@@ -1,24 +1,17 @@
 /* eslint-disable max-len */
 import React from "react";
-import { useState, useEffect } from "react";
-import { Metastore } from "../lib/Metastore";
-import { repoHasResource} from "../lib/utils";
+// import { useState, useEffect } from "react";
+import { repoHasResource } from "../lib/utils";
 
-export default function Dashboard({ name, metaStoreCache }) {
-  const [catalogs, setcatalogs] = useState([]);
+export default function Dashboard({ name, datasets }) {
+  //TODO: Filter datasets by user permission
+  // useEffect(() => {
+  //   async function filterDataByPermission() {
+  //   }
+  //   filterDataByPermission();
+  // }, []);
 
-  useEffect(() => {
-    async function getRepos() {
-      const metastore = new Metastore(metaStoreCache)
-      const repos = await metastore.search("repos");
-      //TODO: Check if user has permission to edit returned datasets. Use Permissions class.
-      //Filter repos by user permission
-      setcatalogs(Object.values(repos));
-    }
-    getRepos();
-  }, []);
-
-  if (!catalogs) return <div>Loading</div>;
+  if (!datasets) return <div>Loading</div>;
 
   return (
     <div>
@@ -48,7 +41,7 @@ export default function Dashboard({ name, metaStoreCache }) {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {catalogs.map((repo, i) => {
+                    {datasets.map((repo, i) => {
                       return (
                         <tr key={`${i}-index`}>
                           <td className="px-6 py-4 whitespace-nowrap">
@@ -64,14 +57,14 @@ export default function Dashboard({ name, metaStoreCache }) {
                           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             {repoHasResource(repo) ? (
                               <a
-                                href={`/admin/publisher/${repo.id}`}
+                                href={`/admin/publisher/${repo.name}`}
                                 className="text-indigo-600 hover:text-indigo-900"
                               >
                                 Edit fiscal data schema
                               </a>
                             ) : (
                               <a
-                                href={`/admin/publisher/${repo.id}`}
+                                href={`/admin/publisher/${repo.name}`}
                                 className="text-indigo-600 hover:text-indigo-900"
                               >
                                 Create a fiscal data schema
