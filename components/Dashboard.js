@@ -57,14 +57,14 @@ export default function Dashboard({ name, datasets }) {
                           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             {repoHasResource(repo) ? (
                               <a
-                                href={`/admin/publisher/${repo.id}`}
+                                href={`/admin/publisher/${repo.name}`}
                                 className="text-indigo-600 hover:text-indigo-900"
                               >
                                 Edit fiscal data schema
                               </a>
                             ) : (
                               <a
-                                href={`/admin/publisher/${repo.id}`}
+                                href={`/admin/publisher/${repo.name}`}
                                 className="text-indigo-600 hover:text-indigo-900"
                               >
                                 Create a fiscal data schema
