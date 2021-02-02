@@ -1,8 +1,9 @@
 import React from 'react'
 import { DatasetEditor } from 'giftpub'
 import Error from 'next/error'
-import { getSession } from 'next-auth/client'
-import Metadata from '../../../lib/Metadata'
+import { Metastore } from "../../../lib/Metastore"
+import { SINGLE_REPOSITORY } from "../../../lib/queries";
+import { initializeApollo } from "../../../lib/apolloClient";
 
 export default function Publisher({ lfsServerUrl, dataset, organizationId }) {
   
@@ -13,7 +14,6 @@ export default function Publisher({ lfsServerUrl, dataset, organizationId }) {
     metastoreApi: '/api/dataset/',
     organizationId: organizationId
   }
-
   // eslint-disable-next-line react/react-in-jsx-scope
   return (
     <>
@@ -25,15 +25,16 @@ export default function Publisher({ lfsServerUrl, dataset, organizationId }) {
 
 Publisher.getInitialProps = async (context) => {
 
-  const metadata = new Metadata()
-  const {req} = context
-  const session = await getSession({ req })
-  const { user } = session
+  const apolloClient = initializeApollo();
+  const id = context.query.id;
 
-  const userToken = process.env.APP_GITHUB_KEY
+  await apolloClient.query({
+    query: SINGLE_REPOSITORY,
+    variables: { name: id },
+  });
 
-  const data = await metadata.fetchMetadata(context.query.id,user,userToken)
-
+  const metastore = new Metastore(apolloClient.cache.extract());
+  const data = await metastore.fetch(id);
   return {
     lfsServerUrl: process.env.GIFTLESS_SERVER,
     organizationId: process.env.ORGANISATION_REPO,
