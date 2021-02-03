@@ -6500,6 +6500,14 @@ cypress-react-unit-test@^4.17.2:
     semver "7.3.2"
     unfetch "4.1.0"
 
+cypress-social-logins@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/cypress-social-logins/-/cypress-social-logins-1.10.0.tgz#f6720c7035aa3f6bed9d17c25ce36c5f5f80e5a3"
+  integrity sha512-9GbXrY99g5J2thmMJk2cwTyPDy4ASb7hsfBqZkbGw5VbSi4rJFW7drYXvudphwRRBYBPhDc2SxbMne40pQi7UA==
+  dependencies:
+    otplib "^12.0.1"
+    puppeteer "^2.1.1"
+
 cypress@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-6.3.0.tgz#e27bba01d7e493265700e1e85333dca0b0127ede"
@@ -12148,7 +12156,7 @@ mime@1.6.0:
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
 
-mime@^2.0.3, mime@^2.4.4, mime@^2.5.0:
+mime@^2.0.3, mime@^2.4.4:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/mime/-/mime-2.5.0.tgz#2b4af934401779806ee98026bb42e8c1ae1876b1"
   integrity sha512-ft3WayFSFUVBuJj7BMLKAQcSlItKtfjsKDDsii3rqFDAZ7t11zRe8ASw/GlmivGwVUYtwkQrxiGGpL6gFvB0ag==
@@ -13148,6 +13156,15 @@ ospath@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/ospath/-/ospath-1.2.2.tgz#1276639774a3f8ef2572f7fe4280e0ea4550c07b"
   integrity sha1-EnZjl3Sj+O8lcvf+QoDg6kVQwHs=
+
+otplib@^12.0.1:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/otplib/-/otplib-12.0.1.tgz#c1d3060ab7aadf041ed2960302f27095777d1f73"
+  integrity sha512-xDGvUOQjop7RDgxTQ+o4pOol0/3xSZzawTiPKRrHnQWAy0WjhNs/5HdIDJCrqC4MBynmjXgULc6YfioaxZeFgg==
+  dependencies:
+    "@otplib/core" "^12.0.1"
+    "@otplib/preset-default" "^12.0.1"
+    "@otplib/preset-v11" "^12.0.1"
 
 outpipe@^1.1.0:
   version "1.1.1"
