@@ -2,16 +2,11 @@
 import React from "react";
 import Dashboard from "../components/Dashboard";
 import { providers, signIn, useSession } from "next-auth/client";
-import { useCookies } from "react-cookie";
 
 export default function SignIn({ providers }) {
   const [session] = useSession();
 
-  const [, setCookie] = useCookies(["github"]);
 
-  if (session && session.userInfo) {
-    setCookie("userInfo", session.userInfo, { path: "/" });
-  }
 
   return (
     <>
