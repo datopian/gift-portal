@@ -5408,6 +5408,21 @@ chokidar@^2.0.4, chokidar@^2.1.1, chokidar@^2.1.8:
   optionalDependencies:
     fsevents "^1.2.7"
 
+chokidar@^3.3.0, chokidar@^3.4.1, chokidar@^3.4.2:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.1.tgz#ee9ce7bbebd2b79f49f304799d5468e31e14e68a"
+  integrity sha512-9+s+Od+W0VJJzawDma/gvBNQqkTiqYTWLuZoyAsivsI4AaWTCzHG06/TMjsf1cYe9Cb97UCEhjz7HvnPk2p/tw==
+  dependencies:
+    anymatch "~3.1.1"
+    braces "~3.0.2"
+    glob-parent "~5.1.0"
+    is-binary-path "~2.1.0"
+    is-glob "~4.0.1"
+    normalize-path "~3.0.0"
+    readdirp "~3.5.0"
+  optionalDependencies:
+    fsevents "~2.3.1"
+
 chownr@^1.1.1, chownr@^1.1.2:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.4.tgz#6fc9d7b42d32a583596337666e7d08084da2cc6b"
@@ -6653,7 +6668,7 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   dependencies:
     ms "2.0.0"
 
-debug@4, debug@4.3.1, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
+debug@4, debug@4.3.1, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.0:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.1.tgz#f0d229c505e0c6d8c49ac553d1b13dc183f6b2ee"
   integrity sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==
@@ -11066,7 +11081,7 @@ js-file-download@^0.4.12:
   resolved "https://registry.yarnpkg.com/js-file-download/-/js-file-download-0.4.12.tgz#10c70ef362559a5b23cdbdc3bd6f399c3d91d821"
   integrity sha512-rML+NkoD08p5Dllpjo0ffy4jRHeY6Zsapvr/W86N7E0yuzAO6qa5X9+xog6zQNlH102J7IXljNY2FtS6Lj3ucg==
 
-js-levenshtein@^1.1.3:
+js-levenshtein@^1.1.3, js-levenshtein@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/js-levenshtein/-/js-levenshtein-1.1.6.tgz#c6cee58eb3550372df8deb85fad5ce66ce01d59d"
   integrity sha512-X2BB11YZtrRqY4EnQcLX5Rh373zbK4alC1FW7D7MBhL2gtcC17cTnr6DmfHZeS0s2rTHjUTMMHfG7gO8SSdw+g==
@@ -12407,10 +12422,10 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-msw@^0.26.2:
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/msw/-/msw-0.26.2.tgz#198d9947c6470aeccad02b42acbcbd455f7830f7"
-  integrity sha512-s0RXU6vfuBEXtc5n/g0k+ZnBcKkvjtwX9s9SM0h8rQJnGA7DvH43U9TMLT2/4LLZ5zm311x1rmJYhJy3dDOl6A==
+msw@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/msw/-/msw-0.26.1.tgz#e4bb4b3707cd20f7493a4da9c729eca669303464"
+  integrity sha512-nIoXBk8ZbUJxPiVATCNIEq6f/DQ0aYdfu4ZWAHhoDUleQDGup/tpZWZvzf3RPUeiA9UTdJ5rpwlcutIxJxHxkA==
   dependencies:
     "@open-draft/until" "^1.0.3"
     "@types/cookie" "^0.4.0"
