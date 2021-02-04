@@ -14,7 +14,7 @@ export default function Dashboard({ name, datasets }) {
   if (!datasets) return <div>Loading</div>;
 
   return (
-    <div>
+    <div id="dashboard-list">
       <div className="grid grid-rows-1 grid-flow-col place-content-center">
         <div>
           <h1 className="dashboard-text-h1">Hi {name}</h1>
