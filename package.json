@@ -41,6 +41,7 @@
     "gray-matter": "^4.0.2",
     "jsonwebtoken": "^8.5.1",
     "metastore-lib-js": "git+https://github.com/datopian/metastore-lib-js.git",
+    "msw": "^0.26.1",
     "next": "^10.0.5",
     "next-auth": "^3.1.0",
     "ora": "^5.2.0",
