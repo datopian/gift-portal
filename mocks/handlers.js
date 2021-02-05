@@ -3,7 +3,5 @@ import datasets from './datasets'
 
 
 export const handlers =[
-  graphql.query('Datasets', (req,res, ctx)=> {
-    return res(ctx.data(datasets))
-  })
+  graphql.query('Datasets', (req,res, ctx)=> res(ctx.data(datasets)))
 ]
