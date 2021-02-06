@@ -39,6 +39,40 @@ describe('Create dataset workflow using a csv file', ()=> {
       }
     })
 
+    cy.log('Display a Preview of dataset information and a next button')
+    cy.get('.resource-edit-actions').find('.btn').click()
+
+    cy.log('Describe the dataset Rich Type fields')
+    cy.get('.table-schema-info_table')
+      .find('tr').eq(5)
+      .find('td').eq(0)
+      .click()
+    // eslint-disable-next-line max-len
+      .type('activity:generic:contract:code')
+      .type('{enter}')
+
+    cy.get('.table-schema-info_table')
+      .find('tr').eq(5)
+      .find('td').eq(1)
+      .click()
+    // eslint-disable-next-line max-len
+      .type('activity:generic:contract:code')
+      .type('{enter}')
+
+    cy.log('Click next button if fiealds are ok')
+    cy.get('.resource-edit-actions')
+      .find('.btn').click()
+
+    cy.log('Add description')
+    cy.get('.metadata-input__textarea').type('Cypress description test')
+
+    cy.log('Upload datapackage.json')
+    cy.intercept({
+      method: 'POST',
+      url: 'http://localhost:3000/api/dataset/Dashboard-demo'
+    },{})
     
+    cy.get('.resource-edit-actions').find('button').eq(0).click()
+
   })
 })
