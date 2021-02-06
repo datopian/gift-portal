@@ -16,7 +16,7 @@ const list = {
         "nodes": [
           {
             "__typename": "Repository",
-            "name": "costa-rica-presupuesto-ingresos-2020",
+            "name": "costa-rica",
             "description": null,
             "url": "https://github.com/gift-data/costa-rica-presupuesto-ingresos-2020",
             "createdAt": "2020-09-01T18:37:23Z",
@@ -124,7 +124,7 @@ const list = {
 const createOrEdit = [{
   "repository": {
     "__typename": "Repository",
-    "name": "costa-rica-presupuesto-ingresos-2020",
+    "name": "costa-rica",
     "description": null,
     "url": "https://github.com/gift-data/costa-rica-presupuesto-ingresos-2020",
     "createdAt": "2020-09-01T18:37:23Z",
