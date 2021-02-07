@@ -6105,7 +6105,7 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
-datapub-nocss@0.1.0:
+"datapub-nocss@0.1.0  ":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/datapub-nocss/-/datapub-nocss-0.1.0.tgz#9bdc0ede2cd04c8fd9276dee485e455d3c5cfd34"
   integrity sha512-hEvNk6js2j+Bqzb3QPAFb5XggPXKoX4jxQqKZkpdJBwS+RW+8GFQ8RAB18z7/awlLBkaoMwwQ7vpAaIoM2J2jg==
@@ -8286,14 +8286,14 @@ getpass@^0.1.1:
   dependencies:
     axios "^0.21.1"
 
-"giftpub@git+https://github.com/datopian/gift-publisher.git#package#06a4ba629e94c468665823ed9bb63ce041391019":
+"giftpub@git+https://github.com/datopian/gift-publisher.git#package#cbb7b9365aff1bf9dba45ec6ab7574fef08b8718":
   version "0.1.0"
-  resolved "git+https://github.com/datopian/gift-publisher.git#06a4ba629e94c468665823ed9bb63ce041391019"
+  resolved "git+https://github.com/datopian/gift-publisher.git#cbb7b9365aff1bf9dba45ec6ab7574fef08b8718"
   dependencies:
     "@material-ui/core" "^4.11.2"
     axios "^0.21.1"
     ckan-client "git+https://github.com/datopian/ckan-client-js.git#v0.4.2"
-    datapub-nocss "0.1.0"
+    datapub-nocss "0.1.0  "
     frictionless-ckan-mapper-js "^1.0.0"
     giftless-client "git+https://github.com/datopian/giftless-client-js.git"
     js-file-download "^0.4.12"
