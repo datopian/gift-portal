@@ -19,26 +19,26 @@ export default async function handler(req,res){
     }
   
    
-    if(req.method === 'POST'){
-      const { metadata: data, description }= req.body
+    // if(req.method === 'POST'){
+    //   const { metadata: data, description }= req.body
      
-      return metadata
-        .createMetadata(objectId, 
-          user, 
-          data, 
-          description, 
-          user.token.accessToken
-        )
-        .then(data => res.send(data))
-        .catch(error => 
-          res
-            .status(400)
-            .send(`Error on create metadata: ${error.message}`)
-        )
-    }
+    //   return metadata
+    //     .createMetadata(objectId, 
+    //       user, 
+    //       data, 
+    //       description, 
+    //       user.token.accessToken
+    //     )
+    //     .then(data => res.send(data))
+    //     .catch(error => 
+    //       res
+    //         .status(400)
+    //         .send(`Error on create metadata: ${error.message}`)
+    //     )
+    // }
 
 
-    if(req.method === 'PUT'){
+    if(req.method === 'POST'){
       const { metadata: data, readMe}  = req.body
   
       return metadata
