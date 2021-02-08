@@ -128,6 +128,39 @@ yarn e2e
 
 ## Updating the Publisher
 
+- If you will update any view or change the workflow, ensure that the tests will run correctly.
+- If you will need to mock some Server Side request that will not working on `cy.intercept` you can add on `mocks/handlers` folder. (We use [MSW](https://mswjs.io/) )
+
+To run Cypress, you can use following commands:
+
+> Run cypress UI
+
+```bash
+npm run cypress:open
+# or
+yarn cypress:open
+```
+
+> Tests without Video Interface
+
+```bash
+npm run cypress:ci
+# or
+yarn cypress:ci
+```
+
+> Run All tests
+
+```bash
+npm run e2e
+# or
+yarn e2e
+```
+ 
+<br />  
+
+## Updating the Publisher
+
 To update the Publisher app for `gift-portal`:
 
 ```bash
