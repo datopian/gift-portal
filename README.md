@@ -29,7 +29,7 @@ GIFTLESS_SERVER= URL from Giftless server
 
 APP_GITHUB_KEY= API key to access GitHub required data, follow this documentation: https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token
 
-REFRESH_DATA_IN_METASTORE= Set if the metastore data will refresh automatically
+REFRESH_DATA_IN_METASTORE= Set if the metastore data will refresh automatically (true/false)
 
 //This env should be enabled when you want to mock the service worker to run tests
 NEXT_PUBLIC_API_MOCKING= enabled/disabled
