@@ -31,6 +31,8 @@ APP_GITHUB_KEY= API key to access github required data, follow this documentatio
 
 REFRESH_DATA_IN_METASTORE= Set if the metastore data will refresh automatically
 
+//This env should be enabled when you want to mock the service worker to run tests
+NEXT_PUBLIC_API_MOCKING= enabled/disabled
 
 // To get those information below you can check on this link: https://docs.github.com/en/developers/apps/creating-a-github-app
 
@@ -88,6 +90,42 @@ yarn test:watch
 ```
 
 <br />
+
+## Integration and E2E Tests
+
+Those tests are made using Cypress. 
+To add more tests you can follow the structure on the `cypress` directory.
+
+- If you will update any view or change the workflow, ensure that the tests will run correctly.
+- If you will need to mock some Server Side request that will not working on `cy.intercept` you can add on `mocks/handlers` folder. (We use [MSW](https://mswjs.io/) )
+
+To run Cypress, you can use following commands:
+
+> Run cypress UI
+
+```bash
+npm run cypress:open
+# or
+yarn cypress:open
+```
+
+> Tests without Video Interface
+
+```bash
+npm run cypress:ci
+# or
+yarn cypress:ci
+```
+
+> Run All tests
+
+```bash
+npm run e2e
+# or
+yarn e2e
+```
+ 
+<br />  
 
 ## Updating the Publisher
 
