@@ -6,6 +6,7 @@ jest.mock('metastore-lib-js')
 const metadata = new Metadata()
 
 
+
 describe('Metadata Tests', ()=> {
 
   describe('Create metadata', ()=> {
@@ -56,8 +57,8 @@ describe('Metadata Tests', ()=> {
   
     it('should update a metadata when PUT a datapackage.json', async ()=> {
 
-      const createSpy = jest.spyOn(metastore, 'createMetastore') 
-      createSpy.mockReturnValue({update: () => responseMetadata})
+      const createSpy = jest.spyOn(metadata, 'updateMetadata') 
+      createSpy.mockReturnValue(responseMetadata)
       
       const response = await metadata
         .updateMetadata('file.csv', data, 'File Readme', user.accessToken)

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { decrypt } from "../../../lib/jwt";
 import Metadata from "../../../lib/Metadata";
 import Permissions from "../../../lib/Permissions";
@@ -16,30 +15,31 @@ export default async function handler(req, res) {
       res.status(401).send("Unauthorized User");
     }
 
-    // if (req.method === "POST") {
-    //   const { metadata: data, description } = req.body;
+    // if(req.method === 'POST'){
+    //   const { metadata: data, description }= req.body
 
     //   return metadata
-    //     .createMetadata(
-    //       objectId,
+    //     .createMetadata(objectId,
     //       user,
     //       data,
     //       description,
     //       user.token.accessToken
     //     )
-    //     .then((data) => res.send(data))
-    //     .catch((error) => {
-    //       console.log(error);
-    //       res.status(400).send(`Error on create metadata: ${error.message}`);
-    //     });
+    //     .then(data => res.send(data))
+    //     .catch(error =>
+    //       res
+    //         .status(400)
+    //         .send(`Error on create metadata: ${error.message}`)
+    //     )
     // }
 
     if (req.method === "POST") {
       const { metadata: data, description: readMe } = req.body;
-
       return metadata
         .updateMetadata(objectId, user, data, readMe, user.token.accessToken)
-        .then((data) => res.send(data))
+        .then(() => {
+          res.status(200).send({ success: true });
+        })
         .catch((error) => {
           console.log(error);
           return res.status(400).send(error);

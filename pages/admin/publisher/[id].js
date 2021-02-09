@@ -5,14 +5,13 @@ import { Metastore } from "../../../lib/Metastore"
 import { SINGLE_REPOSITORY } from "../../../lib/queries";
 import { initializeApollo } from "../../../lib/apolloClient";
 
-export default function Publisher({ lfsServerUrl, dataset, organizationId }) {
+export default function Publisher({ lfsServerUrl, dataset }) {
   
   const config = {
     dataset: dataset,
     lfsServerUrl: lfsServerUrl,
     authorizeApi: '/api/authorize/',
     metastoreApi: '/api/dataset/',
-    organizationId: organizationId
   }
   // eslint-disable-next-line react/react-in-jsx-scope
   return (
@@ -37,7 +36,6 @@ Publisher.getInitialProps = async (context) => {
   const data = await metastore.fetch(id);
   return {
     lfsServerUrl: process.env.GIFTLESS_SERVER,
-    organizationId: process.env.ORGANISATION_REPO,
     dataset: data
   }
 }
