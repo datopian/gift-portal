@@ -36,7 +36,7 @@ export default function DashBoard({ datasets }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
   await apolloClient.query({
