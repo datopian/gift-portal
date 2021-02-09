@@ -21,6 +21,17 @@ const invalidResource = [{
   admins: ['userC']
 }]
 
+const graphQlResponse = {
+  repository: {
+    content: {
+      text: `version https://git-lfs.github.com/spec/v1\n
+      oid sha256:
+      sha256:2879e2bdf2b398ee251858c2095053b0f26687cef7ddb9013f050d44437dac92\n
+      size 459318\n`
+    }
+  }
+}
+
 const resourceId = 
       '2879e2bdf2b398ee251858c2095053b0f26687cef7ddb9013f050d44437dac92459318'
 
@@ -102,6 +113,15 @@ describe('Download functions', ()=> {
 
       expect(response).toEqual(contentResponse)
 
+    })
+
+    it('should return an hash from a resource', async()=> {
+      const resourcePath= ['data', 'resource.csv']
+      const restMock = jest.fn()
+      Github.prototype.graphQlRequest = restMock
+      restMock.mockReturnValue(Promise.resolve(graphQlResponse))
+      const response = await download._getResourceContent(resourcePath)
+      expect(response).toEqual(graphQlResponse.repository.content.text)
     })
 
     it('should return the resource id and size', async ()=> {
