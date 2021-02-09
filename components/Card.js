@@ -1,5 +1,5 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 /**
  * Create card for each datasets.
  * e.g
@@ -16,12 +16,12 @@ import Link from 'next/link'
  * @return JSX
  */
 export default function Card({ props }) {
-  let dataset = props
+  let dataset = props;
   return (
     <div
       className={
         // eslint-disable-next-line max-len
-        'flex flex-col rounded-md border-2 shadow-md justify-between p-5 mb-4 min-h-500'
+        "flex flex-col rounded-md border-2 shadow-md justify-between p-5 mb-4 min-h-500"
       }
     >
       <div>
@@ -29,11 +29,14 @@ export default function Card({ props }) {
           {dataset.logo && (
             <img src={dataset.logo} alt="next" className="mr-2" />
           )}
+          <div className="font-lato text-xl">{dataset.name}</div>
+        </div>
+        <div className="flex flex-row justify-between items-center">
           <div className="font-lato text-xl">
             {dataset.error == true ? (
-              <span style={{ color: 'red' }}>Error parsing data!</span>
+              <span style={{ color: "red" }}>error parsing metadata!</span>
             ) : (
-              dataset.name
+              ""
             )}
           </div>
         </div>
@@ -47,7 +50,7 @@ export default function Card({ props }) {
                 >
                   {value}
                 </div>
-              )
+              );
             })
           ) : (
             <>
@@ -105,5 +108,5 @@ export default function Card({ props }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

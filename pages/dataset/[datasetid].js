@@ -101,7 +101,11 @@ const Dataset = ({ dataset }) => {
                         </td>
                         <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
                           <a href={resource.path}>
-                            {resource.name}.{dataset.resources[0].format}
+                            {"path" in resource
+                              ? `${resource.name}.${resource.path
+                                .split(".")
+                                .pop()}`
+                              : resource.name}
                           </a>
                         </td>
                       </tr>
@@ -124,7 +128,7 @@ const Dataset = ({ dataset }) => {
               <img src="/check.svg" alt="next" className="mr-4" />
               <span className="self-center">Updated {dataset.updatedAt}</span>
             </div>
-            <div className="flex flex-row mb-10 mb-20">
+            {/* <div className="flex flex-row mb-10 mb-20">
               <img src="/csv.svg" width="25" alt="next" className="mr-4" />
               {Object.keys(dataset).includes("resources") ? (
                 dataset.resources[0].format == "csv" ? (
@@ -135,7 +139,7 @@ const Dataset = ({ dataset }) => {
               ) : (
                 ""
               )}
-            </div>
+            </div> */}
           </div>
           <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
             <div className="flex flex-row">
