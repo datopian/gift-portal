@@ -1,5 +1,7 @@
 import { decrypt } from '../../../../../../lib/jwt'
 import Download from '../../../../../../lib/Download'
+import axios from 'axios'
+
 
 const download = new Download()
 
@@ -15,8 +17,11 @@ export default async function handler(req,res){
     }
 
     const resourceUrl = await download.getUrl(id, oid, user.login)
-    
-    return res.redirect(resourceUrl)
+    return axios.get(resourceUrl, { responseType: 'stream'}).then(response => {
+      const stream = response.data
+      stream.on('data', chunk => res.write(new Buffer.from(chunk)))
+      stream.on('end', ()=> res.end())
+    })
     
     
   }catch(error){
