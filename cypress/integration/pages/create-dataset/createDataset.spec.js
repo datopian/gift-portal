@@ -13,7 +13,13 @@ describe('Create dataset workflow using a csv file', ()=> {
     cy.log('Select the item with the label: Edit Fiscal Data Schema')
     cy.get('#dashboard-list').find('.create-schema').first().click()
 
-    cy.log('Select Chose a file to upload')
+    cy.log('Should not contain any resource')
+    cy.contains('No Resource Available')
+
+    cy.log('Add Resource')
+    cy.get('.resource-edit-actions').find('.btn').click()
+
+    cy.log('Select Choose a file to upload')
     cy.get('.upload-choose').find('.choose-btn').first().click()
     
     cy.log('Attach a csv file')
@@ -66,13 +72,19 @@ describe('Create dataset workflow using a csv file', ()=> {
     cy.log('Add description')
     cy.get('.metadata-input__textarea').type('Cypress description test')
 
-    cy.log('Upload datapackage.json')
+    cy.log('Save Dataset')
     cy.intercept({
       method: 'POST',
       url: 'http://localhost:3000/api/dataset/Dashboard-demo'
     },{})
     
     cy.get('.resource-edit-actions').find('button').eq(0).click()
+
+    cy.log('Must contain one resource on list')
+    cy.contains('Available Resources in Dataset')
+    cy.contains('neighbourhoods')
+    cy.contains('Remove')
+    cy.contains('Add Resource')
 
   })
 })
