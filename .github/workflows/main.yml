@@ -9,9 +9,8 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install modules
-        run: yarn
+      - name: Checkout
+        uses: actions/checkout@v1
 
       - name: Start Server
         run: yarn dev
