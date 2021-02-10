@@ -11,8 +11,8 @@
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run --config video=false",
     "e2e": "cypress run",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest --testPathPattern=__tests__",
+    "test:watch": "jest --testPathPattern=__tests__ --watch",
     "lint": "eslint ./ --ext .js",
     "lint:fix": "yarn lint --fix"
   },
