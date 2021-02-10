@@ -22,13 +22,14 @@ const invalidResource = [{
 }]
 
 const graphQlResponse = {
-  repository: {
+  data: {repository: {
     content: {
       text: `version https://git-lfs.github.com/spec/v1\n
       oid sha256:
       sha256:2879e2bdf2b398ee251858c2095053b0f26687cef7ddb9013f050d44437dac92\n
       size 459318\n`
     }
+  }
   }
 }
 
@@ -121,7 +122,7 @@ describe('Download functions', ()=> {
       Github.prototype.graphQlRequest = restMock
       restMock.mockReturnValue(Promise.resolve(graphQlResponse))
       const response = await download._getResourceContent(resourcePath)
-      expect(response).toEqual(graphQlResponse.repository.content.text)
+      expect(response).toEqual(graphQlResponse.data.repository.content.text)
     })
 
     it('should return the resource id and size', async ()=> {
