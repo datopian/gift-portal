@@ -23,6 +23,7 @@ jobs:
           APP_GITHUB_KEY:  ${{ secrets.APP_GITHUB_KEY }}
           NEXT_PUBLIC_ORG_NAME: ${{ secrets.NEXT_PUBLIC_ORG_NAME }}
           REFRESH_DATA_IN_METASTORE: ${{ secrets.REFRESH_DATA_IN_METASTORE }}
+          NEXT_PUBLIC_API_MOCKING: ${{ secrets.NEXT_PUBLIC_API_MOCKING }}
 
   jest:
     runs-on: ubuntu-latest
