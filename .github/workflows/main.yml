@@ -14,8 +14,7 @@ jobs:
         run: yarn
 
       - name: Start Server and Run tests
-        run: yarn dev && sleep 20
-        run: yarn cypress:ci
+        run: yarn dev && yarn cypress:ci
       
         env:
           APP_GITHUB_KEY:  ${{ secrets.APP_GITHUB_KEY }}
