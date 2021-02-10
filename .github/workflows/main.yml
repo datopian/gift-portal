@@ -13,10 +13,8 @@ jobs:
       - name: Install modules
         run: yarn
 
-      - name: Start Server
-        run: yarn dev
-        
-      - name: Run Cypress Tests
+      - name: Start Server and Run tests
+        run: yarn dev && sleep 20
         run: yarn cypress:ci
       
         env:
