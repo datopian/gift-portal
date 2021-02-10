@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 import Dashboard from "../components/Dashboard";
 import { ALL_REPOSITRIES } from "../lib/queries";
 import { initializeApollo } from "../lib/apolloClient";
-import { Metastore } from "../lib/Metastore";
+import Metastore from "../lib/Metastore";
 
 export default function DashBoard({ datasets }) {
   const [session] = useSession();

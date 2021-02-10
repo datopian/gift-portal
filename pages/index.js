@@ -5,7 +5,7 @@ import Card from "../components/Card";
 import Search from "../components/Search";
 import { useState } from "react";
 import Fuse from "fuse.js";
-import { Metastore } from "../lib/Metastore";
+import Metastore from "../lib/Metastore";
 import { ALL_REPOSITRIES } from "../lib/queries";
 import { initializeApollo } from "../lib/apolloClient";
 

@@ -1,8 +1,8 @@
 import { decrypt } from "../../../lib/jwt";
-import Metadata from "../../../lib/Metadata";
+import Metastore from "../../../lib/Metastore";
 import Permissions from "../../../lib/Permissions";
 
-const metadata = new Metadata();
+const metastore = new Metastore();
 const permissions = new Permissions();
 
 export default async function handler(req, res) {
@@ -18,8 +18,8 @@ export default async function handler(req, res) {
     // if(req.method === 'POST'){
     //   const { metadata: data, description }= req.body
 
-    //   return metadata
-    //     .createMetadata(objectId,
+    //   return metastore
+    //     .create(objectId,
     //       user,
     //       data,
     //       description,
@@ -34,9 +34,9 @@ export default async function handler(req, res) {
     // }
 
     if (req.method === "POST") {
-      const { metadata: data, description: readMe } = req.body;
-      return metadata
-        .updateMetadata(objectId, user, data, readMe, user.token.accessToken)
+      const { metadata } = req.body;
+      return metastore
+        .update(objectId, user, metadata, user.token.accessToken)
         .then(() => {
           res.status(200).send({ success: true });
         })
