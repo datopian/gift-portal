@@ -9,13 +9,15 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install modules
-        run: yarn
+      - name: Checkout
+        uses: actions/checkout@v1
 
-      - name: Start Server and Run tests
-        run: yarn dev && yarn cypress:ci
-      
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          start: yarn dev
+          wait-on: "http://localhost:3000"
         env:
           APP_GITHUB_KEY:  ${{ secrets.APP_GITHUB_KEY }}
           NEXT_PUBLIC_ORG_NAME: ${{ secrets.NEXT_PUBLIC_ORG_NAME }}
