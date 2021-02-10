@@ -13,7 +13,15 @@ describe('Create dataset workflow using a csv file', ()=> {
     cy.log('Select the item with the label: Edit Fiscal Data Schema')
     cy.get('#dashboard-list').find('.edit-schema').first().click()
 
-    cy.log('Select Chose a file to upload')
+    cy.log('Must contain a list of datasets')
+    cy.contains('Available Resources in Dataset')
+    cy.contains('Remove')
+    cy.contains('Add Resource')
+
+    cy.log('Add Resource')
+    cy.get('.resource-edit-actions').find('.btn').click()
+
+    cy.log('Select Choose a file to upload')
     cy.get('.upload-choose').find('.choose-btn').first().click()
     
     cy.log('Attach a csv file')
@@ -42,38 +50,22 @@ describe('Create dataset workflow using a csv file', ()=> {
     cy.log('Display a Preview of dataset information and a next button')
     cy.get('.resource-edit-actions').find('.btn').click()
 
-    //TODO: update datapackage that match with the example
-    // cy.log('Describe the dataset Rich Type fields')
-    // cy.get('.table-schema-info_table')
-    //   .find('tr').eq(5)
-    //   .find('td').eq(0)
-    //   .click()
-    // // eslint-disable-next-line max-len
-    //   .type('activity:generic:contract:code')
-    //   .type('{enter}')
+   
 
-    // cy.get('.table-schema-info_table')
-    //   .find('tr').eq(5)
-    //   .find('td').eq(1)
-    //   .click()
-    // // eslint-disable-next-line max-len
-    //   .type('activity:generic:contract:code')
-    //   .type('{enter}')
+    cy.log('Click next button if fiealds are ok')
+    cy.get('.resource-edit-actions')
+      .find('.btn').click()
 
-    // cy.log('Click next button if fiealds are ok')
-    // cy.get('.resource-edit-actions')
-    //   .find('.btn').click()
-
-    // cy.log('Add description')
-    // cy.get('.metadata-input__textarea').type('Cypress description test')
-
-    // cy.log('Upload datapackage.json')
-    // cy.intercept({
-    //   method: 'POST',
-    //   url: 'http://localhost:3000/api/dataset/Dashboard-demo'
-    // },{})
+    cy.log('Upload datapackage.json')
+    cy.intercept({
+      method: 'POST',
+      url: 'http://localhost:3000/api/dataset/Demo-Repo'
+    },{})
     
-    // cy.get('.resource-edit-actions').find('button').eq(0).click()
+    cy.get('.resource-edit-actions').find('button').eq(0).click()
 
+
+    cy.log('Should display 2 items on resource list')
+    cy.get('tbody').find('tr').should('have.length', 2)
   })
 })
