@@ -1,9 +1,9 @@
-import Metadata from '../../lib/Metadata'
-import * as metastore from 'metastore-lib-js'
+import Metastore from '../../lib/Metastore'
+// import * as metastore from 'metastore-lib-js'
 
-jest.mock('metastore-lib-js')
+jest.mock('../../lib/Metastore')
   
-const metadata = new Metadata()
+const metastore = new Metastore()
 
 
 
@@ -45,24 +45,24 @@ describe('Metadata Tests', ()=> {
     }
     const description = 'Financial file'
     it('create metadata on POST method',async  ()=> {
-      const createSpy = jest.spyOn(metastore, 'createMetastore') 
-      createSpy.mockReturnValue({create: () => responseMetadata})
+      const createSpy = jest.spyOn(metastore, 'create') 
+      createSpy.mockReturnValue(responseMetadata)
     
-      const response = await  metadata
-        .createMetadata('file.csv', user, data, description, user.accessToken)
+      const response = await  metastore
+        .create('file.csv', user, data, description, user.accessToken)
   
       expect(createSpy).toHaveBeenCalledTimes(1)
       expect(response).toEqual(responseMetadata)
     })
   
-    it('should update a metadata when PUT a datapackage.json', async ()=> {
-
-      const createSpy = jest.spyOn(metadata, 'updateMetadata') 
+    / it('create metadata on POST method',async  ()=> {
+      const createSpy = jest.spyOn(metastore, 'update') 
       createSpy.mockReturnValue(responseMetadata)
-      
-      const response = await metadata
-        .updateMetadata('file.csv', data, 'File Readme', user.accessToken)
-
+    
+      const response = await  metastore
+        .update('file.csv', user, data, description, user.accessToken)
+  
+      expect(createSpy).toHaveBeenCalledTimes(1)
       expect(response).toEqual(responseMetadata)
     })
   })
