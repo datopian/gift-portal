@@ -16,7 +16,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           browser: chrome
-          start: yarn dev
+          build: yarn build:ci
+          start: yarn start
           wait-on: "http://localhost:3000"
         env:
           APP_GITHUB_KEY:  ${{ secrets.APP_GITHUB_KEY }}
