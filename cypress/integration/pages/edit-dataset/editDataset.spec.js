@@ -1,6 +1,6 @@
 import 'cypress-file-upload';
 
-describe('Create dataset workflow using a csv file', ()=> {
+describe('Edit dataset workflow using a same csv file format', ()=> {
   it('should create a dataset', ()=> {
     cy.intercept({
       method: 'GET',
