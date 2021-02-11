@@ -100,7 +100,7 @@ const Dataset = ({ dataset }) => {
                           {(resource.bytes * 0.000001).toFixed(2)}
                         </td>
                         <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                          <a href={resource.path}>
+                          <a href={`/api/dataset/${dataset.name}/files/default/${resource.path}`} download>
                             {"path" in resource
                               ? `${resource.name}.${resource.path
                                 .split(".")
