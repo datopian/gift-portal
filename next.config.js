@@ -17,6 +17,7 @@ module.exports = {
     return config;
   },
   env: {
-    APP_GITHUB_KEY: process.env.APP_GITHUB_KEY,
-  },
+    NEXT_PUBLIC_API_MOCKING: process.env.NEXT_PUBLIC_API_MOCKING,
+    APP_GITHUB_KEY: process.env.APP_GITHUB_KEY
+  }
 };
