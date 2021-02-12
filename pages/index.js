@@ -68,6 +68,11 @@ export default function Home({ datasets }) {
           {dataState.map((value, i) => {
             return <Card props={value} key={i} />;
           })}
+          {(() => {
+            if (!dataState.length) {
+              return <p><strong>No results found for this search query.</strong></p>
+            }
+          })()}
         </div>
       </div>
     </div>
