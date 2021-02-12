@@ -1,21 +1,48 @@
 import Permissions from '../../lib/Permissions'
-import fs from 'fs'
-
+import { initializeApollo } from "../../lib/apolloClient"
 
 const permissions = new Permissions()
 
-const resourceData = [{
-  dataset: 'repoA',
-  readers: ['userA', 'userB'],
-  editors: ['userA'],
-  admins: ['userA']
+
+
+const graphQLResponse = {
+  organization: {
+    repositories: {
+      totalCount:1,
+      pageInfo: 'Y3Vyc29yOnYyOpHOFBwvIQ',
+      hasNextPage: false,
+      nodes:[
+        {
+          isPrivate: false,
+          name: 'repoA',
+          collaborators:{
+            edges:[
+              {
+                permission: 'ADMIN',
+                node: {
+                  login: 'userA'
+                }
+              },
+              {
+                permission: 'READ',
+                node: {
+                  login: 'userB'
+                }
+              },
+              {
+                permission: 'WRITE',
+                node: {
+                  login: 'userC'
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+  }
 }
-,{
-  dataset: 'repoB',
-  readers: ['userB', 'userC'],
-  editors: ['userC'],
-  admins: ['userC']
-}]
+
 
 describe('Authenticate Tests', () => {
   it('should thow an error if requested scope is invalid', () => {
@@ -64,18 +91,35 @@ describe('Authenticate Tests', () => {
 
   describe('Validate user permissions', ()=> {
 
-    it('should return true if user has permission', ()=> {
-      const mock = jest.spyOn(fs, 'readFileSync')
-      mock.mockReturnValue(resourceData)
-      const response = permissions.userHasPermission('userA', 'repoA', 'write')
+    it('should parser the datasets permissions given graphQl reponse', ()=>{
+
+      const response = permissions._parserPermissions(graphQLResponse)
+
+      expect(response).toEqual([{
+        dataset: 'repoA',
+        readers: [ 'PUBLIC', 'LOGGED_IN', 'userA', 'userB', 'userC'],
+        editors: ['userA', 'userC'],
+        admins: ['userA']
+      }])
+    })
+
+    it('should return true if user has permission', async ()=> {
+      const apollo = initializeApollo()
+      const mock = jest.spyOn(apollo, 'readQuery')
+      mock.mockReturnValue(graphQLResponse)
+      const response = await permissions
+        .userHasPermission('userA', 'repoA', 'write')
 
       expect(response).toEqual(true)
     })
 
-    it('should return false if user has no permission', ()=> {
-      const mock = jest.spyOn(fs, 'readFileSync')
-      mock.mockReturnValue(resourceData)
-      const response = permissions.userHasPermission('userA', 'repoB', 'write')
+    it('should return false if user has no permission', async ()=> {
+      const apollo = initializeApollo()
+      const mock = jest.spyOn(apollo, 'readQuery')
+      mock.mockReturnValue(graphQLResponse)
+
+      const response = await permissions
+        .userHasPermission('userB', 'repoA', 'write')
 
       expect(response).toEqual(false)
     })
