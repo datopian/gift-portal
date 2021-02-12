@@ -3,7 +3,7 @@
 import React from "react";
 import Card from "../components/Card";
 import Search from "../components/Search";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Fuse from "fuse.js";
 import Metastore from "../lib/Metastore";
 import { ALL_REPOSITRIES } from "../lib/queries";
@@ -12,17 +12,33 @@ import { initializeApollo } from "../lib/apolloClient";
 export default function Home({ datasets }) {
 
   const [dataState, setDataState] = useState(datasets);
-  const fuse = new Fuse(datasets, {
-    keys: ["title", "geo.country", "description"],
-  });
-
+  const selectRef = useRef();
+  
   const handlSearch = function (keyword) {
-    let data = fuse.search(keyword);
-    data = data.map((value) => {
-      let { item } = value;
-      return item;
-    });
-    setDataState(data);
+    if (keyword.length === 0) {
+      setDataState(datasets);
+    } else {
+      const sortOrder = selectRef.current.value;
+      const fuse = new Fuse(datasets, {
+        keys: ["title"],
+        sortFn: (a, b) => { 
+          if (sortOrder === 'AZ'){
+            return a.item['0'].v.localeCompare(b.item['0'].v) 
+          }else {
+            return b.item['0'].v.localeCompare(a.item['0'].v) 
+          }
+          
+        },
+      });
+      let data = fuse.search(keyword);
+      
+      data = data.map((value) => {
+        let { item } = value;
+        return item;
+      });
+      setDataState(data);
+    }
+    
   };
 
   return (
@@ -37,6 +53,7 @@ export default function Home({ datasets }) {
           <select
             id="cars"
             className="border-2 focus:outline-none bg-white font-karla font-karla rounded-md p-2 col-span-3"
+            ref={selectRef}
           >
             <option value="AZ">Alphabetical Ascending (A to Z)</option>
             <option value="ZA">Alphabetical Descending (Z to A)</option>
@@ -45,7 +62,7 @@ export default function Home({ datasets }) {
       </div>
       <div className="mt-12">
         <div className="mb-10">
-          Showing {dataState.length} of {dataState.length} datasets
+          Showing {dataState.length} of {datasets.length} datasets
         </div>
         <div className="grid grid-cols-1 gap-x-20 gap-y-10 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
           {dataState.map((value, i) => {
