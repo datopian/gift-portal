@@ -51,45 +51,6 @@ describe('Github Library Tests', () => {
     },
   }
 
-  const graphQLResponse = {
-    data: {
-      organization: {
-        repositories: {
-          totalCount:1,
-          pageInfo: 'Y3Vyc29yOnYyOpHOFBwvIQ',
-          hasNextPage: false,
-          nodes:[
-            {
-              isPrivate: false,
-              name: 'repoA',
-              colaborators:{
-                edges:[
-                  {
-                    permission: 'ADMIN',
-                    node: {
-                      login: 'userA'
-                    }
-                  },
-                  {
-                    permission: 'READ',
-                    node: {
-                      login: 'userB'
-                    }
-                  },
-                  {
-                    permission: 'WRITE',
-                    node: {
-                      login: 'userC'
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        },
-      }
-    }
-  }
 
   beforeEach(() => {
     moxios.install(axios)
@@ -179,17 +140,7 @@ describe('Github Library Tests', () => {
 
   describe('Formatters', () => {
 
-    it('should parser the datasets permissions given graphQl reponse', ()=>{
-
-      const response = github.parserPermissions(graphQLResponse)
-
-      expect(response).toEqual([{
-        dataset: 'repoA',
-        readers: [ 'PUBLIC', 'LOGGED_IN', 'userA', 'userB', 'userC'],
-        editors: ['userA', 'userC'],
-        admins: ['userA']
-      }])
-    })
+    
     it('should parser dataset scope given the repository and organization', 
       async () => {
         const scopes = await github.getScopes('repotest', 'datopian')
