@@ -1,25 +1,11 @@
-import fs from 'fs'
 import { Client } from 'giftless-client'
 import Download from '../../lib/Download'
 import Github from '../../lib/Github'
+import { initializeApollo } from "../../lib/apolloClient"
 
 jest.mock('giftless-client')
 
 const download = new Download()
-
-const validResource = [{
-  dataset: 'resourceA',
-  readers: ['userA', 'userB'],
-  editors: ['userA'],
-  admins: ['userA']
-}]
-
-const invalidResource = [{
-  dataset: 'resourceB',
-  readers: ['userB', 'userC'],
-  editors: ['userC'],
-  admins: ['userC']
-}]
 
 const graphQlResponse = {
   data: {repository: {
@@ -32,6 +18,72 @@ const graphQlResponse = {
   }
   }
 }
+
+
+const repoGraphQl = {
+  organization: {
+    repositories: {
+      totalCount:1,
+      pageInfo: 'Y3Vyc29yOnYyOpHOFBwvIQ',
+      hasNextPage: false,
+      nodes:[
+        {
+          isPrivate: false,
+          name: 'repoA',
+          collaborators:{
+            edges:[
+              {
+                permission: 'ADMIN',
+                node: {
+                  login: 'userA'
+                }
+              },
+              {
+                permission: 'READ',
+                node: {
+                  login: 'userB'
+                }
+              },
+              {
+                permission: 'WRITE',
+                node: {
+                  login: 'userC'
+                }
+              },
+            ]
+          }
+        },
+        {
+          isPrivate: true,
+          name: 'repoB',
+          collaborators:{
+            edges:[
+              {
+                permission: 'ADMIN',
+                node: {
+                  login: 'userA'
+                }
+              },
+              {
+                permission: 'READ',
+                node: {
+                  login: 'userB'
+                }
+              },
+              {
+                permission: 'WRITE',
+                node: {
+                  login: 'userC'
+                }
+              },
+            ]
+          }
+        }
+      ]
+    },
+  }
+}
+
 
 const resourceId = 
       '2879e2bdf2b398ee251858c2095053b0f26687cef7ddb9013f050d44437dac92459318'
@@ -69,17 +121,19 @@ const resourceDownloadInfo = {
 
 describe('Download functions', ()=> {
   describe('Permission tests', () => {
-    it('should return true if the user has permission', ()=> {
-      const mock = jest.spyOn(fs, 'readFileSync')
-      mock.mockReturnValue(validResource)
-      const response = download.checkDatasetPermission('repoA', 'userA')
+    it('should return true if the user has permission', async ()=> {
+      const apollo = initializeApollo()
+      const mock = jest.spyOn(apollo, 'readQuery')
+      mock.mockReturnValue(repoGraphQl)
+      const response = await download.checkDatasetPermission('repoA', 'userA')
       expect(response).toEqual(true)
     })
 
-    it('should return false if the user has not permission', ()=> {
-      const mock = jest.spyOn(fs, 'readFileSync')
-      mock.mockReturnValue(invalidResource)
-      const response = download.checkDatasetPermission('repoB', 'userA')
+    it('should return false if the user has not permission', async()=> {
+      const apollo = initializeApollo()
+      const mock = jest.spyOn(apollo, 'readQuery')
+      mock.mockReturnValue(repoGraphQl)
+      const response = await download.checkDatasetPermission('repoB', 'userD')
       expect(response).toEqual(false)
     })
   })
