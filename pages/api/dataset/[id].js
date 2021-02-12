@@ -1,17 +1,21 @@
 import { decrypt } from "../../../lib/jwt";
 import Metastore from "../../../lib/Metastore";
 import Permissions from "../../../lib/Permissions";
+import { initializeApollo } from '../../../lib/apolloClient'
+import { PERMISSIONS } from '../../../lib/queries'
 
-const metastore = new Metastore();
-const permissions = new Permissions();
 
 export default async function handler(req, res) {
+  const apolloClient = initializeApollo();
+  await apolloClient.query({query: PERMISSIONS})
+  const metastore = new Metastore();
+  const permissions = new Permissions(apolloClient.cache.extract());
   try {
     const { id: objectId } = req.query;
     const { userInfo } = req.cookies;
     const user = decrypt(userInfo);
 
-    if (!permissions.userHasPermission(user.login, objectId, "write")) {
+    if (!await permissions.userHasPermission(user.login, objectId, "write")) {
       res.status(401).send("Unauthorized User");
     }
 
