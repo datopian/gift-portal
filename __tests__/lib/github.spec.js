@@ -30,28 +30,6 @@ describe('Github Library Tests', () => {
     },
   }
 
-  const repoListResponse = {
-    data: {
-      organization: {
-        login: 'datopian',
-        repositories: {
-          pageInfo: {
-            hasNextPage: false,
-          },
-          nodes: [
-            {
-              name: 'repoa',
-            },
-            {
-              name: 'repob',
-            },
-          ],
-        },
-      },
-    },
-  }
-
-
   beforeEach(() => {
     moxios.install(axios)
 
@@ -96,26 +74,6 @@ describe('Github Library Tests', () => {
   })
 
   describe('Main Requests', () => {
-    it('should return all repositories given an organization name',
-      async () => {
-        moxios.stubRequest('https://api.github.com/graphql', {
-          status: 200,
-          response: repoListResponse,
-        })
-
-        const response = await github.getOrgRepos('datopian')
-        expect(response).toEqual({
-          organization: 'datopian',
-          repositories: [
-            {
-              name: 'repoa',
-            },
-            {
-              name: 'repob',
-            },
-          ],
-        })
-      })
 
     it('should get a list of collaborators from given the repository name', 
       async () => {
