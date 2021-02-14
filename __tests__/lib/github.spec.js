@@ -73,42 +73,4 @@ describe('Github Library Tests', () => {
     })
   })
 
-  describe('Main Requests', () => {
-
-    it('should get a list of collaborators from given the repository name', 
-      async () => {
-        const collaborators = await github.getRepositoryCollaborators(
-          'repotest',
-          'datopian'
-        )
-
-        expect(collaborators).toEqual(collaboratorsList)
-      })
-
-    it('should return the repository default info given the repository name', 
-      async () => {
-        const response = await github.getRepositoryInformation(
-          'repotest',
-          'datopian'
-        )
-
-        expect(response).toEqual(repoInfo)
-      })
-  })
-
-  describe('Formatters', () => {
-
-    
-    it('should parser dataset scope given the repository and organization', 
-      async () => {
-        const scopes = await github.getScopes('repotest', 'datopian')
-
-        expect(scopes).toEqual({
-          dataset: 'repotest',
-          readers: ['PUBLIC', 'LOGGED_IN', 'test-user'],
-          editors: ['test-user'],
-          admins: [],
-        })
-      })
-  })
 })
