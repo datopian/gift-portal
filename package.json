@@ -30,6 +30,7 @@
     "dayjs": "^1.9.7",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
+    "file-saver": "^2.0.5",
     "frictionless.js": "^0.13.4",
     "fuse.js": "^6.4.3",
     "giftless-client": "git+https://github.com/datopian/giftless-client-js.git",
