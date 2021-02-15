@@ -3,7 +3,6 @@ import Download from '../../../../../../lib/Download'
 import Permissions from '../../../../../../lib/Permissions'
 import { initializeApollo } from '../../../../../../lib/apolloClient'
 import { PERMISSIONS } from '../../../../../../lib/queries'
-import axios from 'axios'
 
 
 const download = new Download()
@@ -23,11 +22,7 @@ export default async function handler(req,res){
     }
 
     const resourceUrl = await download.getUrl(id, oid, user.login)
-    return axios.get(resourceUrl, { responseType: 'stream'}).then(response => {
-      const stream = response.data
-      stream.on('data', chunk => res.write(new Buffer.from(chunk)))
-      stream.on('end', ()=> res.end())
-    })
+    return res.json({url: resourceUrl})
     
     
   }catch(error){
