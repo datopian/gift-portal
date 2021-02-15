@@ -1,11 +1,16 @@
 /* eslint-disable max-len */
 import { React } from "react";
+import axios from 'axios'
 import CustomTable from "../../components/table";
 import Metastore from "../../lib/Metastore";
 import { useRouter } from "next/router";
 import { ALL_REPOSITRIES, SINGLE_REPOSITORY } from "../../lib/queries";
 import { initializeApollo } from "../../lib/apolloClient";
 import { getRepoNames } from "../../lib/utils";
+import FileSaver from 'file-saver'
+
+
+
 
 const Dataset = ({ dataset }) => {
   const router = useRouter();
@@ -13,6 +18,17 @@ const Dataset = ({ dataset }) => {
 
   let data = [];
   let columns = [];
+
+  const  downloadResource = async (url, filename) =>{
+    const resourceData = await fetch(url)
+      .then(data => data.json())
+
+    const textValue = await axios.get(resourceData.url).then(data => data.data)
+    const blob = new File([textValue], filename)
+
+    FileSaver.saveAs(blob)
+    
+  }
 
   if ("sample" in dataset && dataset["sample"].length != 0) {
     let sample = dataset["sample"];
@@ -93,6 +109,11 @@ const Dataset = ({ dataset }) => {
             <tbody>
               {Object.keys(dataset).includes("resources")
                 ? dataset.resources.map((resource, index) => {
+                  const filename = "path" in resource
+                    ? `${resource.name}.${resource.path
+                      .split(".")
+                      .pop()}`
+                    : resource.name
                   return (
                     <>
                       <tr key={index + "@resource"}>
@@ -100,12 +121,9 @@ const Dataset = ({ dataset }) => {
                           {(resource.bytes * 0.000001).toFixed(2)}
                         </td>
                         <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                          <a href={`/api/dataset/${dataset.name}/files/default/${resource.path}`} download>
-                            {"path" in resource
-                              ? `${resource.name}.${resource.path
-                                .split(".")
-                                .pop()}`
-                              : resource.name}
+                          <a onClick={() => downloadResource(`/api/dataset/${dataset.name}/files/default/${resource.path}`, filename)}
+                          >
+                            {filename}
                           </a>
                         </td>
                       </tr>
@@ -223,6 +241,9 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
+
+
+
 
 export async function getStaticProps({ params }) {
   const { datasetid } = params;
