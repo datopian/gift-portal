@@ -16,7 +16,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           browser: chrome
-          build: yarn build:ci
+          build: yarn build
           start: yarn start
           wait-on: "http://localhost:3000"
         env:
