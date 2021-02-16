@@ -22,7 +22,7 @@ export default async function handler(req,res){
     }
 
     const resourceUrl = await download.getUrl(id, oid, user.login)
-    return res.json({url: resourceUrl})
+    return res.redirect(resourceUrl)
     
     
   }catch(error){
