@@ -3312,6 +3312,16 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
+"@yaireo/tagify@^3.22.1":
+  version "3.22.2"
+  resolved "https://registry.yarnpkg.com/@yaireo/tagify/-/tagify-3.22.2.tgz#3661529b5327d369c7ba75489a4401ef79cf52ff"
+  integrity sha512-1Np1dwly3jiKI6JFebqvendrdqORwROeVrmHDzy1zitnoziKA7McE41RuPCWPfv9YcsML7DqWCM33DjgjORmtw==
+
+"@yaireo/tagify@^3.22.3":
+  version "3.22.3"
+  resolved "https://registry.yarnpkg.com/@yaireo/tagify/-/tagify-3.22.3.tgz#32f314980faa29faf2b333a4e3ea50c0d57d3818"
+  integrity sha512-jPDuX6gH0ryd0tDtNnUXQxw3hyKjQXwUfolDSLvVgj5VxDBpRXPkBT71cm6m+znFs1Ko3yhLIauxICzXUxn4tA==
+
 abab@^2.0.0, abab@^2.0.3:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.5.tgz#c0b678fb32d60fc1219c784d6a826fe385aeb79a"
@@ -8286,11 +8296,12 @@ getpass@^0.1.1:
   dependencies:
     axios "^0.21.1"
 
-"giftpub@git+https://github.com/datopian/gift-publisher.git#package#2d2d8f9528876f64c7cb7eb3431b58383c39eaba":
+"giftpub@git+https://github.com/datopian/gift-publisher.git#package#36e319041e644477b463159bbf606ba5a4dc1c3b":
   version "0.1.0"
-  resolved "git+https://github.com/datopian/gift-publisher.git#2d2d8f9528876f64c7cb7eb3431b58383c39eaba"
+  resolved "git+https://github.com/datopian/gift-publisher.git#36e319041e644477b463159bbf606ba5a4dc1c3b"
   dependencies:
     "@material-ui/core" "^4.11.2"
+    "@yaireo/tagify" "^3.22.1"
     axios "^0.21.1"
     ckan-client "git+https://github.com/datopian/ckan-client-js.git#v0.4.2"
     datapub-nocss "0.1.0  "
