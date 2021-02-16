@@ -10,7 +10,6 @@ import { getRepoNames } from "../../lib/utils";
 const Dataset = ({ dataset }) => {
   const router = useRouter();
   const { datasetid } = router.query;
-
   let data = [];
   let columns = [];
 
@@ -41,21 +40,22 @@ const Dataset = ({ dataset }) => {
     return (
       <div className="p-2 md:p-8 xl:p-12 2xl:p-24">
         <div className="flex flex-row mb-10">
-          <img src="/argentina.svg" alt="next" className="mr-10" />
           <div className="pt-10 xl:pt-0">
             <div className="mb-5">
               <h1 className="font-lato font-bold text-2xl">{dataset.title}</h1>
             </div>
             <div className="flex flex-wrap font-roboto text-portal1">
-              <div className="flex border-2 text-center rounded-lg p-2 m-4">
-                BUDGET
-              </div>
-              <div className="flex border-2 text-center rounded-lg p-2 m-4">
-                FEDERAL
-              </div>
-              <div className="flex border-2 text-center rounded-lg p-2 m-4">
-                SPENDING
-              </div>
+              {dataset["tags"] &&
+                dataset["tags"].map((tag, index) => {
+                  return (
+                    <div
+                      key={index + "@tags"}
+                      className="flex border-2 text-center rounded-lg p-2 m-4"
+                    >
+                      {tag.toUpperCase()}
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>
@@ -63,14 +63,14 @@ const Dataset = ({ dataset }) => {
           <h2 className="mr-10 font-lato font-bold text-xl">
             About this Dataset
           </h2>
-          <a href="#">
+          {/* <a href="#">
             <img src="/share.svg" alt="next" />
-          </a>
+          </a> */}
         </div>
         <div className="mb-20 font-karla text-lg">{dataset.description}</div>
         <h2 className="mb-10 font-lato font-bold text-xl">File Preview</h2>
         <div className="mb-10">
-          {data ? (
+          {data == undefined ? (
             <CustomTable data={data} columns={columns} />
           ) : (
             "NO PREVIEW FOR THIS DATASET"
@@ -97,10 +97,13 @@ const Dataset = ({ dataset }) => {
                     <>
                       <tr key={index + "@resource"}>
                         <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                          {(resource.bytes * 0.000001).toFixed(2)}
+                          {(resource.bytes * 0.000001).toFixed(1)}
                         </td>
                         <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                          <a href={`/api/dataset/${dataset.name}/files/default/${resource.path}`} download>
+                          <a
+                            href={`/api/dataset/${dataset.name}/files/default/${resource.path}`}
+                            download
+                          >
                             {"path" in resource
                               ? `${resource.name}.${resource.path
                                 .split(".")
@@ -128,26 +131,18 @@ const Dataset = ({ dataset }) => {
               <img src="/check.svg" alt="next" className="mr-4" />
               <span className="self-center">Updated {dataset.updatedAt}</span>
             </div>
-            {/* <div className="flex flex-row mb-10 mb-20">
+            <div className="flex flex-row mb-10 mb-20">
               <img src="/csv.svg" width="25" alt="next" className="mr-4" />
-              {Object.keys(dataset).includes("resources") ? (
-                dataset.resources[0].format == "csv" ? (
-                  <div className="self-center">CSV</div>
-                ) : (
-                  ""
-                )
-              ) : (
-                ""
-              )}
-            </div> */}
+              <div className="self-center">CSV</div>
+            </div>
           </div>
           <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
             <div className="flex flex-row">
-              <img src="/profile.svg" width="25" className="mr-4" />
+              <img src="/metas.svg" width="25" className="mr-4" />
               <div>
                 <h2 className="text-portal4 font-lato">Source</h2>
                 {dataset.sources == undefined
-                  ? ""
+                  ? "Not specified"
                   : dataset.sources.map((source, index) => {
                     return (
                     // eslint-disable-next-line react/jsx-key
@@ -162,7 +157,9 @@ const Dataset = ({ dataset }) => {
               <img src="/profile.svg" width="25" className="mr-4" />
               <div>
                 <h2 className="text-portal4 font-lato">Author</h2>
-                <div className="font-karla">{dataset.author}</div>
+                <div className="font-karla">
+                  {dataset.author || "Not specified"}
+                </div>
               </div>
             </div>
             <div className="flex flex-row">
@@ -170,7 +167,7 @@ const Dataset = ({ dataset }) => {
               <div>
                 <h2 className="text-portal4 font-lato">Country</h2>
                 <div className="font-karla">
-                  {dataset["geo"] == undefined ? "" : dataset.geo.country}
+                  {dataset["geo"]["country"] || "Not specified"}
                 </div>
               </div>
             </div>
@@ -179,24 +176,26 @@ const Dataset = ({ dataset }) => {
               <div>
                 <h2 className="text-portal4 font-lato">Region</h2>
                 <div className="font-karla">
-                  {dataset["geo"] == undefined ? "" : dataset.geo.region}
+                  {dataset["geo"]["region"] || "Not specified"}
                 </div>
               </div>
             </div>
             <div className="flex flex-row">
-              <img src="/plus.svg" width="25" className="mr-4" />
+              <img src="/metas.svg" width="25" className="mr-4" />
               <div>
                 <h2 className="text-portal4 font-lato">Language</h2>
-                <div className="font-karla">{}</div>
+                <div className="font-karla">
+                  {dataset["languages"] || "Not specified"}
+                </div>
               </div>
             </div>
-            <div className="flex flex-row">
+            {/* <div className="flex flex-row">
               <img src="/plus.svg" width="25" className="mr-4" />
               <div>
                 <h2 className="text-portal4 font-lato">Metadata 6</h2>
                 <div className="font-karla">Description of metadata 6</div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

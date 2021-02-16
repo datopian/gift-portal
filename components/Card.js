@@ -78,7 +78,7 @@ export default function Card({ props }) {
           </div>
           <div className="flex flex-row mb-8 items-center">
             <img src="/csv.svg" alt="next" width="25px" className="mr-4" />
-            <span>CSV resources</span>
+            <span>CSV</span>
           </div>
         </div>
 
