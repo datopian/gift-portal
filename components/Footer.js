@@ -48,7 +48,10 @@ export default function Footer() {
         </a>
 
         {/* Email icon */}
-        <a href="maito:info@fiscaltransparency.net">
+        <a
+          href="mailto:info@fiscaltransparency.net"
+          target="_blank"
+          rel="noreferrer">
           <svg
             width="25"
             className="fill-current text-portal2 hover:text-portal3"
