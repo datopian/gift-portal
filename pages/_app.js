@@ -5,7 +5,7 @@ import { Provider } from "next-auth/client";
 import "../styles/pub.css";
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "../lib/apolloClient";
-
+import "@yaireo/tagify/dist/tagify.css"
 function MyApp({ Component, pageProps, metaStoreCache }) {
   const apolloClient = useApollo(pageProps.initialApolloState);
   return (
