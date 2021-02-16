@@ -1,10 +1,16 @@
 import React from "react";
-import { DatasetEditor } from "giftpub";
+// import { DatasetEditor } from "giftpub";
 import Error from "next/error";
 import Metastore from "../../../lib/Metastore";
 import { SINGLE_REPOSITORY } from "../../../lib/queries";
 import { initializeApollo } from "../../../lib/apolloClient";
 import { getSession } from 'next-auth/client'
+import dynamic from 'next/dynamic'
+
+const DatasetEditor = dynamic(
+  () => import('giftpub').then((mod) => mod.DatasetEditor),
+  { ssr: false }
+)
 
 export default function Publisher({ lfsServerUrl, dataset }) {
   const config = {
