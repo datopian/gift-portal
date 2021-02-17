@@ -33,7 +33,7 @@ export default function Card({ props }) {
           {dataset.logo && (
             <img src={dataset.logo} alt="next" className="mr-2" />
           )}
-          <div className="font-lato text-xl">{dataset.name}</div>
+          <div className="font-lato text-xl">{dataset.title}</div>
         </div>
         <div className="flex flex-row justify-between items-center">
           <div className="font-lato text-xl">
