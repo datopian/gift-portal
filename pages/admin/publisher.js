@@ -9,6 +9,7 @@ export default function Publisher({lfsServerUrl, dataset}) {
     lfsServerUrl: lfsServerUrl,
     authorizeApi: '/api/authorize/',
     metastoreApi: '/api/dataset/',
+    skipUpload: false
   }
   // eslint-disable-next-line react/react-in-jsx-scope
   return <ResourceEditor config={config} resource="" />

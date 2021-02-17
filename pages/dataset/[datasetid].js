@@ -16,25 +16,22 @@ const Dataset = ({ dataset }) => {
   let data = [];
   let columns = [];
 
-  if ("sample" in dataset && dataset["sample"].length != 0) {
+  if (dataset["sample"].length > 0) {
     let sample = dataset["sample"];
+    columns = sample[0].map((item) => {
+      return {
+        Header: item,
+        accessor: item,
+      };
+    });
 
-    if (sample) {
-      columns = sample[0].map((item) => {
-        return {
-          Header: item,
-          accessor: item,
-        };
+    sample.slice(1, 10).map((item) => {
+      let temp_obj = {};
+      item.map((field, i) => {
+        temp_obj[sample[0][i]] = field;
       });
-
-      sample.slice(1, 10).map((item) => {
-        let temp_obj = {};
-        item.map((field, i) => {
-          temp_obj[sample[0][i]] = field;
-        });
-        data.push(temp_obj);
-      });
-    }
+      data.push(temp_obj);
+    });
   }
 
   if (!datasetid) {
@@ -76,7 +73,7 @@ const Dataset = ({ dataset }) => {
         <div className="mb-20 font-karla text-lg">{dataset.description}</div>
         <h2 className="mb-10 font-lato font-bold text-xl">File Preview</h2>
         <div className="mb-10">
-          {data == undefined ? (
+          {data && data.length != 0 ? (
             <CustomTable data={data} columns={columns} />
           ) : (
             "NO PREVIEW FOR THIS DATASET"
