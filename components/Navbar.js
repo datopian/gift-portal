@@ -58,7 +58,9 @@ export default function Navbar() {
         <div className="px-4 py-2 sm:px-6">
           <a
             className="hover:underline"
-            href="maito:info@fiscaltransparency.net"
+            href="mailto:info@fiscaltransparency.net"
+            target="_blank"
+            rel="noreferrer"
           >
             <img src="/mail.svg" alt="next" width="48" height="37" />
           </a>
@@ -67,7 +69,9 @@ export default function Navbar() {
           <h6>
             <a
               className="hover:underline"
-              href="maito:info@fiscaltransparency.net"
+              href="mailto:info@fiscaltransparency.net"
+              target="_blank"
+              rel="noreferrer"
             >
               Contact us
             </a>

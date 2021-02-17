@@ -3,6 +3,9 @@ import { React } from "react";
 import CustomTable from "../../components/table";
 import Metastore from "../../lib/Metastore";
 import { useRouter } from "next/router";
+import * as dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 import { ALL_REPOSITRIES, SINGLE_REPOSITORY } from "../../lib/queries";
 import { initializeApollo } from "../../lib/apolloClient";
 import { getRepoNames } from "../../lib/utils";
@@ -104,11 +107,7 @@ const Dataset = ({ dataset }) => {
                             href={`/api/dataset/${dataset.name}/files/default/${resource.path}`}
                             download
                           >
-                            {"path" in resource
-                              ? `${resource.name}.${resource.path
-                                .split(".")
-                                .pop()}`
-                              : resource.name}
+                            {resource.name}
                           </a>
                         </td>
                       </tr>
@@ -125,11 +124,11 @@ const Dataset = ({ dataset }) => {
           <div className="grid grid-cols-1 lg:grid-cols-3">
             <div className="flex flex-row mb-10 lg:mb-20">
               <img src="/calender.svg" alt="next" className="mr-4" />
-              <span className="self-center">Created {dataset.createdAt}</span>
+              <span className="self-center">Created: {dayjs().to(dayjs(dataset.createdAt))}</span>
             </div>
             <div className="flex flex-row mb-10 lg:mb-20">
               <img src="/check.svg" alt="next" className="mr-4" />
-              <span className="self-center">Updated {dataset.updatedAt}</span>
+              <span className="self-center">Updated: {dayjs().to(dayjs(dataset.updatedAt))}</span>
             </div>
             <div className="flex flex-row mb-10 mb-20">
               <img src="/csv.svg" width="25" alt="next" className="mr-4" />

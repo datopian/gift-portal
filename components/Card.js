@@ -1,5 +1,9 @@
 import React from "react";
 import Link from "next/link";
+import * as dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
+
 /**
  * Create card for each datasets.
  * e.g
@@ -70,11 +74,11 @@ export default function Card({ props }) {
           <div className="flex flex-row mb-4 items-center">
             {/* eslint-disable-next-line max-len */}
             <img src="/calender.svg" alt="next" width="25px" className="mr-4" />
-            <span>Created: {dataset.createdAt}</span>
+            <span>Created: {dayjs().to(dayjs(dataset.createdAt))}</span>
           </div>
           <div className="flex flex-row mb-4 items-center">
             <img src="/check.svg" alt="next" width="25px" className="mr-4" />
-            <span>Updated: {dataset.updatedAt}</span>
+            <span>Updated: {dayjs().to(dayjs(dataset.updatedAt))}</span>
           </div>
           <div className="flex flex-row mb-8 items-center">
             <img src="/csv.svg" alt="next" width="25px" className="mr-4" />
