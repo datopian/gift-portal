@@ -71,6 +71,14 @@ export default function Dashboard({ name, datasets }) {
                               </a>
                             )}
                           </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <a
+                              href={`/admin/publisher/edit-metadata/${repo.name}`}
+                              className="text-indigo-600 hover:text-indigo-900"
+                            >
+                              Edit metadata
+                            </a>
+                          </td>
                         </tr>
                       );
                     })}
