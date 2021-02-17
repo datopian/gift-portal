@@ -33,7 +33,7 @@ export default function Card({ props }) {
           {dataset.logo && (
             <img src={dataset.logo} alt="next" className="mr-2" />
           )}
-          <div className="font-lato text-xl">{dataset.name}</div>
+          <div className="font-lato text-xl">{dataset.title}</div>
         </div>
         <div className="flex flex-row justify-between items-center">
           <div className="font-lato text-xl">
@@ -82,7 +82,7 @@ export default function Card({ props }) {
           </div>
           <div className="flex flex-row mb-8 items-center">
             <img src="/csv.svg" alt="next" width="25px" className="mr-4" />
-            <span>CSV resources</span>
+            <span>CSV</span>
           </div>
         </div>
 
