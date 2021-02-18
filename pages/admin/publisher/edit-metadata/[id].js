@@ -5,15 +5,16 @@ import Metastore from '../../../../lib/Metastore'
 import { SINGLE_REPOSITORY } from '../../../../lib/queries'
 import { initializeApollo } from '../../../../lib/apolloClient'
 
-export default function Publisher({ lfsServerUrl, dataset, skipUpload }) {
+export default function Publisher({ lfsServerUrl, dataset }) {
   const config = {
     dataset: dataset,
     lfsServerUrl: lfsServerUrl,
     authorizeApi: '/api/authorize/',
     metastoreApi: '/api/dataset/',
-    skipUpload
-  }
-  console.log(config)
+    skipUpload: true
+  };
+ 
+
   // eslint-disable-next-line react/react-in-jsx-scope
   return (
     <>
@@ -38,7 +39,6 @@ export async function getServerSideProps(context) {
     props: {
       lfsServerUrl: process.env.GIFTLESS_SERVER,
       dataset: data,
-      skipUpload: true
     },
   }
 }
