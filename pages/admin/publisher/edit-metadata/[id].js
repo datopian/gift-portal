@@ -12,7 +12,7 @@ export default function Publisher({ lfsServerUrl, dataset }) {
     authorizeApi: '/api/authorize/',
     metastoreApi: '/api/dataset/',
     skipUpload: true
-  };
+  }
  
 
   // eslint-disable-next-line react/react-in-jsx-scope

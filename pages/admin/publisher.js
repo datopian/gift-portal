@@ -1,5 +1,5 @@
 // import '../../styles/pub.module.css';
-import { DatasetEditor } from "giftpub";
+import { DatasetEditor } from 'giftpub'
 
 export default function Publisher({lfsServerUrl, dataset}) {
 
