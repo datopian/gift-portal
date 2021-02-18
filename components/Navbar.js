@@ -26,13 +26,13 @@ export default function Navbar() {
       <div className="flex flex-col justify-center w-1/6 pb-3 pt-3 md:w-1/5 lg:w-1/6 bg-portal2 items-center space-y-6 transition duration-500 ease-in-out hover:bg-portal8 lg:p-0">
         <div className="px-4 py-2 sm:px-6">
           <a href="/">
-            <img src="/search.svg" alt="next" width="37" height="37" />
+            <img src="/home.svg" alt="next" width="37" height="37" />
           </a>
         </div>
         <div className="hidden text-center bg-portal6 w-full bg-opacity-75 md:block h-24 lg:pb-0 2xl:text-lg">
           <h6>
             <a className="hover:underline" href="/">
-              Search datasets
+              Home
             </a>
           </h6>{' '}
         </div>
