@@ -1,5 +1,5 @@
 import Permissions from '../../lib/Permissions'
-import { initializeApollo } from "../../lib/apolloClient"
+import { initializeApollo } from '../../lib/apolloClient'
 
 const permissions = new Permissions()
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { DatasetEditor } from 'giftpub'
 import Error from 'next/error'
-import Metastore from '../../../lib/Metastore'
-import { SINGLE_REPOSITORY } from '../../../lib/queries'
-import { initializeApollo } from '../../../lib/apolloClient'
+import Metastore from '../../../../lib/Metastore'
+import { SINGLE_REPOSITORY } from '../../../../lib/queries'
+import { initializeApollo } from '../../../../lib/apolloClient'
 
 export default function Publisher({ lfsServerUrl, dataset }) {
   const config = {
@@ -11,8 +11,10 @@ export default function Publisher({ lfsServerUrl, dataset }) {
     lfsServerUrl: lfsServerUrl,
     authorizeApi: '/api/authorize/',
     metastoreApi: '/api/dataset/',
-    skipUpload: false
+    skipUpload: true
   }
+ 
+
   // eslint-disable-next-line react/react-in-jsx-scope
   return (
     <>

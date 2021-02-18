@@ -1,5 +1,5 @@
 // import '../../styles/pub.module.css';
-import { ResourceEditor } from 'giftpub'
+import { DatasetEditor } from 'giftpub'
 
 export default function Publisher({lfsServerUrl, dataset}) {
 
@@ -8,10 +8,10 @@ export default function Publisher({lfsServerUrl, dataset}) {
     dataset: dataset,
     lfsServerUrl: lfsServerUrl,
     authorizeApi: '/api/authorize/',
-    metastoreApi: '/api/dataset/',
+    metastoreApi: '/api/dataset/'
   }
   // eslint-disable-next-line react/react-in-jsx-scope
-  return <ResourceEditor config={config} resource="" />
+  return <DatasetEditor config={config} resource="" />
 }
 
 Publisher.getInitialProps = async () => {
