@@ -1,7 +1,7 @@
 import { Client } from 'giftless-client'
 import Download from '../../lib/Download'
 import Github from '../../lib/Github'
-import { initializeApollo } from "../../lib/apolloClient"
+import { initializeApollo } from '../../lib/apolloClient'
 
 jest.mock('giftless-client')
 

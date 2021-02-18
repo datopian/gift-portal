@@ -9,17 +9,17 @@ import axios from 'axios'
 const download = new Download()
 
 export default async function handler(req,res){
-  const apolloClient = initializeApollo();
+  const apolloClient = initializeApollo()
   await apolloClient.query({query: PERMISSIONS})
-  const permissions = new Permissions(apolloClient.cache.extract());
+  const permissions = new Permissions(apolloClient.cache.extract())
   try{ 
     const { userInfo } = req.cookies
     const user = decrypt(userInfo) || { login: 'PUBLIC'}
     
     const { id, oid } = req.query
     
-    if (!await permissions.userHasPermission(user.login, id, "read")) {
-      res.status(401).send("Unauthorized User");
+    if (!await permissions.userHasPermission(user.login, id, 'read')) {
+      res.status(401).send('Unauthorized User')
     }
 
     const resourceUrl = await download.getUrl(id, oid, user.login)

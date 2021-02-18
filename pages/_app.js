@@ -1,13 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
-import "../styles/tailwind.css";
-import Layout from "../components/Layout";
-import { Provider } from "next-auth/client";
-import "../styles/pub.css";
-import { ApolloProvider } from "@apollo/client";
-import { useApollo } from "../lib/apolloClient";
+import '../styles/tailwind.css'
+import Layout from '../components/Layout'
+import { Provider } from 'next-auth/client'
+import '../styles/pub.css'
+import { ApolloProvider } from '@apollo/client'
+import { useApollo } from '../lib/apolloClient'
 
 function MyApp({ Component, pageProps, metaStoreCache }) {
-  const apolloClient = useApollo(pageProps.initialApolloState);
+  const apolloClient = useApollo(pageProps.initialApolloState)
   return (
     <ApolloProvider client={apolloClient}>
       <Provider session={pageProps.session}>
@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps, metaStoreCache }) {
         </Layout>
       </Provider>
     </ApolloProvider>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

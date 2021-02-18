@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
-import React from "react";
+import React from 'react'
 // import { useState, useEffect } from "react";
-import { repoHasResource } from "../lib/utils";
+import { repoHasResource } from '../lib/utils'
 
 export default function Dashboard({ name, datasets }) {
   //TODO: Filter datasets by user permission
@@ -11,7 +11,7 @@ export default function Dashboard({ name, datasets }) {
   //   filterDataByPermission();
   // }, []);
 
-  if (!datasets) return <div>Loading</div>;
+  if (!datasets) return <div>Loading</div>
 
   return (
     <div>
@@ -80,7 +80,7 @@ export default function Dashboard({ name, datasets }) {
                             </a>
                           </td>
                         </tr>
-                      );
+                      )
                     })}
                   </tbody>
                 </table>
@@ -90,5 +90,5 @@ export default function Dashboard({ name, datasets }) {
         </div>
       </div>
     </div>
-  );
+  )
 }

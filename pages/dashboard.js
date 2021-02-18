@@ -1,18 +1,18 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useSession } from "next-auth/client";
-import { useCookies } from "react-cookie";
-import Dashboard from "../components/Dashboard";
-import { ALL_REPOSITRIES } from "../lib/queries";
-import { initializeApollo } from "../lib/apolloClient";
-import Metastore from "../lib/Metastore";
+import { useSession } from 'next-auth/client'
+import { useCookies } from 'react-cookie'
+import Dashboard from '../components/Dashboard'
+import { ALL_REPOSITRIES } from '../lib/queries'
+import { initializeApollo } from '../lib/apolloClient'
+import Metastore from '../lib/Metastore'
 
 export default function DashBoard({ datasets }) {
-  const [session] = useSession();
+  const [session] = useSession()
 
-  const [, setCookie] = useCookies(["github"]);
+  const [, setCookie] = useCookies(['github'])
 
   if (session && session.userInfo) {
-    setCookie("userInfo", session.userInfo, { path: "/" });
+    setCookie('userInfo', session.userInfo, { path: '/' })
   }
   return (
     <>
@@ -33,23 +33,23 @@ export default function DashBoard({ datasets }) {
         </>
       )}
     </>
-  );
+  )
 }
 
 export async function getServerSideProps() {
-  const apolloClient = initializeApollo();
+  const apolloClient = initializeApollo()
 
   await apolloClient.query({
     query: ALL_REPOSITRIES,
-  });
+  })
 
-  const metastore = new Metastore(apolloClient.cache.extract());
-  const datasets = await metastore.search();
+  const metastore = new Metastore(apolloClient.cache.extract())
+  const datasets = await metastore.search()
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       datasets,
     },
-  };
+  }
 }

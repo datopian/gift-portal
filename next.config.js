@@ -5,18 +5,18 @@ module.exports = {
       issuer: {
         test: /\.(js|ts)x?$/,
       },
-      use: ["@svgr/webpack"],
-    });
+      use: ['@svgr/webpack'],
+    })
 
     if (!isServer) {
       config.node = {
-        fs: "empty",
-      };
+        fs: 'empty',
+      }
     }
 
-    return config;
+    return config
   },
   env: {
     APP_GITHUB_KEY: process.env.APP_GITHUB_KEY,
   },
-};
+}

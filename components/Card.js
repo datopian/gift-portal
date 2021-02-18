@@ -1,8 +1,8 @@
-import React from "react";
-import Link from "next/link";
-import * as dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-dayjs.extend(relativeTime);
+import React from 'react'
+import Link from 'next/link'
+import * as dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
 
 /**
  * Create card for each datasets.
@@ -20,12 +20,12 @@ dayjs.extend(relativeTime);
  * @return JSX
  */
 export default function Card({ props }) {
-  let dataset = props;
+  let dataset = props
   return (
     <div
       className={
         // eslint-disable-next-line max-len
-        "flex flex-col rounded-md border-2 shadow-md justify-between p-5 mb-4 min-h-500"
+        'flex flex-col rounded-md border-2 shadow-md justify-between p-5 mb-4 min-h-500'
       }
     >
       <div>
@@ -38,9 +38,9 @@ export default function Card({ props }) {
         <div className="flex flex-row justify-between items-center">
           <div className="font-lato text-xl">
             {dataset.error == true ? (
-              <span style={{ color: "red" }}>error parsing metadata!</span>
+              <span style={{ color: 'red' }}>error parsing metadata!</span>
             ) : (
-              ""
+              ''
             )}
           </div>
         </div>
@@ -54,7 +54,7 @@ export default function Card({ props }) {
                 >
                   {value}
                 </div>
-              );
+              )
             })
           ) : (
             <>
@@ -94,5 +94,5 @@ export default function Card({ props }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
