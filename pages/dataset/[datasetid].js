@@ -1,41 +1,41 @@
 /* eslint-disable max-len */
-import { React } from "react";
-import CustomTable from "../../components/table";
-import Metastore from "../../lib/Metastore";
-import { useRouter } from "next/router";
-import * as dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-dayjs.extend(relativeTime);
-import { ALL_REPOSITRIES, SINGLE_REPOSITORY } from "../../lib/queries";
-import { initializeApollo } from "../../lib/apolloClient";
-import { getRepoNames } from "../../lib/utils";
+import { React } from 'react'
+import CustomTable from '../../components/table'
+import Metastore from '../../lib/Metastore'
+import { useRouter } from 'next/router'
+import * as dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
+import { ALL_REPOSITRIES, SINGLE_REPOSITORY } from '../../lib/queries'
+import { initializeApollo } from '../../lib/apolloClient'
+import { getRepoNames } from '../../lib/utils'
 
 const Dataset = ({ dataset }) => {
-  const router = useRouter();
-  const { datasetid } = router.query;
-  let data = [];
-  let columns = [];
+  const router = useRouter()
+  const { datasetid } = router.query
+  let data = []
+  let columns = []
 
-  if (dataset["sample"].length > 0) {
-    let sample = dataset["sample"];
+  if (dataset['sample'].length > 0) {
+    let sample = dataset['sample']
     columns = sample[0].map((item) => {
       return {
         Header: item,
         accessor: item,
-      };
-    });
+      }
+    })
 
     sample.slice(1, 10).map((item) => {
-      let temp_obj = {};
+      let temp_obj = {}
       item.map((field, i) => {
-        temp_obj[sample[0][i]] = field;
-      });
-      data.push(temp_obj);
-    });
+        temp_obj[sample[0][i]] = field
+      })
+      data.push(temp_obj)
+    })
   }
 
   if (!datasetid) {
-    return 404;
+    return 404
   } else {
     return (
       <div className="p-2 md:p-8 xl:p-12 2xl:p-24">
@@ -48,16 +48,16 @@ const Dataset = ({ dataset }) => {
               <h1 className="font-lato font-bold text-2xl">{dataset.title}</h1>
             </div>
             <div className="flex flex-wrap font-roboto text-portal1">
-              {dataset["tags"] &&
-                dataset["tags"].map((tag, index) => {
+              {dataset['tags'] &&
+                dataset['tags'].map((tag, index) => {
                   return (
                     <div
-                      key={index + "@tags"}
+                      key={index + '@tags'}
                       className="flex border-2 text-center rounded-lg p-2 m-4"
                     >
                       {tag.toUpperCase()}
                     </div>
-                  );
+                  )
                 })}
             </div>
           </div>
@@ -76,7 +76,7 @@ const Dataset = ({ dataset }) => {
           {data && data.length != 0 ? (
             <CustomTable data={data} columns={columns} />
           ) : (
-            "NO PREVIEW FOR THIS DATASET"
+            'NO PREVIEW FOR THIS DATASET'
           )}
         </div>
         <h2 className="mb-10 font-lato font-bold text-xl">Download</h2>
@@ -94,11 +94,11 @@ const Dataset = ({ dataset }) => {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(dataset).includes("resources")
+              {Object.keys(dataset).includes('resources')
                 ? dataset.resources.map((resource, index) => {
                   return (
                     <>
-                      <tr key={index + "@resource"}>
+                      <tr key={index + '@resource'}>
                         <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
                           {(resource.bytes * 0.000001).toFixed(1)}
                         </td>
@@ -112,9 +112,9 @@ const Dataset = ({ dataset }) => {
                         </td>
                       </tr>
                     </>
-                  );
+                  )
                 })
-                : ""}
+                : ''}
             </tbody>
           </table>
         </div>
@@ -131,7 +131,7 @@ const Dataset = ({ dataset }) => {
                     {dayjs().to(dayjs(dataset.createdAt))}
                   </div>
                 ) : (
-                  "Not Specified"
+                  'Not Specified'
                 )}
               </div>
             </div>
@@ -144,7 +144,7 @@ const Dataset = ({ dataset }) => {
                     {dayjs().to(dayjs(dataset.updatedAt))}
                   </div>
                 ) : (
-                  "Not Specified"
+                  'Not Specified'
                 )}
               </div>
             </div>
@@ -162,7 +162,7 @@ const Dataset = ({ dataset }) => {
                 {dataset.encoding ? (
                   <div className="self-center">{dataset.encoding}</div>
                 ) : (
-                  "Not Specified"
+                  'Not Specified'
                 )}
               </div>
             </div>
@@ -173,7 +173,7 @@ const Dataset = ({ dataset }) => {
                 {dataset.continent ? (
                   <div className="self-center">{dataset.continent}</div>
                 ) : (
-                  "Not Specified"
+                  'Not Specified'
                 )}
               </div>
             </div>
@@ -184,7 +184,7 @@ const Dataset = ({ dataset }) => {
                 {dataset.country ? (
                   <div className="self-center">{dataset.country}</div>
                 ) : (
-                  "Not Specified"
+                  'Not Specified'
                 )}
               </div>
             </div>
@@ -195,7 +195,7 @@ const Dataset = ({ dataset }) => {
                 {dataset.region ? (
                   <div className="self-center">{dataset.region}</div>
                 ) : (
-                  "Not Specified"
+                  'Not Specified'
                 )}
               </div>
             </div>
@@ -206,7 +206,7 @@ const Dataset = ({ dataset }) => {
                 {dataset.city ? (
                   <div className="self-center">{dataset.city}</div>
                 ) : (
-                  "Not Specified"
+                  'Not Specified'
                 )}
               </div>
             </div>
@@ -217,7 +217,7 @@ const Dataset = ({ dataset }) => {
                 {dataset.author_website ? (
                   <div className="self-center">{dataset.author_website}</div>
                 ) : (
-                  "Not Specified"
+                  'Not Specified'
                 )}
               </div>
             </div>
@@ -228,7 +228,7 @@ const Dataset = ({ dataset }) => {
                 {dataset.author_email ? (
                   <div className="self-center">{dataset.author_email}</div>
                 ) : (
-                  "Not Specified"
+                  'Not Specified'
                 )}
               </div>
             </div>
@@ -239,7 +239,7 @@ const Dataset = ({ dataset }) => {
                 {dataset.start_date ? (
                   <div className="self-center">{dataset.start_date}</div>
                 ) : (
-                  "Not Specified"
+                  'Not Specified'
                 )}
               </div>
             </div>
@@ -250,55 +250,55 @@ const Dataset = ({ dataset }) => {
                 {dataset.end_date ? (
                   <div className="self-center">{dataset.end_date}</div>
                 ) : (
-                  "Not Specified"
+                  'Not Specified'
                 )}
               </div>
             </div>
           </div>
         </div>
       </div>
-    );
+    )
   }
-};
+}
 
 export async function getStaticPaths() {
-  const apolloClient = initializeApollo();
+  const apolloClient = initializeApollo()
 
   const { data } = await apolloClient.query({
     query: ALL_REPOSITRIES,
-  });
-  const repoNames = getRepoNames(data);
+  })
+  const repoNames = getRepoNames(data)
 
   return {
     paths: repoNames.map((key) => {
       return {
         params: {
-          datasetid: key.replace(/\s/g, "%20"),
+          datasetid: key.replace(/\s/g, '%20'),
         },
-      };
+      }
     }),
     fallback: false,
-  };
+  }
 }
 
 export async function getStaticProps({ params }) {
-  const { datasetid } = params;
-  const apolloClient = initializeApollo();
+  const { datasetid } = params
+  const apolloClient = initializeApollo()
 
   await apolloClient.query({
     query: SINGLE_REPOSITORY,
     variables: { name: datasetid },
-  });
+  })
 
-  const metastore = new Metastore(apolloClient.cache.extract());
-  const dataset = await metastore.fetch(datasetid);
+  const metastore = new Metastore(apolloClient.cache.extract())
+  const dataset = await metastore.fetch(datasetid)
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       dataset,
     },
     revalidate: 1,
-  };
+  }
 }
 
-export default Dataset;
+export default Dataset
