@@ -99,9 +99,9 @@ const Dataset = ({ dataset }) => {
             <tbody>
               {Object.keys(dataset).includes('resources')
                 ? dataset.resources.map((resource, index) => {
-                  const filename = "path" in resource
+                  const filename = 'path' in resource
                     ? `${resource.name}.${resource.path
-                      .split(".")
+                      .split('.')
                       .pop()}`
                     : resource.name
                   return (
