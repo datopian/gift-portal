@@ -1,3 +1,7 @@
+#searchInput {
+  width: 100%;
+}
+
 .btn-add-fiscal {
   background: #ff5100;
   border-radius: 4px;
