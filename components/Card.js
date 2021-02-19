@@ -94,7 +94,6 @@ export default function Card({ props }) {
           <Link href={`/dataset/${dataset.name}`}>
             <a>VIEW DATASET DETAILS</a>
           </Link>
-          <img src="/share.svg" alt="next" />
         </div>
       </div>
     </div>
