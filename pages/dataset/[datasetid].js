@@ -84,46 +84,49 @@ const Dataset = ({ dataset }) => {
         </div>
         <h2 className="mb-10 font-lato font-bold text-xl">Download</h2>
 
-        <div className="overflow-x-auto">
-          <table className="table-auto text-left text-sm mb-10 sm:mb-20 sm:text-base">
-            <thead className="bg-portal3">
-              <tr>
-                <th className="border border-black border-opacity-50 p-1 sm:p-4">
+        <div className="overflow-x-auto"> 
+          {Object.keys(dataset).includes('resources') && dataset.resources.length 
+            ? (
+              <table className="table-auto text-left text-sm mb-10 sm:mb-20 sm:text-base">
+                <thead className="bg-portal3">
+                  <tr>
+                    <th className="border border-black border-opacity-50 p-1 sm:p-4">
                   File size (MB)
-                </th>
-                <th className="border border-black border-opacity-50 p-1 sm:p-4">
+                    </th>
+                    <th className="border border-black border-opacity-50 p-1 sm:p-4">
                   File name
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.keys(dataset).includes('resources')
-                ? dataset.resources.map((resource, index) => {
-                  const filename = 'path' in resource
-                    ? `${resource.name}.${resource.path
-                      .split('.')
-                      .pop()}`
-                    : resource.name
-                  return (
-                    <>
-                      <tr key={index + '@resource'}>
-                        <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                          {(resource.bytes * 0.000001).toFixed(1)}
-                        </td>
-                        <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                          <a className="resource-download" href={`/api/dataset/${dataset.name}/files/default/${resource.path}`} download>
-                            {filename}
-                          </a>
-                        </td>
-                      </tr>
-                    </>
-                  )
-                })
-                : ''}
-            </tbody>
-          </table>
-        </div>
-
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {dataset.resources.map((resource, index) => {
+                    const filename = 'path' in resource
+                      ? `${resource.name}.${resource.path
+                        .split('.')
+                        .pop()}`
+                      : resource.name
+                    return (
+                      <>
+                        <tr key={index + '@resource'}>
+                          <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
+                            {(resource.bytes * 0.000001).toFixed(1)}
+                          </td>
+                          <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
+                            <a className="resource-download" href={`/api/dataset/${dataset.name}/files/default/${resource.path}`} download>
+                              {filename}
+                            </a>
+                          </td>
+                        </tr>
+                      </>
+                    )
+                  })
+                  }
+                </tbody>
+              </table>
+            )
+            : ('NO RESOURCE AVAILABLE TO DOWNLOAD')
+          }</div>
+        <br />
         <h2 className="mb-10 font-lato font-bold text-xl">Metadata</h2>
         <div className="grid grid-cols-1 ml-4 font-karla xl:max-w-screen-2xl">
           <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
