@@ -65,15 +65,17 @@ const Dataset = ({ dataset }) => {
             </div>
           </div>
         </div>
-        <div className="flex mb-10">
-          <h2 className="mr-10 font-lato font-bold text-xl">
+        {dataset.description != '' &&
+        (
+          <div>
+            <div className="flex mb-10">
+              <h2 className="mr-10 font-lato font-bold text-xl">
             About this Dataset
-          </h2>
-          {/* <a href="#">
-            <img src="/share.svg" alt="next" />
-          </a> */}
-        </div>
-        <div className="mb-20 font-karla text-lg">{dataset.description}</div>
+              </h2>
+            </div>
+            <div className="mb-20 font-karla text-lg">{dataset.description}</div>
+          </div>
+        )}
         <h2 className="mb-10 font-lato font-bold text-xl">File Preview</h2>
         <div className="mb-10">
           {data && data.length != 0 ? (
