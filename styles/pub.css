@@ -2,6 +2,13 @@
   width: 100%;
 }
 
+.sortSelect {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 64px;
+}
+
 .btn-add-fiscal {
   background: #ff5100;
   border-radius: 4px;
