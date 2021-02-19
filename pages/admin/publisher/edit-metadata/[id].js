@@ -37,24 +37,24 @@ export async function getServerSideProps(context) {
       },
     }
   }
-  const apolloClient = initializeApollo();
-  const id = context.query.id;
+  const apolloClient = initializeApollo()
+  const id = context.query.id
 
   try {
     await apolloClient.query({
       query: SINGLE_REPOSITORY,
       variables: { name: id },
-    });
+    })
   
-    const metastore = new Metastore(apolloClient.cache.extract());
-    const data = await metastore.fetch(id);
+    const metastore = new Metastore(apolloClient.cache.extract())
+    const data = await metastore.fetch(id)
 
     return {
       props: {
         lfsServerUrl: process.env.GIFTLESS_SERVER,
         dataset: data,
       },
-    };
+    }
   } catch(e) {
 
     return {
