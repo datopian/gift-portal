@@ -25,7 +25,7 @@ export default function Card({ props }) {
     <div
       className={
         // eslint-disable-next-line max-len
-        'flex flex-col rounded-md border-2 shadow-md justify-between p-5 mb-4 min-h-500'
+        'flex flex-col rounded-md border-2 shadow-md justify-between p-5 mb-4 min-h-350'
       }
     >
       <div>
@@ -81,7 +81,7 @@ export default function Card({ props }) {
           </div>
         </div>
 
-        <div className="flex flex-row justify-between font-karla text-portal1">
+        <div className="flex flex-row justify-center font-karla text-portal1">
           <Link href={`/dataset/${dataset.name}`}>
             <a>VIEW DATASET DETAILS</a>
           </Link>

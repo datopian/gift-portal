@@ -7,7 +7,7 @@ module.exports = {
       '150px': '150px',
     },
     minHeight: {
-      '500': '500px',
+      '350': '350px',
     },
     extend: {
       fontFamily: {
