@@ -21,7 +21,7 @@ const Dataset = ({ dataset }) => {
     columns = sample[0].map((item) => {
       return {
         Header: item,
-        accessor: item,
+        accessor: item
       }
     })
 
@@ -118,17 +118,20 @@ const Dataset = ({ dataset }) => {
             </tbody>
           </table>
         </div>
-
-        <h2 className="mb-10 font-lato font-bold text-xl">Metadata</h2>
+        <h1 className="mb-10 font-lato font-bold text-xl">Metadata</h1>
         <div className="grid grid-cols-1 ml-4 font-karla xl:max-w-screen-2xl">
+          <br />
+          <h2 className="mb-10 font-lato text-xl">General</h2>
           <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
             <div className="flex flex-row">
-              <img src="/calender.svg" alt="next" className="mr-4" />
+              <img src="/metas.svg" alt="next" className="mr-4" />
               <div>
-                <h2 className="text-portal4 font-lato">Created</h2>
-                {dataset.createdAt ? (
+                <h2 className="text-portal4 font-lato">Tags</h2>
+                {dataset.tags ? (
                   <div className="self-center">
-                    {dayjs().to(dayjs(dataset.createdAt))}
+                    {dataset.tags.map((val, i) => {
+                      return <p key={'tags@' + i}>{val}</p>
+                    })}
                   </div>
                 ) : (
                   'Not Specified'
@@ -136,12 +139,14 @@ const Dataset = ({ dataset }) => {
               </div>
             </div>
             <div className="flex flex-row">
-              <img src="/check.svg" alt="next" className="mr-4" />
+              <img src="/metas.svg" alt="next" className="mr-4" />
               <div>
-                <h2 className="text-portal4 font-lato">Updated</h2>
-                {dataset.updatedAt ? (
+                <h2 className="text-portal4 font-lato">Disagregation</h2>
+                {dataset.disaggregation ? (
                   <div className="self-center">
-                    {dayjs().to(dayjs(dataset.updatedAt))}
+                    {dataset.disaggregation.map((val, i) => {
+                      return <p key={'dissa@' + i}>{val}</p>
+                    })}
                   </div>
                 ) : (
                   'Not Specified'
@@ -149,23 +154,67 @@ const Dataset = ({ dataset }) => {
               </div>
             </div>
             <div className="flex flex-row">
-              <img src="/csv.svg" width="25" alt="next" className="mr-4" />
+              <img src="/metas.svg" alt="next" className="mr-4" />
               <div>
-                <h2 className="text-portal4 font-lato">Format</h2>
-                <div className="self-center">CSV</div>
+                <h2 className="text-portal4 font-lato">Budget stage</h2>
+                {dataset.budget_stage ? (
+                  <div className="self-center">
+                    {dataset.budget_stage.map((val, i) => {
+                      return <p key={'budstage@' + i}>{val}</p>
+                    })}
+                  </div>
+                ) : (
+                  'Not Specified'
+                )}
               </div>
             </div>
+          </div>
+          <hr />
+          <br />
+          <h2 className="mb-10 font-lato text-xl">Owner</h2>
+          <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
             <div className="flex flex-row">
               <img src="/metas.svg" width="25" className="mr-4" />
               <div>
-                <h2 className="text-portal4 font-lato">Encoding</h2>
-                {dataset.encoding ? (
-                  <div className="self-center">{dataset.encoding}</div>
+                <h2 className="text-portal4 font-lato">Author Website</h2>
+                {dataset.author_website ? (
+                  <div className="self-center">{dataset.author_website}</div>
                 ) : (
                   'Not Specified'
                 )}
               </div>
             </div>
+            <div className="flex flex-row">
+              <img src="/profile.svg" width="25" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Author Email</h2>
+                {dataset.author_email ? (
+                  <div className="self-center">{dataset.author_email}</div>
+                ) : (
+                  'Not Specified'
+                )}
+              </div>
+            </div>
+            <div className="flex flex-row">
+              <img src="/profile.svg" width="25" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">
+                  Publishers institutional name
+                </h2>
+                {dataset.pub_institutional_name ? (
+                  <div className="self-center">
+                    {dataset.pub_institutional_name}
+                  </div>
+                ) : (
+                  'Not Specified'
+                )}
+              </div>
+            </div>
+          </div>
+          <hr />
+          <br />
+          <h2 className="mb-10 font-lato text-xl">Location</h2>
+          <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
             <div className="flex flex-row">
               <img src="/metas.svg" width="25" className="mr-4" />
               <div>
@@ -210,32 +259,73 @@ const Dataset = ({ dataset }) => {
                 )}
               </div>
             </div>
+          </div>
+          <hr />
+          <br />
+          <h2 className="mb-10 font-lato text-xl">Time</h2>
+          <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
             <div className="flex flex-row">
               <img src="/metas.svg" width="25" className="mr-4" />
               <div>
-                <h2 className="text-portal4 font-lato">Author Website</h2>
-                {dataset.author_website ? (
-                  <div className="self-center">{dataset.author_website}</div>
+                <h2 className="text-portal4 font-lato">Periodicity</h2>
+                {dataset.periodicity ? (
+                  <div className="self-center">{dataset.periodicity}</div>
                 ) : (
                   'Not Specified'
                 )}
               </div>
             </div>
-            <div className="flex flex-row">
-              <img src="/profile.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Author Email</h2>
-                {dataset.author_email ? (
-                  <div className="self-center">{dataset.author_email}</div>
-                ) : (
-                  'Not Specified'
-                )}
-              </div>
-            </div>
+
             <div className="flex flex-row">
               <img src="/calender.svg" alt="next" className="mr-4" />
               <div>
-                <h2 className="text-portal4 font-lato">Fiscal Start Period</h2>
+                <h2 className="text-portal4 font-lato">Created</h2>
+                {dataset.createdAt ? (
+                  <div className="self-center">
+                    {dayjs().to(dayjs(dataset.createdAt))}
+                  </div>
+                ) : (
+                  'Not Specified'
+                )}
+              </div>
+            </div>
+            <div className="flex flex-row">
+              <img src="/check.svg" alt="next" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Updated</h2>
+                {dataset.updatedAt ? (
+                  <div className="self-center">
+                    {dayjs().to(dayjs(dataset.updatedAt))}
+                  </div>
+                ) : (
+                  'Not Specified'
+                )}
+              </div>
+            </div>
+            <div className="flex flex-row">
+              <img src="/check.svg" alt="next" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Years included</h2>
+                {dataset.years_included ? (
+                  <div className="self-center">
+                    {dataset.years_included.map((val, i) => {
+                      return <p key={'yrincluded@' + i}>{val}</p>
+                    })}
+                  </div>
+                ) : (
+                  'Not Specified'
+                )}
+              </div>
+            </div>
+          </div>
+          <hr />
+          <br />
+          <h2 className="mb-10 font-lato text-xl">Fiscal period</h2>
+          <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+            <div className="flex flex-row">
+              <img src="/calender.svg" alt="next" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Fiscal start period</h2>
                 {dataset.start_date ? (
                   <div className="self-center">{dataset.start_date}</div>
                 ) : (
@@ -246,9 +336,32 @@ const Dataset = ({ dataset }) => {
             <div className="flex flex-row">
               <img src="/calender.svg" alt="next" className="mr-4" />
               <div>
-                <h2 className="text-portal4 font-lato">Fiscal End Period</h2>
+                <h2 className="text-portal4 font-lato">Fiscal end period</h2>
                 {dataset.end_date ? (
                   <div className="self-center">{dataset.end_date}</div>
+                ) : (
+                  'Not Specified'
+                )}
+              </div>
+            </div>
+          </div>
+          <hr />
+          <br />
+          <h2 className="mb-10 font-lato text-xl">Format</h2>
+          <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+            <div className="flex flex-row">
+              <img src="/csv.svg" width="25" alt="next" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Format</h2>
+                <div className="self-center">CSV</div>
+              </div>
+            </div>
+            <div className="flex flex-row">
+              <img src="/metas.svg" width="25" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Encoding</h2>
+                {dataset.encoding ? (
+                  <div className="self-center">{dataset.encoding}</div>
                 ) : (
                   'Not Specified'
                 )}
@@ -265,7 +378,7 @@ export async function getStaticPaths() {
   const apolloClient = initializeApollo()
 
   const { data } = await apolloClient.query({
-    query: ALL_REPOSITRIES,
+    query: ALL_REPOSITRIES
   })
   const repoNames = getRepoNames(data)
 
@@ -273,11 +386,11 @@ export async function getStaticPaths() {
     paths: repoNames.map((key) => {
       return {
         params: {
-          datasetid: key.replace(/\s/g, '%20'),
-        },
+          datasetid: key.replace(/\s/g, '%20')
+        }
       }
     }),
-    fallback: false,
+    fallback: false
   }
 }
 
@@ -287,7 +400,7 @@ export async function getStaticProps({ params }) {
 
   await apolloClient.query({
     query: SINGLE_REPOSITORY,
-    variables: { name: datasetid },
+    variables: { name: datasetid }
   })
 
   const metastore = new Metastore(apolloClient.cache.extract())
@@ -295,9 +408,9 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      dataset,
+      dataset
     },
-    revalidate: 1,
+    revalidate: 1
   }
 }
 
