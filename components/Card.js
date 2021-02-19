@@ -49,7 +49,7 @@ export default function Card({ props }) {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 font-roboto text-portal1">
-          {dataset.tags ? (
+          {dataset.tags && (
             dataset.tags.map((value, index) => {
               return (
                 <div
@@ -60,15 +60,6 @@ export default function Card({ props }) {
                 </div>
               )
             })
-          ) : (
-            <>
-              <div className="border-2 text-center rounded-lg mt-10">
-                NO TAGS
-              </div>
-              {/* 
-            <div className="border-2 text-center rounded-lg">NO TAGS</div> 
-            */}
-            </>
           )}
         </div>
         <div className="font-karla pt-8 pb-8">{dataset.description}</div>
