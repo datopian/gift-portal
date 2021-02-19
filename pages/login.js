@@ -6,8 +6,6 @@ import { providers, signIn, useSession } from 'next-auth/client'
 export default function SignIn({ providers }) {
   const [session] = useSession()
 
-
-
   return (
     <>
       {!session &&
@@ -19,15 +17,14 @@ export default function SignIn({ providers }) {
           >
             <div className="font-lato">
               {' '}
-              To sign up or login, please use your existing GitHub or Google
-              accounts
+              To sign up or log in, please use your existing GitHub account.
             </div>
             <div key={provider.name} className="mt-10">
               <button
                 onClick={() => signIn(provider.id)}
                 className="bg-blue-600 text-white rounded-lg p-2 ml-40 "
               >
-                Login in with {provider.name}
+                Log in with {provider.name}
               </button>
             </div>
           </div>

@@ -3,17 +3,17 @@
 import React from 'react'
 import Card from '../components/Card'
 import Search from '../components/Search'
-import { useState, useRef } from 'react'
+import {useState, useRef} from 'react'
 import Fuse from 'fuse.js'
 import Metastore from '../lib/Metastore'
-import { ALL_REPOSITRIES } from '../lib/queries'
-import { initializeApollo } from '../lib/apolloClient'
+import {ALL_REPOSITRIES} from '../lib/queries'
+import {initializeApollo} from '../lib/apolloClient'
 
-export default function Home({ datasets }) {
+export default function Home({datasets}) {
 
   const [dataState, setDataState] = useState(datasets)
   const selectRef = useRef()
-  
+
   const handlSearch = function (keyword) {
     if (keyword.length === 0) {
       setDataState(datasets)
@@ -21,24 +21,22 @@ export default function Home({ datasets }) {
       const sortOrder = selectRef.current.value
       const fuse = new Fuse(datasets, {
         keys: ['title'],
-        sortFn: (a, b) => { 
-          if (sortOrder === 'AZ'){
-            return a.item['0'].v.localeCompare(b.item['0'].v) 
-          }else {
-            return b.item['0'].v.localeCompare(a.item['0'].v) 
+        sortFn: (a, b) => {
+          if (sortOrder === 'AZ') {
+            return a.item['0'].v.localeCompare(b.item['0'].v)
+          } else {
+            return b.item['0'].v.localeCompare(a.item['0'].v)
           }
-          
         },
       })
       let data = fuse.search(keyword)
-      
+
       data = data.map((value) => {
-        let { item } = value
+        let {item} = value
         return item
       })
       setDataState(data)
     }
-    
   }
 
   return (
