@@ -76,7 +76,7 @@ const Dataset = ({ dataset }) => {
         <div className="mb-20 font-karla text-lg">{dataset.description}</div>
         <h2 className="mb-10 font-lato font-bold text-xl">File Preview</h2>
         <div className="mb-10">
-          {data && data.length != 0 ? (
+          {data && data.length ? (
             <CustomTable data={data} columns={columns} />
           ) : (
             'NO PREVIEW FOR THIS DATASET'
