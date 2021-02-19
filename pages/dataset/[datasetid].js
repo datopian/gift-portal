@@ -10,6 +10,9 @@ import { ALL_REPOSITRIES, SINGLE_REPOSITORY } from '../../lib/queries'
 import { initializeApollo } from '../../lib/apolloClient'
 import { getRepoNames } from '../../lib/utils'
 
+
+
+
 const Dataset = ({ dataset }) => {
   const router = useRouter()
   const { datasetid } = router.query
@@ -96,6 +99,11 @@ const Dataset = ({ dataset }) => {
             <tbody>
               {Object.keys(dataset).includes('resources')
                 ? dataset.resources.map((resource, index) => {
+                  const filename = 'path' in resource
+                    ? `${resource.name}.${resource.path
+                      .split('.')
+                      .pop()}`
+                    : resource.name
                   return (
                     <>
                       <tr key={index + '@resource'}>
@@ -103,11 +111,8 @@ const Dataset = ({ dataset }) => {
                           {(resource.bytes * 0.000001).toFixed(1)}
                         </td>
                         <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                          <a
-                            href={`/api/dataset/${dataset.name}/files/default/${resource.path}`}
-                            download
-                          >
-                            {resource.name}
+                          <a className="resource-download" href={`/api/dataset/${dataset.name}/files/default/${resource.path}`} download>
+                            {filename}
                           </a>
                         </td>
                       </tr>
@@ -280,6 +285,9 @@ export async function getStaticPaths() {
     fallback: false,
   }
 }
+
+
+
 
 export async function getStaticProps({ params }) {
   const { datasetid } = params
