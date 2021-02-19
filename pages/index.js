@@ -40,6 +40,20 @@ export default function Home({ datasets }) {
     }
     
   }
+  // console.log(dataState.sort((a,b)=> a.title.localeCompare(b.title)))
+  const dataSort = function (dataState) {
+    const sortOrder = selectRef.current.value
+    const dataset = [...dataState].sort((a,b) => {
+      if (sortOrder === 'AZ'){
+        return a.title.localeCompare(b.title)
+      }else {
+        return b.title.localeCompare(a.title)
+      }
+    })
+
+    setDataState(dataset)
+
+  }
 
   return (
     <div className="pl-2 pr-2 pt-1 pb-1 md:p-4 lg:pt-10 lg:pb-10 lg:pl-20 lg:pr-20">
@@ -54,6 +68,7 @@ export default function Home({ datasets }) {
             id="cars"
             className="border-2 focus:outline-none bg-white font-karla font-karla rounded-md p-2 col-span-3"
             ref={selectRef}
+            onChange= {() => dataSort(dataState)}
           >
             <option value="AZ">Alphabetical Ascending (A to Z)</option>
             <option value="ZA">Alphabetical Descending (Z to A)</option>
