@@ -6,12 +6,11 @@ import { getAbout, getAllAbout } from '../../lib/about-utils'
 import markdownStyles from '../../styles/Markdown.module.css'
 
 function About({content, data, isEmpty}){
-
   let md = new Remarkable()
 
-  if(isEmpty){
+  if (isEmpty) {
     return <div>404</div>
-  }else{
+  } else {
     return (
       <article className="max-w-2xl mx-auto mt-20">
         <div>
@@ -19,17 +18,15 @@ function About({content, data, isEmpty}){
           <div >date:  <span className='text-black-1000 font-thin p-5 m-2'>{data.date}</span></div>
           <div >author: <span className='text-black-1000 font-thin p-5 m-2'>{data.author}</span></div>
         </div>
-        
+
         <div className='mt-10'>
-          <div 
+          <div
             className={markdownStyles['markdown']}
             dangerouslySetInnerHTML={{ __html: md.render(content) }}/>
         </div>
       </article>
-      
     )
   }
-  
 }
 
 export async function getStaticProps({ params }) {

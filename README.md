@@ -1,7 +1,7 @@
 GIFT Data Portal. GIFT is Global Initiative on Fiscal Transparency.
 
 <div align="center">
-  
+
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/datopian/gift-portal/issues)
 ![gift-portal](https://github.com/datopian/gift-portal/workflows/gift-portal/badge.svg)
 [![The MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://opensource.org/licenses/MIT)
@@ -21,27 +21,27 @@ This site is built using Next.JS and Portal.JS.
 To run this app will require an `.env` file with following keys:
 
 ```
-NEXT_PUBLIC_ORG_NAME= Github Organization login name (Same as the one that you created the token)
+NEXT_PUBLIC_ORG_NAME= GitHub Organization login name (same as the one that you created the token with)
 
-PRIVATE_KEY= Private Key to generate authorization token to communicate with giftless
+PRIVATE_KEY= Private key to generate authorization token to communicate with Giftless
 
-GIFTLESS_SERVER= URL from giftless server
+GIFTLESS_SERVER= URL from Giftless server
 
-APP_GITHUB_KEY= API key to access github required data, follow this documentation: https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token
+APP_GITHUB_KEY= API key to access GitHub required data, follow this documentation: https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token
 
 REFRESH_DATA_IN_METASTORE= Set if the metastore data will refresh automatically
 
 
-// To get those information below you can check on this link: https://docs.github.com/en/developers/apps/creating-a-github-app
+// To get the following information, you can check this link: https://docs.github.com/en/developers/apps/creating-a-github-app
 
-GITHUB_CLIENT_ID= Github Client Id from APP
+GITHUB_CLIENT_ID= GitHub client ID from APP
 
-GITHUB_CLIENT_SECRET= Github Client Secret
+GITHUB_CLIENT_SECRET= GitHub client secret
 
-SIGNING_KEY= Sigin KEY to use on APP from Github 
+SIGNING_KEY= Signin key to use on APP from GitHub
 
-NEXTAUTH_URL= Github Login callback URL
-``` 
+NEXTAUTH_URL= GitHub login callback URL
+```
 <br />
 
 First, run the development server:
@@ -54,7 +54,7 @@ yarn dev
 
 ## E2E Test
 
-To test the app end to end using cypress:
+To test the app end to end using Cypress:
 
 ```bash
 yarn e2e
@@ -64,9 +64,8 @@ npm run e2e
 
 ## Unit Tests
 
-The unit tests are using jest.  
-To add more tests you should follow the structure to add new ones inside `__tests__` directory.  
-To run tests you can run with the following commands:  
+The unit tests are using `jest`. To add more tests, you should follow the structure to add new ones inside `__tests__` directory.
+You can run the tests with the following commands:
 <br />
 
 > Just run the tests
@@ -79,7 +78,7 @@ yarn test
 
 <br />
 
-> Run Tests with hot reload
+> Run tests with hot reload
 
 ```bash
 npm run test:watch
@@ -91,27 +90,23 @@ yarn test:watch
 
 ## Updating the Publisher
 
-To update the Publisher app for `gift-portal` :
+To update the Publisher app for `gift-portal`:
 
 ```bash
-// clone the gift-publisher repo
-
+# clone the gift-publisher repo
 $ git clone https://github.com/datopian/gift-publisher.git
 
-// checkout to npmpackage branch
-
+# checkout to npmpackage branch
 $ git checkout origin npmpackage
-
 ```
 
-All update which are to be reflected in `gift-portal` publisher app should be done in branch `npmpackage` of `gift-publisher` and also make sure no `css`
-is included. Hence, if the new update actually need css styling, work on the `master` branch to test the styling.
+All updates which are to be reflected in `gift-portal` publisher app should be done in the branch `npmpackage` of `gift-publisher` and also make sure no `css` is included. Hence, if the new update actually needs CSS styling, work on the `master` branch to test the styling.
 
-Once the styling is done, copy the new update to `npmpackage` branch excluding the css and then publish to npm. To infuse into `gift-portal`:
+Once the styling is done, copy the new update to `npmpackage` branch excluding the CSS and then publish to `npm`. To infuse into `gift-portal`:
 
 1. Update the `giftpub` version in the `package.json`
-2. run `yarn` to install the new update
-3. to make sure your css reflect in `gift-portal` copy all styling into `styles/pub.css`
+2. Run `yarn` to install the new update
+3. To make sure your CSS reflect in `gift-portal` copy all styling into `styles/pub.css`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -121,9 +116,9 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 ## User Cookie
 
-After you log using Github, you can access the user information encrypted inside a cookie
+After you log in using GitHub, you can access the user information encrypted inside a cookie.
 
-The object that is stored follows the scope below: 
+The object stored follows the scope below:
 
 ```json
 {

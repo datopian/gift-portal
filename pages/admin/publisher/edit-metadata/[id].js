@@ -13,7 +13,7 @@ export default function Publisher({ lfsServerUrl, dataset }) {
     metastoreApi: '/api/dataset/',
     skipUpload: true
   }
- 
+
 
   // eslint-disable-next-line react/react-in-jsx-scope
   return (

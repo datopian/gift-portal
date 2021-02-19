@@ -2,9 +2,10 @@
 import React from 'react'
 import { useRef } from 'react'
 
+
 export default function Search({submbitEvent}){
   let inputref = useRef()
-  const handleKeyEvent = (event) =>{
+  const handleKeyEvent = (event) => {
     if (event.key === 'Enter') {
       submbitEvent(inputref.current.value)
     }

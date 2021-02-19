@@ -11,8 +11,6 @@ import { initializeApollo } from '../../lib/apolloClient'
 import { getRepoNames } from '../../lib/utils'
 
 
-
-
 const Dataset = ({ dataset }) => {
   const router = useRouter()
   const { datasetid } = router.query
@@ -70,18 +68,18 @@ const Dataset = ({ dataset }) => {
           <div>
             <div className="flex mb-10">
               <h2 className="mr-10 font-lato font-bold text-xl">
-            About this Dataset
+            About this dataset
               </h2>
             </div>
             <div className="mb-20 font-karla text-lg">{dataset.description}</div>
           </div>
         )}
-        <h2 className="mb-10 font-lato font-bold text-xl">File Preview</h2>
+        <h2 className="mb-10 font-lato font-bold text-xl">File preview</h2>
         <div className="mb-10">
           {data && data.length != 0 ? (
             <CustomTable data={data} columns={columns} />
           ) : (
-            'NO PREVIEW FOR THIS DATASET'
+            'No preview is available for this dataset.'
           )}
         </div>
         <h2 className="mb-10 font-lato font-bold text-xl">Download</h2>
