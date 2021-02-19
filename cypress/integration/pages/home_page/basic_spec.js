@@ -5,6 +5,7 @@ describe('index page test', function() {
 
   it('renders portal', function (){
     cy.contains('Datasets')
+    cy.contains('Home')
     cy.contains('GIFT\'s website')
   })
 })
