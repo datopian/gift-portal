@@ -22,7 +22,7 @@ const Dataset = ({ dataset }) => {
     columns = sample[0].map((item) => {
       return {
         Header: item,
-        accessor: item,
+        accessor: item
       }
     })
 
@@ -84,7 +84,7 @@ const Dataset = ({ dataset }) => {
         </div>
         <h2 className="mb-10 font-lato font-bold text-xl">Download</h2>
 
-        <div className="overflow-x-auto"> 
+        <div className="overflow-x-auto mb-10"> 
           {Object.keys(dataset).includes('resources') && dataset.resources.length 
             ? (
               <table className="table-auto text-left text-sm mb-10 sm:mb-20 sm:text-base">
@@ -124,12 +124,156 @@ const Dataset = ({ dataset }) => {
                 </tbody>
               </table>
             )
-            : ('NO RESOURCE AVAILABLE TO DOWNLOAD')
+            : ('There is no resource available to download.')
           }</div>
-        <br />
-        <h2 className="mb-10 font-lato font-bold text-xl">Metadata</h2>
+        <h1 className="mb-10 font-lato font-bold text-xl">Metadata</h1>
         <div className="grid grid-cols-1 ml-4 font-karla xl:max-w-screen-2xl">
+          {dataset.tags || dataset.disaggregation || dataset.budget_stage &&
+          <div>
+            <br />
+            <h2 className="mb-10 font-lato text-xl">General</h2>
+            <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+              {dataset.tags &&
+            <div className="flex flex-row">
+              <img src="/metas.svg" alt="next" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Tags</h2>
+                <div className="self-center">
+                  {dataset.tags.map((val, i) => {
+                    return <p key={'tags@' + i}>{val}</p>
+                  })}
+                </div>
+              </div>
+            </div>
+              }
+              {dataset.disaggregation &&
+            <div className="flex flex-row">
+              <img src="/metas.svg" alt="next" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Disaggregation</h2>
+                <div className="self-center">
+                  {dataset.disaggregation.map((val, i) => {
+                    return <p key={'dissa@' + i}>{val}</p>
+                  })}
+                </div>
+              </div>
+            </div>
+              }
+              {dataset.budget_stage &&
+            <div className="flex flex-row">
+              <img src="/metas.svg" alt="next" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Budget stage</h2>
+                <div className="self-center">
+                  {dataset.budget_stage.map((val, i) => {
+                    return <p key={'budstage@' + i}>{val}</p>
+                  })}
+                </div>
+              </div>
+            </div>
+              }
+            </div>
+            <hr />
+          </div>
+          }
+          {dataset.author_website || dataset.author_email || dataset.pub_institutional_name &&
+          <div>
+            <br />
+            <h2 className="mb-10 font-lato text-xl">Owner</h2>
+            <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+              {dataset.author_website &&
+            <div className="flex flex-row">
+              <img src="/metas.svg" width="25" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Author Website</h2>
+                <div className="self-center">{dataset.author_website}</div>
+              </div>
+            </div>
+              }
+              {dataset.author_email &&
+            <div className="flex flex-row">
+              <img src="/profile.svg" width="25" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Author Email</h2>
+                <div className="self-center">{dataset.author_email}</div>
+              </div>
+            </div>
+              }
+              {dataset.pub_institutional_name &&
+            <div className="flex flex-row">
+              <img src="/profile.svg" width="25" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">
+                  Publishers institutional name
+                </h2>
+                <div className="self-center">
+                  {dataset.pub_institutional_name}
+                </div>
+              </div>
+            </div>
+              }
+            </div>
+            <hr />
+          </div>
+          }
+          {dataset.continent || dataset.country || dataset.region || dataset.city &&
+          <div>
+            <br />
+            <h2 className="mb-10 font-lato text-xl">Location</h2>
+            <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+              {dataset.continent &&
+            <div className="flex flex-row">
+              <img src="/metas.svg" width="25" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Continent</h2>
+                <div className="self-center">{dataset.continent}</div>
+              </div>
+            </div>
+              }
+              {dataset.country &&
+            <div className="flex flex-row">
+              <img src="/metas.svg" width="25" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Country</h2>
+                <div className="self-center">{dataset.country}</div>
+              </div>
+            </div>
+              }
+              {dataset.region &&
+            <div className="flex flex-row">
+              <img src="/metas.svg" width="25" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Region</h2>
+                <div className="self-center">{dataset.region}</div>
+              </div>
+            </div>
+              }
+              {dataset.city &&
+            <div className="flex flex-row">
+              <img src="/metas.svg" width="25" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">City</h2>
+                <div className="self-center">{dataset.city}</div>
+              </div>
+            </div>
+              }
+            </div>
+            <hr />
+          </div>
+          }
+          <br />
+          <h2 className="mb-10 font-lato text-xl">Time</h2>
           <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+            {dataset.periodicity &&
+            <div className="flex flex-row">
+              <img src="/metas.svg" width="25" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Periodicity</h2>
+                <div className="self-center">{dataset.periodicity}</div>
+              </div>
+            </div>
+            }
+
             <div className="flex flex-row">
               <img src="/calender.svg" alt="next" className="mr-4" />
               <div>
@@ -139,7 +283,7 @@ const Dataset = ({ dataset }) => {
                     {dayjs().to(dayjs(dataset.createdAt))}
                   </div>
                 ) : (
-                  'Not Specified'
+                  'Data unavailable'
                 )}
               </div>
             </div>
@@ -152,10 +296,55 @@ const Dataset = ({ dataset }) => {
                     {dayjs().to(dayjs(dataset.updatedAt))}
                   </div>
                 ) : (
-                  'Not Specified'
+                  'Data unavailable'
                 )}
               </div>
             </div>
+            {dataset.years_included &&
+            <div className="flex flex-row">
+              <img src="/check.svg" alt="next" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Years included</h2>
+                <div className="self-center">
+                  {dataset.years_included.map((val, i) => {
+                    return <p key={'yrincluded@' + i}>{val}</p>
+                  })}
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+          <hr />
+          {dataset.start_date || dataset.end_date &&
+          <div>
+            <br />
+            <h2 className="mb-10 font-lato text-xl">Fiscal period</h2>
+            <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+              {dataset.start_date &&
+            <div className="flex flex-row">
+              <img src="/calender.svg" alt="next" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Fiscal start period</h2>
+                <div className="self-center">{dataset.start_date}</div>
+              </div>
+            </div>
+              }
+              {dataset.end_date &&
+            <div className="flex flex-row">
+              <img src="/calender.svg" alt="next" className="mr-4" />
+              <div>
+                <h2 className="text-portal4 font-lato">Fiscal end period</h2>
+                <div className="self-center">{dataset.end_date}</div>
+              </div>
+            </div>
+              }
+            </div>
+            <hr />
+          </div>
+          }
+          <br />
+          <h2 className="mb-10 font-lato text-xl">Format</h2>
+          <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
             <div className="flex flex-row">
               <img src="/csv.svg" width="25" alt="next" className="mr-4" />
               <div>
@@ -163,105 +352,15 @@ const Dataset = ({ dataset }) => {
                 <div className="self-center">CSV</div>
               </div>
             </div>
+            {dataset.encoding &&
             <div className="flex flex-row">
               <img src="/metas.svg" width="25" className="mr-4" />
               <div>
                 <h2 className="text-portal4 font-lato">Encoding</h2>
-                {dataset.encoding ? (
-                  <div className="self-center">{dataset.encoding}</div>
-                ) : (
-                  'Not Specified'
-                )}
+                <div className="self-center">{dataset.encoding}</div>
               </div>
             </div>
-            <div className="flex flex-row">
-              <img src="/metas.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Continent</h2>
-                {dataset.continent ? (
-                  <div className="self-center">{dataset.continent}</div>
-                ) : (
-                  'Not Specified'
-                )}
-              </div>
-            </div>
-            <div className="flex flex-row">
-              <img src="/metas.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Country</h2>
-                {dataset.country ? (
-                  <div className="self-center">{dataset.country}</div>
-                ) : (
-                  'Not Specified'
-                )}
-              </div>
-            </div>
-            <div className="flex flex-row">
-              <img src="/metas.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Region</h2>
-                {dataset.region ? (
-                  <div className="self-center">{dataset.region}</div>
-                ) : (
-                  'Not Specified'
-                )}
-              </div>
-            </div>
-            <div className="flex flex-row">
-              <img src="/metas.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">City</h2>
-                {dataset.city ? (
-                  <div className="self-center">{dataset.city}</div>
-                ) : (
-                  'Not Specified'
-                )}
-              </div>
-            </div>
-            <div className="flex flex-row">
-              <img src="/metas.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Author Website</h2>
-                {dataset.author_website ? (
-                  <div className="self-center">{dataset.author_website}</div>
-                ) : (
-                  'Not Specified'
-                )}
-              </div>
-            </div>
-            <div className="flex flex-row">
-              <img src="/profile.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Author Email</h2>
-                {dataset.author_email ? (
-                  <div className="self-center">{dataset.author_email}</div>
-                ) : (
-                  'Not Specified'
-                )}
-              </div>
-            </div>
-            <div className="flex flex-row">
-              <img src="/calender.svg" alt="next" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Fiscal Start Period</h2>
-                {dataset.start_date ? (
-                  <div className="self-center">{dataset.start_date}</div>
-                ) : (
-                  'Not Specified'
-                )}
-              </div>
-            </div>
-            <div className="flex flex-row">
-              <img src="/calender.svg" alt="next" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Fiscal End Period</h2>
-                {dataset.end_date ? (
-                  <div className="self-center">{dataset.end_date}</div>
-                ) : (
-                  'Not Specified'
-                )}
-              </div>
-            </div>
+            }
           </div>
         </div>
       </div>
@@ -273,7 +372,7 @@ export async function getStaticPaths() {
   const apolloClient = initializeApollo()
 
   const { data } = await apolloClient.query({
-    query: ALL_REPOSITRIES,
+    query: ALL_REPOSITRIES
   })
   const repoNames = getRepoNames(data)
 
@@ -281,11 +380,11 @@ export async function getStaticPaths() {
     paths: repoNames.map((key) => {
       return {
         params: {
-          datasetid: key.replace(/\s/g, '%20'),
-        },
+          datasetid: key.replace(/\s/g, '%20')
+        }
       }
     }),
-    fallback: false,
+    fallback: false
   }
 }
 
@@ -298,7 +397,7 @@ export async function getStaticProps({ params }) {
 
   await apolloClient.query({
     query: SINGLE_REPOSITORY,
-    variables: { name: datasetid },
+    variables: { name: datasetid }
   })
 
   const metastore = new Metastore(apolloClient.cache.extract())
@@ -306,9 +405,9 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      dataset,
+      dataset
     },
-    revalidate: 1,
+    revalidate: 1
   }
 }
 
