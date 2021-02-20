@@ -27,7 +27,7 @@ export default function Card({ props }) {
     <div
       className={
         // eslint-disable-next-line max-len
-        'flex flex-col rounded-md border-2 shadow-md justify-between p-5 mb-4 min-h-500'
+        'flex flex-col rounded-md border-2 shadow-md justify-between p-5 mb-4 min-h-350'
       }
     >
       <div>
@@ -35,7 +35,11 @@ export default function Card({ props }) {
           {dataset.logo && (
             <img src={dataset.logo} alt="next" className="mr-2" />
           )}
-          <div className="font-lato text-xl">{dataset.title}</div>
+          <div className="font-lato text-xl">
+            <Link href={`/dataset/${dataset.name}`}>
+              <a>{dataset.title}</a>
+            </Link>
+          </div>
         </div>
         <div className="flex flex-row justify-between items-center">
           <div className="font-lato text-xl">
@@ -47,7 +51,7 @@ export default function Card({ props }) {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 font-roboto text-portal1">
-          {dataset.tags ? (
+          {dataset.tags && (
             dataset.tags.map((value, index) => {
               return (
                 <div
@@ -58,15 +62,6 @@ export default function Card({ props }) {
                 </div>
               )
             })
-          ) : (
-            <>
-              <div className="border-2 text-center rounded-lg mt-10">
-                NO TAGS
-              </div>
-              {/* 
-            <div className="border-2 text-center rounded-lg">NO TAGS</div> 
-            */}
-            </>
           )}
         </div>
         <div className="font-karla pt-8 pb-8">{dataset.description}</div>
@@ -88,11 +83,10 @@ export default function Card({ props }) {
           </div>
         </div>
 
-        <div className="flex flex-row justify-between font-karla text-portal1">
+        <div className="flex flex-row justify-center font-karla text-portal1">
           <Link href={`/dataset/${dataset.name}`}>
             <a>VIEW DATASET DETAILS</a>
           </Link>
-          <img src="/share.svg" alt="next" />
         </div>
       </div>
     </div>

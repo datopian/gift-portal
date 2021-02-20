@@ -50,7 +50,6 @@ export default function Home({datasets}) {
     })
 
     setDataState(dataset)
-
   }
 
   return (
@@ -64,7 +63,7 @@ export default function Home({datasets}) {
           </h3>
           <select
             id="cars"
-            className="border-2 focus:outline-none bg-white font-karla font-karla rounded-md p-2 col-span-3"
+            className="border-2 focus:outline-none bg-white font-karla font-karla rounded-md p-2 col-span-3 sortSelect"
             ref={selectRef}
             onChange= {() => dataSort(dataState)}
           >
