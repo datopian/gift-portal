@@ -2,6 +2,7 @@
 import React from 'react'
 import { useSession } from 'next-auth/client'
 
+
 export default function Navbar() {
   const [session] = useSession()
 
@@ -105,12 +106,12 @@ export default function Navbar() {
         </div>
         <div className="hidden text-center bg-portal6 w-full bg-opacity-75 md:block h-24 lg:pb-0">
           <h6>
-            {!session && 
+            {!session &&
             <a className="hover:underline" href="/login">
               Log in
             </a>
             }
-            {session && 
+            {session &&
              <a className="hover:underline" href="/api/auth/signout">
               Log out
              </a>

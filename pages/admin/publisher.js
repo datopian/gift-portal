@@ -2,8 +2,6 @@
 import { DatasetEditor } from 'giftpub'
 
 export default function Publisher({lfsServerUrl, dataset}) {
-
-   
   const config = {
     dataset: dataset,
     lfsServerUrl: lfsServerUrl,
@@ -19,4 +17,3 @@ Publisher.getInitialProps = async () => {
     organisationId:  process.env.NEXT_PUBLIC_ORG_NAME
   }
 }
-

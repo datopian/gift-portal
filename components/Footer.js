@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react'
 
+
 export default function Footer() {
   return (
     <div className="flex flex-col h-200px justify-center w-1440 items-center content-between bg-portal7 text-portal5 font-lato mr-0 ml-0 p-8 text-center">
@@ -64,8 +65,7 @@ export default function Footer() {
         </a>
       </div>
       <div>
-        Copyright &#169; {new Date().getFullYear()} Global Initiative for
-        Fiscal Transparency. All rights reserved.
+        Copyright &#169; {new Date().getFullYear()} Global Initiative for Fiscal Transparency. All rights reserved.
       </div>
     </div>
   )

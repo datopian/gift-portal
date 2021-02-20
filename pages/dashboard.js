@@ -19,7 +19,7 @@ export default function DashBoard({ datasets }) {
       {!session && (
         // eslint-disable-next-line max-len
         <div className="max-w-2xl mx-auto mt-20 mb-60 p-20 mb-80">
-          <div className="font-lato"> Login to see DashBoard</div>
+          <div className="font-lato">Please log in to see the dashboard.</div>
         </div>
       )}
 
