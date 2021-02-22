@@ -1,4 +1,4 @@
-import 'cypress-file-upload';
+import 'cypress-file-upload'
 
 describe('Create dataset workflow using a csv file', ()=> {
   it('should create a dataset', ()=> {
@@ -32,16 +32,16 @@ describe('Create dataset workflow using a csv file', ()=> {
       // eslint-disable-next-line max-len
       url: 'https://giftless-gift.herokuapp.com/gift-data/MDEwOlJlcG9zaXRvcnkzMzMwNzgyMDM=/objects/batch'
     }, {
-      transfers:["multipart-basic","basic"],
+      transfers:['multipart-basic','basic'],
       operation:'upload',
       objects:[
         {
-          oid:"fb0710c22d13ec34fb33b7bddc294bdc9cb0a1e95a84df1f9f",
+          oid:'fb0710c22d13ec34fb33b7bddc294bdc9cb0a1e95a84df1f9f',
           size:2020
         }
       ],
       ref:{
-        name:"refs/heads/master"
+        name:'refs/heads/master'
       }
     })
 
