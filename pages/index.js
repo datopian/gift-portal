@@ -99,7 +99,11 @@ export async function getServerSideProps() {
   })
 
   const metastore = new Metastore(apolloClient.cache.extract())
-  const datasets = await metastore.search()
+  let datasets = await metastore.search()
+
+  datasets = datasets.filter((dataset) => {
+    return dataset.error == false
+  })
 
   return {
     props: {

@@ -40,16 +40,16 @@ export async function getServerSideProps() {
   const apolloClient = initializeApollo()
 
   await apolloClient.query({
-    query: ALL_REPOSITRIES,
+    query: ALL_REPOSITRIES
   })
 
   const metastore = new Metastore(apolloClient.cache.extract())
   const datasets = await metastore.search()
-
+  
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      datasets,
-    },
+      datasets
+    }
   }
 }
