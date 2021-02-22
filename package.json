@@ -33,7 +33,7 @@
     "frictionless.js": "^0.13.4",
     "fuse.js": "^6.4.3",
     "giftless-client": "git+https://github.com/datopian/giftless-client-js.git",
-    "giftpub": "git+https://github.com/datopian/gift-publisher.git#package#47abdde4ba9b8570976dbcf2caf7582e7e877e8d",
+    "giftpub": "git+https://github.com/datopian/gift-publisher.git#package#9e8f9b6f70dfda046fa2e27c92347cb31e36cae3",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "gray-matter": "^4.0.2",

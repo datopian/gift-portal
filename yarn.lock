@@ -8286,9 +8286,9 @@ getpass@^0.1.1:
   dependencies:
     axios "^0.21.1"
 
-"giftpub@git+https://github.com/datopian/gift-publisher.git#package#47abdde4ba9b8570976dbcf2caf7582e7e877e8d":
-  version "0.1.2"
-  resolved "git+https://github.com/datopian/gift-publisher.git#47abdde4ba9b8570976dbcf2caf7582e7e877e8d"
+"giftpub@git+https://github.com/datopian/gift-publisher.git#package#9e8f9b6f70dfda046fa2e27c92347cb31e36cae3":
+  version "1.0.0"
+  resolved "git+https://github.com/datopian/gift-publisher.git#9e8f9b6f70dfda046fa2e27c92347cb31e36cae3"
   dependencies:
     "@material-ui/core" "^4.11.2"
     axios "^0.21.1"
