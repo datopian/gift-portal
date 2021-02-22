@@ -36,8 +36,9 @@ describe('Create dataset workflow using a csv file', ()=> {
       operation:'upload',
       objects:[
         {
-          oid:'fb0710c22d13ec34fb33b7bddc294bdc9cb0a1e95a84df1f9f',
-          size:2020
+          // eslint-disable-next-line max-len
+          oid:'07f3edfb54dbadfaf2fc26160259af3c260803ed202c02d797f4f5a7939f8ab3',
+          size:82
         }
       ],
       ref:{

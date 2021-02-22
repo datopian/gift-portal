@@ -52,9 +52,9 @@ describe('Edit dataset workflow using a same csv file format', ()=> {
 
    
 
-    // cy.log('Click next button if fiealds are ok')
-    // cy.get('.resource-edit-actions')
-    //   .find('.btn').click()
+    cy.log('Click next button if fiealds are ok')
+    cy.get('.resource-edit-actions')
+      .find('.btn').click()
 
     cy.log('Upload datapackage.json')
     cy.intercept({
@@ -62,7 +62,7 @@ describe('Edit dataset workflow using a same csv file format', ()=> {
       url: 'http://localhost:3000/api/dataset/Demo-Repo'
     },{})
     
-    // cy.get('.resource-edit-actions').find('button').eq(0).click()
+    cy.get('.resource-edit-actions').find('button').eq(0).click()
 
 
     cy.log('Should display 2 items on resource list')
