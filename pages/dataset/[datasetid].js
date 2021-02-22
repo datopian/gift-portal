@@ -7,6 +7,9 @@ import { ALL_REPOSITRIES, SINGLE_REPOSITORY } from "../../lib/queries";
 import { initializeApollo } from "../../lib/apolloClient";
 import { getRepoNames } from "../../lib/utils";
 
+if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+  require('../../mocks')
+}
 const Dataset = ({ dataset }) => {
   const router = useRouter();
   const { datasetid } = router.query;
@@ -220,7 +223,7 @@ export async function getStaticPaths() {
         },
       };
     }),
-    fallback: false,
+    fallback:  'blocking',
   };
 }
 
