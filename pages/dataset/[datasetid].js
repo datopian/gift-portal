@@ -91,7 +91,7 @@ const Dataset = ({ dataset }) => {
           {data && data.length != 0 ? (
             <CustomTable data={data} columns={columns} />
           ) : (
-            'NO PREVIEW FOR THIS DATASET'
+            'No preview is available for this dataset'
           )}
         </div>
         <h2 className="mb-10 font-lato font-bold text-xl">Download</h2>
