@@ -9,6 +9,7 @@ dayjs.extend(relativeTime)
 import { ALL_REPOSITRIES, SINGLE_REPOSITORY } from '../../lib/queries'
 import { initializeApollo } from '../../lib/apolloClient'
 import { getRepoNames } from '../../lib/utils'
+import filesize from 'filesize'
 
 
 const Dataset = ({ dataset }) => {
@@ -91,7 +92,7 @@ const Dataset = ({ dataset }) => {
                 <thead className="bg-portal3">
                   <tr>
                     <th className="border border-black border-opacity-50 p-1 sm:p-4">
-                  File size (MB)
+                  File size
                     </th>
                     <th className="border border-black border-opacity-50 p-1 sm:p-4">
                   File name
@@ -109,7 +110,7 @@ const Dataset = ({ dataset }) => {
                       <>
                         <tr key={index + '@resource'}>
                           <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                            {(resource.bytes * 0.000001).toFixed(1)}
+                            {filesize(resource.bytes)}
                           </td>
                           <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
                             <a className="resource-download" href={`/api/dataset/${dataset.name}/files/default/${resource.path}`} download>
