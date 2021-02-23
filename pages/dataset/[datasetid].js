@@ -9,6 +9,7 @@ dayjs.extend(relativeTime)
 import { ALL_REPOSITRIES, SINGLE_REPOSITORY } from '../../lib/queries'
 import { initializeApollo } from '../../lib/apolloClient'
 import { getRepoNames } from '../../lib/utils'
+import filesize from 'filesize'
 
 const Dataset = ({ dataset }) => {
   const router = useRouter()
@@ -96,43 +97,48 @@ const Dataset = ({ dataset }) => {
         </div>
         <h2 className="mb-10 font-lato font-bold text-xl">Download</h2>
 
-        <div className="overflow-x-auto">
-          <table className="table-auto text-left text-sm mb-10 sm:mb-20 sm:text-base">
-            <thead className="bg-portal3">
-              <tr>
-                <th className="border border-black border-opacity-50 p-1 sm:p-4">
-                  File size (MB)
-                </th>
-                <th className="border border-black border-opacity-50 p-1 sm:p-4">
+        <div className="overflow-x-auto mb-10"> 
+          {Object.keys(dataset).includes('resources') && dataset.resources.length 
+            ? (
+              <table className="table-auto text-left text-sm mb-10 sm:mb-20 sm:text-base">
+                <thead className="bg-portal3">
+                  <tr>
+                    <th className="border border-black border-opacity-50 p-1 sm:p-4">
+                  File size
+                    </th>
+                    <th className="border border-black border-opacity-50 p-1 sm:p-4">
                   File name
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.keys(dataset).includes('resources')
-                ? dataset.resources.map((resource, index) => {
-                  return (
-                    <>
-                      <tr key={index + '@resource'}>
-                        <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                          {(resource.bytes * 0.000001).toFixed(1)}
-                        </td>
-                        <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                          <a
-                            href={`/api/dataset/${dataset.name}/files/default/${resource.path}`}
-                            download
-                          >
-                            {resource.name}
-                          </a>
-                        </td>
-                      </tr>
-                    </>
-                  )
-                })
-                : ''}
-            </tbody>
-          </table>
-        </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {dataset.resources.map((resource, index) => {
+                    const filename = 'path' in resource
+                      ? `${resource.name}.${resource.path
+                        .split('.')
+                        .pop()}`
+                      : resource.name
+                    return (
+                      <>
+                        <tr key={index + '@resource'}>
+                          <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
+                            {filesize(resource.bytes)}
+                          </td>
+                          <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
+                            <a className="resource-download" href={`/api/dataset/${dataset.name}/files/default/${resource.path}`} download>
+                              {filename}
+                            </a>
+                          </td>
+                        </tr>
+                      </>
+                    )
+                  })
+                  }
+                </tbody>
+              </table>
+            )
+            : ('There is no resource available to download.')
+          }</div>
         <h1 className="mb-10 font-lato font-bold text-xl">Metadata</h1>
         <div className="grid grid-cols-1 ml-4 font-karla xl:max-w-screen-2xl">
           <br />
