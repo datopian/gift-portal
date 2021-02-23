@@ -6,6 +6,18 @@ import '../styles/pub.css'
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../lib/apolloClient'
 
+if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+  require('../mocks')
+}
+
+if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+  require('../mocks')
+}
+
+if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+  require('../mocks')
+}
+
 function MyApp({ Component, pageProps, metaStoreCache }) {
   const apolloClient = useApollo(pageProps.initialApolloState)
   return (

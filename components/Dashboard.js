@@ -20,7 +20,7 @@ export default function Dashboard({name, datasets}) {
   }
 
   return (
-    <div>
+    <div id="dashboard-list">
       <div className="grid grid-rows-1 grid-flow-col place-content-center">
         <div>
           <h1 className="dashboard-text-h1">Hi {name}.</h1>
@@ -49,7 +49,7 @@ export default function Dashboard({name, datasets}) {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {datasets.map((repo, i) => {
                       return (
-                        <tr key={`${i}-index`}>
+                        <tr key={`${i}-index`} id="dataset-list">
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center">
                               <div className="ml-4">
@@ -62,16 +62,16 @@ export default function Dashboard({name, datasets}) {
 
                           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             {repoHasResource(repo) ? (
-                              <a
+                              <a 
                                 href={`/admin/publisher/${repo.name}`}
-                                className="text-indigo-600 hover:text-indigo-900"
+                                className="edit-schema text-indigo-600 hover:text-indigo-900"
                               >
                                 Edit fiscal data schema
                               </a>
                             ) : (
-                              <a
+                              <a 
                                 href={`/admin/publisher/${repo.name}`}
-                                className="text-indigo-600 hover:text-indigo-900"
+                                className="create-schema text-indigo-600 hover:text-indigo-900"
                               >
                                   Create a fiscal data schema
                               </a>
