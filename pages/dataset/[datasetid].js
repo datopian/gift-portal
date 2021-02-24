@@ -118,11 +118,6 @@ const Dataset = ({ dataset }) => {
                 </thead>
                 <tbody>
                   {dataset.resources.map((resource, index) => {
-                    const filename = 'path' in resource
-                      ? `${resource.name}.${resource.path
-                        .split('.')
-                        .pop()}`
-                      : resource.name
                     return (
                       <>
                         <tr key={index + '@resource'}>
@@ -131,7 +126,7 @@ const Dataset = ({ dataset }) => {
                           </td>
                           <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
                             <a className="resource-download" href={`/api/dataset/${dataset.name}/files/default/${resource.path}`} download>
-                              {filename}
+                              {resource.name}
                             </a>
                           </td>
                         </tr>
