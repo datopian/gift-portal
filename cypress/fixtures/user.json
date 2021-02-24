@@ -1,0 +1,9 @@
+{
+      "user":{
+        "name":"John Doe",
+        "email":"johndoe@email.com",
+        "image":"https://avatars.githubusercontent.com/u/1112221?v=4"
+      },
+      "expires":"2021-03-05T13:47:17.273Z",
+      "userInfo":"eyJhbGciOiJIUzI1NiJ9.eyJsb2dpbiI6ImpvaG5kb2UiLCJuYW1lIjoiSm9obiBEb2UiLCJlbWFpbCI6ImpvaG5kb2VAZW1haWwuY29tIiwidG9rZW4iOnsicHJvdmlkZXIiOiJnaXRodWIiLCJ0eXBlIjoib2F1dGgiLCJpZCI6MjIyMzQsImFjY2Vzc1Rva2VuIjoiMDRiYTZmYWMyZWMyMjIyMmRlY2EyMjI4MTM0NDQ0ZTY2NjY4OWJhOWIxIiwiYWNjZXNzVG9rZW5FeHBpcmVzIjpudWxsfX0.sLqSe-nP0suYKcAI_JcZJkSoVS9megeW-n9uc08mGdU"
+    }
