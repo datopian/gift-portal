@@ -2,7 +2,7 @@ describe('Dashboard Page', ()=> {
   
   it('should return a message if user not logged', ()=> {
     cy.visit('/dashboard')
-    cy.contains('Login to see DashBoard')
+    cy.contains('Please log in to see the dashboard.')
   })
 
   it('should return a list of dashboards if the user is logged', ()=> {

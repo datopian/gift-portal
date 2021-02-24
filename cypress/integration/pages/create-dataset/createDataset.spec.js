@@ -7,7 +7,7 @@ describe('Create dataset workflow using a csv file', ()=> {
       url: '/api/auth/session'
     }, {fixture: 'user.json'})
     
-    cy.log('Acess the dashboard Page and see 2 items on the list')
+    cy.log('Access the dashboard Page and see 2 items on the list')
     cy.visit('/dashboard')
 
     cy.log('Select the item with the label: Edit Fiscal Data Schema')

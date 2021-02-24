@@ -1,3 +1,94 @@
-<svg width="40" height="31" viewBox="0 0 40 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12.5 10.5H13V10V2.5C13 1.27137 14.4887 0.664568 15.3496 1.52543L28.4727 14.6485C28.473 14.6489 28.4733 14.6492 28.4737 14.6495C29.0062 15.1888 29.0062 16.0612 28.4737 16.6005C28.4733 16.6008 28.473 16.6011 28.4727 16.6015L15.3496 29.7246C14.4887 30.5854 13 29.9786 13 28.75V21.25V20.75H12.5H1.875C1.11208 20.75 0.5 20.1379 0.5 19.375V11.875C0.5 11.1121 1.11208 10.5 1.875 10.5H12.5ZM32.5 29.5H25.9375C25.698 29.5 25.5 29.302 25.5 29.0625V25.9375C25.5 25.698 25.698 25.5 25.9375 25.5H32.5C34.159 25.5 35.5 24.159 35.5 22.5V7.5C35.5 5.84104 34.159 4.5 32.5 4.5H25.9375C25.698 4.5 25.5 4.30198 25.5 4.0625V0.9375C25.5 0.698017 25.698 0.5 25.9375 0.5H32.5C36.3645 0.5 39.5 3.63552 39.5 7.5V22.5C39.5 26.3645 36.3645 29.5 32.5 29.5Z" fill="white" fill-opacity="0.87" stroke="#4D5858"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="46.800003"
+   height="35.553455"
+   viewBox="0 0 46.800003 35.553455"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="login.svg"
+   style="fill:none"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8">
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Drop Shadow"
+       id="filter911">
+      <feFlood
+         flood-opacity="0.498039"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood901" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite903" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur905" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset907" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite909" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1080"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="7.6129032"
+     inkscape:cx="7.8542377"
+     inkscape:cy="23.86267"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg4"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <path
+     d="m 15.9,12.962788 h 0.5 v -0.5 -7.5000001 c 0,-1.22863 1.4887,-1.835432 2.3496,-0.97457 L 31.8727,17.111288 c 3e-4,4e-4 6e-4,7e-4 0.001,0.001 0.5325,0.5393 0.5325,1.4117 0,1.951 -4e-4,3e-4 -7e-4,6e-4 -0.001,0.001 l -13.1231,13.1231 c -0.8609,0.8608 -2.3496,0.254 -2.3496,-0.9746 v -7.5 -0.5 H 15.9 5.2750001 c -0.76292,0 -1.375,-0.6121 -1.375,-1.375 v -7.5 c 0,-0.7629 0.61208,-1.375 1.375,-1.375 z m 20,19 h -6.5625 c -0.2395,0 -0.4375,-0.198 -0.4375,-0.4375 v -3.125 c 0,-0.2395 0.198,-0.4375 0.4375,-0.4375 H 35.9 c 1.659,0 3,-1.341 3,-3 V 9.9627879 c 0,-1.65896 -1.341,-3 -3,-3 h -6.5625 c -0.2395,0 -0.4375,-0.19802 -0.4375,-0.4375 v -3.125 c 0,-0.239483 0.198,-0.4375 0.4375,-0.4375 H 35.9 c 3.8645,0 7,3.13552 7,7 V 24.962788 c 0,3.8645 -3.1355,7 -7,7 z"
+     id="path2"
+     style="fill:#ffffff;fill-opacity:0.87000002;stroke:#4d5858;filter:url(#filter911)"
+     inkscape:connector-curvature="0" />
 </svg>

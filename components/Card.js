@@ -37,7 +37,7 @@ export default function Card({ props }) {
           )}
           <div className="font-lato text-xl">
             <Link href={`/dataset/${dataset.name}`}>
-              <a>{dataset.title}</a>
+              <a className="datasetTitle">{dataset.title}</a>
             </Link>
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function Card({ props }) {
 
         <div className="flex flex-row justify-center font-karla text-portal1">
           <Link href={`/dataset/${dataset.name}`}>
-            <a>VIEW DATASET DETAILS</a>
+            <a className="datasetDetails">VIEW DATASET DETAILS</a>
           </Link>
         </div>
       </div>
