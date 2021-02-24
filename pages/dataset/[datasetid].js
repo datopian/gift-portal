@@ -11,9 +11,11 @@ import { initializeApollo } from '../../lib/apolloClient'
 import { getRepoNames } from '../../lib/utils'
 import filesize from 'filesize'
 
+
 if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
   require('../../mocks')
 }
+
 const Dataset = ({ dataset }) => {
   const router = useRouter()
   const { datasetid } = router.query
@@ -36,6 +38,21 @@ const Dataset = ({ dataset }) => {
       })
       data.push(temp_obj)
     })
+  }
+
+  /**
+   * Test whether to show a particular section in the metadata field
+   * or not
+   * @param {*} fields
+   */
+  const showSection = (fields) => {
+    let display = []
+    fields.forEach((field) => {
+      dataset[field] == '' || dataset[field] == undefined
+        ? display.push(false)
+        : display.push(true)
+    })
+    return display.some((truth) => truth == true)
   }
 
   if (!datasetid) {
@@ -66,23 +83,21 @@ const Dataset = ({ dataset }) => {
             </div>
           </div>
         </div>
-        {dataset.description != '' &&
-        (
-          <div>
-            <div className="flex mb-10">
-              <h2 className="mr-10 font-lato font-bold text-xl">
-            About this dataset
-              </h2>
-            </div>
-            <div className="mb-20 font-karla text-lg">{dataset.description}</div>
-          </div>
-        )}
-        <h2 className="mb-10 font-lato font-bold text-xl">File preview</h2>
+        <div className="flex mb-10">
+          <h2 className="mr-10 font-lato font-bold text-xl">
+            About this Dataset
+          </h2>
+          {/* <a href="#">
+            <img src="/share.svg" alt="next" />
+          </a> */}
+        </div>
+        <div className="mb-20 font-karla text-lg">{dataset.description}</div>
+        <h2 className="mb-10 font-lato font-bold text-xl">File Preview</h2>
         <div className="mb-10">
-          {data && data.length ? (
+          {data && data.length != 0 ? (
             <CustomTable data={data} columns={columns} />
           ) : (
-            'No preview is available for this dataset.'
+            'No preview is available for this dataset'
           )}
         </div>
         <h2 className="mb-10 font-lato font-bold text-xl">Download</h2>
@@ -131,221 +146,251 @@ const Dataset = ({ dataset }) => {
           }</div>
         <h1 className="mb-10 font-lato font-bold text-xl">Metadata</h1>
         <div className="grid grid-cols-1 ml-4 font-karla xl:max-w-screen-2xl">
-          {dataset.tags || dataset.disaggregation || dataset.budget_stage &&
-          <div>
-            <br />
-            <h2 className="mb-10 font-lato text-xl">General</h2>
-            <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
-              {dataset.tags &&
-            <div className="flex flex-row">
-              <img src="/metas.svg" alt="next" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Tags</h2>
-                <div className="self-center">
-                  {dataset.tags.map((val, i) => {
-                    return <p key={'tags@' + i}>{val}</p>
-                  })}
-                </div>
-              </div>
-            </div>
-              }
-              {dataset.disaggregation &&
-            <div className="flex flex-row">
-              <img src="/metas.svg" alt="next" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Disaggregation</h2>
-                <div className="self-center">
-                  {dataset.disaggregation.map((val, i) => {
-                    return <p key={'dissa@' + i}>{val}</p>
-                  })}
-                </div>
-              </div>
-            </div>
-              }
-              {dataset.budget_stage &&
-            <div className="flex flex-row">
-              <img src="/metas.svg" alt="next" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Budget stage</h2>
-                <div className="self-center">
-                  {dataset.budget_stage.map((val, i) => {
-                    return <p key={'budstage@' + i}>{val}</p>
-                  })}
-                </div>
-              </div>
-            </div>
-              }
-            </div>
-            <hr />
-          </div>
-          }
-          {dataset.author_website || dataset.author_email || dataset.pub_institutional_name &&
-          <div>
-            <br />
-            <h2 className="mb-10 font-lato text-xl">Owner</h2>
-            <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
-              {dataset.author_website &&
-            <div className="flex flex-row">
-              <img src="/metas.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Author Website</h2>
-                <div className="self-center">{dataset.author_website}</div>
-              </div>
-            </div>
-              }
-              {dataset.author_email &&
-            <div className="flex flex-row">
-              <img src="/profile.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Author Email</h2>
-                <div className="self-center">{dataset.author_email}</div>
-              </div>
-            </div>
-              }
-              {dataset.pub_institutional_name &&
-            <div className="flex flex-row">
-              <img src="/profile.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">
-                  Publishers institutional name
-                </h2>
-                <div className="self-center">
-                  {dataset.pub_institutional_name}
-                </div>
-              </div>
-            </div>
-              }
-            </div>
-            <hr />
-          </div>
-          }
-          {dataset.continent || dataset.country || dataset.region || dataset.city &&
-          <div>
-            <br />
-            <h2 className="mb-10 font-lato text-xl">Location</h2>
-            <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
-              {dataset.continent &&
-            <div className="flex flex-row">
-              <img src="/metas.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Continent</h2>
-                <div className="self-center">{dataset.continent}</div>
-              </div>
-            </div>
-              }
-              {dataset.country &&
-            <div className="flex flex-row">
-              <img src="/metas.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Country</h2>
-                <div className="self-center">{dataset.country}</div>
-              </div>
-            </div>
-              }
-              {dataset.region &&
-            <div className="flex flex-row">
-              <img src="/metas.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Region</h2>
-                <div className="self-center">{dataset.region}</div>
-              </div>
-            </div>
-              }
-              {dataset.city &&
-            <div className="flex flex-row">
-              <img src="/metas.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">City</h2>
-                <div className="self-center">{dataset.city}</div>
-              </div>
-            </div>
-              }
-            </div>
-            <hr />
-          </div>
-          }
           <br />
-          <h2 className="mb-10 font-lato text-xl">Time</h2>
-          <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
-            {dataset.periodicity &&
-            <div className="flex flex-row">
-              <img src="/metas.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Periodicity</h2>
-                <div className="self-center">{dataset.periodicity}</div>
-              </div>
-            </div>
-            }
+          {showSection(['tags', 'disaggregation', 'budget_stage']) && (
+            <>
+              <h2 className="mb-10 font-lato text-xl">General</h2>
+              <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+                {dataset.tags && (
+                  <div className="flex flex-row">
+                    <img src="/metas.svg" alt="next" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">Tags</h2>
 
-            <div className="flex flex-row">
-              <img src="/calender.svg" alt="next" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Created</h2>
-                {dataset.createdAt ? (
-                  <div className="self-center">
-                    {dayjs().to(dayjs(dataset.createdAt))}
+                      <div className="self-center">
+                        {dataset.tags.map((val, i) => {
+                          return <p key={'tags@' + i}>{val}</p>
+                        })}
+                      </div>
+                    </div>
                   </div>
-                ) : (
-                  'Data unavailable'
+                )}
+                {dataset.disaggregation && (
+                  <div className="flex flex-row">
+                    <img src="/metas.svg" alt="next" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">Disagregation</h2>
+
+                      <div className="self-center">
+                        {dataset.disaggregation.map((val, i) => {
+                          return <p key={'dissa@' + i}>{val}</p>
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {dataset.budget_stage && (
+                  <div className="flex flex-row">
+                    <img src="/metas.svg" alt="next" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">Budget stage</h2>
+
+                      <div className="self-center">
+                        {dataset.budget_stage.map((val, i) => {
+                          return <p key={'budstage@' + i}>{val}</p>
+                        })}
+                      </div>
+                    </div>
+                  </div>
                 )}
               </div>
-            </div>
-            <div className="flex flex-row">
-              <img src="/check.svg" alt="next" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Updated</h2>
-                {dataset.updatedAt ? (
-                  <div className="self-center">
-                    {dayjs().to(dayjs(dataset.updatedAt))}
+              <hr />
+              <br />
+            </>
+          )}
+          {showSection([
+            'author_website',
+            'author_email',
+            'pub_institutional_name'
+          ]) && (
+            <>
+              <h2 className="mb-10 font-lato text-xl">Owner</h2>
+              <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+                {dataset.author_website && (
+                  <div className="flex flex-row">
+                    <img src="/metas.svg" width="25" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">
+                        Author Website
+                      </h2>
+
+                      <div className="self-center">
+                        {dataset.author_website}
+                      </div>
+                    </div>
                   </div>
-                ) : (
-                  'Data unavailable'
+                )}
+                {dataset.author_email && (
+                  <div className="flex flex-row">
+                    <img src="/profile.svg" width="25" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">Author Email</h2>
+
+                      <div className="self-center">{dataset.author_email}</div>
+                    </div>
+                  </div>
+                )}
+                {dataset.pub_institutional_name && (
+                  <div className="flex flex-row">
+                    <img src="/profile.svg" width="25" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">
+                        Publishers institutional name
+                      </h2>
+
+                      <div className="self-center">
+                        {dataset.pub_institutional_name}
+                      </div>
+                    </div>
+                  </div>
                 )}
               </div>
-            </div>
-            {dataset.years_included &&
-            <div className="flex flex-row">
-              <img src="/check.svg" alt="next" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Years included</h2>
-                <div className="self-center">
-                  {dataset.years_included.map((val, i) => {
-                    return <p key={'yrincluded@' + i}>{val}</p>
-                  })}
-                </div>
+              <hr />
+              <br />
+            </>
+          )}
+          {showSection(['continent', 'country', 'region', 'city']) && (
+            <>
+              <h2 className="mb-10 font-lato text-xl">Location</h2>
+              <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+                {dataset.continent && (
+                  <div className="flex flex-row">
+                    <img src="/metas.svg" width="25" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">Continent</h2>
+
+                      <div className="self-center">{dataset.continent}</div>
+                    </div>
+                  </div>
+                )}
+                {dataset.country && (
+                  <div className="flex flex-row">
+                    <img src="/metas.svg" width="25" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">Country</h2>
+
+                      <div className="self-center">{dataset.country}</div>
+                    </div>
+                  </div>
+                )}
+                {dataset.region && (
+                  <div className="flex flex-row">
+                    <img src="/metas.svg" width="25" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">Region</h2>
+                      <div className="self-center">{dataset.region}</div>
+                    </div>
+                  </div>
+                )}
+                {dataset.city && (
+                  <div className="flex flex-row">
+                    <img src="/metas.svg" width="25" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">City</h2>
+                      <div className="self-center">{dataset.city}</div>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-            }
-          </div>
-          <hr />
-          {dataset.start_date || dataset.end_date &&
-          <div>
-            <br />
-            <h2 className="mb-10 font-lato text-xl">Fiscal period</h2>
-            <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
-              {dataset.start_date &&
-            <div className="flex flex-row">
-              <img src="/calender.svg" alt="next" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Fiscal start period</h2>
-                <div className="self-center">{dataset.start_date}</div>
+              <hr />
+              <br />
+            </>
+          )}
+          {showSection([
+            'Periodicity',
+            'createdAt',
+            'updatedAt',
+            'years_included'
+          ]) && (
+            <>
+              <h2 className="mb-10 font-lato text-xl">Time</h2>
+              <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+                {dataset.periodicity && (
+                  <div className="flex flex-row">
+                    <img src="/metas.svg" width="25" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">Periodicity</h2>
+                      <div className="self-center">{dataset.periodicity}</div>
+                    </div>
+                  </div>
+                )}
+                {dataset.createdAt && (
+                  <div className="flex flex-row">
+                    <img src="/calender.svg" alt="next" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">Created</h2>
+                      <div className="self-center">
+                        {dayjs().to(dayjs(dataset.createdAt))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {dataset.updatedAt && (
+                  <div className="flex flex-row">
+                    <img src="/check.svg" alt="next" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">Updated</h2>
+                      <div className="self-center">
+                        {dayjs().to(dayjs(dataset.updatedAt))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {dataset.years_included && (
+                  <div className="flex flex-row">
+                    <img src="/check.svg" alt="next" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">
+                        Years included
+                      </h2>
+                      <div className="self-center">
+                        {dataset.years_included.map((val, i) => {
+                          return <p key={'yrincluded@' + i}>{val}</p>
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-              }
-              {dataset.end_date &&
-            <div className="flex flex-row">
-              <img src="/calender.svg" alt="next" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Fiscal end period</h2>
-                <div className="self-center">{dataset.end_date}</div>
+              <hr />
+              <br />
+            </>
+          )}
+          {showSection(['start_date', 'end_date']) && (
+            <>
+              <h2 className="mb-10 font-lato text-xl">Fiscal period</h2>
+              <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+                {dataset.start_date && (
+                  <div className="flex flex-row">
+                    <img src="/calender.svg" alt="next" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">
+                        Fiscal start period
+                      </h2>
+                      <div className="self-center">{dataset.start_date}</div>
+                    </div>
+                  </div>
+                )}
+
+                {dataset.end_date && (
+                  <div className="flex flex-row">
+                    <img src="/calender.svg" alt="next" className="mr-4" />
+                    <div>
+                      <h2 className="text-portal4 font-lato">
+                        Fiscal end period
+                      </h2>
+
+                      <div className="self-center">{dataset.end_date}</div>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-              }
-            </div>
-            <hr />
-          </div>
-          }
-          <br />
+              <hr />
+              <br />
+            </>
+          )}
+          
           <h2 className="mb-10 font-lato text-xl">Format</h2>
           <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
             <div className="flex flex-row">
@@ -355,15 +400,15 @@ const Dataset = ({ dataset }) => {
                 <div className="self-center">CSV</div>
               </div>
             </div>
-            {dataset.encoding &&
-            <div className="flex flex-row">
-              <img src="/metas.svg" width="25" className="mr-4" />
-              <div>
-                <h2 className="text-portal4 font-lato">Encoding</h2>
-                <div className="self-center">{dataset.encoding}</div>
+            {dataset.encoding && (
+              <div className="flex flex-row">
+                <img src="/metas.svg" width="25" className="mr-4" />
+                <div>
+                  <h2 className="text-portal4 font-lato">Encoding</h2>
+                  <div className="self-center">{dataset.encoding}</div>
+                </div>
               </div>
-            </div>
-            }
+            )}
           </div>
         </div>
       </div>
@@ -390,9 +435,6 @@ export async function getStaticPaths() {
     fallback:  'blocking',
   }
 }
-
-
-
 
 export async function getStaticProps({ params }) {
   const { datasetid } = params
