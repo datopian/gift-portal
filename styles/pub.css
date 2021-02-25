@@ -10,15 +10,20 @@ a:hover {
   text-decoration: none;
 }
 
-/* Target icons inside the Metadata section */
-.grid .flex.flex-row img {
-  max-width: 24px;
+li {
+  list-style-type: circle;
+  margin-left: 2em;
 }
 
 table a:hover {
   box-shadow: inset 0 -3.3ex #badf9350;
   text-decoration: none;
   color: #231f20;
+}
+
+/* Target icons inside the Metadata section */
+.grid .flex.flex-row img {
+  width: 24px;
 }
 
 .footerIcon {

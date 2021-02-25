@@ -59,22 +59,22 @@ const Dataset = ({ dataset }) => {
     return 404
   } else {
     return (
-      <div className="p-2 md:p-8 xl:p-12 2xl:p-24">
-        <div className="flex flex-row mb-10">
+      <div className='p-2 md:p-8 xl:p-12 2xl:p-24'>
+        <div className='flex flex-row mb-10'>
           {dataset.logo && (
-            <img src={dataset.logo} alt="dataset logo" className="mr-2" />
+            <img src={dataset.logo} alt='dataset logo' className='mr-2' />
           )}
-          <div className="pt-10 xl:pt-0">
-            <div className="mb-5">
-              <h1 className="font-lato font-bold text-2xl">{dataset.title}</h1>
+          <div className='pt-10 xl:pt-0'>
+            <div className='mb-5'>
+              <h1 className='font-lato font-bold text-2xl'>{dataset.title}</h1>
             </div>
-            <div className="flex flex-wrap font-roboto text-portal1">
+            <div className='flex flex-wrap font-roboto text-portal1'>
               {dataset['tags'] &&
                 dataset['tags'].map((tag, index) => {
                   return (
                     <div
                       key={index + '@tags'}
-                      className="flex border-2 text-center rounded-lg p-2 m-4"
+                      className='flex border-2 text-center rounded-lg p-2 m-4'
                     >
                       {tag.toUpperCase()}
                     </div>
@@ -83,36 +83,36 @@ const Dataset = ({ dataset }) => {
             </div>
           </div>
         </div>
-        <div className="flex mb-10">
-          <h2 className="mr-10 font-lato font-bold text-xl">
+        <div className='flex mb-10'>
+          <h2 className='mr-10 font-lato font-bold text-xl'>
             About this Dataset
           </h2>
           {/* <a href="#">
             <img src="/share.svg" alt="next" />
           </a> */}
         </div>
-        <div className="mb-20 font-karla text-lg">{dataset.description}</div>
-        <h2 className="mb-10 font-lato font-bold text-xl">File Preview</h2>
-        <div className="mb-10">
+        <div className='mb-20 font-karla text-lg'>{dataset.description}</div>
+        <h2 className='mb-10 font-lato font-bold text-xl'>File Preview</h2>
+        <div className='mb-10'>
           {data && data.length != 0 ? (
             <CustomTable data={data} columns={columns} />
           ) : (
             'No preview is available for this dataset'
           )}
         </div>
-        <h2 className="mb-10 font-lato font-bold text-xl">Download</h2>
+        <h2 className='mb-10 font-lato font-bold text-xl'>Download</h2>
 
-        <div className="overflow-x-auto mb-10"> 
-          {Object.keys(dataset).includes('resources') && dataset.resources.length 
-            ? (
-              <table className="table-auto text-left text-sm mb-10 sm:mb-20 sm:text-base">
-                <thead className="bg-portal3">
+        <div className='overflow-x-auto mb-10'>
+          {Object.keys(dataset).includes('resources') &&
+          dataset.resources.length ? (
+              <table className='table-auto text-left text-sm mb-10 sm:mb-20 sm:text-base'>
+                <thead className='bg-portal3'>
                   <tr>
-                    <th className="border border-black border-opacity-50 p-1 sm:p-4">
-                  File size
+                    <th className='border border-black border-opacity-50 p-1 sm:p-4'>
+                    File size
                     </th>
-                    <th className="border border-black border-opacity-50 p-1 sm:p-4">
-                  File name
+                    <th className='border border-black border-opacity-50 p-1 sm:p-4'>
+                    File name
                     </th>
                   </tr>
                 </thead>
@@ -121,69 +121,79 @@ const Dataset = ({ dataset }) => {
                     return (
                       <>
                         <tr key={index + '@resource'}>
-                          <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
+                          <td className='border border-black border-opacity-50 p-1 sm:p-4 lg:p-6'>
                             {filesize(resource.bytes)}
                           </td>
-                          <td className="border border-black border-opacity-50 p-1 sm:p-4 lg:p-6">
-                            <a className="resource-download" href={`/api/dataset/${dataset.name}/files/default/${resource.path}`} download>
+                          <td className='border border-black border-opacity-50 p-1 sm:p-4 lg:p-6'>
+                            <a
+                              className='resource-download'
+                              href={`/api/dataset/${dataset.name}/files/default/${resource.path}`}
+                              download
+                            >
                               {resource.name}
                             </a>
                           </td>
                         </tr>
                       </>
                     )
-                  })
-                  }
+                  })}
                 </tbody>
               </table>
-            )
-            : ('There is no resource available to download.')
-          }</div>
-        <h1 className="mb-10 font-lato font-bold text-xl">Metadata</h1>
-        <div className="grid grid-cols-1 ml-4 font-karla xl:max-w-screen-2xl">
+            ) : (
+              'There is no resource available to download.'
+            )}
+        </div>
+        <h1 className='mb-10 font-lato font-bold text-xl'>Metadata</h1>
+        <div className='grid grid-cols-1 ml-4 font-karla xl:max-w-screen-2xl'>
           <br />
           {showSection(['tags', 'disaggregation', 'budget_stage']) && (
             <>
-              <h2 className="mb-10 font-lato text-xl">General</h2>
-              <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+              <h2 className='mb-10 font-lato text-xl'>General</h2>
+              <div className='grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50'>
                 {dataset.tags && (
-                  <div className="flex flex-row">
-                    <img src="/metas.svg" alt="next" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/metas.svg' alt='next' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">Tags</h2>
+                      <h2 className='text-portal4 font-lato'>Tags</h2>
 
-                      <div className="self-center">
-                        {dataset.tags.map((val, i) => {
-                          return <p key={'tags@' + i}>{val}</p>
-                        })}
+                      <div className='self-center'>
+                        <ul>
+                          {dataset.tags.map((val, i) => {
+                            return <li key={'tags@' + i}>{val}</li>
+                          })}
+                        </ul>
                       </div>
                     </div>
                   </div>
                 )}
                 {dataset.disaggregation && (
-                  <div className="flex flex-row">
-                    <img src="/metas.svg" alt="next" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/metas.svg' alt='next' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">Disagregation</h2>
+                      <h2 className='text-portal4 font-lato'>Disaggregation</h2>
 
-                      <div className="self-center">
-                        {dataset.disaggregation.map((val, i) => {
-                          return <p key={'dissa@' + i}>{val}</p>
-                        })}
+                      <div className='self-center'>
+                        <ul>
+                          {dataset.disaggregation.map((val, i) => {
+                            return <li key={'dissa@' + i}>{val}</li>
+                          })}
+                        </ul>
                       </div>
                     </div>
                   </div>
                 )}
                 {dataset.budget_stage && (
-                  <div className="flex flex-row">
-                    <img src="/metas.svg" alt="next" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/metas.svg' alt='next' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">Budget stage</h2>
+                      <h2 className='text-portal4 font-lato'>Budget stage</h2>
 
-                      <div className="self-center">
-                        {dataset.budget_stage.map((val, i) => {
-                          return <p key={'budstage@' + i}>{val}</p>
-                        })}
+                      <div className='self-center'>
+                        <ul>
+                          {dataset.budget_stage.map((val, i) => {
+                            return <li key={'budstage@' + i}>{val}</li>
+                          })}
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -196,44 +206,42 @@ const Dataset = ({ dataset }) => {
           {showSection([
             'author_website',
             'author_email',
-            'pub_institutional_name'
+            'pub_institutional_name',
           ]) && (
             <>
-              <h2 className="mb-10 font-lato text-xl">Owner</h2>
-              <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+              <h2 className='mb-10 font-lato text-xl'>Owner</h2>
+              <div className='grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50'>
                 {dataset.author_website && (
-                  <div className="flex flex-row">
-                    <img src="/metas.svg" width="25" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/metas.svg' width='25' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">
-                        Author Website
-                      </h2>
+                      <h2 className='text-portal4 font-lato'>Author Website</h2>
 
-                      <div className="self-center">
+                      <div className='self-center'>
                         {dataset.author_website}
                       </div>
                     </div>
                   </div>
                 )}
                 {dataset.author_email && (
-                  <div className="flex flex-row">
-                    <img src="/profile.svg" width="25" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/profile.svg' width='25' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">Author Email</h2>
+                      <h2 className='text-portal4 font-lato'>Author Email</h2>
 
-                      <div className="self-center">{dataset.author_email}</div>
+                      <div className='self-center'>{dataset.author_email}</div>
                     </div>
                   </div>
                 )}
                 {dataset.pub_institutional_name && (
-                  <div className="flex flex-row">
-                    <img src="/profile.svg" width="25" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/profile.svg' width='25' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">
+                      <h2 className='text-portal4 font-lato'>
                         Publishers institutional name
                       </h2>
 
-                      <div className="self-center">
+                      <div className='self-center'>
                         {dataset.pub_institutional_name}
                       </div>
                     </div>
@@ -246,43 +254,43 @@ const Dataset = ({ dataset }) => {
           )}
           {showSection(['continent', 'country', 'region', 'city']) && (
             <>
-              <h2 className="mb-10 font-lato text-xl">Location</h2>
-              <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+              <h2 className='mb-10 font-lato text-xl'>Location</h2>
+              <div className='grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50'>
                 {dataset.continent && (
-                  <div className="flex flex-row">
-                    <img src="/metas.svg" width="25" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/metas.svg' width='25' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">Continent</h2>
+                      <h2 className='text-portal4 font-lato'>Continent</h2>
 
-                      <div className="self-center">{dataset.continent}</div>
+                      <div className='self-center'>{dataset.continent}</div>
                     </div>
                   </div>
                 )}
                 {dataset.country && (
-                  <div className="flex flex-row">
-                    <img src="/metas.svg" width="25" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/metas.svg' width='25' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">Country</h2>
+                      <h2 className='text-portal4 font-lato'>Country</h2>
 
-                      <div className="self-center">{dataset.country}</div>
+                      <div className='self-center'>{dataset.country}</div>
                     </div>
                   </div>
                 )}
                 {dataset.region && (
-                  <div className="flex flex-row">
-                    <img src="/metas.svg" width="25" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/metas.svg' width='25' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">Region</h2>
-                      <div className="self-center">{dataset.region}</div>
+                      <h2 className='text-portal4 font-lato'>Region</h2>
+                      <div className='self-center'>{dataset.region}</div>
                     </div>
                   </div>
                 )}
                 {dataset.city && (
-                  <div className="flex flex-row">
-                    <img src="/metas.svg" width="25" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/metas.svg' width='25' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">City</h2>
-                      <div className="self-center">{dataset.city}</div>
+                      <h2 className='text-portal4 font-lato'>City</h2>
+                      <div className='self-center'>{dataset.city}</div>
                     </div>
                   </div>
                 )}
@@ -295,26 +303,26 @@ const Dataset = ({ dataset }) => {
             'Periodicity',
             'createdAt',
             'updatedAt',
-            'years_included'
+            'years_included',
           ]) && (
             <>
-              <h2 className="mb-10 font-lato text-xl">Time</h2>
-              <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+              <h2 className='mb-10 font-lato text-xl'>Time</h2>
+              <div className='grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50'>
                 {dataset.periodicity && (
-                  <div className="flex flex-row">
-                    <img src="/metas.svg" width="25" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/metas.svg' width='25' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">Periodicity</h2>
-                      <div className="self-center">{dataset.periodicity}</div>
+                      <h2 className='text-portal4 font-lato'>Periodicity</h2>
+                      <div className='self-center'>{dataset.periodicity}</div>
                     </div>
                   </div>
                 )}
                 {dataset.createdAt && (
-                  <div className="flex flex-row">
-                    <img src="/calender.svg" alt="next" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/calender.svg' alt='next' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">Created</h2>
-                      <div className="self-center">
+                      <h2 className='text-portal4 font-lato'>Created</h2>
+                      <div className='self-center'>
                         {dayjs().to(dayjs(dataset.createdAt))}
                       </div>
                     </div>
@@ -322,27 +330,27 @@ const Dataset = ({ dataset }) => {
                 )}
 
                 {dataset.updatedAt && (
-                  <div className="flex flex-row">
-                    <img src="/check.svg" alt="next" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/check.svg' alt='next' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">Updated</h2>
-                      <div className="self-center">
+                      <h2 className='text-portal4 font-lato'>Updated</h2>
+                      <div className='self-center'>
                         {dayjs().to(dayjs(dataset.updatedAt))}
                       </div>
                     </div>
                   </div>
                 )}
                 {dataset.years_included && (
-                  <div className="flex flex-row">
-                    <img src="/check.svg" alt="next" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/check.svg' alt='next' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">
-                        Years included
-                      </h2>
-                      <div className="self-center">
-                        {dataset.years_included.map((val, i) => {
-                          return <p key={'yrincluded@' + i}>{val}</p>
-                        })}
+                      <h2 className='text-portal4 font-lato'>Years included</h2>
+                      <div className='self-center'>
+                        <ul>
+                          {dataset.years_included.map((val, i) => {
+                            return <li key={'yrincluded@' + i}>{val}</li>
+                          })}
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -354,29 +362,29 @@ const Dataset = ({ dataset }) => {
           )}
           {showSection(['start_date', 'end_date']) && (
             <>
-              <h2 className="mb-10 font-lato text-xl">Fiscal period</h2>
-              <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
+              <h2 className='mb-10 font-lato text-xl'>Fiscal period</h2>
+              <div className='grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50'>
                 {dataset.start_date && (
-                  <div className="flex flex-row">
-                    <img src="/calender.svg" alt="next" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/calender.svg' alt='next' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">
+                      <h2 className='text-portal4 font-lato'>
                         Fiscal start period
                       </h2>
-                      <div className="self-center">{dataset.start_date}</div>
+                      <div className='self-center'>{dataset.start_date}</div>
                     </div>
                   </div>
                 )}
 
                 {dataset.end_date && (
-                  <div className="flex flex-row">
-                    <img src="/calender.svg" alt="next" className="mr-4" />
+                  <div className='flex flex-row'>
+                    <img src='/calender.svg' alt='next' className='mr-4' />
                     <div>
-                      <h2 className="text-portal4 font-lato">
+                      <h2 className='text-portal4 font-lato'>
                         Fiscal end period
                       </h2>
 
-                      <div className="self-center">{dataset.end_date}</div>
+                      <div className='self-center'>{dataset.end_date}</div>
                     </div>
                   </div>
                 )}
@@ -385,22 +393,22 @@ const Dataset = ({ dataset }) => {
               <br />
             </>
           )}
-          
-          <h2 className="mb-10 font-lato text-xl">Format</h2>
-          <div className="grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50">
-            <div className="flex flex-row">
-              <img src="/csv.svg" width="25" alt="next" className="mr-4" />
+
+          <h2 className='mb-10 font-lato text-xl'>Format</h2>
+          <div className='grid grid-cols-1 gap-y-10 font-roboto mb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:max-w-50'>
+            <div className='flex flex-row'>
+              <img src='/csv.svg' width='25' alt='next' className='mr-4' />
               <div>
-                <h2 className="text-portal4 font-lato">Format</h2>
-                <div className="self-center">CSV</div>
+                <h2 className='text-portal4 font-lato'>Format</h2>
+                <div className='self-center'>CSV</div>
               </div>
             </div>
             {dataset.encoding && (
-              <div className="flex flex-row">
-                <img src="/metas.svg" width="25" className="mr-4" />
+              <div className='flex flex-row'>
+                <img src='/metas.svg' width='25' className='mr-4' />
                 <div>
-                  <h2 className="text-portal4 font-lato">Encoding</h2>
-                  <div className="self-center">{dataset.encoding}</div>
+                  <h2 className='text-portal4 font-lato'>Encoding</h2>
+                  <div className='self-center'>{dataset.encoding}</div>
                 </div>
               </div>
             )}
