@@ -2,6 +2,9 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    maxWidth: {
+      'aprox1/2': '47.3244%',
+    },
     maxHeight: {
       '90p': '90vh',
       '150px': '150px',
@@ -53,6 +56,7 @@ module.exports = {
       '291.26px': '291.26px',
       '545px': '545px',
       '1/2': '50%',
+      '9/20': '45%',
       '1/3': '33.333333%',
       '1/4': '25%',
       full: '100%',

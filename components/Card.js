@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react'
 import Link from 'next/link'
 import * as dayjs from 'dayjs'
@@ -35,7 +36,7 @@ export default function Card({ props }) {
           {dataset.logo && (
             <img src={dataset.logo} alt="next" className="mr-2" />
           )}
-          <div className="font-lato text-xl">
+          <div className="font-lato text-xl mb-10">
             <Link href={`/dataset/${dataset.name}`}>
               <a className="datasetTitle">{dataset.title}</a>
             </Link>
@@ -50,13 +51,13 @@ export default function Card({ props }) {
             )}
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4 font-roboto text-portal1">
+        <div className="flex flex-row flex-wrap justify-between gap-4 font-roboto text-portal1">
           {dataset.tags && (
             dataset.tags.map((value, index) => {
               return (
                 <div
                   key={index}
-                  className="border-2 text-center rounded-lg mt-10"
+                  className='border-2 py-1 px-2 text-center rounded-lg w-9/20 max-w-aprox1/2 flex-grow'
                 >
                   {value}
                 </div>
