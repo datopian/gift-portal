@@ -8,8 +8,8 @@ export default function Navbar() {
 
   return (
     <div className='flex justify-between bg-portal1 shadow'>
-      <div className='grid grid-cols-1 w-1/6 gap-y-0 md:gap-y-2 lg:w-1/6 lg:gap-y-0 xl:w-1/2 text-center items-center md:self-start sm:bg-portal6 md:bg-portal1 xl:grid-cols-2'>
-        <div className='hidden sm:block justify-center items-center m-0 bg-portal6 max-w-max'>
+      <div className='flex flex-row flex-wrap w-1/6 gap-y-0 md:gap-y-2 lg:w-1/6 lg:gap-y-0 xl:w-1/2 text-center items-center md:self-start sm:bg-portal6 md:bg-portal1 xl:grid-cols-2'>
+        <div className='hidden sm:block justify-center items-center m-0 bg-portal6'>
           <a href='/'>
             <img
               src='/gift.png'
@@ -18,7 +18,7 @@ export default function Navbar() {
             />
           </a>
         </div>
-        <div className='bg-portal1'>
+        <div className='bg-portal1 flex flex-grow justify-center'>
           <h2 className='p-1 mt-0 pt-0 xl:p-0 font-lato text-portal5 text-sm sm:text-base md:text-lg lg:text-xl tracking-wide xl:text-3xl 2xl:text-4xl xl:text-left xl:pl-4 2xl:pl-0'>
             <a href='/'>Data Portal</a>
           </h2>
