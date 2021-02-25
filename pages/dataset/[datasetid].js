@@ -11,7 +11,6 @@ import { initializeApollo } from '../../lib/apolloClient'
 import { getRepoNames } from '../../lib/utils'
 import filesize from 'filesize'
 
-
 if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
   require('../../mocks')
 }
@@ -27,7 +26,7 @@ const Dataset = ({ dataset }) => {
     columns = sample[0].map((item) => {
       return {
         Header: item,
-        accessor: item
+        accessor: item,
       }
     })
 
@@ -215,10 +214,19 @@ const Dataset = ({ dataset }) => {
                   <div className='flex flex-row'>
                     <img src='/metas.svg' width='25' className='mr-4' />
                     <div>
-                      <h2 className='text-portal4 font-lato'>Author Website</h2>
+                      <h2 className='text-portal4 font-lato'>
+                        Author&apos;s website
+                      </h2>
 
                       <div className='self-center'>
-                        {dataset.author_website}
+                        <a
+                          className='metadataField'
+                          href={`${dataset.author_website}`}
+                          target='_blank'
+                          rel='noreferrer'
+                        >
+                          {dataset.author_website}
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -227,9 +235,20 @@ const Dataset = ({ dataset }) => {
                   <div className='flex flex-row'>
                     <img src='/profile.svg' width='25' className='mr-4' />
                     <div>
-                      <h2 className='text-portal4 font-lato'>Author Email</h2>
+                      <h2 className='text-portal4 font-lato'>
+                        Author&apos;s email
+                      </h2>
 
-                      <div className='self-center'>{dataset.author_email}</div>
+                      <div className='self-center'>
+                        <a
+                          className='metadataField'
+                          href={`mailto:${dataset.author_email}`}
+                          target='_blank'
+                          rel='noreferrer'
+                        >
+                          {dataset.author_email}
+                        </a>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -238,7 +257,7 @@ const Dataset = ({ dataset }) => {
                     <img src='/profile.svg' width='25' className='mr-4' />
                     <div>
                       <h2 className='text-portal4 font-lato'>
-                        Publishers institutional name
+                        Publisher&apos;s institutional name
                       </h2>
 
                       <div className='self-center'>
@@ -423,7 +442,7 @@ export async function getStaticPaths() {
   const apolloClient = initializeApollo()
 
   const { data } = await apolloClient.query({
-    query: ALL_REPOSITRIES
+    query: ALL_REPOSITRIES,
   })
   const repoNames = getRepoNames(data)
 
@@ -431,11 +450,11 @@ export async function getStaticPaths() {
     paths: repoNames.map((key) => {
       return {
         params: {
-          datasetid: key.replace(/\s/g, '%20')
-        }
+          datasetid: key.replace(/\s/g, '%20'),
+        },
       }
     }),
-    fallback:  'blocking',
+    fallback: 'blocking',
   }
 }
 
@@ -445,7 +464,7 @@ export async function getStaticProps({ params }) {
 
   await apolloClient.query({
     query: SINGLE_REPOSITORY,
-    variables: { name: datasetid }
+    variables: { name: datasetid },
   })
 
   const metastore = new Metastore(apolloClient.cache.extract())
@@ -453,9 +472,9 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      dataset
+      dataset,
     },
-    revalidate: 1
+    revalidate: 1,
   }
 }
 
