@@ -291,26 +291,6 @@ code {
   color: #222;
 }
 
-.upload-wrapper {
-  width: 100%;
-  min-width: 360px;
-  max-width: 960px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 32px 24px;
-  border-radius: 12px;
-  min-height: 60%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 300px auto auto;
-  grid-template-areas:
-    'header header'
-    'uploadArea uploadArea'
-    'editArea editArea';
-  row-gap: 20px;
-  column-gap: 20px;
-}
-
 .upload-header {
   grid-area: header;
   border-bottom: 1px solid #e3ebff;
@@ -504,10 +484,9 @@ code {
 .upload-wrapper {
   width: 100%;
   min-width: 360px;
-  max-width: 960px;
   margin: 0 auto;
   background-color: #fff;
-  padding: 32px 24px;
+  padding: 32px 32px;
   border-radius: 12px;
   min-height: 60%;
   display: grid;
@@ -705,6 +684,7 @@ code {
   margin-top: 2.6rem;
   margin-bottom: 2rem;
   display: flex;
+  justify-content: center;
 }
 
 .table-schema-info_container {
@@ -735,6 +715,8 @@ code {
 
 .table-schema-help {
   vertical-align: middle;
+  text-align: right;
+  margin-right: 1em;
 }
 
 .table-schema-help_row {
@@ -752,6 +734,8 @@ code {
   font-weight: bold;
   text-align: center;
   vertical-align: middle;
+  padding: 0.75em;
+  min-width: 350px;
   position: sticky;
   top: 0;
   z-index: 10;
