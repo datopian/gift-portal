@@ -1,5 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useSession } from 'next-auth/client'
+
 import { useCookies } from 'react-cookie'
 import Dashboard from '../components/Dashboard'
 import { ALL_REPOSITRIES } from '../lib/queries'
@@ -7,16 +8,16 @@ import { initializeApollo } from '../lib/apolloClient'
 import Metastore from '../lib/Metastore'
 
 export default function DashBoard({ datasets }) {
-  const [session] = useSession()
-
-  const [, setCookie] = useCookies(['github'])
+  const [session, ] = useSession()
+  const [cookie, setCookie, removeCookie] = useCookies(['userInfo'])
 
   if (session && session.userInfo) {
     setCookie('userInfo', session.userInfo, { path: '/' })
   }
+  if(!session || !session.userInfo ) removeCookie('userInfo')
   return (
     <>
-      {!session && (
+      {!cookie.userInfo &&  (
         // eslint-disable-next-line max-len
         <div className="max-w-2xl mx-auto mt-20 mb-60 p-20 mb-80">
           <div className="font-lato">Please log in to see the dashboard.</div>
@@ -53,3 +54,4 @@ export async function getServerSideProps() {
     }
   }
 }
+
