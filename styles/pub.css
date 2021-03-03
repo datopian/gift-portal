@@ -1,3 +1,7 @@
+html {
+  overflow-x: hidden;
+}
+
 a {
   transition: box-shadow 0.5s;
   text-decoration: none;
@@ -40,6 +44,7 @@ table a:hover {
 
 .datasetTitle,
 .metadataField {
+  color: black;
   transition: box-shadow 0.5s;
   text-decoration: none;
   background-color: transparent;
@@ -55,7 +60,9 @@ table a:hover {
   color: #231f20;
 }
 
-.datasetDetails {
+.datasetDetails,
+.dashboardLink {
+  color: #e81f76;
   transition: box-shadow 0.5s;
   text-decoration: none;
   background-color: transparent;
@@ -63,7 +70,9 @@ table a:hover {
 }
 
 .datasetDetails:hover,
-.datasetDetails:focus {
+.datasetDetails:focus,
+.dashboardLink:hover,
+.dashboardLink:focus {
   box-shadow: inset 0 -3.3ex #e81f7615;
   text-decoration: none;
   color: rgb(255, 0, 111);
