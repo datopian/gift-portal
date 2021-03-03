@@ -21,6 +21,10 @@ table a:hover {
   color: #231f20;
 }
 
+.MuiTable-root {
+  margin-top: 1em;
+}
+
 /* Target icons inside the Metadata section */
 .grid .flex.flex-row img {
   width: 24px;
@@ -135,6 +139,7 @@ table a:hover {
   font-size: 14px;
   margin-bottom: 5px;
   margin-left: 5px;
+  margin-top: 5px;
   text-align: left;
   font-weight: 500;
   color: #1a3b5d;
@@ -147,12 +152,22 @@ table a:hover {
   font-size: 14px;
   margin-bottom: 5px;
   margin-left: 90px;
+  margin-top: 5px;
   text-align: left;
   font-weight: 500;
   color: #1a3b5d;
   width: 100%;
   display: block;
   user-select: none;
+}
+
+input#start_date,
+input#end_date {
+  width: 50%;
+}
+
+textarea + .metadata-label {
+  margin-top: 0px;
 }
 
 .metadata-section-title {
@@ -170,6 +185,7 @@ table a:hover {
 
 .metadata-input {
   margin-bottom: 20px;
+  text-align: left;
 }
 
 .metadata-input > textarea {
@@ -183,11 +199,12 @@ table a:hover {
   color: #1a3b5d;
   font-family: Source Sans Pro, sans-serif;
   box-sizing: border-box;
-  margin-top: 0.5em;
+  margin-top: 0.25em;
 }
 
 .ast-important {
-  color: #ff0000;
+  color: #e81f76;
+  font-weight: bold;
 }
 
 .metadata-input__input {
@@ -203,6 +220,7 @@ table a:hover {
   color: #1a3b5d;
   font-family: 'Source Sans Pro', sans-serif;
   box-sizing: border-box;
+  margin-top: 0.25em;
 }
 
 .metadata-input__textarea {
@@ -925,7 +943,7 @@ code {
   border-radius: 5px;
   padding: 10px 25px;
   height: 45px;
-  width: 230px;
+  min-width: 230px;
   font-size: 1.2rem;
   font-weight: bold;
   outline: none;
@@ -941,7 +959,7 @@ code {
   border-radius: 5px;
   padding: 10px 25px;
   height: 45px;
-  width: 230px;
+  min-width: 230px;
   font-size: 1.2rem;
   font-weight: bold;
   outline: none;
