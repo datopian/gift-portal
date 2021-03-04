@@ -4,7 +4,7 @@ import Dashboard from '../components/Dashboard'
 import { providers, signIn, useSession } from 'next-auth/client'
 
 export default function SignIn({ providers }) {
-  const [session] = useSession()
+  const [session, ] = useSession()
 
   return (
     <>
