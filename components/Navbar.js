@@ -1,13 +1,16 @@
 /* eslint-disable max-len */
 import React from 'react'
 import { useSession } from 'next-auth/client'
-
+import { useCookies } from 'react-cookie'
 
 export default function Navbar() {
   const [session] = useSession()
+  const [cookies, ] = useCookies()
+
 
   return (
     <div className='flex justify-between bg-portal1 shadow'>
+     
       <div className='flex flex-row flex-wrap w-1/6 gap-y-0 md:gap-y-2 lg:w-1/6 lg:gap-y-0 xl:w-1/2 text-center items-center md:self-start sm:bg-portal6 md:bg-portal1 xl:grid-cols-2'>
         <div className='hidden sm:block justify-center items-center m-0 bg-portal6'>
           <a href='/'>
@@ -84,8 +87,8 @@ export default function Navbar() {
       </div>
       <div className='flex flex-col justify-center items-center w-1/6 bg-tertiary space-y-6 transition duration-500 ease-in-out hover:bg-tertiaryHover pb-3 pt-3 2xl:text-lg xl:w-1/9 2xl:w-1/12'>
         <div className='px-4 py-2 sm:px-6'>
-          <a href={session ? '/dashboard' : '/login'}>
-            {session && (
+          <a href={cookies.userInfo ? '/dashboard' : '/login'}>
+            {cookies.userInfo && session && session.user && (
               <img
                 src={session.user.image}
                 alt='next'
@@ -94,15 +97,15 @@ export default function Navbar() {
                 className='profile-img'
               />
             )}
-            {!session && (
+            {!cookies.userInfo && (
               <img src='/login.svg' alt='next' width='47.7548' height='37' />
             )}
           </a>
         </div>
         <div className='hidden text-center bg-portal6 w-full bg-opacity-75 md:block h-26 lg:pb-0 shadow border-t border-b border-footer'>
           <h6>
-            {!session && <a href='/login'>Log in</a>}
-            {session && <a href='/api/auth/signout'>Log out</a>}
+            {!cookies.userInfo && <a href='/login'>Log in</a>}
+            {cookies.userInfo && <a href='/api/auth/signout'>Log out</a>}
           </h6>
         </div>
       </div>
