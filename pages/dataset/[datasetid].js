@@ -126,7 +126,7 @@ const Dataset = ({ dataset }) => {
                           <td className='border border-black border-opacity-50 p-1 sm:p-4 lg:p-6'>
                             <a
                               className='resource-download'
-                              href={`/api/dataset/${dataset.name}/files/default/${resource.path}`}
+                              href={`/api/dataset/${dataset.name}/files/default/${resource.path}?dataset=${dataset.id}`}
                               download
                             >
                               {resource.name}

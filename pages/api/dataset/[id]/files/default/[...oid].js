@@ -15,13 +15,12 @@ export default async function handler(req,res) {
   try {
     const { userInfo } = req.cookies
     const user = decrypt(userInfo) || { login: 'PUBLIC'}
-    const { id, oid } = req.query
+    const { id, oid, dataset } = req.query
 
     if (!await permissions.userHasPermission(user.login, id, 'read')) {
       res.status(401).send('Unauthorized User')
     }
-
-    const resourceUrl = await download.getUrl(id, oid, user.login)
+    const resourceUrl = await download.getUrl(id, oid, user.login, dataset)
     return res.redirect(resourceUrl)
   } catch(error) {
     console.log(error)
