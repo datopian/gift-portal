@@ -21,13 +21,13 @@ if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
 function MyApp({ Component, pageProps, metaStoreCache }) {
   const apolloClient = useApollo(pageProps.initialApolloState)
   return (
-    <ApolloProvider client={apolloClient}>
-      <Provider session={pageProps.session}>
+    <Provider session={pageProps.session}>
+      <ApolloProvider client={apolloClient}>
         <Layout>
           <Component {...pageProps} metaStoreCache={metaStoreCache} />
         </Layout>
-      </Provider>
-    </ApolloProvider>
+      </ApolloProvider>
+    </Provider >
   )
 }
 
