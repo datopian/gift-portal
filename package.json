@@ -39,7 +39,7 @@
     "graphql-request": "^3.4.0",
     "gray-matter": "^4.0.2",
     "jsonwebtoken": "^8.5.1",
-    "metastore-lib-js": "git+https://github.com/datopian/metastore-lib-js#d21925d0301fdc28fa482b734a160daf510c7921",
+    "metastore-lib-js": "git+https://github.com/datopian/metastore-lib-js#9f4da51d3ecf1b650a4086568958a2242a2416b0",
     "msw": "^0.26.2",
     "next": "^10.0.5",
     "next-auth": "^3.7.0",
