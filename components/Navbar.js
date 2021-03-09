@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react'
-import { useSession } from 'next-auth/client'
-
+import { useSession, signOut, signIn } from 'next-auth/client'
 
 export default function Navbar() {
   const [session] = useSession()
@@ -82,29 +81,40 @@ export default function Navbar() {
           </h6>
         </div>
       </div>
-      <div className='flex flex-col justify-center items-center w-1/6 bg-tertiary space-y-6 transition duration-500 ease-in-out hover:bg-tertiaryHover pb-3 pt-3 2xl:text-lg xl:w-1/9 2xl:w-1/12'>
-        <div className='px-4 py-2 sm:px-6'>
-          <a href={session ? '/dashboard' : '/login'}>
-            {session && (
-              <img
-                src={session.user.image}
-                alt='next'
-                width='37'
-                height='37'
-                className='profile-img'
-              />
-            )}
-            {!session && (
-              <img src='/login.svg' alt='next' width='47.7548' height='37' />
-            )}
-          </a>
-        </div>
-        <div className='hidden text-center bg-portal6 w-full bg-opacity-75 md:block h-26 lg:pb-0 shadow border-t border-b border-footer'>
-          <h6>
-            {!session && <a href='/login'>Log in</a>}
-            {session && <a href='/api/auth/signout'>Log out</a>}
-          </h6>
-        </div>
+      <div className='flex flex-col justify-center w-1/6 pb-3 pt-3 md:w-1/5 lg:w-1/6 bg-portal2 items-center space-y-6 transition duration-500 ease-in-out hover:bg-portal8 lg:p-0'>
+        {!session ? (
+          <>
+            <div className='px-4 py-2 sm:px-6'>
+              <a href='/'>
+                <img src='/login.svg' alt='next' width='47.7548' height='37' />
+              </a>
+            </div>
+            <div className='hidden text-center bg-portal6 w-full bg-opacity-75 md:block h-26 lg:pb-0 2xl:text-lg shadow border-t border-b border-footer'>
+              <button onClick={() => { signIn({ callbackUrl: '/dashboard', redirect: true, }) }}>
+                Login
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className='px-4 py-2 sm:px-6'>
+              <a href='/dashboard'>
+                <img
+                  src={session.user.image}
+                  alt='next'
+                  width='37'
+                  height='37'
+                  className='profile-img'
+                />
+              </a>
+            </div>
+            <div className='hidden text-center bg-portal6 w-full bg-opacity-75 md:block h-26 lg:pb-0 2xl:text-lg shadow border-t border-b border-footer'>
+              <button onClick={() => { signOut() }}>
+                  Log out
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   )

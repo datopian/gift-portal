@@ -1,38 +1,38 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useSession } from 'next-auth/client'
-
-import { useCookies } from 'react-cookie'
+import Link from 'next/link'
 import Dashboard from '../components/Dashboard'
 import { ALL_REPOSITRIES } from '../lib/queries'
 import { initializeApollo } from '../lib/apolloClient'
 import Metastore from '../lib/Metastore'
 
 export default function DashBoard({ datasets }) {
-  const [session, ] = useSession()
-  const [cookie, setCookie, removeCookie] = useCookies(['userInfo'])
+  const [session] = useSession()
 
-  if (session && session.userInfo) {
-    setCookie('userInfo', session.userInfo, { path: '/' })
+  if (!session) {
+    return (
+      <div className="flex justify-center">
+        <div className="p-48">
+          <h1 className="font-lato text-2xl">Signout successful!</h1>
+          <div className="m-10">
+            <Link href="/">
+              <a className="bg-blue-600 text-white rounded-lg p-4">
+                Back Home
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
   }
-  if(!session || !session.userInfo ) removeCookie('userInfo')
+
   return (
     <>
-      {!cookie.userInfo &&  (
-        // eslint-disable-next-line max-len
-        <div className="max-w-2xl mx-auto mt-20 mb-60 p-20 mb-80">
-          <div className="font-lato">Please log in to see the dashboard.</div>
-        </div>
-      )}
-
-      {session && session.user && (
-        <>
-          <Dashboard
-            name={session.user.name}
-            image={session.user.image}
-            datasets={datasets}
-          />
-        </>
-      )}
+      <Dashboard
+        name={session.user.name}
+        image={session.user.image}
+        datasets={datasets}
+      />
     </>
   )
 }
@@ -46,7 +46,7 @@ export async function getServerSideProps() {
 
   const metastore = new Metastore(apolloClient.cache.extract())
   const datasets = await metastore.search()
-  
+
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
