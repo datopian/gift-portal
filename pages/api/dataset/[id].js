@@ -1,8 +1,9 @@
-import { decrypt } from '../../../lib/jwt'
+/* eslint-disable max-len */
 import Metastore from '../../../lib/Metastore'
 import Permissions from '../../../lib/Permissions'
 import { initializeApollo } from '../../../lib/apolloClient'
 import { PERMISSIONS } from '../../../lib/queries'
+import { getSession } from 'next-auth/client'
 
 
 export default async function handler(req, res) {
@@ -10,11 +11,10 @@ export default async function handler(req, res) {
   await apolloClient.query({ query: PERMISSIONS })
   const metastore = new Metastore()
   const permissions = new Permissions(apolloClient.cache.extract())
+
   try {
     const { id: objectId } = req.query
-    const { userInfo } = req.cookies
-    const user = decrypt(userInfo)
-
+    const { user } = await getSession({ req })
     if (!await permissions.userHasPermission(user.login, objectId, 'write')) {
       res.status(401).send('Unauthorized User')
     }
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     if (req.method === 'DELETE') {
       const { metadata, path } = req.body
       return metastore
-        .deleteResource(objectId, user, metadata, user.token.accessToken, path)
+        .deleteResource(objectId, user, metadata, user.token, path)
         .then(() => {
           res.status(200).send({ success: true })
         })
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
       const { metadata } = req.body
       return metastore
-        .update(objectId, user, metadata, user.token.accessToken)
+        .update(objectId, user, metadata, user.token)
         .then(() => {
           res.status(200).send({ success: true })
         })

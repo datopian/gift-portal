@@ -1,16 +1,9 @@
 /* eslint-disable max-len */
 import React from 'react'
-// import { useState, useEffect } from "react";
-import {repoHasResource} from '../lib/utils'
+import { repoHasResource } from '../lib/utils'
 
 
-export default function Dashboard({name, datasets}) {
-  //TODO: Filter datasets by user permission
-  // useEffect(() => {
-  //   async function filterDataByPermission() {
-  //   }
-  //   filterDataByPermission();
-  // }, []);
+export default function Dashboard({ name, datasets }) {
 
   if (!datasets) return <div>Loading</div>
   if (datasets.length > 1) {
@@ -21,10 +14,8 @@ export default function Dashboard({name, datasets}) {
 
   return (
     <div id='dashboard-list'>
-      <div className='grid grid-rows-1 grid-flow-col place-content-center'>
-        <div>
-          <h1 className='dashboard-text-h1'>Hi {name}.</h1>
-        </div>
+      <div className='justify-center'>
+        <h1 className='dashboard-text-h1'>Hi {name}</h1>
       </div>
       <div className='justify-center'>
         <h1 className='text-lg leading-6 font-medium text-gray-900 text-center'>
@@ -73,7 +64,7 @@ export default function Dashboard({name, datasets}) {
                                 href={`/admin/publisher/${repo.name}`}
                                 className='create-schema dashboardLink'
                               >
-                                Create a fiscal data schema
+                                  Create a fiscal data schema
                               </a>
                             )}
                           </td>
