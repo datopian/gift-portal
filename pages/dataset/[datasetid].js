@@ -121,7 +121,7 @@ const Dataset = ({ dataset }) => {
                       <>
                         <tr key={index + '@resource'}>
                           <td className='border border-black border-opacity-50 p-1 sm:p-4 lg:p-6'>
-                            {filesize(resource.bytes)}
+                            {filesize(resource.bytes || 0)}
                           </td>
                           <td className='border border-black border-opacity-50 p-1 sm:p-4 lg:p-6'>
                             <a
