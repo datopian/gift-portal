@@ -5,7 +5,6 @@ import { initializeApollo } from '../../../lib/apolloClient'
 import { PERMISSIONS } from '../../../lib/queries'
 import { getSession } from 'next-auth/client'
 
-
 export default async function handler(req, res) {
   const apolloClient = initializeApollo()
   await apolloClient.query({ query: PERMISSIONS })
@@ -15,12 +14,18 @@ export default async function handler(req, res) {
   try {
     const { id: objectId } = req.query
     const { user } = await getSession({ req })
-    if (!await permissions.userHasPermission(user.login, objectId, 'write')) {
+    if (!(await permissions.userHasPermission(user.login, objectId, 'write'))) {
       res.status(401).send('Unauthorized User')
     }
 
     if (req.method === 'DELETE') {
       const { metadata, path } = req.body
+      try {
+        delete metadata.sample
+        delete metadata.schema
+      } catch (error) {
+        console.log('')
+      }
       return metastore
         .deleteResource(objectId, user, metadata, user.token, path)
         .then(() => {
@@ -34,6 +39,13 @@ export default async function handler(req, res) {
 
     if (req.method === 'POST') {
       const { metadata } = req.body
+      //remove top level sample and schema
+      try {
+        delete metadata.sample
+        delete metadata.schema
+      } catch (error) {
+        console.log('')
+      }
       return metastore
         .update(objectId, user, metadata, user.token)
         .then(() => {
