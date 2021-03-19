@@ -4,7 +4,6 @@ import Link from 'next/link'
 import * as dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
-
 dayjs.extend(relativeTime)
 
 /**
@@ -32,9 +31,22 @@ export default function Card({ props }) {
       }
     >
       <div>
-        <div className="flex flex-row justify-between items-center">
-          {dataset.logo && (
-            <img src={dataset.logo} alt="next" className="mr-2" />
+        <div className="flex justify-between items-center">
+          {dataset.image ? (
+            <img
+              src={dataset.image}
+              alt="dataset"
+              width="100px"
+              height="120px"
+              className="mb-4 mr-2"
+            />
+          ) : (
+            <img
+              alt="dataset"
+              width="100px"
+              height="120px"
+              className="invisible"
+            />
           )}
           <div className="font-lato text-xl mb-10">
             <Link href={`/dataset/${dataset.name}`}>
@@ -52,18 +64,17 @@ export default function Card({ props }) {
           </div>
         </div>
         <div className="flex flex-row flex-wrap justify-between gap-4 font-roboto text-portal1">
-          {dataset.tags && (
+          {dataset.tags &&
             dataset.tags.map((value, index) => {
               return (
                 <div
                   key={index}
-                  className='border-2 py-1 px-2 text-center rounded-lg w-9/20 max-w-aprox1/2 flex-grow'
+                  className="border-2 py-1 px-2 text-center rounded-lg w-9/20 max-w-aprox1/2 flex-grow"
                 >
                   {value}
                 </div>
               )
-            })
-          )}
+            })}
         </div>
         <div className="font-karla pt-8 pb-8">{dataset.description}</div>
       </div>
