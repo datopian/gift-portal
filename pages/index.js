@@ -102,7 +102,7 @@ export async function getServerSideProps() {
   let datasets = await metastore.search()
 
   datasets = datasets.filter((dataset) => {
-    return dataset.error == false
+    return Object.keys(dataset).length > 2
   })
 
   return {

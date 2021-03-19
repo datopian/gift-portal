@@ -21,7 +21,7 @@ const Dataset = ({ dataset }) => {
   let data = []
   let columns = []
 
-  if (dataset['sample'].length > 0) {
+  if (('sample' in dataset) && dataset['sample'].length > 0) {
     let sample = dataset['sample']
     columns = sample[0].map((item) => {
       return {
@@ -60,8 +60,8 @@ const Dataset = ({ dataset }) => {
     return (
       <div className='p-2 md:p-8 xl:p-12 2xl:p-24'>
         <div className='flex flex-row mb-10'>
-          {dataset.logo && (
-            <img src={dataset.logo} alt='dataset logo' className='mr-2' />
+          {dataset.image && (
+            <img src={dataset.image} width="100px" height="100px" alt='dataset logo' className='mr-2' />
           )}
           <div className='pt-10 xl:pt-0'>
             <div className='mb-5'>
@@ -469,6 +469,7 @@ export async function getStaticProps({ params }) {
 
   const metastore = new Metastore(apolloClient.cache.extract())
   const dataset = await metastore.fetch(datasetid)
+  // console.log(dataset)
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
