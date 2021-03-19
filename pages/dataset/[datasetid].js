@@ -21,7 +21,7 @@ const Dataset = ({ dataset }) => {
   let data = []
   let columns = []
 
-  if (dataset['sample'].length > 0) {
+  if (('sample' in dataset) && dataset['sample'].length > 0) {
     let sample = dataset['sample']
     columns = sample[0].map((item) => {
       return {
@@ -469,6 +469,7 @@ export async function getStaticProps({ params }) {
 
   const metastore = new Metastore(apolloClient.cache.extract())
   const dataset = await metastore.fetch(datasetid)
+  // console.log(dataset)
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
