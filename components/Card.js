@@ -31,21 +31,12 @@ export default function Card({ props }) {
       }
     >
       <div>
-        <div className="flex justify-between items-center">
-          {dataset.image ? (
+        <div className='flex justify-start items-center mb-5'>
+          {dataset.image && (
             <img
               src={dataset.image}
-              alt="dataset"
-              width="100px"
-              height="120px"
-              className="mb-4 mr-2"
-            />
-          ) : (
-            <img
-              alt="dataset"
-              width="100px"
-              height="120px"
-              className="invisible"
+              alt='dataset'
+              className='government-logo'
             />
           )}
           <div className="font-lato text-xl mb-10">
@@ -54,8 +45,8 @@ export default function Card({ props }) {
             </Link>
           </div>
         </div>
-        <div className="flex flex-row justify-between items-center">
-          <div className="font-lato text-xl">
+        <div className='flex flex-row justify-start items-center'>
+          <div className='font-lato text-xl'>
             {dataset.error == true ? (
               <span style={{ color: 'red' }}>error parsing metadata!</span>
             ) : (
