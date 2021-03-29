@@ -227,7 +227,7 @@ textarea + .metadata-label {
   padding: 5px 15px;
   background: none;
   color: #1a3b5d;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   box-sizing: border-box;
   margin-top: 0.25em;
 }
@@ -242,7 +242,7 @@ textarea + .metadata-label {
   padding: 5px 15px;
   background: none;
   color: #1a3b5d;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .btn {
@@ -347,7 +347,7 @@ code {
   display: grid;
   grid-template-columns: 40% auto;
   grid-template-rows: 1fr 1fr;
-  grid-template-areas: 'drop info';
+  grid-template-areas: "drop info";
   align-items: center;
 }
 
@@ -484,7 +484,7 @@ code {
   padding: 5px 15px;
   background: none;
   color: #1a3b5d;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   box-sizing: border-box;
 }
 .app-form-grid {
@@ -527,9 +527,9 @@ code {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 300px auto auto;
   grid-template-areas:
-    'header header'
-    'uploadArea uploadArea'
-    'editArea editArea';
+    "header header"
+    "uploadArea uploadArea"
+    "editArea editArea";
   row-gap: 20px;
   column-gap: 20px;
 }
@@ -563,7 +563,7 @@ code {
   display: grid;
   grid-template-columns: 40% auto;
   grid-template-rows: 1fr 1fr;
-  grid-template-areas: 'drop info';
+  grid-template-areas: "drop info";
   align-items: center;
 }
 
@@ -700,7 +700,7 @@ code {
   padding: 5px 15px;
   background: none;
   color: #1a3b5d;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   box-sizing: border-box;
 }
 .app-form-grid {
@@ -949,7 +949,7 @@ code {
   padding: 5px 15px;
   background: n one;
   color: #1a3b5d;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   box-sizing: border-box;
   font-size: 1rem;
 }
@@ -985,4 +985,46 @@ code {
   background: #ff5100;
   border-radius: 4px;
   color: #ffffff;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  font-size: 18px;
+  background: none;
+  color: #1a3b5d;
+  box-sizing: border-box;
+  margin-bottom: 0.2em;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  border-radius: 6px;
+  padding: 5px;
+  bottom: 125%;
+  opacity: 0;
+  margin-bottom: 10px;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
