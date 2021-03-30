@@ -14,7 +14,10 @@ export default async function handler(req, res) {
   try {
     const { id: objectId } = req.query
     const { user } = await getSession({ req })
-    if (!(await permissions.userHasPermission(user.login, objectId, 'write'))) {
+
+    if (
+      !(await permissions.userHasPermission(user.login, objectId, 'write'))
+    ) {
       res.status(401).send('Unauthorized User')
     }
 
@@ -60,7 +63,7 @@ export default async function handler(req, res) {
     console.log(error)
     return res.status(400).json({
       error: 'Bad Request',
-      message: error.message,
+      message: error.message
     })
   }
 }

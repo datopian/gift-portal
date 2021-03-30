@@ -90,7 +90,13 @@ export default function Navbar() {
               </a>
             </div>
             <div className='hidden text-center bg-portal6 w-full bg-opacity-75 md:block h-26 lg:pb-0 2xl:text-lg shadow border-t border-b border-footer'>
-              <button onClick={() => { signIn({ callbackUrl: '/dashboard', redirect: true, }) }}>
+              <button 
+                onClick={() => {
+                  signIn('github', {
+                    callbackUrl: '/dashboard',
+                    redirect: true
+                  })
+                }}>
                 Login
               </button>
             </div>
