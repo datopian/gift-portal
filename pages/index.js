@@ -91,7 +91,7 @@ export default function Home({datasets}) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const apolloClient = initializeApollo()
 
   await apolloClient.query({
@@ -109,6 +109,7 @@ export async function getServerSideProps() {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       datasets,
+      revalidate: 60
     },
   }
 }
