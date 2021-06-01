@@ -77,7 +77,7 @@ export default function Navbar() {
         </div>
         <div className='hidden text-center bg-portal6 w-full bg-opacity-75 md:block h-26 lg:pb-0 shadow border-t border-b border-footer'>
           <h6>
-            <a href='#'>About us</a>
+            <a href='/about'>About us</a>
           </h6>
         </div>
       </div>
