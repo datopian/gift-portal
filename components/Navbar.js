@@ -81,7 +81,7 @@ export default function Navbar() {
           </h6>
         </div>
       </div>
-      <div className='flex flex-col justify-center w-1/6 pb-3 pt-3 md:w-1/5 lg:w-1/6 bg-portal2 items-center space-y-6 transition duration-500 ease-in-out hover:bg-portal8 lg:p-0'>
+      <div className='flex flex-col justify-center w-1/6 pb-3 pt-3 md:w-1/5 lg:w-1/6 bg-tertiary items-center space-y-6 transition duration-500 ease-in-out hover:bg-tertiaryHover lg:p-0'>
         {!session ? (
           <>
             <div className='px-4 py-2 sm:px-6'>
