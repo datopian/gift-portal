@@ -37,7 +37,7 @@ export default function DashBoard({ datasets }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const apolloClient = initializeApollo()
 
   await apolloClient.query({
@@ -50,8 +50,7 @@ export async function getStaticProps() {
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      datasets,
-      revalidate: 30
+      datasets
     }
   }
 }
