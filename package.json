@@ -37,6 +37,7 @@
     "fuse.js": "^6.4.3",
     "giftless-client": "git+https://github.com/datopian/giftless-client-js.git",
     "giftpub": "https://github.com/datopian/gift-publisher#1015ff48fa3d500c0dde1a6d41e58ccb0a4fca83",
+    "googleapis": "^84.0.0",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "gray-matter": "^4.0.2",
@@ -54,6 +55,7 @@
     "remarkable": "^2.0.1",
     "request": "^2.88.2",
     "stream-to-array": "^2.3.0",
+    "uuid": "^8.3.2",
     "yarn": "^1.22.10"
   },
   "devDependencies": {
