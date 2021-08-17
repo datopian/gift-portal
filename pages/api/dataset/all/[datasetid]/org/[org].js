@@ -1,4 +1,5 @@
 import { Storage } from '@google-cloud/storage';
+import { google } from 'googleapis';
 import { initializeApollo } from '../../../../../../lib/apolloClient';
 import Metastore from '../../../../../../lib/Metastore'
 import { SINGLE_REPOSITORY } from '../../../../../../lib/queries'
@@ -8,8 +9,28 @@ import { decrypt } from '../../../../../../lib/jwt'
 import * as request from 'request';
 
 
+const googleAuth = new google.auth.GoogleAuth({
+  credentials: {
+    client_email: process.env.GOOGLE_CLIENT_EMAIL,
+    client_id: process.env.GOOGLE_CLIENT_ID,
+    private_key: process.env.GOOGLE_PRIVATE_KEY
+  },
+  scopes: [
+    'https://www.googleapis.com/auth/iam',
+    'https://www.googleapis.com/auth/cloud-platform',
+    'https://www.googleapis.com/auth/devstorage.full_control'
+  ]
+});
+
+const storage = new Storage({
+  projectId: process.env.PROJECT_ID,
+  ...googleAuth});
+// storage.authClient = googleAuth
+
+// const storage = new Storage()
+
 async function combine(dataset, datasetid, org, allCreated){
-  const storage = new Storage()
+  // const storage = new Storage()
   const gcBucket = storage.bucket('gift-datasets');
   //extract hash for all dataset
   let sourceFiles = dataset['resources'].map((resource)=>{
@@ -44,7 +65,6 @@ async function combine(dataset, datasetid, org, allCreated){
 }
 
 async function download(org, res){
-  const storage = new Storage()
   let bucket = storage.bucket('gift-datasets');
   let [metaData] = await bucket.file(`gift-data/undefined/${org}`).getMetadata();
   res.setHeader("content-disposition", "attachment; filename=" + `${org}`);
@@ -89,7 +109,7 @@ export default async function handler(req, res) {
     const datapackageLastUpdated = dataset['updatedAt']
 
     //load google cloud storage
-    const storage = new Storage();
+    // const storage = new Storage();
     const bucketName = 'gift-datasets'
     let allFileExist;
     let allFileCreated = null;
