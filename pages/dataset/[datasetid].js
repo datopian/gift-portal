@@ -146,6 +146,10 @@ const Dataset = ({ dataset }) => {
               'There is no resource available to download.'
             )}
         </div>
+        <div className='mb-10 font-lato font-bold text-xl'>
+          <a className='btn' href={`/api/dataset/all/${dataset.id}/org/${dataset.name}.csv`}>Download All Dataset</a>
+        </div>
+        
         <h1 className='mb-10 font-lato font-bold text-xl'>Metadata</h1>
         <div className='grid grid-cols-1 ml-4 font-karla xl:max-w-screen-2xl'>
           <br />
@@ -465,7 +469,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { datasetid } = params
   const apolloClient = initializeApollo()
-
+  
   await apolloClient.query({
     query: SINGLE_REPOSITORY,
     variables: { name: datasetid },
