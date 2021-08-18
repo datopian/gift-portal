@@ -77,70 +77,72 @@ async function download(org, res){
 
 }
 export default async function handler(req, res) {
-  const apolloClient = initializeApollo()
-  await apolloClient.query({query: PERMISSIONS})
-  const permissions = new Permissions(apolloClient.cache.extract())
+  // const apolloClient = initializeApollo()
+  // await apolloClient.query({query: PERMISSIONS})
+  // const permissions = new Permissions(apolloClient.cache.extract())
 
-  try {
-    const { userInfo } = req.cookies
-    const user = decrypt(userInfo) || { login: 'PUBLIC'}
-    const { datasetid, org} = req.query
-    console.log(org)
-    const organization = org.split(".")[0]
-    if (!await permissions.userHasPermission(user.login, organization, 'read')) {
-      res.status(401).send('Unauthorized User')
-    }
+  // try {
+  //   const { userInfo } = req.cookies
+  //   const user = decrypt(userInfo) || { login: 'PUBLIC'}
+  //   const { datasetid, org} = req.query
+  //   console.log(org)
+  //   const organization = org.split(".")[0]
+  //   if (!await permissions.userHasPermission(user.login, organization, 'read')) {
+  //     res.status(401).send('Unauthorized User')
+  //   }
 
-    //obtain organization datajson and resources from github
-    const apolloClientG = initializeApollo()
+  //   //obtain organization datajson and resources from github
+  //   const apolloClientG = initializeApollo()
   
-    await apolloClientG.query({
-      query: SINGLE_REPOSITORY,
-      variables: { name: organization },
-    })
+  //   await apolloClientG.query({
+  //     query: SINGLE_REPOSITORY,
+  //     variables: { name: organization },
+  //   })
 
-    const metastore = new Metastore(apolloClientG.cache.extract())
-    const dataset = await metastore.fetch(organization)
+  //   const metastore = new Metastore(apolloClientG.cache.extract())
+  //   const dataset = await metastore.fetch(organization)
     
 
-    const datapackageLastUpdated = dataset['updatedAt']
+  //   const datapackageLastUpdated = dataset['updatedAt']
 
-    //load google cloud storage
-    // const storage = new Storage();
-    const bucketName = 'gift-datasets'
-    let allFileExist;
-    let allFileCreated = null;
+  //   //load google cloud storage
+  //   // const storage = new Storage();
+  //   const bucketName = 'gift-datasets'
+  //   let allFileExist;
+  //   let allFileCreated = null;
 
-    try {
-      let bucket = storage.bucket(bucketName);
-      let [metaData] = await bucket.file(`gift-data/undefined/${org}`).getMetadata();
-      allFileCreated = metaData['updated'];
-      allFileExist = true;
-    } catch (error){
-        allFileExist = null;
-    }
+  //   try {
+  //     let bucket = storage.bucket(bucketName);
+  //     let [metaData] = await bucket.file(`gift-data/undefined/${org}`).getMetadata();
+  //     allFileCreated = metaData['updated'];
+  //     allFileExist = true;
+  //   } catch (error){
+  //       allFileExist = null;
+  //   }
 
-    if(allFileExist && allFileCreated) {
-      let allFileDate = new Date(allFileCreated).getTime()
-      let datapackageDate = new Date(datapackageLastUpdated).getTime()
+  //   if(allFileExist && allFileCreated) {
+  //     let allFileDate = new Date(allFileCreated).getTime()
+  //     let datapackageDate = new Date(datapackageLastUpdated).getTime()
 
-      //check if datapackage.json is updated
-      // since the last time the file was
-      //created
-      if( allFileDate > datapackageDate) {
-        await download(org, res)
-      }else {
-        await combine(dataset, datasetid, org, allFileDate)
-        await download(org, res)
-      }
-    } else {
-      await combine(dataset, datasetid, org)
-      await download(org, res)
+  //     //check if datapackage.json is updated
+  //     // since the last time the file was
+  //     //created
+  //     if( allFileDate > datapackageDate) {
+  //       await download(org, res)
+  //     }else {
+  //       await combine(dataset, datasetid, org, allFileDate)
+  //       await download(org, res)
+  //     }
+  //   } else {
+  //     await combine(dataset, datasetid, org)
+  //     await download(org, res)
 
-    }
-    // res.send("ok")
-  } catch(error) {
-    res.status(400).send(`Error on Retrieve Resource: ${error.message}`)
-  }
+  //   }
+  //   // res.send("ok")
+  // } catch(error) {
+  //   res.status(400).send(`Error on Retrieve Resource: ${error.message}`)
+  // }
+
+  res.send('ok')
  
 }
