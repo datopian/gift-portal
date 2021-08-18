@@ -6,7 +6,6 @@ import { SINGLE_REPOSITORY } from '../../../../../../lib/queries'
 import { PERMISSIONS } from '../../../../../../lib/queries'
 import Permissions from '../../../../../../lib/Permissions'
 import { decrypt } from '../../../../../../lib/jwt'
-import * as request from 'request';
 import { getDecryptedSecret } from '../../../../../../lib/decret-secret'
 
 
@@ -22,9 +21,7 @@ const googleAuth = new google.auth.GoogleAuth({
 const storage = new Storage({
   projectId: process.env.PROJECT_ID,
   ...googleAuth});
-// storage.authClient = googleAuth
 
-// const storage = new Storage()
 
 async function combine(dataset, datasetid, org, allCreated){
   // const storage = new Storage()
@@ -144,8 +141,4 @@ export default async function handler(req, res) {
     res.status(400).send(`Error on Retrieve Resource: ${error.message}`)
   }
 
-  // const files = await storage.bucket('gift-datasets').getFiles()
-
-  // res.send(JSON.stringify(files))
- 
 }
