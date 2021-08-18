@@ -6,7 +6,6 @@ import { SINGLE_REPOSITORY } from '../../../../../../lib/queries'
 import { PERMISSIONS } from '../../../../../../lib/queries'
 import Permissions from '../../../../../../lib/Permissions'
 import { decrypt } from '../../../../../../lib/jwt'
-import * as request from 'request';
 import { getDecryptedSecret } from '../../../../../../lib/decret-secret'
 
 
@@ -22,9 +21,7 @@ const googleAuth = new google.auth.GoogleAuth({
 const storage = new Storage({
   projectId: process.env.PROJECT_ID,
   ...googleAuth});
-// storage.authClient = googleAuth
 
-// const storage = new Storage()
 
 async function combine(dataset, datasetid, org, allCreated){
   // const storage = new Storage()
@@ -64,16 +61,17 @@ async function combine(dataset, datasetid, org, allCreated){
 async function download(org, res){
   let bucket = storage.bucket('gift-datasets');
   let [metaData] = await bucket.file(`gift-data/undefined/${org}`).getMetadata();
-  res.setHeader("content-disposition", "attachment; filename=" + `${org}`);
-  request
-    .get(metaData.mediaLink)
-    .on("error", function(err) {
-      res.writeHead(404, { "Content-Type": "text/html" });
-      res.write("<h1>404 not found</h1>");
-      res.end();
-      return;
-    })
-    .pipe(res);
+  res.redirect(metaData.mediaLink)
+  // res.setHeader("content-disposition", "attachment; filename=" + `${org}`);
+  // request
+  //   .get(metaData.mediaLink)
+  //   .on("error", function(err) {
+  //     res.writeHead(404, { "Content-Type": "text/html" });
+  //     res.write("<h1>404 not found</h1>");
+  //     res.end();
+  //     return;
+  //   })
+  //   .pipe(res);
 
 }
 export default async function handler(req, res) {
@@ -142,5 +140,5 @@ export default async function handler(req, res) {
   } catch(error) {
     res.status(400).send(`Error on Retrieve Resource: ${error.message}`)
   }
- 
+
 }
