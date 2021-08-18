@@ -143,6 +143,8 @@ export default async function handler(req, res) {
   //   res.status(400).send(`Error on Retrieve Resource: ${error.message}`)
   // }
 
-  res.send('ok')
+  const files = await storage.bucket('gift-datasets').getFiles()
+
+  res.send(JSON.stringify(files))
  
 }
