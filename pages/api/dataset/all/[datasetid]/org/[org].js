@@ -7,14 +7,11 @@ import { PERMISSIONS } from '../../../../../../lib/queries'
 import Permissions from '../../../../../../lib/Permissions'
 import { decrypt } from '../../../../../../lib/jwt'
 import * as request from 'request';
+import { getDecryptedSecret } from '../../../../../../lib/decret-secret'
 
 
 const googleAuth = new google.auth.GoogleAuth({
-  credentials: {
-    client_email: process.env.GOOGLE_CLIENT_EMAIL,
-    client_id: process.env.GOOGLE_CLIENT_ID,
-    private_key: JSON.parse(process.env.GOOGLE_PRIVATE_KEY)
-  },
+  credentials: getDecryptedSecret(),
   scopes: [
     'https://www.googleapis.com/auth/iam',
     'https://www.googleapis.com/auth/cloud-platform',
