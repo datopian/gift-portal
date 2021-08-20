@@ -1,6 +1,5 @@
-import { Storage } from '@google-cloud/storage';
-import { google } from 'googleapis';
-import { initializeApollo } from '../../../../../../lib/apolloClient';
+import { Storage } from '@google-cloud/storage'
+import { initializeApollo } from '../../../../../../lib/apolloClient'
 import Metastore from '../../../../../../lib/Metastore'
 import { SINGLE_REPOSITORY } from '../../../../../../lib/queries'
 import { PERMISSIONS } from '../../../../../../lib/queries'
@@ -9,23 +8,10 @@ import { decrypt } from '../../../../../../lib/jwt'
 import { getDecryptedSecret } from '../../../../../../lib/decret-secret'
 
 
-const googleAuth = new google.auth.GoogleAuth({
-  credentials: getDecryptedSecret(),
-  scopes: [
-    'https://www.googleapis.com/auth/iam',
-    'https://www.googleapis.com/auth/cloud-platform',
-    'https://www.googleapis.com/auth/devstorage.full_control'
-  ]
-});
 
-const storage = new Storage({
-  projectId: process.env.PROJECT_ID,
-  ...googleAuth});
-
-
-async function combine(dataset, datasetid, org, allCreated){
+async function combine(storage, dataset, datasetid, org, allCreated){
   // const storage = new Storage()
-  const gcBucket = storage.bucket('gift-datasets');
+  const gcBucket = storage.bucket('gift-datasets')
   //extract hash for all dataset
   let sourceFiles = dataset['resources'].map((resource)=>{
     let fname = `gift-data/${datasetid}/${resource.hash}`
@@ -36,7 +22,7 @@ async function combine(dataset, datasetid, org, allCreated){
   // with all resources to enable combining
   // only new files with the old combine file
   if(allCreated) {
-    let newSourceFiles = [gcBucket.file(`gift-data/undefined/${org}`)]
+    let newSourceFiles = [gcBucket.file(`gift-data/all/${org}`)]
 
     for(let i in sourceFiles) {
       let [metadata] = await sourceFiles[i].getMetadata()
@@ -51,16 +37,16 @@ async function combine(dataset, datasetid, org, allCreated){
     sourceFiles = newSourceFiles
   }
   //destination file for the combine files
-  const allLogs = gcBucket.file(`gift-data/undefined/${org}`);
+  const allLogs = gcBucket.file(`gift-data/all/${org}`)
 
   //combine files.
   await gcBucket.combine(sourceFiles, allLogs)
 
 }
 
-async function download(org, res){
-  let bucket = storage.bucket('gift-datasets');
-  let [metaData] = await bucket.file(`gift-data/undefined/${org}`).getMetadata();
+async function download(storage, org, res){
+  let bucket = storage.bucket('gift-datasets')
+  let [metaData] = await bucket.file(`gift-data/all/${org}`).getMetadata()
   res.redirect(metaData.mediaLink)
   // res.setHeader("content-disposition", "attachment; filename=" + `${org}`);
   // request
@@ -83,8 +69,7 @@ export default async function handler(req, res) {
     const { userInfo } = req.cookies
     const user = decrypt(userInfo) || { login: 'PUBLIC'}
     const { datasetid, org} = req.query
-    console.log(org)
-    const organization = org.split(".")[0]
+    const organization = org.split('.')[0]
     if (!await permissions.userHasPermission(user.login, organization, 'read')) {
       res.status(401).send('Unauthorized User')
     }
@@ -104,18 +89,21 @@ export default async function handler(req, res) {
     const datapackageLastUpdated = dataset['updatedAt']
 
     //load google cloud storage
-    // const storage = new Storage();
+    const storage = new Storage({
+      projectId: process.env.PROJECT_ID,
+      credentials: getDecryptedSecret()})
+
     const bucketName = 'gift-datasets'
-    let allFileExist;
-    let allFileCreated = null;
+    let allFileExist
+    let allFileCreated = null
 
     try {
-      let bucket = storage.bucket(bucketName);
-      let [metaData] = await bucket.file(`gift-data/undefined/${org}`).getMetadata();
-      allFileCreated = metaData['updated'];
-      allFileExist = true;
+      let bucket = storage.bucket(bucketName)
+      let [metaData] = await bucket.file(`gift-data/all/${org}`).getMetadata()
+      allFileCreated = metaData['updated']
+      allFileExist = true
     } catch (error){
-        allFileExist = null;
+      allFileExist = null
     }
 
     if(allFileExist && allFileCreated) {
@@ -126,14 +114,14 @@ export default async function handler(req, res) {
       // since the last time the file was
       //created
       if( allFileDate > datapackageDate) {
-        await download(org, res)
+        await download(storage, org, res)
       }else {
-        await combine(dataset, datasetid, org, allFileDate)
-        await download(org, res)
+        await combine(storage, dataset, datasetid, org, allFileDate)
+        await download(storage, org, res)
       }
     } else {
-      await combine(dataset, datasetid, org)
-      await download(org, res)
+      await combine(storage, dataset, datasetid, org)
+      await download(storage, org, res)
 
     }
     // res.send("ok")
