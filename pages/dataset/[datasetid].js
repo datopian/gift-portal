@@ -120,6 +120,20 @@ const Dataset = ({ dataset }) => {
                   </tr>
                 </thead>
                 <tbody>
+                <tr key={'ddt'}>
+                    <td className='border border-black border-opacity-50 p-1 sm:p-4 lg:p-6'>
+                      {filesize(new TextEncoder().encode(JSON.stringify(dataset)).length)}
+                    </td>
+                    <td className='border border-black border-opacity-50 p-1 sm:p-4 lg:p-6'>
+                      <a
+                        className='resource-download'
+                        href={`/api/dataset/${dataset.name}/datapackage.json`}
+                        download
+                      >
+                        DataPackage.json
+                      </a>
+                    </td>
+                  </tr>
                   {dataset.resources.map((resource, index) => {
                     return (
                       <>
@@ -477,7 +491,7 @@ export async function getStaticProps({ params }) {
 
   const metastore = new Metastore(apolloClient.cache.extract())
   const dataset = await metastore.fetch(datasetid)
-  // console.log(dataset)
+  console.log(datasetid)
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
