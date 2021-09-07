@@ -161,7 +161,7 @@ const Dataset = ({ dataset }) => {
             )}
         </div>
         <div className='mb-10 font-lato font-bold text-xl'>
-          <a className='btn' href={`/api/dataset/all/${dataset.id}/org/${dataset.name}.csv`}>Download All Dataset</a>
+          <a className='btn' href={`/api/dataset/all/${dataset.id}/org/a/${dataset.name}.csv`}>Download All Dataset</a>
         </div>
         
         <h1 className='mb-10 font-lato font-bold text-xl'>Metadata</h1>
