@@ -1,14 +1,3 @@
-/**
- * Fetch each of the bucket files from the organization storage
- * Obtain the schema for the organization dataset
- * create a bigquery option specifying the schema and
- * also to skipLeadingRows for all files except the first file
- * each of this files are stored in a temp organization folder.
- * --> Before loading file into bigquery , check if the organization folder already 
- * --> existing or if the datetime of the last upload file is greater than the combine file.
- * 
- */
-
 import { Storage } from '@google-cloud/storage'
 import { initializeApollo } from '../../../../../../../lib/apolloClient'
 import Metastore from '../../../../../../../lib/Metastore'
@@ -59,7 +48,7 @@ export default async function handler(req, res) {
 
     const bucketName = 'gift-datasets'
     const bigqueryId = "gift_bq2"
-    const tableId = randomName()
+    const tableId = uuidv4()
     let bucket = storage.bucket(bucketName)
 
     //create a unique folder for each users
@@ -74,7 +63,7 @@ export default async function handler(req, res) {
     let schema = dataset['schema']['fields'].map((field)=>{
       let type;
       if (field['type'] === "number") {
-          type = 'NUMERIC'
+          type = 'FLOAT64'
       } else if(field['type'] === "integer") {
         type = 'INT64'
       }
@@ -84,36 +73,44 @@ export default async function handler(req, res) {
       return {name: field['title'], type: type, mode: "NULLABLE"}
     })
 
+    let newFileStorage = []
 
-    for(let i=0; i< 2; i++) {
+    for(let i=0; i< dataset['resources'].length; i++) {
 
       let resource = dataset['resources'][i]
       let fname = `gift-data/${datasetid}/${resource.hash}`
       let extractFname = `gift-data/${operationUser}/${resource.hash}`
       let printHeader = true;
+      const tableId = uuidv4()
 
       if (i > 0) printHeader =false;
 
       await createTable(bigquery, bigqueryId, tableId)
       await loadCSVFromGCS(bigquery, storage,bigqueryId,
-                           tableId, schema,skip,fname)
+                           tableId, schema,fname)
 
       await extractTableToGCS(bigquery, storage, extractFname, bigqueryId, tableId, printHeader)
       await deleteTable(bigquery, bigqueryId, tableId)
-
-
+      newFileStorage.push(bucket.file(extractFname))
     }
+    const mergeFile = bucket.file(`gift-data/${operationUser}/${org}`)
+    await bucket.combine(newFileStorage, mergeFile)
     
-    res.send("ok")
+    download(mergeFile, res).then(res => {
+      for(let i in newFileStorage) {
+        newFileStorage[i].delete()
+      }
+      mergeFile.delete()
+    })
+
   } catch(error) {
     res.status(400).send(`Error on Retrieve Resource: ${error.message}`)
   }
 
 }
 
-async function download(storage, org, res){
-  let bucket = storage.bucket('gift-datasets')
-  let [metaData] = await bucket.file(`gift-data/all/${org}`).getMetadata()
+async function download(mergeFile, res){
+  let [metaData] = await mergeFile.getMetadata()
   res.redirect(metaData.mediaLink)
 }
 
@@ -155,14 +152,13 @@ async function deleteTable(bigquery, datasetId, tableId) {
 }
 
 
-async function loadCSVFromGCS(bigquery, storage,datasetId, tableId,schema,skip,gcpfile) {
+async function loadCSVFromGCS(bigquery, storage,datasetId, tableId,schema,gcpfile) {
 
   const metadata = {
     sourceFormat: 'CSV',
-    skipLeadingRows: skip,
-    schema: {
-      fields: schema
-    },
+    skipLeadingRows: 1,
+    autodetect: true,
+    maxBadRecords: 10,
     location: 'US',
   };
   // console.log(f[0].name)
@@ -178,7 +174,7 @@ async function loadCSVFromGCS(bigquery, storage,datasetId, tableId,schema,skip,g
   // Check the job's status for errors
   const errors = job.status.errors;
   if (errors && errors.length > 0) {
-  throw errors;
+    throw errors;
   }
 }
 
