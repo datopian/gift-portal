@@ -60,9 +60,10 @@ export default async function handler(req, res) {
     const mergeFile = bucket.file(`gift-data/${operationUser}/${org}`)
     await bucket.combine(newFileStorage, mergeFile)
     
-    download(mergeFile, res).then(res => {
-      mergeFile.delete()
-    })
+    await download(mergeFile, res)
+    // download(mergeFile, res).then(res => {
+    //   mergeFile.delete()
+    // })
 
   } catch(error) {
     res.status(400).send(`Error on Retrieve Resource: ${error.message}`)
