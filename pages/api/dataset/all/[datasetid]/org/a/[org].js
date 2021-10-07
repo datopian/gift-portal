@@ -61,7 +61,7 @@ export default async function handler(req, res) {
     await bucket.combine(newFileStorage, mergeFile)
     
     await download(mergeFile, res)
-    mergeFile.delete()
+    await mergeFile.delete()
     // download(mergeFile, res).then(res => {
     //   mergeFile.delete()
     // })
