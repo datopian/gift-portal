@@ -97,7 +97,7 @@ export async function getServerSideProps() {
   await apolloClient.query({
     query: ALL_REPOSITRIES,
   })
-
+  // metastore
   const metastore = new Metastore(apolloClient.cache.extract())
   let datasets = await metastore.search()
 
