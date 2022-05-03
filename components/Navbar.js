@@ -85,7 +85,7 @@ export default function Navbar() {
         {!session ? (
           <>
             <div className='px-4 py-2 sm:px-6'>
-              <a href='/'>
+              <a >
                 <img src='/login.svg' alt='next' width='47.7548' height='37' />
               </a>
             </div>
