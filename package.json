@@ -36,7 +36,6 @@
     "esm": "^3.2.25",
     "filesize": "^6.1.0",
     "frictionless.js": "^0.13.4",
-    "fuse.js": "^6.4.3",
     "giftless-client": "git+https://github.com/datopian/giftless-client-js.git",
     "giftpub": "https://github.com/datopian/gift-publisher#01a90f0fb6e94475251e4f9893ec97e27de673fb",
     "googleapis": "^84.0.0",

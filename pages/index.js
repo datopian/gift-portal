@@ -4,7 +4,6 @@ import React from 'react'
 import Card from '../components/Card'
 import Search from '../components/Search'
 import {useState, useRef} from 'react'
-import Fuse from 'fuse.js'
 import Metastore from '../lib/Metastore'
 import {ALL_REPOSITRIES} from '../lib/queries'
 import {initializeApollo} from '../lib/apolloClient'
@@ -14,30 +13,24 @@ export default function Home({datasets}) {
   const [dataState, setDataState] = useState(datasets)
   const selectRef = useRef()
 
-  const handlSearch = function (keyword) {
+  const handleSearchv2 = function (keyword) {
     if (keyword.length === 0) {
       setDataState(datasets)
-    } else {
-      const sortOrder = selectRef.current.value
-      const fuse = new Fuse(datasets, {
-        keys: ['title'],
-        sortFn: (a, b) => {
-          if (sortOrder === 'AZ') {
-            return a.item['0'].v.localeCompare(b.item['0'].v)
-          } else {
-            return b.item['0'].v.localeCompare(a.item['0'].v)
-          }
-        },
+    }
+    else {
+      const keywordToken = keyword.split(" ")
+      const data = datasets.filter((a) => {
+        let contained = false;
+        for (let keys of keywordToken) {
+          let inData = a.title.toLowerCase().includes(keys)
+          contained = contained || inData;
+        }
+        return contained
       })
-      let data = fuse.search(keyword)
-
-      data = data.map((value) => {
-        let {item} = value
-        return item
-      })
-      setDataState(data)
+      dataSort(data)
     }
   }
+
   // console.log(dataState.sort((a,b)=> a.title.localeCompare(b.title)))
   const dataSort = function (dataState) {
     const sortOrder = selectRef.current.value
@@ -56,7 +49,7 @@ export default function Home({datasets}) {
     <div className="pl-2 pr-2 pt-1 pb-1 md:p-4 lg:pt-10 lg:pb-10 lg:pl-20 lg:pr-20">
       <h2 className="font-lato text-4xl text-black pt-2 md:p-4">Datasets</h2>
       <div className="grid grid-cols-1 justify-end mt-10 lg:grid-cols-2">
-        <Search submbitEvent={handlSearch} />
+        <Search submbitEvent={handleSearchv2} />
         <div className="grid grid-cols-1 mt-10 sm:grid-cols-4 lg:mt-0">
           <h3 className="hidden mr-4 sm:flex pt-2 lg:pt-4 justify-end col-span-1">
             Sort by:
