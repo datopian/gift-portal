@@ -19,6 +19,7 @@ export default async function handler(req,res) {
 
     if (!await permissions.userHasPermission(user.login, id, 'read')) {
       res.status(401).send('Unauthorized User')
+      return
     }
     const resourceUrl = await download.getUrl(id, oid, user.login, dataset)
     return res.redirect(resourceUrl)
