@@ -19,6 +19,7 @@ export default async function handler(req, res) {
       !(await permissions.userHasPermission(user.login, objectId, 'write'))
     ) {
       res.status(401).send('Unauthorized User')
+      return
     }
 
     if (req.method === 'DELETE') {
@@ -53,6 +54,7 @@ export default async function handler(req, res) {
         .update(objectId, user, metadata, user.token)
         .then(() => {
           res.status(200).send({ success: true })
+          return
         })
         .catch((error) => {
           console.log(error)
