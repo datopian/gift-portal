@@ -43,6 +43,14 @@ GITHUB_CLIENT_SECRET= GitHub client secret
 SIGNING_KEY= Signin key to use on APP from GitHub
 
 NEXTAUTH_URL= GitHub login callback URL
+
+# https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
+
+NEXT_PUBLIC_GOOGLE_ANALYTICS=
+
+PROJECT_ID - the Google Cloud project ID
+GOOGLE_CLIENT_EMAIL= - the client_email field from the Google Cloud service user credentials json which has access to combine/compose objects in Google Cloud Storage (object create, delete and get).
+GOOGLE_PRIVATE_KEY= - the private_key field from the same credenitals JSON.
 ```
 <br />
 
@@ -92,7 +100,7 @@ yarn test:watch
 
 ## Integration and E2E Tests
 
-Those tests are made using Cypress. 
+Those tests are made using Cypress.
 To add more tests you can follow the structure on the `cypress` directory.
 
 - If you will update any view or change the workflow, ensure that the tests will run correctly.
@@ -123,8 +131,8 @@ npm run e2e
 # or
 yarn e2e
 ```
- 
-<br />  
+
+<br />
 
 ## Updating the Publisher
 
@@ -156,8 +164,8 @@ npm run e2e
 # or
 yarn e2e
 ```
- 
-<br />  
+
+<br />
 
 ## Updating the Publisher
 

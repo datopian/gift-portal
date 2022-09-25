@@ -5,7 +5,6 @@ import { SINGLE_REPOSITORY } from '../../../../../../../lib/queries'
 import { PERMISSIONS } from '../../../../../../../lib/queries'
 import Permissions from '../../../../../../../lib/Permissions'
 import { decrypt } from '../../../../../../../lib/jwt'
-import { getDecryptedSecret } from '../../../../../../../lib/decret-secret'
 import { v4 as uuidv4 } from 'uuid'
 
 export default async function handler(req, res) {
@@ -24,7 +23,7 @@ export default async function handler(req, res) {
 
     //obtain organization datajson and resources from github
     const apolloClientG = initializeApollo()
-  
+
     await apolloClientG.query({
       query: SINGLE_REPOSITORY,
       variables: { name: organization },
@@ -36,9 +35,13 @@ export default async function handler(req, res) {
     //load google cloud storage
     const storage = new Storage({
       projectId: process.env.PROJECT_ID,
-      credentials: getDecryptedSecret()})
+      credentials: {
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY,
+      }
+    })
 
-    const bucketName = "gift-datasets"
+    const bucketName = process.env.BUCKET_NAME
     let bucket = storage.bucket(bucketName)
 
     let operationUser = uuidv4()
@@ -49,17 +52,16 @@ export default async function handler(req, res) {
     for(let i=0; i< dataset['resources'].length; i++) {
 
       let resource = dataset['resources'][i]
-      let fname = `gift-data/${datasetid}/${resource.hash}` 
-      
-      if (i > 0) fname = `gift-data/copy/${resource.hashcopy}` 
+      let fname = `gift-data/${datasetid}/${resource.hash}`
 
-      newFileStorage.push(bucket.file(fname))
+      if (i > 0) fname = `gift-data/copy/${resource.hashcopy}`
+
       newFileStorage.push(bucket.file(fname))
     }
 
     const mergeFile = bucket.file(`gift-data/${operationUser}/${org}`)
     await bucket.combine(newFileStorage, mergeFile)
-    
+
     await download(mergeFile, res)
     // download(mergeFile, res).then(res => {
     //   mergeFile.delete()
@@ -71,7 +73,10 @@ export default async function handler(req, res) {
 
 }
 
-async function download(mergeFile, res){
-  let [metaData] = await mergeFile.getMetadata()
-  res.redirect(metaData.mediaLink)
+async function download(mergeFile, res) {
+  const [signedUrl] = await mergeFile.getSignedUrl({
+    action: "read",
+    expires: Date.now() + 15 * 60 * 1000,
+  })
+  res.redirect(signedUrl)
 }
