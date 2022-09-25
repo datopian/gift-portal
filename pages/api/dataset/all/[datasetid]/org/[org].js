@@ -5,7 +5,6 @@ import { SINGLE_REPOSITORY } from '../../../../../../lib/queries'
 import { PERMISSIONS } from '../../../../../../lib/queries'
 import Permissions from '../../../../../../lib/Permissions'
 import { decrypt } from '../../../../../../lib/jwt'
-import { getDecryptedSecret } from '../../../../../../lib/decret-secret'
 
 
 
@@ -76,7 +75,7 @@ export default async function handler(req, res) {
 
     //obtain organization datajson and resources from github
     const apolloClientG = initializeApollo()
-  
+
     await apolloClientG.query({
       query: SINGLE_REPOSITORY,
       variables: { name: organization },
@@ -84,14 +83,18 @@ export default async function handler(req, res) {
 
     const metastore = new Metastore(apolloClientG.cache.extract())
     const dataset = await metastore.fetch(organization)
-    
+
 
     const datapackageLastUpdated = dataset['updatedAt']
 
     //load google cloud storage
     const storage = new Storage({
       projectId: process.env.PROJECT_ID,
-      credentials: getDecryptedSecret()})
+      credentials: {
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY,
+      }
+    })
 
     const bucketName = 'gift-datasets'
     let allFileExist
