@@ -203,9 +203,11 @@ function About() {
           </li>
 
           <li id='fiscal-response'>
-            CSS counters are, in essence, variables maintained by CSS whose
-            values may be incremented by CSS rules to track how many times
-            they&apos;re used.{' '}
+           If you are interested in Fiscal data for emergency response, go to our{' '}
+            <a href='https://fiscaltransparency.net/fiscal-data-for-emergency-response-guide-for-covid-19/'>
+              Fiscal Data for Emergency Response: Guide for COVID19
+            </a>
+            .{' '}
             <a href='#fiscal-response-ref' aria-label='Back to content'>
               ↩
             </a>
