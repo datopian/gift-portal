@@ -29,7 +29,7 @@ function About() {
           platform, for users to freely access through open-source formats such
           as CSV and JSON. It is an enabling tool for the{' '}
           <a
-            href='http://www.fiscaltransparency.net/ft_principles/'
+            href='https://fiscaltransparency.net/gift-principles/'
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -192,7 +192,7 @@ function About() {
           <li id='portals'>
             If you are interested in how to develop or update a transparency
             portal, go to our{' '}
-            <a href='http://www.fiscaltransparency.net/blog_open_public_es.php?IdToOpen=7438'>
+            <a href='https://fiscaltransparency.net/tutorial-on-fiscal-transparency-portals-2/'>
               Tutorial on Budget Transparency Portals - User-Centered
               Development
             </a>
