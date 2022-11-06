@@ -64,7 +64,7 @@ export default function Footer() {
             <path d='M22.382.004h-19.5a2.25 2.25 0 00-2.25 2.25v13.5a2.25 2.25 0 002.25 2.25h19.5a2.25 2.25 0 002.25-2.25v-13.5a2.25 2.25 0 00-2.25-2.25zm0 2.25v1.913c-1.051.856-2.727 2.186-6.309 4.991-.79.621-2.353 2.113-3.441 2.096-1.088.017-2.652-1.475-3.441-2.096-3.582-2.804-5.258-4.135-6.31-4.991V2.254h19.5zm-19.5 13.5v-8.7A797.56 797.56 0 007.8 10.928c1.024.806 2.819 2.587 4.83 2.576 2.003.01 3.775-1.744 4.831-2.576a794.52 794.52 0 004.92-3.874v8.7h-19.5z' />
           </svg>
         </a>
-        <a href="https://openspending.datopian.com/api/babbage/cubes/">
+        <a href="https://docs.google.com/document/d/1Q9pZ8z_jYtkAZU9n61IBboRuW77wx8aBRqjUQtSvcIk/edit?usp=sharing">
           <svg xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 511 511"
             xmlSpace="preserve"
